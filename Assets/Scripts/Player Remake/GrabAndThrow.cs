@@ -67,6 +67,11 @@ public class GrabAndThrow : MonoBehaviour
             Debug.Log("Used medkit!");
             GetComponentInParent<NewPlayerMovement>().health += 25;
             medKitCount -= 1;
+
+            if (GetComponentInParent<NewPlayerMovement>().health > 100)
+            {
+                GetComponentInParent<NewPlayerMovement>().health = 100;
+            }
         }
     }
 
