@@ -12,6 +12,8 @@ public class NewPlayerMovement : MonoBehaviour
     public float dashSpeed;
     public float dashTime;
 
+    public float health = 100;
+
     private bool isDashing = false;
 
     private float gravity = -9.81f;
@@ -47,11 +49,16 @@ public class NewPlayerMovement : MonoBehaviour
             velocity.y = Mathf.Sqrt(2 * -2f * gravity);
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && Grounded())
+        if (Input.GetKeyDown(KeyCode.LeftShift) && Grounded() && !isDashing)
         {
             isDashing = true;
             speed = speed * dashSpeed;
             StartCoroutine(Dash());
+        }
+
+        if (health <= 0)
+        {
+            Debug.Log("Dead!");
         }
     }
 
@@ -78,6 +85,15 @@ public class NewPlayerMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(dashTime);
         speed = speed / dashSpeed;
+        yield return new WaitForSeconds(1);
         isDashing = false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == ("Hurtbox"))
+        {
+            health -= 15;
+        }
     }
 }

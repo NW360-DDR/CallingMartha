@@ -11,18 +11,25 @@ public class GrabAndThrow : MonoBehaviour
 
     public bool holdingCheck = false;
 
+    private int grabMask;
+    private int pickupMask;
+
     public float rockCount = 0;
+    public float medKitCount = 0;
+    public bool axe = true;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        grabMask = 1 << 6;
+        pickupMask = 1 << 7;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(1))
+        Debug.DrawRay(transform.position, transform.forward * 2, Color.red);
+        if (Input.GetMouseButtonDown(1))
         {
             TargetTesting();
         }
@@ -30,6 +37,11 @@ public class GrabAndThrow : MonoBehaviour
         if (holdingCheck)
         {
             holdingObject.transform.position = heldObjectPlace.transform.position;
+        }
+
+        //if (holdingObject = null)
+        {
+            //holdingCheck = false;
         }
 
         if (holdingCheck && Input.GetMouseButtonDown(0))
@@ -49,23 +61,27 @@ public class GrabAndThrow : MonoBehaviour
             holdingObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
             rockCount -= 1;
         }
+
+        if (Input.GetKeyDown(KeyCode.H) && medKitCount > 0)
+        {
+            Debug.Log("Used medkit!");
+            GetComponentInParent<NewPlayerMovement>().health += 25;
+            medKitCount -= 1;
+        }
     }
 
     void TargetTesting()
     {
-        if (Physics.Raycast(transform.position, transform.forward, out targetCheck))
+        if (Physics.Raycast(transform.position, transform.forward, out targetCheck, 5, grabMask))
         {
             if (targetCheck.transform.CompareTag("Grabbable"))
             {
                 Debug.Log("Run grab event!");
                 HoldObject();
-            }else
-            {
-                Debug.Log("Nothing!");
             }
         }
 
-        if (Physics.Raycast(transform.position, transform.forward, out targetCheck))
+        if (Physics.Raycast(transform.position, transform.forward, out targetCheck, 5, pickupMask))
         {
             if (targetCheck.transform.CompareTag("Rock"))
             {
@@ -73,6 +89,27 @@ public class GrabAndThrow : MonoBehaviour
 
                 Destroy(targetCheck.transform.gameObject);
                 Debug.Log("Rock!");
+            }
+        }
+
+        if (Physics.Raycast(transform.position, transform.forward, out targetCheck, 5, pickupMask))
+        {
+            if (targetCheck.transform.CompareTag("Medkit"))
+            {
+                medKitCount += 1;
+
+                Destroy(targetCheck.transform.gameObject);
+                Debug.Log("Medkit!");
+            }
+        }
+
+        if (Physics.Raycast(transform.position, transform.forward, out targetCheck, 5, pickupMask))
+        {
+            if (targetCheck.transform.CompareTag("Axe"))
+            {
+                axe = true;
+
+                Destroy(targetCheck.transform.gameObject);
             }
         }
     }

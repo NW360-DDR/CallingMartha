@@ -42,6 +42,14 @@ public class Enemy : MonoBehaviour
             GetComponent<NavMeshAgent>().speed = 0;
             StartCoroutine(ResetSpeed());
         }
+
+        if (other.gameObject.CompareTag("Axe"))
+        {
+            Debug.Log("Ouch!");
+            health -= 85;
+            GetComponent<NavMeshAgent>().speed = 0;
+            StartCoroutine(ResetSpeed());
+        }
     }
 
     IEnumerator ResetSpeed()

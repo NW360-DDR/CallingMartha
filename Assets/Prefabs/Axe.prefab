@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 5432214652557180472}
   - component: {fileID: 2185822911193597554}
   m_Layer: 7
-  m_Name: Rock
-  m_TagString: Rock
+  m_Name: Axe
+  m_TagString: Axe
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: bd67da27c91b21a4295282756ce6bf2e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b284ce2c7fe3e3343842504a687e6d04, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

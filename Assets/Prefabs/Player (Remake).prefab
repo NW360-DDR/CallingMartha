@@ -245,6 +245,8 @@ MonoBehaviour:
   rockPrefab: {fileID: 1868658233443335095, guid: bb92db1b2b8c15940bff00ebc4624e54, type: 3}
   holdingCheck: 0
   rockCount: 0
+  medKitCount: 0
+  axe: 1
 --- !u!1 &6634254539337635931
 GameObject:
   m_ObjectHideFlags: 0
@@ -395,9 +397,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c79581de86af214ea0bfcf63bea0768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 3
   dashSpeed: 3
   dashTime: 0.25
+  health: 100
 --- !u!114 &7607173335660912681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -425,6 +428,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitBox: {fileID: 2652596930408307476}
+  axeThrowPrefab: {fileID: 1868658233443335095, guid: 096e0f76eb69f4744b09fa8c08607396, type: 3}
 --- !u!1 &8183476400951475566
 GameObject:
   m_ObjectHideFlags: 0

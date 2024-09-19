@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - AxeHitbox
+  - Rock
+  - Grabbable
+  - Ground
+  - Medkit
+  - Hurtbox
+  - Axe
   layers:
   - Default
   - TransparentFX
@@ -11,8 +18,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Grabbable
+  - Pickup
   - 
   - 
   - 
