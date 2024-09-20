@@ -6,13 +6,12 @@ using System;
 
 public class MarthaTestScript : MonoBehaviour
 {
-    [HideInInspector]public StateMachine brain;
+    public StateMachine brain;
     public Vector3 dest;
     public Vector3 lastKnownPlayerLoc;
 
     private NavMeshAgent nav;
     private float idleTimer;
-    public float wanderTime, chaseTime; 
 
     public float baseSpeed = 3.5f;
     public float chaseMult = 1.5f;
@@ -26,25 +25,23 @@ public class MarthaTestScript : MonoBehaviour
         nav = GetComponent<NavMeshAgent>();
         brain = GetComponent<StateMachine>();
         fov = GetComponent<FieldOfView>();
-        brain.PushState(Idle());
+        brain.PushState(IdleState());
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (fov.canSeePlayer && brain.GetState() != "Chase")
         {
-            brain.PushState(Chase());
+            brain.PushState(ChaseState());
         }
+        Currstate = brain.GetState();
     }
 
-    public void SetIdleTime(float amt)
-    {
-        idleTimer = amt;
-    }
     
     
- 
-    public State Wander()
+    
+   
+    State Wander()
     {
         void WanderEnter()
         {
@@ -59,7 +56,7 @@ public class MarthaTestScript : MonoBehaviour
             if (nav.remainingDistance <= 0.25f) // Hey are we close to the destination?
             {
                 nav.ResetPath();
-                brain.PopState();
+                brain.PushState(IdleState());
             }
 
         }
@@ -67,11 +64,11 @@ public class MarthaTestScript : MonoBehaviour
         {
             // Empty
         }
-        return new State (Wander, WanderEnter, WanderExit, "Wander");
+        return new State(Wander, WanderEnter, WanderExit, "Wander");
     }
-    public State Look()
+    State LookState()
     {
-        name = "Look";
+        name = "LookAround";
         void LookAroundEnter()
         {
             idleTimer = 8f;
@@ -94,12 +91,11 @@ public class MarthaTestScript : MonoBehaviour
         }
         void LookAroundExit()
         {
-            SetIdleTime(wanderTime);
-            brain.PushState(Idle());
+            idleTimer = 5f;
         }
         return new State(LookAround, LookAroundEnter, LookAroundExit, "LookAround");
     }
-    public State Chase() 
+    State ChaseState() 
     {
         name = "Chase";
         void ChaseEnter()
@@ -123,7 +119,7 @@ public class MarthaTestScript : MonoBehaviour
                 if (nav.remainingDistance <= 0.25f) // Hey are we close to the destination?
                 {
                     nav.ResetPath();
-                    brain.PushState(Look());
+                    brain.PushState(LookState());
                 }
 
             }
@@ -135,13 +131,12 @@ public class MarthaTestScript : MonoBehaviour
         }
         return new State(Chase, ChaseEnter, ChaseExit, "Chase");
     }
-    public State Idle()
+    State IdleState()
     {
         name = "Idle";
         void IdleEnter()
         {
             nav.ResetPath();
-            SetIdleTime(UnityEngine.Random.Range(1, wanderTime));
         }
         void Idle()
         {
@@ -152,13 +147,13 @@ public class MarthaTestScript : MonoBehaviour
             if (idleTimer <= 0)
             {
                 brain.PushState(Wander());
-                
+                idleTimer = UnityEngine.Random.Range(1, 3);
             }
 
         }
         void IdleExit() // Empty
         {
-            SetIdleTime(UnityEngine.Random.Range(1, 3));
+
         }
         return new State(Idle, IdleEnter, IdleExit, name);
     }

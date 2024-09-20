@@ -33,7 +33,7 @@ public class StateMachine : MonoBehaviour
             GetCurrentState().OnExit();
         }
 
-        State state = new (active, onEnter, onExit);
+        State state = new State(active, onEnter, onExit);
         States.Push(state);
 
         GetCurrentState().OnEnter(); //set the state to its enter action
@@ -42,13 +42,9 @@ public class StateMachine : MonoBehaviour
 
     public void PushState(State newstate)
     {
-        //whenever we move a state to the top, the previous state gets pushed down
-        if (GetCurrentState() != null) //if there is a state
-        {
-            GetCurrentState().OnExit();
-        }
         States.Push(newstate);
         GetCurrentState().OnEnter();
+        Debug.Log(GetCurrentState().name);
     }
 
     //pop removes a state from the top of the stack
@@ -73,8 +69,5 @@ public class StateMachine : MonoBehaviour
     {
         return GetCurrentState().name;
     }
-    public void ResetStack()
-    {
-        States.Clear();
-    }
+
 }
