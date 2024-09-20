@@ -24,16 +24,16 @@ public class FieldOfView : MonoBehaviour
 
     private IEnumerator FOVRoutine()
     {
-        WaitForSeconds wait = new WaitForSeconds(0.2f);
+        WaitForSeconds wait = new (0.2f);
 
         while (true)
         {
             yield return wait;
-            FieldOfViewCheck();
+            canSeePlayer = FieldOfViewCheck();
         }
     }
 
-    private void FieldOfViewCheck()
+    private bool FieldOfViewCheck()
     {
         Collider[] rangeChecks = Physics.OverlapSphere(transform.position, radius, targetMask);
 
@@ -47,14 +47,15 @@ public class FieldOfView : MonoBehaviour
                 float distanceToTarget = Vector3.Distance(transform.position, target.position);
 
                 if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask))
-                    canSeePlayer = true;
-                else
-                    canSeePlayer = false;
+                    return true;
             }
-            else
-                canSeePlayer = false;
         }
-        else if (canSeePlayer)
-            canSeePlayer = false;
+        return false;
+    }
+
+    public bool WithinRadius()
+    {
+        return Vector3.Distance(transform.position, playerRef.transform.position) < radius;
+        
     }
 }
