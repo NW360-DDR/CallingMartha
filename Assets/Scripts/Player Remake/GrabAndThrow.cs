@@ -22,7 +22,6 @@ public class GrabAndThrow : MonoBehaviour
     void Start()
     {
         grabMask = 1 << 6;
-        pickupMask = 1 << 7;
     }
 
     // Update is called once per frame
@@ -86,7 +85,7 @@ public class GrabAndThrow : MonoBehaviour
             }
         }
 
-        if (Physics.Raycast(transform.position, transform.forward, out targetCheck, 5, pickupMask))
+        if (Physics.Raycast(transform.position, transform.forward, out targetCheck, 5, grabMask))
         {
             if (targetCheck.transform.CompareTag("Rock"))
             {
@@ -97,7 +96,7 @@ public class GrabAndThrow : MonoBehaviour
             }
         }
 
-        if (Physics.Raycast(transform.position, transform.forward, out targetCheck, 5, pickupMask))
+        if (Physics.Raycast(transform.position, transform.forward, out targetCheck, 5, grabMask))
         {
             if (targetCheck.transform.CompareTag("Medkit"))
             {
@@ -108,7 +107,7 @@ public class GrabAndThrow : MonoBehaviour
             }
         }
 
-        if (Physics.Raycast(transform.position, transform.forward, out targetCheck, 5, pickupMask))
+        if (Physics.Raycast(transform.position, transform.forward, out targetCheck, 5, grabMask))
         {
             if (targetCheck.transform.CompareTag("Axe"))
             {

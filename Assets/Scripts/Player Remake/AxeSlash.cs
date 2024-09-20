@@ -18,7 +18,7 @@ public class AxeSlash : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !isAttacking && grabScript.axe && !grabScript.holdingCheck)
+        if (Input.GetMouseButtonUp(0) && !isAttacking && grabScript.axe && !grabScript.holdingCheck)
         {
             StartCoroutine(Attack());
         }

@@ -254,7 +254,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 6
   angle: 57
-  playerRef: {fileID: 0}
+  playerRef: {fileID: 6634254539337635931, guid: 9fe94e82a4aa3ff41aae2e27ab392045, type: 3}
   targetMask:
     serializedVersion: 2
     m_Bits: 0

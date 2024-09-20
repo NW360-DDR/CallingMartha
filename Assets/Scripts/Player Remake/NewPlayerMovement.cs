@@ -15,6 +15,7 @@ public class NewPlayerMovement : MonoBehaviour
     public float health = 100;
 
     private bool isDashing = false;
+    private bool dashCooldown = false;
 
     private float gravity = -9.81f;
 
@@ -49,8 +50,9 @@ public class NewPlayerMovement : MonoBehaviour
             velocity.y = Mathf.Sqrt(2 * -2f * gravity);
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && Grounded() && !isDashing)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && Grounded() && !dashCooldown)
         {
+            dashCooldown = true;
             isDashing = true;
             speed = speed * dashSpeed;
             StartCoroutine(Dash());
@@ -85,8 +87,9 @@ public class NewPlayerMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(dashTime);
         speed = speed / dashSpeed;
-        yield return new WaitForSeconds(1);
         isDashing = false;
+        yield return new WaitForSeconds(1);
+        dashCooldown = false;
     }
 
     private void OnTriggerEnter(Collider other)
