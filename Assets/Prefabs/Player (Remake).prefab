@@ -145,6 +145,7 @@ GameObject:
   - component: {fileID: 2448535036677490919}
   - component: {fileID: 8071575321147492086}
   - component: {fileID: 597345010416298379}
+  - component: {fileID: 9047667709824818956}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -247,6 +248,27 @@ MonoBehaviour:
   rockCount: 0
   medKitCount: 0
   axe: 1
+--- !u!95 &9047667709824818956
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6362077302677595537}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cb22b8d8ff8135d4891eb4362da65dc1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6634254539337635931
 GameObject:
   m_ObjectHideFlags: 0

@@ -37,6 +37,14 @@ public class NewPlayerMovement : MonoBehaviour
             velocity.y = -2f;
         }
 
+        /*if (Input.GetAxisRaw("Horizontal") == 0f && Input.GetAxisRaw("Vertical") == 0f)
+        {
+            GetComponentInChildren<Animator>().SetBool("isWalking", false);
+        }else
+        {
+            GetComponentInChildren<Animator>().SetBool("isWalking", true);
+        }*/
+
         moveDirection = transform.forward * Input.GetAxis("Vertical") + transform.right * Input.GetAxis("Horizontal");
 
         characterController.Move(moveDirection * speed * Time.deltaTime);
