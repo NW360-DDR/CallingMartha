@@ -6,8 +6,10 @@ public class AxeSlash : MonoBehaviour
 {
     public GameObject hitBox;
     public GameObject axeThrowPrefab;
+    public GameObject axeSprite;
     private GrabAndThrow grabScript;
-    bool isAttacking = false;
+    public bool attackSignal = false;
+    public bool takeInput = true;
 
     // Start is called before the first frame update
     void Start()
@@ -18,9 +20,28 @@ public class AxeSlash : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonUp(0) && !isAttacking && grabScript.axe && !grabScript.holdingCheck)
+        if (attackSignal)
         {
-            StartCoroutine(Attack());
+            TurnOnHitbox();
+        }else
+        {
+            TurnOffHitbox();
+        }
+
+            if (Input.GetMouseButtonUp(0) && takeInput && grabScript.axe)
+        {
+            if (axeSprite.GetComponent<Animator>().GetBool("HoldingDown"))
+            {
+                axeSprite.GetComponent<Animator>().SetTrigger("IsAttacking");
+                takeInput = false;
+            }
+            
+            axeSprite.GetComponent<Animator>().SetBool("HoldingDown", false);
+        }
+
+        if (Input.GetMouseButtonDown(0) && takeInput && grabScript.axe)
+        {
+            axeSprite.GetComponent<Animator>().SetBool("HoldingDown", true);
         }
 
         if (Input.GetKeyDown(KeyCode.Q))
@@ -31,13 +52,13 @@ public class AxeSlash : MonoBehaviour
         }
     }
 
-    IEnumerator Attack()
+    void TurnOnHitbox()
     {
-        yield return new WaitForSeconds(0.15f);
         hitBox.SetActive(true);
-        isAttacking = true;
-        yield return new WaitForSeconds(0.2f);
+    }
+
+    void TurnOffHitbox()
+    {
         hitBox.SetActive(false);
-        isAttacking = false;
     }
 }
