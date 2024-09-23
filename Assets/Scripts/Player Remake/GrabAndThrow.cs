@@ -112,6 +112,8 @@ public class GrabAndThrow : MonoBehaviour
             if (targetCheck.transform.CompareTag("Axe"))
             {
                 axe = true;
+                GetComponentInParent<AxeSlash>().rightHand.SetActive(false);
+                GetComponentInParent<AxeSlash>().axeSprite.SetActive(true);
 
                 Destroy(targetCheck.transform.gameObject);
             }

@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AxeSlash : MonoBehaviour
 {
     public GameObject hitBox;
     public GameObject axeThrowPrefab;
     public GameObject axeSprite;
+    public GameObject rightHand;
     private GrabAndThrow grabScript;
     public bool attackSignal = false;
     public bool takeInput = true;
@@ -44,8 +46,10 @@ public class AxeSlash : MonoBehaviour
             axeSprite.GetComponent<Animator>().SetBool("HoldingDown", true);
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && takeInput && grabScript.axe)
         {
+            axeSprite.SetActive(false);
+            rightHand.SetActive(true);
             GameObject currentAxe = Instantiate(axeThrowPrefab, hitBox.transform.position, hitBox.transform.rotation);
             currentAxe.GetComponent<Rigidbody>().AddForce(transform.forward * 20, ForceMode.Impulse);
             grabScript.axe = false;

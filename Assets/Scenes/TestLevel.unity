@@ -644,6 +644,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9f6ccd8137640a458ec6c3225eade0b, type: 3}
+--- !u!1 &863405190 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4870218010087735748, guid: 5b88db6f953061f4fb44f7ae625e80cd, type: 3}
+  m_PrefabInstance: {fileID: 8567260295796547231}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1006395287
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6960,6 +6965,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 597345010416298379, guid: 9fe94e82a4aa3ff41aae2e27ab392045, type: 3}
+      propertyPath: axe
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6634254539337635931, guid: 9fe94e82a4aa3ff41aae2e27ab392045, type: 3}
       propertyPath: m_Name
       value: Player (Remake)
@@ -7012,6 +7021,10 @@ PrefabInstance:
       propertyPath: axeSprite
       value: 
       objectReference: {fileID: 1850189642}
+    - target: {fileID: 8780571491998576821, guid: 9fe94e82a4aa3ff41aae2e27ab392045, type: 3}
+      propertyPath: rightHand
+      value: 
+      objectReference: {fileID: 863405190}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7392,6 +7405,14 @@ PrefabInstance:
     - target: {fileID: 6765387685168604996, guid: 5b88db6f953061f4fb44f7ae625e80cd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8163667436450432098, guid: 5b88db6f953061f4fb44f7ae625e80cd, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8966131768551897672, guid: 5b88db6f953061f4fb44f7ae625e80cd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
