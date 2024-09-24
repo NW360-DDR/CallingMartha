@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 995960040462797708}
   - component: {fileID: 4839048584980760124}
   - component: {fileID: 2958009386044507099}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: AxeHitbox
   m_TagString: AxeHitbox
   m_Icon: {fileID: 0}
@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 8071575321147492086}
   - component: {fileID: 597345010416298379}
   - component: {fileID: 9047667709824818956}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,7 +285,7 @@ GameObject:
   - component: {fileID: 7522753199111385415}
   - component: {fileID: 7607173335660912681}
   - component: {fileID: 8780571491998576821}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player (Remake)
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -465,7 +465,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3451119636499074137}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HeldObjectPlace
   m_TagString: Untagged
   m_Icon: {fileID: 0}

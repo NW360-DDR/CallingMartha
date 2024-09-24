@@ -16,6 +16,7 @@ public class NewPlayerMovement : MonoBehaviour
 
     private bool isDashing = false;
     private bool dashCooldown = false;
+    public bool alive = true;
 
     private int grabMask;
 
@@ -48,7 +49,18 @@ public class NewPlayerMovement : MonoBehaviour
             GetComponentInChildren<Animator>().SetBool("isWalking", true);
         }*/
 
-        moveDirection = transform.forward * Input.GetAxis("Vertical") + transform.right * Input.GetAxis("Horizontal");
+        if (health > 0)
+        {
+            moveDirection = transform.forward * Input.GetAxis("Vertical") + transform.right * Input.GetAxis("Horizontal");
+        }
+        else
+        {
+            GetComponent<CameraScript>().enabled = false;
+            GetComponentInChildren<GrabAndThrow>().enabled = false;
+            GetComponent<AxeSlash>().enabled = false;
+            alive = false;
+        }
+        
 
         characterController.Move(moveDirection * speed * Time.deltaTime);
 
