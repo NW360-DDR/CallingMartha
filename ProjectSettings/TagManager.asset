@@ -11,6 +11,7 @@ TagManager:
   - Medkit
   - Hurtbox
   - Axe
+  - Spawn Trigger
   layers:
   - Default
   - TransparentFX

@@ -36,15 +36,11 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Rock"))
         {
-            if (other.gameObject.GetComponent<Rigidbody>().velocity.magnitude > 5)
-            {
-                Debug.Log("Ouch!");
-                Destroy(other.gameObject);
-                health -= 50;
-                GetComponent<NavMeshAgent>().speed = 0;
-                StartCoroutine(ResetSpeed());
-            }
-            
+            Debug.Log("Ouch!");
+            Destroy(other.gameObject);
+            health -= 50;
+            GetComponent<NavMeshAgent>().speed = 0;
+            StartCoroutine(ResetSpeed());
         }
 
         if (other.gameObject.CompareTag("Axe"))

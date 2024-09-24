@@ -41,13 +41,16 @@ public class NewPlayerMovement : MonoBehaviour
             velocity.y = -2f;
         }
 
-        /*if (Input.GetAxisRaw("Horizontal") == 0f && Input.GetAxisRaw("Vertical") == 0f)
+        if (Input.GetAxisRaw("Horizontal") == 0f && Input.GetAxisRaw("Vertical") == 0f)
         {
             GetComponentInChildren<Animator>().SetBool("isWalking", false);
         }else
         {
-            GetComponentInChildren<Animator>().SetBool("isWalking", true);
-        }*/
+            if (Grounded())
+            {
+                GetComponentInChildren<Animator>().SetBool("isWalking", true);
+            }
+        }
 
         if (health > 0)
         {
@@ -71,6 +74,7 @@ public class NewPlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && Grounded() && !isDashing)
         {
             velocity.y = Mathf.Sqrt(2 * -2f * gravity);
+            GetComponentInChildren<Animator>().SetBool("isWalking", false);
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && Grounded() && !dashCooldown)
@@ -101,10 +105,14 @@ public class NewPlayerMovement : MonoBehaviour
             }
             else
             {
+                GetComponentInChildren<Animator>().SetBool("isWalking", false);
                 return false;
+
             }
         }else
         {
+            GetComponentInChildren<Animator>().Play("Camera_Idle");
+            GetComponentInChildren<Animator>().SetBool("isWalking", false);
             return false;
         }
     }
@@ -123,6 +131,11 @@ public class NewPlayerMovement : MonoBehaviour
         if (other.tag == ("Hurtbox"))
         {
             health -= 15;
+        }
+
+        if (other.tag == ("Spawn Trigger"))
+        {
+            other.GetComponent<EnemySpawnTrigger>().SendMessageUpwards("SpawnEnemies");
         }
     }
 }
