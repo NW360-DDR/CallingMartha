@@ -9,6 +9,7 @@ public class MarthaTestScript : MonoBehaviour
     public StateMachine brain;
     public Vector3 dest;
     public Vector3 lastKnownPlayerLoc;
+    List<Vector3> detections;
 
     private NavMeshAgent nav;
     private float idleTimer;
@@ -19,25 +20,32 @@ public class MarthaTestScript : MonoBehaviour
     // logic for state changes
     FieldOfView fov;
     public string Currstate;
+    private bool hunting = false; //Becomes True during Chase, LookAround, Swipe and Charge
     // Start is called before the first frame update
     void Start()
     {
         nav = GetComponent<NavMeshAgent>();
         brain = GetComponent<StateMachine>();
         fov = GetComponent<FieldOfView>();
-        brain.PushState(IdleState());
+        brain.PushState(Idle());
+        detections = new List<Vector3>();
     }
 
     private void Update()
     {
-        if (fov.canSeePlayer && brain.GetState() != "Chase")
+        if (fov.canSeePlayer && !hunting)
         {
             brain.PushState(ChaseState());
         }
         Currstate = brain.GetState();
     }
 
-    
+    public void HeardThing(Vector3 soundLoc)
+    {
+        // TO-DO: Make Martha navigate towards a noise if this gets called.
+        // TO-DO: Make Martha have navigation bias towards an area if multiple sounds are heard in the same area.
+        detections.Add(soundLoc);
+    }
     
     
    
@@ -56,7 +64,7 @@ public class MarthaTestScript : MonoBehaviour
             if (nav.remainingDistance <= 0.25f) // Hey are we close to the destination?
             {
                 nav.ResetPath();
-                brain.PushState(IdleState());
+                brain.PushState(Idle());
             }
 
         }
@@ -68,7 +76,6 @@ public class MarthaTestScript : MonoBehaviour
     }
     State LookState()
     {
-        name = "LookAround";
         void LookAroundEnter()
         {
             idleTimer = 8f;
@@ -97,7 +104,6 @@ public class MarthaTestScript : MonoBehaviour
     }
     State ChaseState() 
     {
-        name = "Chase";
         void ChaseEnter()
         {
             dest = fov.playerRef.transform.position;
@@ -131,9 +137,8 @@ public class MarthaTestScript : MonoBehaviour
         }
         return new State(Chase, ChaseEnter, ChaseExit, "Chase");
     }
-    State IdleState()
+    State Idle()
     {
-        name = "Idle";
         void IdleEnter()
         {
             nav.ResetPath();
@@ -155,6 +160,6 @@ public class MarthaTestScript : MonoBehaviour
         {
 
         }
-        return new State(Idle, IdleEnter, IdleExit, name);
+        return new State(Idle, IdleEnter, IdleExit, "Idle");
     }
 }
