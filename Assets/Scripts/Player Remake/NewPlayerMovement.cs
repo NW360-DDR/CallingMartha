@@ -17,6 +17,8 @@ public class NewPlayerMovement : MonoBehaviour
     private bool isDashing = false;
     private bool dashCooldown = false;
 
+    private int grabMask;
+
     private float gravity = -9.81f;
 
     private RaycastHit groundCheck;
@@ -25,6 +27,7 @@ public class NewPlayerMovement : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        grabMask = 1 << 6;
     }
 
     // Update is called once per frame
@@ -80,12 +83,15 @@ public class NewPlayerMovement : MonoBehaviour
             {
                 return true;
             }
+            else if (Physics.Raycast(transform.position, Vector3.down, out groundCheck, 1.17f, grabMask))
+            {
+                return true;
+            }
             else
             {
                 return false;
             }
-        }
-        else
+        }else
         {
             return false;
         }

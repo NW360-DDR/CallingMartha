@@ -27,7 +27,9 @@ public class GrabAndThrow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.DrawRay(transform.position, transform.forward * 2, Color.red);
+        //Debug.DrawRay(transform.position, transform.forward * 2, Color.red);
+
+        //if you right click, then check if whatever you are looking at is grabbable or a pickup
         if (Input.GetMouseButtonDown(1))
         {
             TargetTesting();
@@ -38,13 +40,10 @@ public class GrabAndThrow : MonoBehaviour
             holdingObject.transform.position = heldObjectPlace.transform.position;
         }
 
-        //if (holdingObject = null)
-        {
-            //holdingCheck = false;
-        }
-
+        //if holding object and you click, throw object
         if (holdingCheck && Input.GetMouseButtonDown(0))
         {
+            holdingObject.GetComponent<Collider>().isTrigger = false;
             holdingObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
             holdingObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
             holdingObject.GetComponent<Rigidbody>().AddForce(transform.forward * 15, ForceMode.Impulse);
@@ -52,15 +51,18 @@ public class GrabAndThrow : MonoBehaviour
             holdingCheck = false;
         }
 
+        //take rock out and hold it
         if (Input.GetKeyDown(KeyCode.R) && rockCount > 0 && !holdingCheck)
         {
             
             holdingObject = Instantiate(rockPrefab, heldObjectPlace.transform.position, heldObjectPlace.transform.rotation);
             holdingCheck = true;
             holdingObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+            holdingObject.GetComponent<Collider>().isTrigger = true;
             rockCount -= 1;
         }
 
+        //heal if you have medkit
         if (Input.GetKeyDown(KeyCode.H) && medKitCount > 0)
         {
             Debug.Log("Used medkit!");
@@ -126,5 +128,6 @@ public class GrabAndThrow : MonoBehaviour
         holdingObject = targetCheck.collider.gameObject;
         holdingCheck = true;
         holdingObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+        holdingObject.GetComponent<Collider>().isTrigger = true;
     }
 }
