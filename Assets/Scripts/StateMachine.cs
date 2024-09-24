@@ -33,7 +33,7 @@ public class StateMachine : MonoBehaviour
             GetCurrentState().OnExit();
         }
 
-        State state = new State(active, onEnter, onExit);
+        State state = new (active, onEnter, onExit);
         States.Push(state);
 
         GetCurrentState().OnEnter(); //set the state to its enter action
@@ -47,15 +47,18 @@ public class StateMachine : MonoBehaviour
         Debug.Log(GetCurrentState().name);
     }
 
-    //pop removes a state from the top of the stack
+    // Pop removes a state from the top of the stack.
+    // Pop also seems to break things more often than not.
+    // Very likely I just forgot the best way to utilize it.
     public void PopState()
     {
         if (GetCurrentState() != null)
         {
             GetCurrentState().OnExit();
-            GetCurrentState().ActiveAction = null; //just gonna play it safe
+            GetCurrentState().ActiveAction = null; //null before deleting the action to avoid trying to call an action that isn't there anymore.
             States.Pop();
             GetCurrentState().OnEnter();
+            Debug.Log("Popping state, reverting to: " + GetState());
         }
     }
 
