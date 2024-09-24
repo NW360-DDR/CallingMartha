@@ -453,6 +453,7 @@ MonoBehaviour:
   axeThrowPrefab: {fileID: 1868658233443335095, guid: 096e0f76eb69f4744b09fa8c08607396, type: 3}
   axeSprite: {fileID: 0}
   rightHand: {fileID: 0}
+  camera: {fileID: 6362077302677595537}
   attackSignal: 0
   takeInput: 1
 --- !u!1 &8183476400951475566
