@@ -160,7 +160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c649c158c95f682448e93304e18f2f80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 40
+  radius: 35
   angle: 115
   playerRef: {fileID: 0}
   targetMask:
@@ -190,7 +190,7 @@ MonoBehaviour:
   attackCooldown: 0.667
   chargeRange: 10
   attackRange: 2
-  chargeCooldown: 7
+  chargeCooldown: 5
   chargeTimer: 0
   idleTimer: 3
   currIdle: 0

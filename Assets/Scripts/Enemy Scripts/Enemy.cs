@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour
         if (other.tag == "AxeHitbox")
         {
             Debug.Log("Ouch!");
-            health -= 25;
+            health -= 50;
             GetComponent<NavMeshAgent>().speed = 0;
             StartCoroutine(ResetSpeed());
         }
