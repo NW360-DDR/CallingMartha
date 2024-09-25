@@ -54,7 +54,6 @@ public class GrabAndThrow : MonoBehaviour
         //take rock out and hold it
         if (Input.GetKeyDown(KeyCode.R) && rockCount > 0 && !holdingCheck)
         {
-            
             holdingObject = Instantiate(rockPrefab, heldObjectPlace.transform.position, heldObjectPlace.transform.rotation);
             holdingCheck = true;
             holdingObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
