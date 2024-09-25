@@ -51,7 +51,7 @@ public class Enemy : MonoBehaviour
             if (other.gameObject.GetComponent<Rigidbody>().velocity.magnitude > 0.5f)
             {
                 Debug.Log("Ouch!");
-                health -= 85;
+                health -= 100;
                 GetComponent<NavMeshAgent>().speed = 0;
                 StartCoroutine(ResetSpeed());
             }
