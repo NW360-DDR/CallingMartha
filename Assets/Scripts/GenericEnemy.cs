@@ -123,30 +123,19 @@ public class GenericEnemy : MonoBehaviour
         }
         void Update()
         {
-            // Yeah yeah I know, nested if-statement bad
-            if (fov.canSeePlayer)
+            
+            
+            dest = fov.playerRef.transform.position;
+            nav.SetDestination(dest);
+            LastKnownLoc = dest;
+            if ((nav.remainingDistance < chargeRange) && chargeTimer >= chargeCooldown)
             {
-                dest = fov.playerRef.transform.position;
-                nav.SetDestination(dest);
-                LastKnownLoc = dest;
-                if ((nav.remainingDistance < chargeRange) && chargeTimer >= chargeCooldown)
-                {
-                    brain.PushState(Charge());
-                }
-                else if (nav.remainingDistance < attackRange)
-                {
-                    brain.PushState(Attack());
-                }
+                brain.PushState(Charge());
             }
-            else
+            else if (nav.remainingDistance < attackRange)
             {
-                if (nav.remainingDistance < 0.25f)
-                {
-                    nav.ResetPath();
-                    brain.PushState(Search());
-                }
-            }
-             
+                brain.PushState(Attack());
+            }   
         }
         void Exit()
         {
@@ -158,38 +147,6 @@ public class GenericEnemy : MonoBehaviour
         return new (Update, Enter, Exit, "Chase");
     }
 
-    State Search() // Note: hunting should always be false when we're here, even though we kinda are still hunting. Long story.
-    {
-        
-        void Enter()
-        {
-            hunting = false;
-            nav.speed = baseSpeed * chaseMult;
-            idleTimer *= 2; // Increase the idleTimer to reuse it as a searchTimer
-            currIdle = 0;
-            newDest();
-        }
-        void Update()
-        {
-            currIdle += Time.deltaTime;
-            if (currIdle >= idleTimer)
-            {
-                brain.PopState();
-            }
-            else if (nav.remainingDistance < 0.25f)
-            {
-                newDest();
-            }
-
-        }
-        void Exit()
-        {
-            idleTimer /= 6; // Decrease idleTimer so it can be used as a normal idleTimer again.
-            backState = 1; // Test to see if this will let me revert two states back when Popping.
-            fov.angle = angleBase;
-        }
-        return new(Update, Enter, Exit, "Search");
-    }
 
     State Charge()
     {
