@@ -14,6 +14,8 @@ public class GrabAndThrow : MonoBehaviour
     private int grabMask;
     private int pickupMask;
 
+    private HealthAndRespawn healthScript;
+
     public float rockCount = 0;
     public float medKitCount = 0;
     public bool axe = true;
@@ -22,6 +24,7 @@ public class GrabAndThrow : MonoBehaviour
     void Start()
     {
         grabMask = 1 << 6;
+        healthScript = GetComponentInParent<HealthAndRespawn>();
     }
 
     // Update is called once per frame
@@ -54,7 +57,6 @@ public class GrabAndThrow : MonoBehaviour
         //take rock out and hold it
         if (Input.GetKeyDown(KeyCode.R) && rockCount > 0 && !holdingCheck)
         {
-            
             holdingObject = Instantiate(rockPrefab, heldObjectPlace.transform.position, heldObjectPlace.transform.rotation);
             holdingCheck = true;
             holdingObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
@@ -66,12 +68,12 @@ public class GrabAndThrow : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.H) && medKitCount > 0)
         {
             Debug.Log("Used medkit!");
-            GetComponentInParent<NewPlayerMovement>().health += 25;
+            healthScript.health += 25;
             medKitCount -= 1;
 
-            if (GetComponentInParent<NewPlayerMovement>().health > 100)
+            if (healthScript.health > 100)
             {
-                GetComponentInParent<NewPlayerMovement>().health = 100;
+                healthScript.health = 100;
             }
         }
     }
@@ -118,6 +120,14 @@ public class GrabAndThrow : MonoBehaviour
                 GetComponentInParent<AxeSlash>().axeSprite.SetActive(true);
 
                 Destroy(targetCheck.transform.gameObject);
+            }
+        }
+
+        if (Physics.Raycast(transform.position, transform.forward, out targetCheck, 5, grabMask))
+        {
+            if (targetCheck.transform.CompareTag("Checkpoint"))
+            {
+                healthScript.checkpoint = targetCheck.transform.gameObject;
             }
         }
     }

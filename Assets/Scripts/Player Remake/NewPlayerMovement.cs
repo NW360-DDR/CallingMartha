@@ -12,11 +12,10 @@ public class NewPlayerMovement : MonoBehaviour
     public float dashSpeed;
     public float dashTime;
 
-    public float health = 100;
+    private HealthAndRespawn healthScript;
 
     private bool isDashing = false;
     private bool dashCooldown = false;
-    public bool alive = true;
 
     private int grabMask;
 
@@ -28,6 +27,7 @@ public class NewPlayerMovement : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        healthScript = GetComponent<HealthAndRespawn>();
         grabMask = 1 << 6;
     }
 
@@ -52,18 +52,10 @@ public class NewPlayerMovement : MonoBehaviour
             }
         }
 
-        if (health > 0)
+        if (healthScript.alive)
         {
             moveDirection = transform.forward * Input.GetAxis("Vertical") + transform.right * Input.GetAxis("Horizontal");
         }
-        else
-        {
-            GetComponent<CameraScript>().enabled = false;
-            GetComponentInChildren<GrabAndThrow>().enabled = false;
-            GetComponent<AxeSlash>().enabled = false;
-            alive = false;
-        }
-        
 
         characterController.Move(moveDirection * speed * Time.deltaTime);
 
@@ -83,11 +75,6 @@ public class NewPlayerMovement : MonoBehaviour
             isDashing = true;
             speed = speed * dashSpeed;
             StartCoroutine(Dash());
-        }
-
-        if (health <= 0)
-        {
-            Debug.Log("Dead!");
         }
     }
 
@@ -124,18 +111,5 @@ public class NewPlayerMovement : MonoBehaviour
         isDashing = false;
         yield return new WaitForSeconds(1);
         dashCooldown = false;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == ("Hurtbox"))
-        {
-            health -= 15;
-        }
-
-        if (other.tag == ("Spawn Trigger"))
-        {
-            other.GetComponent<EnemySpawnTrigger>().SendMessageUpwards("SpawnEnemies");
-        }
     }
 }

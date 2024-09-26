@@ -23,7 +23,7 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "AxeHitbox")
+        if (other.gameObject.CompareTag("AxeHitbox"))
         {
             Debug.Log("Ouch!");
             health -= 50;
@@ -36,11 +36,14 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Rock"))
         {
-            Debug.Log("Ouch!");
-            Destroy(other.gameObject);
-            health -= 50;
-            GetComponent<NavMeshAgent>().speed = 0;
-            StartCoroutine(ResetSpeed());
+            if (other.gameObject.GetComponent<Rigidbody>().velocity.magnitude > 0.5f)
+            {
+                Debug.Log("Ouch!");
+                Destroy(other.gameObject);
+                health -= 50;
+                GetComponent<NavMeshAgent>().speed = 0;
+                StartCoroutine(ResetSpeed());
+            }
         }
 
         if (other.gameObject.CompareTag("Axe"))
@@ -48,7 +51,7 @@ public class Enemy : MonoBehaviour
             if (other.gameObject.GetComponent<Rigidbody>().velocity.magnitude > 0.5f)
             {
                 Debug.Log("Ouch!");
-                health -= 85;
+                health -= 100;
                 GetComponent<NavMeshAgent>().speed = 0;
                 StartCoroutine(ResetSpeed());
             }

@@ -285,6 +285,7 @@ GameObject:
   - component: {fileID: 7522753199111385415}
   - component: {fileID: 7607173335660912681}
   - component: {fileID: 8780571491998576821}
+  - component: {fileID: 7964418324737739107}
   m_Layer: 3
   m_Name: Player (Remake)
   m_TagString: Player
@@ -457,6 +458,19 @@ MonoBehaviour:
   camera: {fileID: 6362077302677595537}
   attackSignal: 0
   takeInput: 1
+--- !u!114 &7964418324737739107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6634254539337635931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49b1e4f7a80bc1c4d847895e0b792a0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
 --- !u!1 &8183476400951475566
 GameObject:
   m_ObjectHideFlags: 0

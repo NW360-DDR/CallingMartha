@@ -12,6 +12,7 @@ TagManager:
   - Hurtbox
   - Axe
   - Spawn Trigger
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
