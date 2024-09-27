@@ -12,7 +12,6 @@ public class GrabAndThrow : MonoBehaviour
     public bool holdingCheck = false;
 
     private int grabMask;
-    private int pickupMask;
 
     private HealthAndRespawn healthScript;
 
@@ -55,14 +54,14 @@ public class GrabAndThrow : MonoBehaviour
         }
 
         //take rock out and hold it
-        if (Input.GetKeyDown(KeyCode.R) && rockCount > 0 && !holdingCheck)
+        /*if (Input.GetKeyDown(KeyCode.R) && rockCount > 0 && !holdingCheck)
         {
             holdingObject = Instantiate(rockPrefab, heldObjectPlace.transform.position, heldObjectPlace.transform.rotation);
             holdingCheck = true;
             holdingObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
             holdingObject.GetComponent<Collider>().isTrigger = true;
             rockCount -= 1;
-        }
+        }*/
 
         //heal if you have medkit
         if (Input.GetKeyDown(KeyCode.H) && medKitCount > 0)

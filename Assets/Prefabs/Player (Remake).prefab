@@ -286,6 +286,8 @@ GameObject:
   - component: {fileID: 7607173335660912681}
   - component: {fileID: 8780571491998576821}
   - component: {fileID: 7964418324737739107}
+  - component: {fileID: 7041161670826318313}
+  - component: {fileID: 1034859081218810649}
   m_Layer: 3
   m_Name: Player (Remake)
   m_TagString: Player
@@ -423,8 +425,6 @@ MonoBehaviour:
   speed: 3.5
   dashSpeed: 3
   dashTime: 0.25
-  health: 100
-  alive: 1
 --- !u!114 &7607173335660912681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -471,6 +471,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  checkpoint: {fileID: 0}
+  alive: 1
+--- !u!114 &7041161670826318313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6634254539337635931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4721239a0e47401409d021dc7dc98556, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items:
+  - {fileID: 21300000, guid: ce8d51008f45d3a488856de955643133, type: 3}
+  - {fileID: 21300000, guid: 11d0cc7e9a6801648a4d718819ccfd33, type: 3}
+  leftHand: {fileID: 0}
+  currentEqupped: 0
+  switchHandSignal: 0
+--- !u!114 &1034859081218810649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6634254539337635931}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2879a0d55bfabdf46bbf7be3966882eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rockPrefab: {fileID: 1868658233443335095, guid: bb92db1b2b8c15940bff00ebc4624e54, type: 3}
+  spawnLocation: {fileID: 8183476400951475566}
 --- !u!1 &8183476400951475566
 GameObject:
   m_ObjectHideFlags: 0
