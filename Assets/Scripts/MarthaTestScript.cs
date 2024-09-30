@@ -35,6 +35,7 @@ public class MarthaTestScript : MonoBehaviour
     {
         if (fov.canSeePlayer && !hunting)
         {
+            hunting = true;
             brain.PushState(ChaseState());
         }
         Currstate = brain.GetState();

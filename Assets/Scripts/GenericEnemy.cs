@@ -8,12 +8,12 @@ public class GenericEnemy : MonoBehaviour
     // External Components
     StateMachine brain;
     NavMeshAgent nav;
+    NavMeshPath path;
     FieldOfView fov;
     public GameObject hurtBox;
 
     // Navigation Parameters
     Vector3 dest;
-    Vector3 LastKnownLoc;
     [SerializeField] float baseSpeed = 3.5f;
     [SerializeField] float chaseMult = 1.5f, chargeMult = 3f;
     [SerializeField] float wanderDist = 10f, attackCooldown = 0.667f;
@@ -24,7 +24,7 @@ public class GenericEnemy : MonoBehaviour
     bool hunting = false;
     int backState = 0;
     float angleBase;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +35,20 @@ public class GenericEnemy : MonoBehaviour
         brain.PushState(IdleState());
         angleBase = fov.angle;
         hurtBox.SetActive(false);
+        path = new();
+    }
+
+    void AttemptPath(Vector3 destination)
+    {
+        nav.CalculatePath(destination, path);
+        if (path.status == NavMeshPathStatus.PathComplete)
+        {
+            nav.path = path;
+        }
+        else
+        {
+            Debug.Log("Oh hey I'm blocked, oh well.");
+        }
     }
 
     private void Update()
@@ -42,22 +56,17 @@ public class GenericEnemy : MonoBehaviour
         chargeTimer += Time.deltaTime;
         if (fov.canSeePlayer && !hunting)
         {
-            hunting = true;
-            brain.PushState(Chase());
+            nav.CalculatePath(fov.playerRef.transform.position, path);
+            if (path.status == NavMeshPathStatus.PathComplete)
+            {
+                brain.PushState(Chase());
+            }
         }
         else if (backState > 0)
         {
             brain.PopState();
             backState -= 1;
         }
-    }
-
-    void newDest()
-    {
-        Vector3 wanderDir = (Random.insideUnitSphere * wanderDist * 0.2f) + LastKnownLoc;  // This code looks familiar because it's a modified Wander block.
-        NavMesh.SamplePosition(wanderDir, out NavMeshHit nvm, wanderDist, NavMesh.AllAreas); // I have zero shame in this, deal with it.
-        nav.SetDestination(nvm.position);
-        dest = nav.destination;
     }
 
     State IdleState()
@@ -90,9 +99,10 @@ public class GenericEnemy : MonoBehaviour
     {
         void WanderEnter()
         {
-            Vector3 wanderDir = (Random.insideUnitSphere * wanderDist) + transform.position; // Generate a random spot "maxDist" units away from the enemy to navigate towards.
+            Vector3 wanderDir = (wanderDist * Random.insideUnitSphere) + transform.position; // Generate a random spot "maxDist" units away from the enemy to navigate towards.
             NavMesh.SamplePosition(wanderDir, out NavMeshHit nvm, wanderDist, NavMesh.AllAreas); // God I hope this is a spot that can be navigated to.
-            nav.SetDestination(nvm.position);
+            //nav.SetDestination(nvm.position);
+            AttemptPath(nvm.position);
             dest = nav.destination;
         }
         void Wander()
@@ -108,7 +118,7 @@ public class GenericEnemy : MonoBehaviour
         {
             // Empty
         }
-        return new (Wander, WanderEnter, WanderExit, "Wander");
+        return new(Wander, WanderEnter, WanderExit, "Wander");
     }
 
     State Chase()
@@ -119,23 +129,20 @@ public class GenericEnemy : MonoBehaviour
             hunting = true;
             nav.speed = baseSpeed * chaseMult;
             fov.angle = angleBase + 60;
-            nav.SetDestination(fov.playerRef.transform.position);
+            //nav.SetDestination(fov.playerRef.transform.position);
+            AttemptPath(fov.playerRef.transform.position);
         }
         void Update()
         {
-            
-            
+
+
             dest = fov.playerRef.transform.position;
-            nav.SetDestination(dest);
-            LastKnownLoc = dest;
+            //nav.SetDestination(dest);
+            AttemptPath(dest);
             if ((nav.remainingDistance < chargeRange) && chargeTimer >= chargeCooldown)
             {
                 brain.PushState(Charge());
             }
-            else if (nav.remainingDistance < attackRange)
-            {
-                brain.PushState(Attack());
-            }   
         }
         void Exit()
         {
@@ -144,7 +151,7 @@ public class GenericEnemy : MonoBehaviour
             // We aren't sure if we're attacking or Searching, so set hunting to false just in case
             hunting = false;
         }
-        return new (Update, Enter, Exit, "Chase");
+        return new(Update, Enter, Exit, "Chase");
     }
 
 
@@ -154,12 +161,13 @@ public class GenericEnemy : MonoBehaviour
         {
             hurtBox.SetActive(true);
             Vector3 newTarget = fov.playerRef.transform.position - transform.position; // The player destination is exactly where we want to charge. 
-            newTarget = newTarget.normalized * chargeRange * 1.2f; // And we want to go in that direction notably farther than just where the player is.
+            newTarget = chargeRange * 1.2f * newTarget.normalized; // And we want to go in that direction notably farther than just where the player is.
             newTarget += transform.position; // Add this direction + magnitude to our current position, and we should get a proper destination.
-            nav.SetDestination(newTarget);
-            nav.speed = baseSpeed * chargeMult; 
+            //nav.SetDestination(newTarget);
+            AttemptPath(newTarget);
+            nav.speed = baseSpeed * chargeMult;
         }
-        
+
         void Update()
         {
             if (nav.remainingDistance < 0.25f)
@@ -175,30 +183,6 @@ public class GenericEnemy : MonoBehaviour
             hurtBox.SetActive(false);
         }
         return new State(Update, Enter, Exit, "Charge");
-    }
-
-    State Attack()
-    {
-        void Enter()
-        {
-            nav.ResetPath();
-            hurtBox.SetActive(true);
-            currIdle = 0f;
-        }
-        void Update()
-        {
-            currIdle += Time.deltaTime;
-            if (currIdle > attackCooldown)
-            {
-                brain.PopState();
-            }
-        }
-        void Exit()
-        {
-            hurtBox.SetActive(false);
-            currIdle = 0f;
-        }
-        return new State(Update, Enter, Exit, "Attack");
     }
 
 }

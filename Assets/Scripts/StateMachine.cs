@@ -44,7 +44,7 @@ public class StateMachine : MonoBehaviour
     {
         States.Push(newstate);
         GetCurrentState().OnEnter();
-        Debug.Log(GetCurrentState().name);
+        Debug.Log(GetCurrentState().name + ", state count: " + States.Count);
     }
 
     // Pop removes a state from the top of the stack.
@@ -58,7 +58,7 @@ public class StateMachine : MonoBehaviour
             GetCurrentState().ActiveAction = null; //null before deleting the action to avoid trying to call an action that isn't there anymore.
             States.Pop();
             GetCurrentState().OnEnter();
-            Debug.Log("Popping state, reverting to: " + GetState());
+            Debug.Log("Popping state, reverting to: " + GetState() + ", stack size: " + States.Count);
         }
     }
 
