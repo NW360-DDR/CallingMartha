@@ -12,10 +12,12 @@ public class NewPlayerMovement : MonoBehaviour
     public float dashSpeed;
     public float dashTime;
 
-    public float health = 100;
+    private HealthAndRespawn healthScript;
 
     private bool isDashing = false;
     private bool dashCooldown = false;
+
+    private int grabMask;
 
     private float gravity = -9.81f;
 
@@ -25,6 +27,8 @@ public class NewPlayerMovement : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        healthScript = GetComponent<HealthAndRespawn>();
+        grabMask = 1 << 6;
     }
 
     // Update is called once per frame
@@ -37,7 +41,21 @@ public class NewPlayerMovement : MonoBehaviour
             velocity.y = -2f;
         }
 
-        moveDirection = transform.forward * Input.GetAxis("Vertical") + transform.right * Input.GetAxis("Horizontal");
+        if (Input.GetAxisRaw("Horizontal") == 0f && Input.GetAxisRaw("Vertical") == 0f)
+        {
+            GetComponentInChildren<Animator>().SetBool("isWalking", false);
+        }else
+        {
+            if (Grounded())
+            {
+                GetComponentInChildren<Animator>().SetBool("isWalking", true);
+            }
+        }
+
+        if (healthScript.alive)
+        {
+            moveDirection = transform.forward * Input.GetAxis("Vertical") + transform.right * Input.GetAxis("Horizontal");
+        }
 
         characterController.Move(moveDirection * speed * Time.deltaTime);
 
@@ -48,6 +66,7 @@ public class NewPlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && Grounded() && !isDashing)
         {
             velocity.y = Mathf.Sqrt(2 * -2f * gravity);
+            GetComponentInChildren<Animator>().SetBool("isWalking", false);
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && Grounded() && !dashCooldown)
@@ -56,11 +75,6 @@ public class NewPlayerMovement : MonoBehaviour
             isDashing = true;
             speed = speed * dashSpeed;
             StartCoroutine(Dash());
-        }
-
-        if (health <= 0)
-        {
-            Debug.Log("Dead!");
         }
     }
 
@@ -72,13 +86,20 @@ public class NewPlayerMovement : MonoBehaviour
             {
                 return true;
             }
+            else if (Physics.Raycast(transform.position, Vector3.down, out groundCheck, 1.17f, grabMask))
+            {
+                return true;
+            }
             else
             {
+                GetComponentInChildren<Animator>().SetBool("isWalking", false);
                 return false;
+
             }
-        }
-        else
+        }else
         {
+            GetComponentInChildren<Animator>().Play("Camera_Idle");
+            GetComponentInChildren<Animator>().SetBool("isWalking", false);
             return false;
         }
     }
@@ -90,13 +111,5 @@ public class NewPlayerMovement : MonoBehaviour
         isDashing = false;
         yield return new WaitForSeconds(1);
         dashCooldown = false;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == ("Hurtbox"))
-        {
-            health -= 15;
-        }
     }
 }

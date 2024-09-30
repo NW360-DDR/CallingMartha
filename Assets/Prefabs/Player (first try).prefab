@@ -187,6 +187,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitBox: {fileID: 8347536371563722774}
   axeThrowPrefab: {fileID: 1868658233443335095, guid: 096e0f76eb69f4744b09fa8c08607396, type: 3}
+  axeSprite: {fileID: 0}
+  rightHand: {fileID: 0}
+  camera: {fileID: 0}
+  attackSignal: 0
+  takeInput: 1
 --- !u!1 &1899207910407653513
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,6 +14,8 @@ public class GrabAndThrow : MonoBehaviour
     private int grabMask;
     private int pickupMask;
 
+    private HealthAndRespawn healthScript;
+
     public float rockCount = 0;
     public float medKitCount = 0;
     public bool axe = true;
@@ -22,12 +24,15 @@ public class GrabAndThrow : MonoBehaviour
     void Start()
     {
         grabMask = 1 << 6;
+        healthScript = GetComponentInParent<HealthAndRespawn>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.DrawRay(transform.position, transform.forward * 2, Color.red);
+        //Debug.DrawRay(transform.position, transform.forward * 2, Color.red);
+
+        //if you right click, then check if whatever you are looking at is grabbable or a pickup
         if (Input.GetMouseButtonDown(1))
         {
             TargetTesting();
@@ -38,13 +43,10 @@ public class GrabAndThrow : MonoBehaviour
             holdingObject.transform.position = heldObjectPlace.transform.position;
         }
 
-        //if (holdingObject = null)
-        {
-            //holdingCheck = false;
-        }
-
+        //if holding object and you click, throw object
         if (holdingCheck && Input.GetMouseButtonDown(0))
         {
+            holdingObject.GetComponent<Collider>().isTrigger = false;
             holdingObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
             holdingObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
             holdingObject.GetComponent<Rigidbody>().AddForce(transform.forward * 15, ForceMode.Impulse);
@@ -52,24 +54,26 @@ public class GrabAndThrow : MonoBehaviour
             holdingCheck = false;
         }
 
+        //take rock out and hold it
         if (Input.GetKeyDown(KeyCode.R) && rockCount > 0 && !holdingCheck)
         {
-            
             holdingObject = Instantiate(rockPrefab, heldObjectPlace.transform.position, heldObjectPlace.transform.rotation);
             holdingCheck = true;
             holdingObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+            holdingObject.GetComponent<Collider>().isTrigger = true;
             rockCount -= 1;
         }
 
+        //heal if you have medkit
         if (Input.GetKeyDown(KeyCode.H) && medKitCount > 0)
         {
             Debug.Log("Used medkit!");
-            GetComponentInParent<NewPlayerMovement>().health += 25;
+            healthScript.health += 25;
             medKitCount -= 1;
 
-            if (GetComponentInParent<NewPlayerMovement>().health > 100)
+            if (healthScript.health > 100)
             {
-                GetComponentInParent<NewPlayerMovement>().health = 100;
+                healthScript.health = 100;
             }
         }
     }
@@ -112,8 +116,18 @@ public class GrabAndThrow : MonoBehaviour
             if (targetCheck.transform.CompareTag("Axe"))
             {
                 axe = true;
+                GetComponentInParent<AxeSlash>().rightHand.SetActive(false);
+                GetComponentInParent<AxeSlash>().axeSprite.SetActive(true);
 
                 Destroy(targetCheck.transform.gameObject);
+            }
+        }
+
+        if (Physics.Raycast(transform.position, transform.forward, out targetCheck, 5, grabMask))
+        {
+            if (targetCheck.transform.CompareTag("Checkpoint"))
+            {
+                healthScript.checkpoint = targetCheck.transform.gameObject;
             }
         }
     }
@@ -124,5 +138,6 @@ public class GrabAndThrow : MonoBehaviour
         holdingObject = targetCheck.collider.gameObject;
         holdingCheck = true;
         holdingObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+        holdingObject.GetComponent<Collider>().isTrigger = true;
     }
 }
