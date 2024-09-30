@@ -16,8 +16,8 @@ public class GenericEnemy : MonoBehaviour
     Vector3 dest;
     [SerializeField] float baseSpeed = 3.5f;
     [SerializeField] float chaseMult = 1.5f, chargeMult = 3f;
-    [SerializeField] float wanderDist = 10f, attackCooldown = 0.667f;
-    [SerializeField] float chargeRange = 5f, attackRange = 2f;
+    [SerializeField] float wanderDist = 10f;
+    [SerializeField] float chargeRange = 5f;
     [SerializeField] float chargeCooldown = 5f, chargeTimer = 0f;
     public float idleTimer = 3;
     public float currIdle = 0;

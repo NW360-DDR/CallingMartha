@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
-    private float sensitivityX = 200;
-    private float sensitivityY = 200;
+    [SerializeField] float sensitivityX = 200;
+    [SerializeField] float sensitivityY = 200;
 
-    Camera camera;
+    Camera cam;
 
     float mouseX;
     float mouseY;
 
-    float multiplier = 0.01f;
+    readonly float multiplier = 0.01f;
 
     public float xRotation;
     public float yRotation;
@@ -20,7 +20,7 @@ public class CameraScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        camera = GetComponentInChildren<Camera>();
+        cam = GetComponentInChildren<Camera>();
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -35,7 +35,7 @@ public class CameraScript : MonoBehaviour
         yRotation += mouseX * sensitivityX * multiplier;
         xRotation -= mouseY * sensitivityY * multiplier;
 
-        camera.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
+        cam.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
 
         transform.rotation = Quaternion.Euler(0, yRotation, 0);
 
