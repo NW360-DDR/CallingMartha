@@ -8,18 +8,13 @@ public class EclipseTimer : MonoBehaviour
     public float timer;
     public float eclipseTimerLength = 30;
     private bool gameTimerActive = true;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
+        //start timer
         timer += Time.deltaTime;
 
+        //check if timer hit eclipse timer length
+        // multiply by 60 to make the number into minutes
         if (timer > eclipseTimerLength * 60)
         {
             Debug.Log("Eclipse happened! Time to die!");
@@ -27,7 +22,8 @@ public class EclipseTimer : MonoBehaviour
             StartCoroutine(Restart());
         }
     }
-
+    
+    //restarts current loaded scene (will probably change later)
     IEnumerator Restart()
     {
         yield return new WaitForSeconds(5);

@@ -11,15 +11,11 @@ public class LeftHandController : MonoBehaviour
 
     public bool switchHandSignal = false;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
+        //aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+        //controls what key is bound to what is equipped for left hand
         if (Input.GetKeyDown(KeyCode.Alpha1) && currentEqupped != 0)
         {
             currentEqupped = 0;
@@ -34,6 +30,7 @@ public class LeftHandController : MonoBehaviour
             GetComponent<RockThrowScript>().enabled = true;
         }
 
+        //if the player runs out of rocks, automatically switch to the first equip slot
         if (GetComponentInChildren<GrabAndThrow>().rockCount == 0 && currentEqupped == 1)
         {
             currentEqupped = 0;
@@ -41,6 +38,7 @@ public class LeftHandController : MonoBehaviour
             GetComponent<RockThrowScript>().enabled = false;
         }
 
+        //if recieving signal from the UI gods, run the change hand method
         if (switchHandSignal)
         {
             ChangeCurrentEquipped();

@@ -10,6 +10,7 @@ public class AxeSlash : MonoBehaviour
     public GameObject axeSprite;
     public GameObject rightHand;
     public GameObject camera;
+
     private GrabAndThrow grabScript;
     public bool attackSignal = false;
     public bool takeInput = true;
@@ -23,6 +24,7 @@ public class AxeSlash : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //recieve signal from animation script
         if (attackSignal)
         {
             TurnOnHitbox();
@@ -31,7 +33,8 @@ public class AxeSlash : MonoBehaviour
             TurnOffHitbox();
         }
 
-            if (Input.GetMouseButtonUp(0) && takeInput && grabScript.axe)
+        // if the player is readying and releases the button, do the attack animation
+        if (Input.GetMouseButtonUp(0) && takeInput && grabScript.axe)
         {
             if (axeSprite.GetComponent<Animator>().GetBool("HoldingDown"))
             {
@@ -42,11 +45,13 @@ public class AxeSlash : MonoBehaviour
             axeSprite.GetComponent<Animator>().SetBool("HoldingDown", false);
         }
 
+        // if the player can ready an attack, do so
         if (Input.GetMouseButtonDown(0) && takeInput && grabScript.axe)
         {
             axeSprite.GetComponent<Animator>().SetBool("HoldingDown", true);
         }
 
+        // if the player has an axe, throw the axe
         if (Input.GetKeyDown(KeyCode.Q) && takeInput && grabScript.axe)
         {
             axeSprite.SetActive(false);

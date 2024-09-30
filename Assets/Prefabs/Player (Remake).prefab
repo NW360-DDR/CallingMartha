@@ -456,6 +456,7 @@ MonoBehaviour:
   axeSprite: {fileID: 0}
   rightHand: {fileID: 0}
   camera: {fileID: 6362077302677595537}
+  openHand: {fileID: 21300000, guid: 8b2a0b2063322354788e3c83f947fa2b, type: 3}
   attackSignal: 0
   takeInput: 1
 --- !u!114 &7964418324737739107
