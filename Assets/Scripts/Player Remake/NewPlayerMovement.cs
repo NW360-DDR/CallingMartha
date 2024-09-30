@@ -70,7 +70,7 @@ public class NewPlayerMovement : MonoBehaviour
         //let the player jump if they are grounded and not dashing
         if (Input.GetKeyDown(KeyCode.Space) && Grounded() && !isDashing)
         {
-            velocity.y = Mathf.Sqrt(2 * -2f * gravity);
+            velocity.y = Mathf.Sqrt(1.5f * -2f * gravity);
             GetComponentInChildren<Animator>().SetBool("isWalking", false);
         }
 

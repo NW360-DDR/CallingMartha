@@ -19,6 +19,7 @@ public class AxeSlash : MonoBehaviour
     void Start()
     {
         grabScript = GetComponentInChildren<GrabAndThrow>();
+        axeSprite.GetComponent<Animator>().Play("Axe_Idle");
     }
 
     // Update is called once per frame

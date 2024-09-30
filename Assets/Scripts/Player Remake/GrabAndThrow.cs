@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GrabAndThrow : MonoBehaviour
 {
@@ -50,9 +51,9 @@ public class GrabAndThrow : MonoBehaviour
         //if holding object and you click, throw object
         if (holdingCheck && Input.GetMouseButtonDown(0))
         {
+            axeSprite.GetComponent<Image>().enabled = true;
+            leftHandSprite.GetComponent<Image>().enabled = true;
             GetComponentInParent<AxeSlash>().enabled = true;
-            axeSprite.SetActive(true);
-            leftHandSprite.SetActive(true);
             holdingObject.GetComponent<Collider>().isTrigger = false;
             holdingObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
             holdingObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
@@ -120,8 +121,8 @@ public class GrabAndThrow : MonoBehaviour
         holdingCheck = true;
         holdingObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
         holdingObject.GetComponent<Collider>().isTrigger = true;
-        axeSprite.SetActive(false);
-        leftHandSprite.SetActive(false);
+        axeSprite.GetComponent<Image>().enabled = false;
+        leftHandSprite.GetComponent<Image>().enabled = false;
         GetComponentInParent<AxeSlash>().enabled = false;
     }
 }
