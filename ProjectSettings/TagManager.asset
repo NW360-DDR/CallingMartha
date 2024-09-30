@@ -13,6 +13,7 @@ TagManager:
   - Axe
   - Spawn Trigger
   - Checkpoint
+  - Wolf
   layers:
   - Default
   - TransparentFX
