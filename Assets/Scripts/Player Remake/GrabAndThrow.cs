@@ -32,7 +32,7 @@ public class GrabAndThrow : MonoBehaviour
         //Debug.DrawRay(transform.position, transform.forward * 2, Color.red);
 
         //if you right click, then check if whatever you are looking at is grabbable or a pickup
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             TargetTesting();
         }
@@ -52,16 +52,6 @@ public class GrabAndThrow : MonoBehaviour
             holdingObject = null;
             holdingCheck = false;
         }
-
-        //take rock out and hold it
-        /*if (Input.GetKeyDown(KeyCode.R) && rockCount > 0 && !holdingCheck)
-        {
-            holdingObject = Instantiate(rockPrefab, heldObjectPlace.transform.position, heldObjectPlace.transform.rotation);
-            holdingCheck = true;
-            holdingObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-            holdingObject.GetComponent<Collider>().isTrigger = true;
-            rockCount -= 1;
-        }*/
 
         //heal if you have medkit
         if (Input.GetKeyDown(KeyCode.H) && medKitCount > 0)

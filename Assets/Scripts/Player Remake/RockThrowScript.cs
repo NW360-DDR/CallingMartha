@@ -18,7 +18,7 @@ public class RockThrowScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && GetComponentInChildren<GrabAndThrow>().rockCount >= 1)
+        if (Input.GetMouseButtonDown(1) && GetComponentInChildren<GrabAndThrow>().rockCount >= 1)
         {
             thrownRock = Instantiate(rockPrefab, spawnLocation.transform.position, spawnLocation.transform.rotation);
             thrownRock.GetComponent<Rigidbody>().AddForce(spawnLocation.transform.forward * 15, ForceMode.Impulse);
