@@ -15,6 +15,8 @@ public class GrabAndThrow : MonoBehaviour
 
     public bool holdingCheck = false;
 
+    public bool canPickupAxe = true;
+
     private int grabMask;
 
     private HealthAndRespawn healthScript;
@@ -98,7 +100,7 @@ public class GrabAndThrow : MonoBehaviour
 
                 Destroy(targetCheck.transform.gameObject);
                 Debug.Log("Medkit!");
-            } else if (targetCheck.transform.CompareTag("Axe"))
+            } else if (targetCheck.transform.CompareTag("Axe") && canPickupAxe)
             {
                 axe = true;
                 GetComponentInParent<AxeSlash>().rightHand.SetActive(false);

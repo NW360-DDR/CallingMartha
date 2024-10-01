@@ -15,6 +15,8 @@ public class AxeSlash : MonoBehaviour
     public bool attackSignal = false;
     public bool takeInput = true;
 
+    private bool axeCooldownBool = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,13 +55,16 @@ public class AxeSlash : MonoBehaviour
         }
 
         // if the player has an axe, throw the axe
-        if (Input.GetKeyDown(KeyCode.Q) && takeInput && grabScript.axe)
+        if (Input.GetKeyDown(KeyCode.Q) && takeInput && grabScript.axe && axeCooldownBool)
         {
             axeSprite.SetActive(false);
             rightHand.SetActive(true);
             GameObject currentAxe = Instantiate(axeThrowPrefab, hitBox.transform.position, hitBox.transform.rotation);
             currentAxe.GetComponent<Rigidbody>().AddForce(camera.transform.forward * 20, ForceMode.Impulse);
             grabScript.axe = false;
+            grabScript.canPickupAxe = false;
+            axeCooldownBool = false;
+            StartCoroutine(AxeThrowCooldown());
         }
     }
 
@@ -71,5 +76,13 @@ public class AxeSlash : MonoBehaviour
     void TurnOffHitbox()
     {
         hitBox.SetActive(false);
+    }
+
+    IEnumerator AxeThrowCooldown()
+    {
+        yield return new WaitForSeconds(1);
+
+        axeCooldownBool = true;
+        grabScript.canPickupAxe = true;
     }
 }
