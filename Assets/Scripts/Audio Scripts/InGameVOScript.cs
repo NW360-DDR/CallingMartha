@@ -6,6 +6,7 @@ public class InGame3Start : MonoBehaviour
 {
     public AudioSource InGameClip;
     public float ClipLength;
+    public Collider BoxCollider;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +31,7 @@ public class InGame3Start : MonoBehaviour
         {
             InGameClip.Play();
             StartCoroutine(WaittoEnd());
+            BoxCollider.enabled = false;
             
         }
     }
