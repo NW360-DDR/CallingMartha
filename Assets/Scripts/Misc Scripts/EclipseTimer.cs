@@ -45,7 +45,7 @@ public class EclipseTimer : MonoBehaviour
     {
         while (lunarMoon.transform.localPosition != targetPos)
         {
-            lunarMoon.transform.localPosition = Vector3.MoveTowards(lunarMoon.transform.localPosition, targetPos, (Time.deltaTime / (eclipseTimerLength / 60)));
+            lunarMoon.transform.localPosition = Vector3.MoveTowards(lunarMoon.transform.localPosition, targetPos, (Time.deltaTime / eclipseTimerLength * 1.25f));
 
             //lunarMoon.transform.localPosition = Vector3.Lerp(lunarMoon.transform.localPosition, targetPos, (Time.deltaTime/eclipseTimerLength)).normalized;
 
