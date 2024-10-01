@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class InGame3Start : MonoBehaviour
 {
-
-    
+    public AudioSource InGame3;
+    public float ClipLength;
 
     // Start is called before the first frame update
     void Start()
     {
         
-        
+
     }
 
 
@@ -22,5 +22,21 @@ public class InGame3Start : MonoBehaviour
         
         
         
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            InGame3.Play();
+            StartCoroutine(WaittoEnd());
+            
+        }
+    }
+
+    public IEnumerator WaittoEnd()
+    {
+        yield return new WaitForSeconds(ClipLength);
+        Destroy(this.gameObject);
     }
 }
