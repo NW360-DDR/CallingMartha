@@ -15,7 +15,7 @@ public class CellService : MonoBehaviour
     }
     public void ServiceUpdate(int level)
     {
-        if ((level < 0 || level > 5))// If it's not within range, something is wrong here.
+        if (level < 0 || level > 5)// If it's not within range, something is wrong here.
         {
             Debug.Log("Yeah something is calling me and is doing it wrong.");
         }
