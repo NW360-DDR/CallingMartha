@@ -48,6 +48,7 @@ public class GrabAndThrow : MonoBehaviour
         if (holdingCheck)
         {
             holdingObject.transform.position = heldObjectPlace.transform.position;
+            holdingObject.transform.rotation = heldObjectPlace.transform.rotation;
         }
 
         //if holding object and you click, throw object
@@ -60,6 +61,16 @@ public class GrabAndThrow : MonoBehaviour
             holdingObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
             holdingObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
             holdingObject.GetComponent<Rigidbody>().AddForce(transform.forward * 15, ForceMode.Impulse);
+            holdingObject = null;
+            holdingCheck = false;
+        }else if (holdingCheck && Input.GetMouseButton(1))
+        {
+            axeSprite.GetComponent<Image>().enabled = true;
+            leftHandSprite.GetComponent<Image>().enabled = true;
+            GetComponentInParent<AxeSlash>().enabled = true;
+            holdingObject.GetComponent<Collider>().isTrigger = false;
+            holdingObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+            holdingObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
             holdingObject = null;
             holdingCheck = false;
         }
