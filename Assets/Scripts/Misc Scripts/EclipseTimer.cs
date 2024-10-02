@@ -9,12 +9,6 @@ public class EclipseTimer : MonoBehaviour
     public float eclipseTimerLength = 30;
     private bool gameTimerActive = true;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {

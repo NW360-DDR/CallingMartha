@@ -57,7 +57,7 @@ public class NewPlayerMovement : MonoBehaviour
             moveDirection = transform.forward * Input.GetAxis("Vertical") + transform.right * Input.GetAxis("Horizontal");
         }
 
-        characterController.Move(moveDirection * speed * Time.deltaTime);
+        characterController.Move(Time.deltaTime * speed * moveDirection);
 
         velocity.y += gravity * Time.deltaTime;
 
@@ -73,7 +73,7 @@ public class NewPlayerMovement : MonoBehaviour
         {
             dashCooldown = true;
             isDashing = true;
-            speed = speed * dashSpeed;
+            speed *= dashSpeed;
             StartCoroutine(Dash());
         }
     }
@@ -107,7 +107,7 @@ public class NewPlayerMovement : MonoBehaviour
     IEnumerator Dash()
     {
         yield return new WaitForSeconds(dashTime);
-        speed = speed / dashSpeed;
+        speed /= dashSpeed;
         isDashing = false;
         yield return new WaitForSeconds(1);
         dashCooldown = false;

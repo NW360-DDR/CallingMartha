@@ -5,13 +5,14 @@ using UnityEngine.UI;
 
 public class CellService : MonoBehaviour
 {
-    RectTransform serviceBars;
-    float serviceWidth;
+    [SerializeField]RectTransform serviceBars;
+    public float serviceWidth;
 
     private void Start()
     {
         serviceBars = GetComponent<RawImage>().rectTransform;
-        serviceWidth = GetComponentInParent<RawImage>().rectTransform.rect.width;
+        serviceWidth = transform.parent.gameObject.GetComponentInParent<RawImage>().rectTransform.sizeDelta.x;
+        InvokeRepeating("Test", 1, 1);
     }
     public void ServiceUpdate(int level)
     {
@@ -21,11 +22,13 @@ public class CellService : MonoBehaviour
         }
         else
         {
-            serviceBars.sizeDelta = new Vector2(serviceWidth * level, serviceBars.sizeDelta.y);
+            serviceBars.sizeDelta = new Vector2(serviceWidth / 5f * level, serviceBars.sizeDelta.y);
+            Debug.Log(level + ", width = " + serviceBars.sizeDelta.x);
         }
     }
     public void Test()
     {
         ServiceUpdate(Random.Range(0, 6));
     }
+
 }
