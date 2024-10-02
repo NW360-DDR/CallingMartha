@@ -22,11 +22,11 @@ public class FlashlightScript : MonoBehaviour
     void Update()
     {
         //if the flashlight is not on, turn it on. if it is on, turn it off
-        if (Input.GetKeyDown(KeyCode.F) && grabScript.flashLightBatteries > 0 && !flashlightOn)
+        if (Input.GetMouseButtonDown(1) && grabScript.flashLightBatteries > 0 && !flashlightOn)
         {
             flashlightObject.SetActive(true);
             flashlightOn = true;
-        }else if (Input.GetKeyDown(KeyCode.F) && flashlightOn)
+        }else if (Input.GetMouseButtonDown(1) && flashlightOn)
         {
             flashlightObject.SetActive(false);
             flashlightOn = false;

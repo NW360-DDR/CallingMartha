@@ -249,7 +249,7 @@ MonoBehaviour:
   canPickupAxe: 1
   rockCount: 0
   medKitCount: 0
-  flashLightBatteries: 0
+  flashLightBatteries: 1
   axe: 1
 --- !u!95 &9047667709824818956
 Animator:
@@ -522,6 +522,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flashlightObject: {fileID: 9120104487017277093}
+  flashlightOn: 0
   batteryLife: 100
   updatedBatteries: 0
 --- !u!1 &8183476400951475566
@@ -599,7 +600,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 5
+  m_Intensity: 3
   m_Range: 10
   m_SpotAngle: 55.8
   m_InnerSpotAngle: 21.80208
