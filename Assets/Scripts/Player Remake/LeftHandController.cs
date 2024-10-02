@@ -11,6 +11,20 @@ public class LeftHandController : MonoBehaviour
 
     public bool switchHandSignal = false;
 
+    private GrabAndThrow grabScript;
+    private RockThrowScript rockScript;
+    private FlashlightScript lightScript;
+
+    private Animator leftHandAnim;
+
+    private void Start()
+    {
+        grabScript = GetComponentInChildren<GrabAndThrow>();
+        rockScript = GetComponent<RockThrowScript>();
+        lightScript = GetComponent<FlashlightScript>();
+        leftHandAnim = leftHand.GetComponent<Animator>();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -19,23 +33,28 @@ public class LeftHandController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1) && currentEqupped != 0)
         {
             currentEqupped = 0;
-            leftHand.GetComponent<Animator>().SetTrigger("SwitchingHand");
-            GetComponent<RockThrowScript>().enabled = false;
+            leftHandAnim.SetTrigger("SwitchingHand");
+            rockScript.enabled = false;
+            lightScript.enabled = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha2) && currentEqupped != 1 && GetComponentInChildren<GrabAndThrow>().rockCount >= 1)
+        if (Input.GetKeyDown(KeyCode.Alpha2) && currentEqupped != 1 && grabScript.rockCount >= 1)
         {
             currentEqupped = 1;
-            leftHand.GetComponent<Animator>().SetTrigger("SwitchingHand");
-            GetComponent<RockThrowScript>().enabled = true;
+            leftHandAnim.SetTrigger("SwitchingHand");
+            rockScript.enabled = true;
+            lightScript.flashlightObject.SetActive(false);
+            lightScript.flashlightOn = false;
+            lightScript.enabled = false;
         }
 
         //if the player runs out of rocks, automatically switch to the first equip slot
         if (GetComponentInChildren<GrabAndThrow>().rockCount == 0 && currentEqupped == 1)
         {
             currentEqupped = 0;
-            leftHand.GetComponent<Animator>().SetTrigger("SwitchingHand");
-            GetComponent<RockThrowScript>().enabled = false;
+            leftHandAnim.SetTrigger("SwitchingHand");
+            rockScript.enabled = false;
+            lightScript.enabled = true;
         }
 
         //if recieving signal from the UI gods, run the change hand method

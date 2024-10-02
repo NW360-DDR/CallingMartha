@@ -20,9 +20,14 @@ public class GrabAndThrow : MonoBehaviour
     private int grabMask;
 
     private HealthAndRespawn healthScript;
+    private FlashlightScript lightScript;
+
+    private Collider holdingObjectCollider;
+    private Rigidbody holdingObjectRB;
 
     public float rockCount = 0;
     public float medKitCount = 0;
+    public float flashLightBatteries = 0;
     public bool axe = true;
 
     // Start is called before the first frame update
@@ -30,6 +35,7 @@ public class GrabAndThrow : MonoBehaviour
     {
         grabMask = 1 << 6;
         healthScript = GetComponentInParent<HealthAndRespawn>();
+        lightScript = GetComponentInParent<FlashlightScript>();
 
         leftHandSprite = GameObject.Find("Lefthand");
         axeSprite = GameObject.Find("Axe");
@@ -57,10 +63,13 @@ public class GrabAndThrow : MonoBehaviour
             axeSprite.GetComponent<Image>().enabled = true;
             leftHandSprite.GetComponent<Image>().enabled = true;
             GetComponentInParent<AxeSlash>().enabled = true;
-            holdingObject.GetComponent<Collider>().isTrigger = false;
-            holdingObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-            holdingObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            holdingObject.GetComponent<Rigidbody>().AddForce(transform.forward * 15, ForceMode.Impulse);
+            holdingObjectCollider.isTrigger = false;
+            holdingObjectRB.constraints = RigidbodyConstraints.None;
+            holdingObjectRB.velocity = Vector3.zero;
+            holdingObjectRB.AddForce(transform.forward * 15, ForceMode.Impulse);
+
+            holdingObjectRB = null;
+            holdingObjectCollider = null;
             holdingObject = null;
             holdingCheck = false;
         }else if (holdingCheck && Input.GetMouseButton(1))
@@ -68,9 +77,12 @@ public class GrabAndThrow : MonoBehaviour
             axeSprite.GetComponent<Image>().enabled = true;
             leftHandSprite.GetComponent<Image>().enabled = true;
             GetComponentInParent<AxeSlash>().enabled = true;
-            holdingObject.GetComponent<Collider>().isTrigger = false;
-            holdingObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-            holdingObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            holdingObjectCollider.isTrigger = false;
+            holdingObjectRB.constraints = RigidbodyConstraints.None;
+            holdingObjectRB.velocity = Vector3.zero;
+
+            holdingObjectRB = null;
+            holdingObjectCollider = null;
             holdingObject = null;
             holdingCheck = false;
         }
@@ -122,6 +134,17 @@ public class GrabAndThrow : MonoBehaviour
             {
                 Debug.Log("Updated Checkpoint!");
                 healthScript.checkpoint = targetCheck.transform.gameObject;
+            } else if (targetCheck.transform.CompareTag("Battery"))
+            {
+                if (flashLightBatteries <= 0)
+                {
+                    lightScript.batteryLife = 100;
+                    lightScript.updatedBatteries = false;
+                }
+
+                flashLightBatteries += 1;
+
+                Destroy(targetCheck.transform.gameObject);
             }
         }
     }
@@ -132,8 +155,12 @@ public class GrabAndThrow : MonoBehaviour
         Debug.Log("Grabbable!");
         holdingObject = targetCheck.collider.gameObject;
         holdingCheck = true;
-        holdingObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-        holdingObject.GetComponent<Collider>().isTrigger = true;
+
+        holdingObjectCollider = holdingObject.GetComponent<Collider>();
+        holdingObjectRB = holdingObject.GetComponent<Rigidbody>();
+
+        holdingObjectRB.constraints = RigidbodyConstraints.FreezeRotation;
+        holdingObjectCollider.isTrigger = true;
         axeSprite.GetComponent<Image>().enabled = false;
         leftHandSprite.GetComponent<Image>().enabled = false;
         GetComponentInParent<AxeSlash>().enabled = false;

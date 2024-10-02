@@ -13,6 +13,7 @@ TagManager:
   - Axe
   - Spawn Trigger
   - Checkpoint
+  - Battery
   layers:
   - Default
   - TransparentFX
