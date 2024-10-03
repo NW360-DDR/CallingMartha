@@ -2718,6 +2718,10 @@ PrefabInstance:
       propertyPath: sprites.Array.data[3]
       value: 
       objectReference: {fileID: 21300000, guid: 372a88ac5576eff43a6088047e127fe5, type: 3}
+    - target: {fileID: 2760435145986406739, guid: 098725ba20f1136428266c4bb76b1b37, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3269676320161244392, guid: 098725ba20f1136428266c4bb76b1b37, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.2588018
