@@ -1,22 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BillboardScript : MonoBehaviour
 {
-    public GameObject player;
+    public Camera playerCam;
     Vector3 lookDir;
 
     private void Start()
     {
-        player = GameObject.Find("Player (Remaeke");
+        playerCam = GameObject.Find("Player (Remake)").GetComponentInChildren<Camera>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        lookDir = new Vector3(player.transform.position.x, transform.position.y, transform.position.z);
+        lookDir = playerCam.transform.forward;
+        lookDir.y = 0;
 
-        transform.LookAt(lookDir);
+        transform.rotation = Quaternion.LookRotation(lookDir);
     }
 }

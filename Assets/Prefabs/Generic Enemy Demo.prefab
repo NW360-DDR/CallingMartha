@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 6569546138688744262}
   - component: {fileID: 2760435145986406739}
   - component: {fileID: 3502308212834987081}
+  - component: {fileID: 1390833056263577101}
   m_Layer: 0
   m_Name: Generic Enemy Demo
   m_TagString: Untagged
@@ -207,6 +208,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+--- !u!114 &1390833056263577101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3560627648628795516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b5039656c701df4ca43f781e067493c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  angle: 0
+  index: 0
 --- !u!1 &5229804498528400372
 GameObject:
   m_ObjectHideFlags: 0
@@ -322,6 +337,8 @@ GameObject:
   m_Component:
   - component: {fileID: 190287879372174930}
   - component: {fileID: 3407506110322117797}
+  - component: {fileID: 233017543986036161}
+  - component: {fileID: 8871944613580350617}
   m_Layer: 0
   m_Name: Wolf (Front) - Idle High res
   m_TagString: Untagged
@@ -337,13 +354,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7432317001151705429}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -1, z: -0, w: -0.0000029504295}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: -0.0000028461216}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 0.162729, y: 0.162729, z: 0.162729}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3269676320161244392}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!212 &3407506110322117797
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -396,3 +413,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &233017543986036161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7432317001151705429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cda50bd01235b774781d9568802fb717, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCam: {fileID: 0}
+--- !u!95 &8871944613580350617
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7432317001151705429}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 16893e41f41447f4081e26c80253f811, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
