@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class FlashlightScript : MonoBehaviour
@@ -11,6 +12,11 @@ public class FlashlightScript : MonoBehaviour
     public bool flashlightOn = false;
     public float batteryLife = 100;
     public bool updatedBatteries = false;
+
+    public GameObject leftHand;
+
+    public Sprite flashLightOff;
+    public Sprite flashLightOn;
 
     // Start is called before the first frame update
     void Start()
@@ -26,10 +32,12 @@ public class FlashlightScript : MonoBehaviour
         {
             flashlightObject.SetActive(true);
             flashlightOn = true;
+            leftHand.GetComponent<Image>().sprite = flashLightOn;
         }else if (Input.GetMouseButtonDown(1) && flashlightOn)
         {
             flashlightObject.SetActive(false);
             flashlightOn = false;
+            leftHand.GetComponent<Image>().sprite = flashLightOff;
         }
 
         //drain flashlight battery
@@ -57,6 +65,7 @@ public class FlashlightScript : MonoBehaviour
         {
             flashlightObject.SetActive(false);
             flashlightOn = false;
+            leftHand.GetComponent<Image>().sprite = flashLightOff;
         }
     }
 }

@@ -46,6 +46,7 @@ public class LeftHandController : MonoBehaviour
             lightScript.flashlightObject.SetActive(false);
             lightScript.flashlightOn = false;
             lightScript.enabled = false;
+            lightScript.leftHand.GetComponent<Image>().sprite = lightScript.flashLightOff;
         }
 
         //if the player runs out of rocks, automatically switch to the first equip slot

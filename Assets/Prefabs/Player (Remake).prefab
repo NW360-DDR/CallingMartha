@@ -525,6 +525,9 @@ MonoBehaviour:
   flashlightOn: 0
   batteryLife: 100
   updatedBatteries: 0
+  leftHand: {fileID: 0}
+  flashLightOff: {fileID: 0}
+  flashLightOn: {fileID: 0}
 --- !u!1 &8183476400951475566
 GameObject:
   m_ObjectHideFlags: 0
@@ -599,9 +602,9 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8431373, g: 0.79215693, b: 0.53333336, a: 1}
   m_Intensity: 3
-  m_Range: 10
+  m_Range: 25
   m_SpotAngle: 55.8
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
