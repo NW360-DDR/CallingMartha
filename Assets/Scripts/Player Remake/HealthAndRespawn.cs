@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HealthAndRespawn : MonoBehaviour
 {
-    public float health = 100;
+    public int health = 100;
 
     public GameObject checkpoint;
 

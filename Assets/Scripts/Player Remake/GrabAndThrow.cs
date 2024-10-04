@@ -53,8 +53,7 @@ public class GrabAndThrow : MonoBehaviour
         //checks if the player is holding an object. if they are, set the location to the held object place position
         if (holdingCheck)
         {
-            holdingObject.transform.position = heldObjectPlace.transform.position;
-            holdingObject.transform.rotation = heldObjectPlace.transform.rotation;
+            holdingObject.transform.SetPositionAndRotation(heldObjectPlace.transform.position, heldObjectPlace.transform.rotation);
         }
 
         //if holding object and you click, throw object

@@ -12,7 +12,7 @@ public class CellService : MonoBehaviour
     {
         serviceBars = GetComponent<RawImage>().rectTransform;
         serviceWidth = transform.parent.gameObject.GetComponentInParent<RawImage>().rectTransform.sizeDelta.x;
-        InvokeRepeating("Test", 1, 1);
+        InvokeRepeating(nameof(Test), 1, 1);
     }
     public void ServiceUpdate(int level)
     {
