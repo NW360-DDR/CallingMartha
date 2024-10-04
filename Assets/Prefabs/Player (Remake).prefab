@@ -441,8 +441,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 513bd28e8646b6440a1f8520cda7c4db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xRotation: 0
-  yRotation: 0
 --- !u!114 &8780571491998576821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -459,7 +457,7 @@ MonoBehaviour:
   axeThrowPrefab: {fileID: 1868658233443335095, guid: 096e0f76eb69f4744b09fa8c08607396, type: 3}
   axeSprite: {fileID: 0}
   rightHand: {fileID: 0}
-  camera: {fileID: 6362077302677595537}
+  cam: {fileID: 6362077302677595537}
   attackSignal: 0
   takeInput: 1
 --- !u!114 &7964418324737739107
