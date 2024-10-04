@@ -9,11 +9,7 @@ public class RockThrowScript : MonoBehaviour
     public GameObject spawnLocation;
 
     private GameObject thrownRock;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+
 
     // Update is called once per frame
     void Update()

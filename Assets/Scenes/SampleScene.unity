@@ -797,9 +797,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3502308212834987081, guid: 098725ba20f1136428266c4bb76b1b37, type: 3}
+      propertyPath: health
+      value: 100000
+      objectReference: {fileID: 0}
     - target: {fileID: 3560627648628795516, guid: 098725ba20f1136428266c4bb76b1b37, type: 3}
       propertyPath: m_Name
       value: Generic Enemy Demo
+      objectReference: {fileID: 0}
+    - target: {fileID: 5229804498528400372, guid: 098725ba20f1136428266c4bb76b1b37, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

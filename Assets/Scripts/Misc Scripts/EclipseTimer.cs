@@ -9,7 +9,7 @@ public class EclipseTimer : MonoBehaviour
     public float eclipseTimerLength = 30;
     private bool gameTimerActive = true;
 
-    private Vector3 targetPos = new Vector3(0, 0, 0);
+    private Vector3 targetPos = Vector3.zero;
 
     public GameObject lunarMoon;
 

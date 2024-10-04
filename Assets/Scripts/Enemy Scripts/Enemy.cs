@@ -66,7 +66,7 @@ public class Enemy : MonoBehaviour
 
     IEnumerator ResetSpeed()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         GetComponent<NavMeshAgent>().speed = 3.5f;
     }
 }
