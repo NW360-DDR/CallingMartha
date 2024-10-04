@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 995960040462797708}
   - component: {fileID: 4839048584980760124}
   - component: {fileID: 2958009386044507099}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: AxeHitbox
   m_TagString: AxeHitbox
   m_Icon: {fileID: 0}
@@ -29,8 +29,8 @@ Transform:
   m_GameObject: {fileID: 2652596930408307476}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.25}
-  m_LocalScale: {x: 0.5227, y: 0.5227, z: 0.88689}
+  m_LocalPosition: {x: 0, y: 0, z: 1.5}
+  m_LocalScale: {x: 0.5227, y: 0.5227, z: 1.6334735}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8395753690310498754}
@@ -50,7 +50,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2652596930408307476}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -145,7 +145,8 @@ GameObject:
   - component: {fileID: 2448535036677490919}
   - component: {fileID: 8071575321147492086}
   - component: {fileID: 597345010416298379}
-  m_Layer: 0
+  - component: {fileID: 9047667709824818956}
+  m_Layer: 3
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -242,7 +243,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   holdingObject: {fileID: 0}
   heldObjectPlace: {fileID: 8183476400951475566}
+  rockPrefab: {fileID: 1868658233443335095, guid: bb92db1b2b8c15940bff00ebc4624e54, type: 3}
   holdingCheck: 0
+  rockCount: 0
+  medKitCount: 0
+  axe: 1
+--- !u!95 &9047667709824818956
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6362077302677595537}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cb22b8d8ff8135d4891eb4362da65dc1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6634254539337635931
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,7 +285,7 @@ GameObject:
   - component: {fileID: 7522753199111385415}
   - component: {fileID: 7607173335660912681}
   - component: {fileID: 8780571491998576821}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player (Remake)
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -393,9 +419,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c79581de86af214ea0bfcf63bea0768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 3.5
   dashSpeed: 3
   dashTime: 0.25
+  health: 100
+  alive: 1
 --- !u!114 &7607173335660912681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -423,6 +451,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitBox: {fileID: 2652596930408307476}
+  axeThrowPrefab: {fileID: 1868658233443335095, guid: 096e0f76eb69f4744b09fa8c08607396, type: 3}
+  axeSprite: {fileID: 0}
+  rightHand: {fileID: 0}
+  camera: {fileID: 6362077302677595537}
+  attackSignal: 0
+  takeInput: 1
 --- !u!1 &8183476400951475566
 GameObject:
   m_ObjectHideFlags: 0
@@ -432,7 +466,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3451119636499074137}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HeldObjectPlace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -448,7 +482,7 @@ Transform:
   m_GameObject: {fileID: 8183476400951475566}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.25}
+  m_LocalPosition: {x: 0, y: 0, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
