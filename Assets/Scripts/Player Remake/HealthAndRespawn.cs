@@ -21,6 +21,7 @@ public class HealthAndRespawn : MonoBehaviour
     {
         if (health <= 0 && !respawned)
         {
+            //kill player and run the respawn coroutine
             alive = false;
             GetComponent<CameraScript>().enabled = false;
             GetComponentInChildren<GrabAndThrow>().enabled = false;
@@ -45,6 +46,7 @@ public class HealthAndRespawn : MonoBehaviour
 
     IEnumerator Respawn()
     {
+        //resets player location and health
         Debug.Log("Respawn?");
         respawned = true;
         transform.position = checkpoint.transform.position;
