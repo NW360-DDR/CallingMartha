@@ -25,9 +25,9 @@ public class GrabAndThrow : MonoBehaviour
     private Collider holdingObjectCollider;
     private Rigidbody holdingObjectRB;
 
-    public float rockCount = 0;
-    public float medKitCount = 0;
-    public float flashLightBatteries = 0;
+    public int rockCount = 0;
+    public int medKitCount = 0;
+    public int flashLightBatteries = 0;
     public bool axe = true;
 
     // Start is called before the first frame update
