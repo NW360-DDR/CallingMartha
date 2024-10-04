@@ -11,13 +11,10 @@ public class AngleCalc : MonoBehaviour
     public float angle;
     public int index;
 
-    private SpriteRenderer spriteRenderer;
-
     // Start is called before the first frame update
     void Start()
     {
         playerPos = GameObject.Find("Player (Remake)").transform;
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     // Update is called once per frame

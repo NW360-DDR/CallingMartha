@@ -19,7 +19,7 @@ public class NewPlayerMovement : MonoBehaviour
 
     private int grabMask;
 
-    private float gravity = -9.81f;
+    readonly private float gravity = -9.81f;
 
     private RaycastHit groundCheck;
 
@@ -59,7 +59,7 @@ public class NewPlayerMovement : MonoBehaviour
         }
 
         //actually move the player
-        characterController.Move(moveDirection * speed * Time.deltaTime);
+        characterController.Move((moveDirection * speed) * Time.deltaTime);
 
         //artificial gravity
         velocity.y += gravity * Time.deltaTime;

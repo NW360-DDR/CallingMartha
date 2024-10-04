@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
-    [SerializeField] float sensitivityX = 200;
-    [SerializeField] float sensitivityY = 200;
+    readonly private float sensitivityX = 200;
+    readonly private float sensitivityY = 200;
 
     Camera cam;
 
@@ -14,8 +14,8 @@ public class CameraScript : MonoBehaviour
 
     readonly float multiplier = 0.01f;
 
-    public float xRotation;
-    public float yRotation;
+    private float xRotation;
+    private float yRotation;
 
     // Start is called before the first frame update
     void Start()

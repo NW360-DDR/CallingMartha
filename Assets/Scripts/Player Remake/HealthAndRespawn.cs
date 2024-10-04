@@ -10,11 +10,6 @@ public class HealthAndRespawn : MonoBehaviour
 
     public bool alive = true;
     private bool respawned = false;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -33,12 +28,12 @@ public class HealthAndRespawn : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == ("Hurtbox"))
+        if (other.CompareTag("Hurtbox"))
         {
             health -= 15;
         }
 
-        if (other.tag == ("Spawn Trigger"))
+        if (other.CompareTag("Spawn Trigger"))
         {
             other.GetComponent<EnemySpawnTrigger>().SendMessageUpwards("SpawnEnemies");
         }
