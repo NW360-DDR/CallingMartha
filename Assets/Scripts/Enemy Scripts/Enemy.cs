@@ -6,15 +6,21 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     public float health = 100;
+
+    private Animator spriteAnim;
+    private AngleCalc angleCalcScript;
     // Start is called before the first frame update
     void Start()
     {
-        
+        spriteAnim = GetComponentInChildren<Animator>();
+        angleCalcScript = GetComponent<AngleCalc>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        spriteAnim.SetFloat("Rotation", angleCalcScript.index);
+
         if (health <= 0)
         {
             Destroy(gameObject);
@@ -60,7 +66,7 @@ public class Enemy : MonoBehaviour
 
     IEnumerator ResetSpeed()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         GetComponent<NavMeshAgent>().speed = 3.5f;
     }
 }

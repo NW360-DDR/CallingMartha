@@ -19,7 +19,7 @@ public class NewPlayerMovement : MonoBehaviour
 
     private int grabMask;
 
-    private float gravity = -9.81f;
+    readonly private float gravity = -9.81f;
 
     private RaycastHit groundCheck;
 
@@ -34,13 +34,13 @@ public class NewPlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Vector3 movedir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-
+        // makes it so the player isn't building falling velocity while grounded
         if (Grounded() && velocity.y < 0)
         {
             velocity.y = -2f;
         }
 
+        //make animation play based on input from axis
         if (Input.GetAxisRaw("Horizontal") == 0f && Input.GetAxisRaw("Vertical") == 0f)
         {
             GetComponentInChildren<Animator>().SetBool("isWalking", false);
@@ -52,28 +52,34 @@ public class NewPlayerMovement : MonoBehaviour
             }
         }
 
+        //set the movement direction vector3 if the player is still alive
         if (healthScript.alive)
         {
             moveDirection = transform.forward * Input.GetAxis("Vertical") + transform.right * Input.GetAxis("Horizontal");
         }
 
-        characterController.Move(moveDirection * speed * Time.deltaTime);
+        //actually move the player
+        characterController.Move((moveDirection * speed) * Time.deltaTime);
 
+        //artificial gravity
         velocity.y += gravity * Time.deltaTime;
 
+        //set velocity so the player will fall
         characterController.Move(velocity * Time.deltaTime);
 
+        //let the player jump if they are grounded and not dashing
         if (Input.GetKeyDown(KeyCode.Space) && Grounded() && !isDashing)
         {
-            velocity.y = Mathf.Sqrt(2 * -2f * gravity);
+            velocity.y = Mathf.Sqrt(1.5f * -2f * gravity);
             GetComponentInChildren<Animator>().SetBool("isWalking", false);
         }
 
+        //allow the player to dash if they are grounded and not on cooldown
         if (Input.GetKeyDown(KeyCode.LeftShift) && Grounded() && !dashCooldown)
         {
             dashCooldown = true;
             isDashing = true;
-            speed = speed * dashSpeed;
+            speed *= dashSpeed;
             StartCoroutine(Dash());
         }
     }
@@ -104,10 +110,11 @@ public class NewPlayerMovement : MonoBehaviour
         }
     }
 
+    //this is run when the dash is used
     IEnumerator Dash()
     {
         yield return new WaitForSeconds(dashTime);
-        speed = speed / dashSpeed;
+        speed /= dashSpeed;
         isDashing = false;
         yield return new WaitForSeconds(1);
         dashCooldown = false;

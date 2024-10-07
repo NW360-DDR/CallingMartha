@@ -4,23 +4,19 @@ using UnityEngine;
 
 public class HealthAndRespawn : MonoBehaviour
 {
-    public float health = 100;
+    public int health = 100;
 
     public GameObject checkpoint;
 
     public bool alive = true;
     private bool respawned = false;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
         if (health <= 0 && !respawned)
         {
+            //kill player and run the respawn coroutine
             alive = false;
             GetComponent<CameraScript>().enabled = false;
             GetComponentInChildren<GrabAndThrow>().enabled = false;
@@ -32,12 +28,12 @@ public class HealthAndRespawn : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == ("Hurtbox"))
+        if (other.CompareTag("Hurtbox"))
         {
             health -= 15;
         }
 
-        if (other.tag == ("Spawn Trigger"))
+        if (other.CompareTag("Spawn Trigger"))
         {
             other.GetComponent<EnemySpawnTrigger>().SendMessageUpwards("SpawnEnemies");
         }
@@ -45,6 +41,7 @@ public class HealthAndRespawn : MonoBehaviour
 
     IEnumerator Respawn()
     {
+        //resets player location and health
         Debug.Log("Respawn?");
         respawned = true;
         transform.position = checkpoint.transform.position;
