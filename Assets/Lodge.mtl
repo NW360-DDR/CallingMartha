@@ -1,0 +1,21 @@
+newmtl Probuilder
+map_Kd GridBox_Default.png
+Kd 1 1 1
+d 1
+
+newmtl Gray
+Kd 0.3962264 0.3962264 0.3962264
+d 1
+
+newmtl Light_Brown
+Kd 0.6792453 0.4736317 0.2584548
+d 1
+
+newmtl Red
+Kd 0.553459 0 0.001740321
+d 1
+
+newmtl Brown
+Kd 0.3522012 0.1944676 0.06313035
+d 1
+
