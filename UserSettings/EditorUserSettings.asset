@@ -7,40 +7,61 @@ EditorUserSettings:
   m_ConfigSettings:
     RecentlyUsedSceneGuid-0:
 <<<<<<< HEAD
-      value: 51030004000d5b030e0c0f741174594413164b7e7b2e75622b701f37e4e56569
-      flags: 0
-    RecentlyUsedSceneGuid-1:
-      value: 5a5757560101590a5d0c0e24427b5d44434e4c7a7b7a23677f2b4565b7b5353a
-      flags: 0
-    RecentlyUsedSceneGuid-2:
-      value: 5b500d0753535c0c5d0f5877117707444016417978707e322f7c186bb7e16c6b
-      flags: 0
-    RecentlyUsedSceneGuid-3:
-      value: 0000065e51035b085b0a5e7616250f4447164873747b27327b714865e4b06c6c
-=======
       value: 53040657560c0c0d0c0f557049750f44104f49297a7820642f791831bab2616e
       flags: 0
     RecentlyUsedSceneGuid-1:
       value: 5a5451525057515d5b5654234071074443151b2874797f3279284e64e7b53660
+=======
+      value: 51030004000d5b030e0c0f741174594413164b7e7b2e75622b701f37e4e56569
+      flags: 0
+    RecentlyUsedSceneGuid-1:
+      value: 00045152530c08080f08542447275e44474e4073747c766079704837e6b4326b
+>>>>>>> origin/Kenny
       flags: 0
     RecentlyUsedSceneGuid-2:
       value: 5a5757560101590a5d0c0e24427b5d44434e4c7a7b7a23677f2b4565b7b5353a
       flags: 0
     RecentlyUsedSceneGuid-3:
+<<<<<<< HEAD
       value: 0004565e01020b0b0b57597715710f4447154f292d787232787c1f64b5b2613c
       flags: 0
     RecentlyUsedSceneGuid-4:
       value: 01015603530258585a0b0e7411260e441515492e7b7d73322b7c446ab1b96361
       flags: 0
+=======
+      value: 53040657560c0c0d0c0f557049750f44104f49297a7820642f791831bab2616e
+      flags: 0
+    RecentlyUsedSceneGuid-4:
+      value: 5a5451525057515d5b5654234071074443151b2874797f3279284e64e7b53660
+      flags: 0
+    RecentlyUsedSceneGuid-5:
+      value: 01015603530258585a0b0e7411260e441515492e7b7d73322b7c446ab1b96361
+      flags: 0
+    RecentlyUsedSceneGuid-6:
+      value: 075457055d05500e5e57597b4627064447161b7d7e2b76647f7a4565e4b3303a
+      flags: 0
+    RecentlyUsedSceneGuid-7:
+      value: 5a000c5e5206500e545c5d2115275d44454f49292f7f24337d2d1f63b3b56161
+      flags: 0
+    RecentlyUsedSceneGuid-8:
+      value: 0004565e01020b0b0b57597715710f4447154f292d787232787c1f64b5b2613c
+      flags: 0
+>>>>>>> origin/Kenny
     UnityEditor.ShaderGraph.Blackboard:
       value: 18135939215a0a5004000b0e15254b524c030a3f2964643d120d1230e9e93a3fd6e826abbd2e2d293c4ead313b08042de6030a0afa240c0d020be94c4ba75e435d8715fa32c70d15d11612dacc11fee5d3c5d1fe9ab1b0968786f9abada9bbaaa6a0f3a9f2fcae8ce8a2c182a6d8c2869bd1f5dc8e9c9b97ea9c819ffcca90898d86d598899ac5
       flags: 0
     UnityEditor.ShaderGraph.FloatingWindowsLayout2:
+<<<<<<< HEAD
       value: 181344140043005e1a220d3b1f364b524c0c5a27130c293326201334cee5322ca0bd30e8eb293a707b0fd0180b3d0a36fc0d3d04e649500d1002ee0b5dbd1d2c27c00ad113cb1e10e41f1addc80993b98d9884ba88bbb1898e8cf5a3a1a6bcadb9b3a8c482a7eec9b0a0f0a5aecee8c2c7d9b2d08e9c9189ea9e93de81e0dbc9dc94dfcd9b9f9a8188dff5c3f1c3f4f6c6f0fdc3c6f4cbfed1dc85f03ae2fd3428313eeceae0e1d0ece83ad22a27d1956f6a
       flags: 0
     UnityEditor.ShaderGraph.InspectorWindow:
       value: 18135939215a0a5004000b0e15254b524c1119263f2d6a722016393ce1eb3d36e5d339f9a5602b2e2c07a37e0901373ae01e0008f707250d171df81a53a5485d41895ac825e0100ec20313c0d91cddccd3d0c7efcca9bd80908fecb0f9cfddf1eff4e7a1b1eae482f0fcaee1e1928b86d888ed969b928791ec84878be98383828e87dd818e9ac5
->>>>>>> origin/Valerie
+=======
+      value: 181344140043005e1a220d3b1f364b524c0c5a27130c293326201334cee5322ca0bd30e8eb293a707b0fd0180b3d0a36fc0d3d04e649500d1002ee0b5dbd1d2c27c00ad113cb1e10e41f1addc80993b9859884a69ae6d8f0d1cda9e8fbfefaf9f9dea3fdb9ade882f0ffb0e1e380cafbf2c3adc18e9cd285a2908b82ea879c8395949c9483d68c8f97ddbd90bf
+      flags: 0
+    UnityEditor.ShaderGraph.InspectorWindow:
+      value: 18135939215a0a5004000b0e15254b524c1119263f2d6a722016393ce1eb3d36e5d339f9a5602b2e2c07a37e0901373ae01e0008f707250d171df81a53a5485d41895ac825e0100ec20313c0d91cddccd3d0c7efcca9bd8f908cf3a1a7a7baa8a7a2f1a8fdfdb082a790cdb8b5c7859eda88af8696959997f4829d91a79188878d82cb808fd18e838eddf1dcf5c1fff3c4bcb9
+>>>>>>> origin/Kenny
       flags: 0
     vcSharedLogLevel:
       value: 0d5e400f0650
