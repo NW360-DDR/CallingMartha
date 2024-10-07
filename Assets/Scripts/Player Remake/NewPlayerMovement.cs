@@ -5,6 +5,7 @@ using UnityEngine;
 public class NewPlayerMovement : MonoBehaviour
 {
     private CharacterController characterController;
+    private Animator axeAnimator;
 
     private Vector3 moveDirection;
     private Vector3 velocity;
@@ -28,6 +29,7 @@ public class NewPlayerMovement : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         healthScript = GetComponent<HealthAndRespawn>();
+        axeAnimator = GameObject.Find("Axe").GetComponent<Animator>();
         grabMask = 1 << 6;
     }
 
@@ -44,7 +46,9 @@ public class NewPlayerMovement : MonoBehaviour
         if (Input.GetAxisRaw("Horizontal") == 0f && Input.GetAxisRaw("Vertical") == 0f)
         {
             GetComponentInChildren<Animator>().SetBool("isWalking", false);
-        }else
+
+        }
+        else
         {
             if (Grounded())
             {

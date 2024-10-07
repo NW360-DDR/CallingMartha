@@ -125,7 +125,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 1
   m_Acceleration: 40
   avoidancePriority: 50
   m_AngularSpeed: 500
@@ -184,14 +184,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hurtBox: {fileID: 5229804498528400372}
-  baseSpeed: 5
-  chaseMult: 1.5
+  baseSpeed: 4
+  chaseMult: 1
   chargeMult: 3
   wanderDist: 10
   attackCooldown: 0.667
   chargeRange: 10
-  attackRange: 2
-  chargeCooldown: 7
+  attackRange: 0
+  chargeCooldown: 2
   chargeTimer: 0
   idleTimer: 3
   currIdle: 0
