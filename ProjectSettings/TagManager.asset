@@ -14,6 +14,9 @@ TagManager:
   - Spawn Trigger
   - Checkpoint
   - Battery
+  - Wolf
+  - Generator
+  - Generator Item
   layers:
   - Default
   - TransparentFX

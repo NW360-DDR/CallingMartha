@@ -28,6 +28,7 @@ public class GrabAndThrow : MonoBehaviour
     public int rockCount = 0;
     public int medKitCount = 0;
     public int flashLightBatteries = 0;
+    public int generatorItems = 0;
     public bool axe = true;
 
     // Start is called before the first frame update
@@ -143,6 +144,13 @@ public class GrabAndThrow : MonoBehaviour
 
                 flashLightBatteries += 1;
 
+                Destroy(targetCheck.transform.gameObject);
+            } else if (targetCheck.transform.CompareTag("Generator"))
+            {
+                targetCheck.transform.gameObject.SendMessageUpwards("GeneratorCheck");
+            } else if (targetCheck.transform.CompareTag("Generator Item"))
+            {
+                generatorItems += 1;
                 Destroy(targetCheck.transform.gameObject);
             }
         }
