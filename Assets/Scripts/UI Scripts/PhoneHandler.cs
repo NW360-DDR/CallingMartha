@@ -6,7 +6,7 @@ using TMPro;
 
 public class PhoneHandler : MonoBehaviour
 {
-   readonly KeyCode Z = KeyCode.Z, C = KeyCode.C;
+   const KeyCode Z = KeyCode.Z, C = KeyCode.C;
     enum Screen {GPS, VM, Log, HUD};
     [SerializeField] GameObject GPSMode;
     [SerializeField] GameObject VoicemailMode;
@@ -19,6 +19,7 @@ public class PhoneHandler : MonoBehaviour
     public string playerName;
     Player player;
     int[] temp;
+    Screen currentScreen = Screen.HUD;
     // Start is called before the first frame update, used to find anything we need in our Components/
     void Start()
     {
@@ -31,32 +32,40 @@ public class PhoneHandler : MonoBehaviour
         temp = new int[3];
     }
 
-    void FixedUpdate()
+    void Update()
     {
-        temp = player.GetInventory(); // Remember, Rocks, Batts, Kits.
-        rockText.text = temp[0].ToString();
-        battText.text = temp[1].ToString();
-        kitText.text = temp[2].ToString();
-        HPBar.rectTransform.sizeDelta = new(barWidth * (player.GetHealth()/100f), HPBar.rectTransform.sizeDelta.y);
-        BattBar.rectTransform.sizeDelta = new(barWidth * (player.GetBatt() / 100f), BattBar.rectTransform.sizeDelta.y);
-    }
+        if (Input.GetKeyDown(Z))
+        { // For now, Z just enables the HUD, and C enables the minimap
+            SwitchMode(Screen.HUD);
+        }
+        else if (Input.GetKeyDown(C))
+        {
+            SwitchMode(Screen.GPS);
+        }
 
-    void SwitchMode(Screen mode)
+    }
+    private void FixedUpdate()
+    {
+        if (currentScreen == Screen.HUD)
+        {
+            temp = player.GetInventory(); // Remember, Rocks, Batts, Kits.
+            rockText.text = temp[0].ToString();
+            battText.text = temp[1].ToString();
+            kitText.text = temp[2].ToString();
+            HPBar.rectTransform.sizeDelta = new(barWidth * (player.GetHealth() / 100f), HPBar.rectTransform.sizeDelta.y);
+            BattBar.rectTransform.sizeDelta = new(barWidth * (player.GetBatt() / 100f), BattBar.rectTransform.sizeDelta.y);
+        }
+    }
+    void SwitchMode(Screen newMode)
     {
         GPSMode.SetActive(false);
         VoicemailMode.SetActive(false);
         LogMode.SetActive(false);
         HUDMode.SetActive(false);
-        switch (mode) 
+        switch (newMode) 
         {
             case Screen.GPS:
                 GPSMode.SetActive(true);
-                break;
-            case Screen.VM:
-                VoicemailMode.SetActive(true);
-                break;
-            case Screen.Log:
-                LogMode.SetActive(true);
                 break;
             case Screen.HUD:
                 HUDMode.SetActive(true);
@@ -64,6 +73,7 @@ public class PhoneHandler : MonoBehaviour
             default:
                 break;
         }
+        currentScreen = newMode;
     }
 
     private void OnTriggerEnter(Collider other)
