@@ -17,4 +17,12 @@ public class Breakable : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("AxeHitbox"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }
