@@ -126,7 +126,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 1
-  m_Acceleration: 40
+  m_Acceleration: 25
   avoidancePriority: 50
   m_AngularSpeed: 500
   m_StoppingDistance: 0
@@ -194,8 +194,8 @@ MonoBehaviour:
   chargeMult: 3
   wanderDist: 10
   chargeRange: 5
-  chargeCooldown: 5
-  chargeTimer: 0
+  chargeCooldown: 2
+  chargeTimer: 2
   idleTimer: 3
   currIdle: 0
 --- !u!114 &1208645724495422316
