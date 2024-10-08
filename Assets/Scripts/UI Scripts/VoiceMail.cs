@@ -13,14 +13,6 @@ public class VoiceMail : MonoBehaviour
         soundPlayer = GetComponent<AudioSource>();
     }
 
-    private void FixedUpdate()
-    {
-        if(Random.Range(0f, 1f) <= 0.001f && !soundPlayer.isPlaying)
-        {
-            soundPlayer.Stop();
-            soundPlayer.PlayOneShot(Voicemails[3]);
-        }
-    }
 
     public void PlayVM(int index)
     {
