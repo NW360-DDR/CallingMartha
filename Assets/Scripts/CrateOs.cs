@@ -12,6 +12,5 @@ public class CrateOs : MonoBehaviour
     {
             Vector3 TorqueDir = new(rot[Random.Range(0, rot.Length)], rot[Random.Range(0, rot.Length)], rot[Random.Range(0, rot.Length)]);
             transform.rotation = Quaternion.Euler(TorqueDir);
-        Debug.Log("What are you doing here get out of my house I am calling the police you need to leave.");
     }
 }
