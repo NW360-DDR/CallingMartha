@@ -7,6 +7,7 @@ public class AudioWaiter : MonoBehaviour
     public AudioSource InGame5;
     public float Delay;
     public float ClipLength;
+    public Collider BoxCollider;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +37,8 @@ public class AudioWaiter : MonoBehaviour
 
     public IEnumerator ClipRuntime()
     {
+        Debug.Log("I'm Playing!!!");
+        InGame5.Play();
         yield return new WaitForSeconds(ClipLength);
         Destroy(this.gameObject);
     }

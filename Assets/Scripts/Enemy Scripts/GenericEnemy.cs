@@ -24,7 +24,7 @@ public class GenericEnemy : MonoBehaviour
     bool hunting = false;
     int backState = 0;
     float angleBase;
-
+    Vector3 EggmanHasanAnnouncement;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +36,7 @@ public class GenericEnemy : MonoBehaviour
         angleBase = fov.angle;
         hurtBox.SetActive(false);
         path = new();
+        EggmanHasanAnnouncement = transform.position;
     }
 
     void AttemptPath(Vector3 destination)
@@ -99,7 +100,7 @@ public class GenericEnemy : MonoBehaviour
     {
         void WanderEnter()
         {
-            Vector3 wanderDir = (wanderDist * Random.insideUnitSphere) + transform.position; // Generate a random spot "maxDist" units away from the enemy to navigate towards.
+            Vector3 wanderDir = (wanderDist * Random.insideUnitSphere) + EggmanHasanAnnouncement; // Generate a random spot "maxDist" units away from the enemy to navigate towards.
             NavMesh.SamplePosition(wanderDir, out NavMeshHit nvm, wanderDist, NavMesh.AllAreas); // God I hope this is a spot that can be navigated to.
             //nav.SetDestination(nvm.position);
             AttemptPath(nvm.position);
@@ -172,7 +173,7 @@ public class GenericEnemy : MonoBehaviour
         {
             if (nav.remainingDistance < 0.25f)
             {
-                brain.PopState();
+                brain.PushState(HoldOn());
             }
         }
 
@@ -183,6 +184,34 @@ public class GenericEnemy : MonoBehaviour
             hurtBox.SetActive(false);
         }
         return new State(Update, Enter, Exit, "Charge");
+    }
+
+    State HoldOn()
+    {
+        void Enter()
+        {
+            hurtBox.SetActive(false);
+            nav.ResetPath();
+            currIdle = 1;
+        }
+        void Update()
+        {
+
+            // Otherwise, wait for IdleTimer to run out, then go somewhere else.
+            currIdle += Time.deltaTime;
+            if (currIdle >= idleTimer)
+            {
+                backState++;
+                brain.PopState();
+                
+            }
+
+        }
+        void Exit() // Empty
+        {
+
+        }
+        return new(Update, Enter, Exit, "HoldUp");
     }
 
 }
