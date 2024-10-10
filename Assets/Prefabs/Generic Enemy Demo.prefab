@@ -193,9 +193,9 @@ MonoBehaviour:
   chaseMult: 1.5
   chargeMult: 3
   wanderDist: 10
-  chargeRange: 5
-  chargeCooldown: 2
-  chargeTimer: 2
+  chargeRange: 10
+  chargeCooldown: 1
+  chargeTimer: 1
   idleTimer: 3
   currIdle: 0
 --- !u!114 &1208645724495422316
