@@ -91,7 +91,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EdgeBlend: 131917
-    - _Exposure: 1.95
+    - _Exposure: 0
     - _Glossiness: 0.5
     - _Height: 100000
     - _Metallic: 0
@@ -107,5 +107,5 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _ColorB: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Tint: {r: 0.21383637, g: 0.21383637, b: 0.21383637, a: 0.49019608}
+    - _Tint: {r: 0.12578613, g: 0.12578613, b: 0.12578613, a: 0.49019608}
   m_BuildTextureStacks: []
