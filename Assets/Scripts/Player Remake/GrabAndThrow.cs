@@ -19,6 +19,9 @@ public class GrabAndThrow : MonoBehaviour
 
     private int grabMask;
 
+    public float healthHold = 0;
+    public bool healReset = false;
+
     private HealthAndRespawn healthScript;
     private FlashlightScript lightScript;
 
@@ -87,17 +90,20 @@ public class GrabAndThrow : MonoBehaviour
             holdingCheck = false;
         }
 
-        //heal if the player has a medkit
-        if (Input.GetKeyDown(KeyCode.H) && medKitCount > 0)
+        //heal if the player has a medkit and held down H for 1 second
+        if (Input.GetKey(KeyCode.H) && medKitCount > 0 && healthScript.health < 3 && !healReset)
         {
-            Debug.Log("Used medkit!");
-            healthScript.health += 25;
-            medKitCount -= 1;
+            healthHold += Time.deltaTime;
 
-            if (healthScript.health > 100)
+            if (healthHold >= 1)
             {
-                healthScript.health = 100;
+                Debug.Log("Used medkit!");
+                healthScript.health = 3;
+                medKitCount -= 1;
             }
+        }else
+        {
+            healthHold = 0;
         }
     }
 
@@ -140,6 +146,7 @@ public class GrabAndThrow : MonoBehaviour
                 {
                     lightScript.batteryLife = 100;
                     lightScript.updatedBatteries = false;
+                    lightScript.flickered = false;
                 }
 
                 flashLightBatteries += 1;

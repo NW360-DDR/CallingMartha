@@ -12,6 +12,7 @@ public class FlashlightScript : MonoBehaviour
     public bool flashlightOn = false;
     public float batteryLife = 100;
     public bool updatedBatteries = false;
+    public bool flickered = false;
 
     public GameObject leftHand;
 
@@ -56,6 +57,7 @@ public class FlashlightScript : MonoBehaviour
             if (grabScript.flashLightBatteries > 0)
             {
                 batteryLife = 100;
+                flickered = false;
                 updatedBatteries = false;
             }
         }
@@ -66,6 +68,27 @@ public class FlashlightScript : MonoBehaviour
             flashlightObject.SetActive(false);
             flashlightOn = false;
             leftHand.GetComponent<Image>().sprite = flashLightOff;
+        }
+
+        //if flashlight battery hits 10, flicker
+        if (batteryLife <= 10 && !flickered)
+        {
+            StartCoroutine(FlashLightFlicker());
+        }
+
+        IEnumerator FlashLightFlicker()
+        {
+            flickered = true;
+            for (int i = 0; i < 4; i++)
+            {
+                Debug.Log("Flickering!");
+                flashlightObject.SetActive(false);
+                leftHand.GetComponent<Image>().sprite = flashLightOff;
+                yield return new WaitForSeconds(Random.Range(0.05f, 0.15f));
+                flashlightObject.SetActive(true);
+                leftHand.GetComponent<Image>().sprite = flashLightOn;
+                yield return new WaitForSeconds(Random.Range(0.05f, 0.15f));
+            }
         }
     }
 }

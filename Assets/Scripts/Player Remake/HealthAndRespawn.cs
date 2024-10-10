@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class HealthAndRespawn : MonoBehaviour
 {
-    public int health = 100;
+    public int health = 3;
 
     public GameObject checkpoint;
 
     public bool alive = true;
     private bool respawned = false;
+    private bool hurtCool = false;
+    private GrabAndThrow grabScript;
+
+    private void Start()
+    {
+        grabScript = GetComponentInChildren<GrabAndThrow>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -19,7 +26,7 @@ public class HealthAndRespawn : MonoBehaviour
             //kill player and run the respawn coroutine
             alive = false;
             GetComponent<CameraScript>().enabled = false;
-            GetComponentInChildren<GrabAndThrow>().enabled = false;
+            grabScript.enabled = false;
             GetComponent<AxeSlash>().enabled = false;
             GetComponent<NewPlayerMovement>().enabled = false;
             StartCoroutine(Respawn());
@@ -28,9 +35,13 @@ public class HealthAndRespawn : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Hurtbox"))
+        //player can only be hurt when hurtcooldown is over, also reset the healing timer if player is healing
+        if (other.CompareTag("Hurtbox") && !hurtCool)
         {
-            health -= 15;
+            health -= 1;
+            hurtCool = true;
+            grabScript.healReset = true;
+            StartCoroutine(HitCooldown());
         }
 
         if (other.CompareTag("Spawn Trigger"))
@@ -45,13 +56,20 @@ public class HealthAndRespawn : MonoBehaviour
         Debug.Log("Respawn?");
         respawned = true;
         transform.position = checkpoint.transform.position;
-        health = 100;
+        health = 3;
         alive = true;
         yield return new WaitForSeconds(0.5f);
         GetComponent<CameraScript>().enabled = true;
-        GetComponentInChildren<GrabAndThrow>().enabled = true;
+        grabScript.enabled = true;
         GetComponent<AxeSlash>().enabled = true;
         GetComponent<NewPlayerMovement>().enabled = true;
         respawned = false;
+    }
+
+    IEnumerator HitCooldown()
+    {
+        yield return new WaitForSeconds(1);
+        grabScript.healReset = false;
+        hurtCool = false;
     }
 }
