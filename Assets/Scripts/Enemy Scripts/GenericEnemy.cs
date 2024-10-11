@@ -190,6 +190,7 @@ public class GenericEnemy : MonoBehaviour
     {
         void Enter()
         {
+            hurtBox.SetActive(false);
             nav.ResetPath();
             currIdle = 1;
         }

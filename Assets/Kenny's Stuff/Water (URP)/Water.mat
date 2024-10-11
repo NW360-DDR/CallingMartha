@@ -114,7 +114,7 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _Height: 0.02
+    - _Height: 0.03
     - _Metallic: 0
     - _Noise_Scale: 0.4
     - _OcclusionStrength: 1

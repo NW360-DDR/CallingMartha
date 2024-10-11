@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 410126437388774709}
   - component: {fileID: 3361058041708324755}
   - component: {fileID: 4052379235360327430}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (3)
-  m_TagString: Untagged
+  m_TagString: Checkpoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -367,9 +367,9 @@ GameObject:
   - component: {fileID: 6197648839953079978}
   - component: {fileID: 2895607524633815833}
   - component: {fileID: 9205006614658725741}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Checkpoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -720,9 +720,9 @@ GameObject:
   - component: {fileID: 1452269376114488771}
   - component: {fileID: 7178533295037005487}
   - component: {fileID: 4435032615516101045}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (4)
-  m_TagString: Untagged
+  m_TagString: Checkpoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1073,9 +1073,9 @@ GameObject:
   - component: {fileID: 11883837345558308}
   - component: {fileID: 4769505185207870675}
   - component: {fileID: 9154543967908809782}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: Checkpoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1421,9 +1421,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5554878142749178078}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Campfire
-  m_TagString: Untagged
+  m_TagString: Checkpoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1462,9 +1462,9 @@ GameObject:
   - component: {fileID: 5253383405952611670}
   - component: {fileID: 5528613585122681918}
   - component: {fileID: 9192141961138933960}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (5)
-  m_TagString: Untagged
+  m_TagString: Checkpoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
