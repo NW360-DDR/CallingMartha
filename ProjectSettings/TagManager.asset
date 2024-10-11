@@ -17,6 +17,7 @@ TagManager:
   - Wolf
   - Generator
   - Generator Item
+  - Interactable
   layers:
   - Default
   - TransparentFX

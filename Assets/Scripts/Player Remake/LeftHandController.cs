@@ -11,7 +11,7 @@ public class LeftHandController : MonoBehaviour
 
     public bool switchHandSignal = false;
 
-    private GrabAndThrow grabScript;
+    private InventoryScript inventoryScript;
     private RockThrowScript rockScript;
     private FlashlightScript lightScript;
 
@@ -19,7 +19,7 @@ public class LeftHandController : MonoBehaviour
 
     private void Start()
     {
-        grabScript = GetComponentInChildren<GrabAndThrow>();
+        inventoryScript = GetComponent<InventoryScript>();
         rockScript = GetComponent<RockThrowScript>();
         lightScript = GetComponent<FlashlightScript>();
         leftHandAnim = leftHand.GetComponent<Animator>();
@@ -38,7 +38,7 @@ public class LeftHandController : MonoBehaviour
             lightScript.enabled = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha2) && currentEqupped != 1 && grabScript.rockCount >= 1)
+        if (Input.GetKeyDown(KeyCode.Alpha2) && currentEqupped != 1 && inventoryScript.rockCount >= 1)
         {
             currentEqupped = 1;
             leftHandAnim.SetTrigger("SwitchingHand");
@@ -50,7 +50,7 @@ public class LeftHandController : MonoBehaviour
         }
 
         //if the player runs out of rocks, automatically switch to the first equip slot
-        if (GetComponentInChildren<GrabAndThrow>().rockCount == 0 && currentEqupped == 1)
+        if (inventoryScript.rockCount == 0 && currentEqupped == 1)
         {
             currentEqupped = 0;
             leftHandAnim.SetTrigger("SwitchingHand");
