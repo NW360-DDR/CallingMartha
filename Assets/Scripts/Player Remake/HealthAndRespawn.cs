@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class HealthAndRespawn : MonoBehaviour
@@ -7,6 +8,7 @@ public class HealthAndRespawn : MonoBehaviour
     public int health = 3;
 
     public GameObject checkpoint;
+    public RawImage redJelly;
 
     public bool alive = true;
     private bool respawned = false;
@@ -19,7 +21,8 @@ public class HealthAndRespawn : MonoBehaviour
     private void Start()
     {
         InventoryScript = GetComponent<InventoryScript>();
-        grabScript = GetComponent<GrabAndThrow>();
+        grabScript = GetComponentInChildren<GrabAndThrow>();
+        redJelly = GameObject.Find("Red Overlay").GetComponent<RawImage>();
     }
 
     // Update is called once per frame
@@ -44,6 +47,7 @@ public class HealthAndRespawn : MonoBehaviour
             if (healthHold >= 1)
             {
                 Debug.Log("Used medkit!");
+                redJelly.color = new Color(redJelly.color.r, redJelly.color.g, redJelly.color.b, 0f);
                 health = 3;
                 InventoryScript.medKitCount -= 1;
             }
@@ -60,6 +64,7 @@ public class HealthAndRespawn : MonoBehaviour
         if (other.CompareTag("Hurtbox") && !hurtCool)
         {
             health -= 1;
+            redJelly.color += new Color (redJelly.color.r, redJelly.color.g, redJelly.color.b, 0.25f);
             hurtCool = true;
             healReset = true;
             StartCoroutine(HitCooldown());
@@ -76,6 +81,7 @@ public class HealthAndRespawn : MonoBehaviour
         //resets player location and health
         Debug.Log("Respawn?");
         respawned = true;
+        redJelly.color = new Color(redJelly.color.r, redJelly.color.g, redJelly.color.b, 0f);
         transform.position = checkpoint.transform.position;
         health = 3;
         alive = true;
