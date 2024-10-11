@@ -13,7 +13,7 @@ public class PhoneHandler : MonoBehaviour
     CellService cell;
     public string playerName;
     Player player;
-    int[] inventoryTemp;
+    byte[] inventoryTemp;
     Screen currentScreen = Screen.HUD;
     // Start is called before the first frame update, used to find anything we need in our Components/
     void Start()
@@ -23,7 +23,7 @@ public class PhoneHandler : MonoBehaviour
             player = new Player();
         else
             player = new Player(playerName);
-        inventoryTemp = new int[3];
+        inventoryTemp = new byte[3];
     }
 
     private void FixedUpdate()
@@ -62,26 +62,26 @@ public class PhoneHandler : MonoBehaviour
 /// </summary>
 public class Player{
      readonly GameObject main;
-     public GrabAndThrow inventory;
+     public InventoryScript inventory;
     public Player() 
     {
-        Debug.Log("No name specified, default constructor.");
+        Debug.Log("No name specified, default constructor."); 
         main = GameObject.FindWithTag("Player");
-        inventory = main.GetComponentInChildren<GrabAndThrow>();
+        inventory = main.GetComponentInChildren<InventoryScript>();
         
     }
     public Player(string playerName)
     {
         main = GameObject.Find(playerName);
-        inventory = main.GetComponentInChildren<GrabAndThrow>();
+        inventory = main.GetComponentInChildren<InventoryScript>();
     }
 
-    public int[] GetInventory() // Returns the players Rocks, Batteries, and Medkit counts for the UI.
+    public byte[] GetInventory() // Returns the players Rocks, Batteries, and Medkit counts for the UI.
     {
-        int[] temp = { 3, 4, 5 }; // Rocks, Batts, Kits
-        temp[0] = inventory.rockCount;
-        temp[1] = inventory.flashLightBatteries;
-        temp[2] = inventory.medKitCount;
+        byte[] temp = {3, 4, 5 }; // Rocks, Batts, Kits
+       temp[0] = (byte)inventory.rockCount;
+       temp[1] = (byte)inventory.flashLightBatteries;
+       temp[2] = (byte)inventory.medKitCount;
 
         return temp;
     }

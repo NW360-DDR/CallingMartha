@@ -1154,6 +1154,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -7.538, z: 0}
+--- !u!114 &1042323724 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2691893432422687172, guid: d84b44943f2563244bcd70ab4cfb2b39, type: 3}
+  m_PrefabInstance: {fileID: 757759292751208760}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1129208282
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1491,6 +1502,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -114.905, z: 0}
+--- !u!114 &1558696386 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4806992589988229911, guid: d84b44943f2563244bcd70ab4cfb2b39, type: 3}
+  m_PrefabInstance: {fileID: 757759292751208760}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1677603875
 GameObject:
   m_ObjectHideFlags: 0
@@ -2073,6 +2095,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 392063231424008275, guid: d84b44943f2563244bcd70ab4cfb2b39, type: 3}
+      propertyPath: m_Name
+      value: BattText
+      objectReference: {fileID: 0}
     - target: {fileID: 761941312253879261, guid: d84b44943f2563244bcd70ab4cfb2b39, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2161,6 +2187,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: PhoneCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 2551471247327628557, guid: d84b44943f2563244bcd70ab4cfb2b39, type: 3}
+      propertyPath: kitText
+      value: 
+      objectReference: {fileID: 1042323724}
+    - target: {fileID: 2551471247327628557, guid: d84b44943f2563244bcd70ab4cfb2b39, type: 3}
+      propertyPath: battText
+      value: 
+      objectReference: {fileID: 1558696386}
+    - target: {fileID: 2691893432422687172, guid: d84b44943f2563244bcd70ab4cfb2b39, type: 3}
+      propertyPath: m_text
+      value: 0 batteries
+      objectReference: {fileID: 0}
     - target: {fileID: 2691893432422687172, guid: d84b44943f2563244bcd70ab4cfb2b39, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -2200,6 +2238,10 @@ PrefabInstance:
     - target: {fileID: 4827427804304276369, guid: d84b44943f2563244bcd70ab4cfb2b39, type: 3}
       propertyPath: m_Name
       value: RockText
+      objectReference: {fileID: 0}
+    - target: {fileID: 7676121698178902712, guid: d84b44943f2563244bcd70ab4cfb2b39, type: 3}
+      propertyPath: m_Name
+      value: MedkitText
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
