@@ -29,9 +29,9 @@ public class PhoneHandler : MonoBehaviour
     private void FixedUpdate()
     {
         inventoryTemp = player.GetInventory(); // Remember, Rocks, Batts, Kits.
-        rockText.text = inventoryTemp[0].ToString();
-        battText.text = inventoryTemp[1].ToString();
-        kitText.text = inventoryTemp[2].ToString();
+        rockText.text = inventoryTemp[0].ToString() + " rocks";
+        battText.text = inventoryTemp[1].ToString() + " batteries";
+        kitText.text = inventoryTemp[2].ToString() + " medkits";
     }
     void SwitchMode(Screen newMode)
     {
