@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class GrabAndThrow : MonoBehaviour
 {
     private RaycastHit targetCheck;
+    private InventoryScript inventoryScript;
     public GameObject holdingObject;
     public GameObject heldObjectPlace;
     public GameObject rockPrefab;
@@ -29,6 +30,8 @@ public class GrabAndThrow : MonoBehaviour
 
         leftHandSprite = GameObject.Find("Lefthand");
         axeSprite = GameObject.Find("Axe");
+
+        inventoryScript = GetComponentInParent<InventoryScript>();
     }
 
     // Update is called once per frame
@@ -61,7 +64,8 @@ public class GrabAndThrow : MonoBehaviour
             holdingObjectCollider = null;
             holdingObject = null;
             holdingCheck = false;
-        }else if (holdingCheck && Input.GetMouseButton(1))
+        }
+        else if (holdingCheck && Input.GetMouseButton(1))
         {
             axeSprite.GetComponent<Image>().enabled = true;
             leftHandSprite.GetComponent<Image>().enabled = true;
@@ -87,27 +91,43 @@ public class GrabAndThrow : MonoBehaviour
             {
                 Debug.Log("Run grab event!");
                 HoldObject();
-            } else if (targetCheck.transform.CompareTag("Interactable"))
+            }
+            else if (targetCheck.transform.CompareTag("Interactable"))
             {
                 targetCheck.transform.gameObject.SendMessageUpwards("Interact");
             }
+            else if (targetCheck.transform.CompareTag("Axe"))
+            {
+                if (canPickupAxe)
+                {
+
+                    inventoryScript = GameObject.Find("Player (Remake)").GetComponent<InventoryScript>();
+
+                    inventoryScript.axe = true;
+
+                    GameObject.Find("Player (Remake)").GetComponentInParent<AxeSlash>().rightHand.SetActive(false);
+                    GameObject.Find("Player (Remake)").GetComponentInParent<AxeSlash>().axeSprite.SetActive(true);
+
+                    Destroy(targetCheck.transform.gameObject);
+                }
+            }
         }
-    }
 
-    void HoldObject()
-    {
-        //runs when the raycast finds a grabbable object
-        Debug.Log("Grabbable!");
-        holdingObject = targetCheck.collider.gameObject;
-        holdingCheck = true;
+        void HoldObject()
+        {
+            //runs when the raycast finds a grabbable object
+            Debug.Log("Grabbable!");
+            holdingObject = targetCheck.collider.gameObject;
+            holdingCheck = true;
 
-        holdingObjectCollider = holdingObject.GetComponent<Collider>();
-        holdingObjectRB = holdingObject.GetComponent<Rigidbody>();
+            holdingObjectCollider = holdingObject.GetComponent<Collider>();
+            holdingObjectRB = holdingObject.GetComponent<Rigidbody>();
 
-        holdingObjectRB.constraints = RigidbodyConstraints.FreezeRotation;
-        holdingObjectCollider.isTrigger = true;
-        axeSprite.GetComponent<Image>().enabled = false;
-        leftHandSprite.GetComponent<Image>().enabled = false;
-        GetComponentInParent<AxeSlash>().enabled = false;
+            holdingObjectRB.constraints = RigidbodyConstraints.FreezeRotation;
+            holdingObjectCollider.isTrigger = true;
+            axeSprite.GetComponent<Image>().enabled = false;
+            leftHandSprite.GetComponent<Image>().enabled = false;
+            GetComponentInParent<AxeSlash>().enabled = false;
+        }
     }
 }
