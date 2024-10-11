@@ -247,6 +247,8 @@ MonoBehaviour:
   rockPrefab: {fileID: 1868658233443335095, guid: bb92db1b2b8c15940bff00ebc4624e54, type: 3}
   holdingCheck: 0
   canPickupAxe: 1
+  healthHold: 0
+  healReset: 0
   rockCount: 0
   medKitCount: 0
   flashLightBatteries: 1
@@ -293,6 +295,7 @@ GameObject:
   - component: {fileID: 7041161670826318313}
   - component: {fileID: 1034859081218810649}
   - component: {fileID: 4168797154450591856}
+  - component: {fileID: 4133986875344182100}
   m_Layer: 3
   m_Name: Player (Remake)
   m_TagString: Player
@@ -528,6 +531,18 @@ MonoBehaviour:
   leftHand: {fileID: 0}
   flashLightOff: {fileID: 21300000, guid: 8c2a60b7a0e53a848a4eb53240c8df56, type: 3}
   flashLightOn: {fileID: 21300000, guid: c55add11ff08e7d49a3ed38a61074082, type: 3}
+--- !u!114 &4133986875344182100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6634254539337635931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 054ab3fc2bc3c794b81cade7f368eb1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8183476400951475566
 GameObject:
   m_ObjectHideFlags: 0

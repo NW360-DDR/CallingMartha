@@ -11,11 +11,15 @@ public class HealthAndRespawn : MonoBehaviour
     public bool alive = true;
     private bool respawned = false;
     private bool hurtCool = false;
+    private InventoryScript InventoryScript;
     private GrabAndThrow grabScript;
+    private bool healReset = false;
+    private float healthHold = 0;
 
     private void Start()
     {
-        grabScript = GetComponentInChildren<GrabAndThrow>();
+        InventoryScript = GetComponent<InventoryScript>();
+        grabScript = GetComponent<GrabAndThrow>();
     }
 
     // Update is called once per frame
@@ -31,6 +35,23 @@ public class HealthAndRespawn : MonoBehaviour
             GetComponent<NewPlayerMovement>().enabled = false;
             StartCoroutine(Respawn());
         }
+
+        //heal if the player has a medkit and held down H for 1 second
+        if (Input.GetKey(KeyCode.H) && InventoryScript.medKitCount > 0 && health < 3 && !healReset)
+        {
+            healthHold += Time.deltaTime;
+
+            if (healthHold >= 1)
+            {
+                Debug.Log("Used medkit!");
+                health = 3;
+                InventoryScript.medKitCount -= 1;
+            }
+        }
+        else
+        {
+            healthHold = 0;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -40,7 +61,7 @@ public class HealthAndRespawn : MonoBehaviour
         {
             health -= 1;
             hurtCool = true;
-            grabScript.healReset = true;
+            healReset = true;
             StartCoroutine(HitCooldown());
         }
 
@@ -60,7 +81,7 @@ public class HealthAndRespawn : MonoBehaviour
         alive = true;
         yield return new WaitForSeconds(0.5f);
         GetComponent<CameraScript>().enabled = true;
-        grabScript.enabled = true;
+        InventoryScript.enabled = true;
         GetComponent<AxeSlash>().enabled = true;
         GetComponent<NewPlayerMovement>().enabled = true;
         respawned = false;
@@ -69,7 +90,7 @@ public class HealthAndRespawn : MonoBehaviour
     IEnumerator HitCooldown()
     {
         yield return new WaitForSeconds(1);
-        grabScript.healReset = false;
+        healReset = false;
         hurtCool = false;
     }
 }

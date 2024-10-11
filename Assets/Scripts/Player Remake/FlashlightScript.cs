@@ -7,7 +7,7 @@ public class FlashlightScript : MonoBehaviour
 {
     public GameObject flashlightObject;
 
-    private GrabAndThrow grabScript;
+    private InventoryScript InventoryScript;
 
     public bool flashlightOn = false;
     public float batteryLife = 100;
@@ -22,14 +22,14 @@ public class FlashlightScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        grabScript = GetComponentInChildren<GrabAndThrow>();
+        InventoryScript = GetComponent<InventoryScript>();
     }
 
     // Update is called once per frame
     void Update()
     {
         //if the flashlight is not on, turn it on. if it is on, turn it off
-        if (Input.GetMouseButtonDown(1) && grabScript.flashLightBatteries > 0 && !flashlightOn)
+        if (Input.GetMouseButtonDown(1) && InventoryScript.flashLightBatteries > 0 && !flashlightOn)
         {
             flashlightObject.SetActive(true);
             flashlightOn = true;
@@ -50,11 +50,11 @@ public class FlashlightScript : MonoBehaviour
         //if the flashlight battery life reaches 0, get rid of a battery and replace with next one if the player has one
         if (batteryLife <= 0 && !updatedBatteries)
         {
-            grabScript.flashLightBatteries -= 1;
+            InventoryScript.flashLightBatteries -= 1;
             updatedBatteries = true;
 
             //this part replaces if the player has another
-            if (grabScript.flashLightBatteries > 0)
+            if (InventoryScript.flashLightBatteries > 0)
             {
                 batteryLife = 100;
                 flickered = false;
@@ -63,7 +63,7 @@ public class FlashlightScript : MonoBehaviour
         }
 
         //automatically turn off flashlight if the battery reaches 0 and there are no batteries left
-        if (batteryLife <= 0 && grabScript.flashLightBatteries == 0)
+        if (batteryLife <= 0 && InventoryScript.flashLightBatteries == 0)
         {
             flashlightObject.SetActive(false);
             flashlightOn = false;
