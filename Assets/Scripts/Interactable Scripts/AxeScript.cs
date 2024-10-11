@@ -10,6 +10,8 @@ public class AxeScript : Interactable
     {
         //Do interact code here
 
+        Debug.Log("Worked???");
+
         if (GameObject.Find("Player (Remake)").GetComponentInChildren<GrabAndThrow>().canPickupAxe)
         {
 

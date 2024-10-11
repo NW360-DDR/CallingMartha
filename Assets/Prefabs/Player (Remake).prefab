@@ -247,13 +247,6 @@ MonoBehaviour:
   rockPrefab: {fileID: 1868658233443335095, guid: bb92db1b2b8c15940bff00ebc4624e54, type: 3}
   holdingCheck: 0
   canPickupAxe: 1
-  healthHold: 0
-  healReset: 0
-  rockCount: 0
-  medKitCount: 0
-  flashLightBatteries: 1
-  generatorItems: 0
-  axe: 1
 --- !u!95 &9047667709824818956
 Animator:
   serializedVersion: 5
@@ -478,6 +471,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 3
   checkpoint: {fileID: 0}
+  redJelly: {fileID: 0}
   alive: 1
 --- !u!114 &7041161670826318313
 MonoBehaviour:
@@ -543,6 +537,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 054ab3fc2bc3c794b81cade7f368eb1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rockCount: 0
+  medKitCount: 0
+  flashLightBatteries: 1
+  generatorItems: 0
+  axe: 1
 --- !u!1 &8183476400951475566
 GameObject:
   m_ObjectHideFlags: 0
