@@ -42,7 +42,7 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Rock"))
         {
-            if (other.gameObject.GetComponent<Rigidbody>().velocity.magnitude > 0.5f)
+            //if (other.gameObject.GetComponent<Rigidbody>().velocity.magnitude > 0.5f)
             {
                 Debug.Log("Ouch!");
                 Destroy(other.gameObject);
@@ -54,7 +54,7 @@ public class Enemy : MonoBehaviour
 
         if (other.gameObject.CompareTag("Axe"))
         {
-            if (other.gameObject.GetComponent<Rigidbody>().velocity.magnitude > 0.5f)
+            //if (other.gameObject.GetComponent<Rigidbody>().velocity.magnitude > 0.5f)
             {
                 Debug.Log("Ouch!");
                 health -= 100;

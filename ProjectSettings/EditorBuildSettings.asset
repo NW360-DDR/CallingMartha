@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Kenny's Stuff/Scenes/Forest_ProBuilder.unity
     guid: c5b8d7b0f955e2041b7ca04b55b7725d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Maddie's Stuff/Scenes/Maddie_Forest_ProBuilder.unity
     guid: f7273b5393b50f44da77212d836cfdbd
   m_configObjects: {}
