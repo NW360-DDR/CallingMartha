@@ -11,6 +11,7 @@ public class GenericEnemy : MonoBehaviour
     NavMeshPath path;
     FieldOfView fov;
     public GameObject hurtBox;
+    private Animator wolfAnim;
 
     // Navigation Parameters
     Vector3 dest;
@@ -28,6 +29,7 @@ public class GenericEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        wolfAnim = GetComponentInChildren<Animator>();
         nav = GetComponent<NavMeshAgent>();
         nav.speed = baseSpeed;
         brain = GetComponent<StateMachine>();
@@ -75,6 +77,7 @@ public class GenericEnemy : MonoBehaviour
         void IdleEnter()
         {
             nav.ResetPath();
+            wolfAnim.SetBool("Running", false);
         }
         void Idle()
         {
@@ -105,6 +108,7 @@ public class GenericEnemy : MonoBehaviour
             //nav.SetDestination(nvm.position);
             AttemptPath(nvm.position);
             dest = nav.destination;
+            wolfAnim.SetBool("Running", true);
         }
         void Wander()
         {
@@ -118,6 +122,7 @@ public class GenericEnemy : MonoBehaviour
         void WanderExit()
         {
             // Empty
+            wolfAnim.SetBool("Running", false);
         }
         return new(Wander, WanderEnter, WanderExit, "Wander");
     }
@@ -132,6 +137,7 @@ public class GenericEnemy : MonoBehaviour
             fov.angle = angleBase + 60;
             //nav.SetDestination(fov.playerRef.transform.position);
             AttemptPath(fov.playerRef.transform.position);
+            wolfAnim.SetBool("Running", true);
         }
         void Update()
         {
@@ -151,6 +157,7 @@ public class GenericEnemy : MonoBehaviour
             fov.angle = angleBase;
             // We aren't sure if we're attacking or Searching, so set hunting to false just in case
             hunting = false;
+            wolfAnim.SetBool("Running", false);
         }
         return new(Update, Enter, Exit, "Chase");
     }
@@ -167,6 +174,7 @@ public class GenericEnemy : MonoBehaviour
             //nav.SetDestination(newTarget);
             AttemptPath(newTarget);
             nav.speed = baseSpeed * chargeMult;
+            wolfAnim.SetBool("Running", true);
         }
 
         void Update()
@@ -182,6 +190,7 @@ public class GenericEnemy : MonoBehaviour
             nav.speed = baseSpeed;
             chargeTimer = 0.0f;
             hurtBox.SetActive(false);
+            wolfAnim.SetBool("Running", false);
         }
         return new State(Update, Enter, Exit, "Charge");
     }
@@ -193,6 +202,7 @@ public class GenericEnemy : MonoBehaviour
             hurtBox.SetActive(false);
             nav.ResetPath();
             currIdle = 1;
+            wolfAnim.SetBool("Running", false);
         }
         void Update()
         {
