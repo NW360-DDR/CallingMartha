@@ -23,7 +23,7 @@ public class RockThrowScript : MonoBehaviour
         if (Input.GetMouseButtonDown(1) && inventoryScript.rockCount >= 1)
         {
             thrownRock = Instantiate(rockPrefab, spawnLocation.transform.position, spawnLocation.transform.rotation);
-            thrownRock.GetComponent<Rigidbody>().AddForce(spawnLocation.transform.forward * 30, ForceMode.Impulse);
+            thrownRock.GetComponent<Rigidbody>().AddForce(spawnLocation.transform.forward * 25, ForceMode.Impulse);
             thrownRock = null;
             inventoryScript.rockCount -= 1;
         }
