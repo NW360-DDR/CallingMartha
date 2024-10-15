@@ -2187,6 +2187,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PhoneCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1782903901443722542, guid: d84b44943f2563244bcd70ab4cfb2b39, type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: 522c1052951fb3848ade2129da6d66f8, type: 3}
     - target: {fileID: 2551471247327628557, guid: d84b44943f2563244bcd70ab4cfb2b39, type: 3}
       propertyPath: kitText
       value: 
@@ -2195,6 +2199,10 @@ PrefabInstance:
       propertyPath: battText
       value: 
       objectReference: {fileID: 1558696386}
+    - target: {fileID: 2551471247327628557, guid: d84b44943f2563244bcd70ab4cfb2b39, type: 3}
+      propertyPath: playerName
+      value: Player (Remake)
+      objectReference: {fileID: 0}
     - target: {fileID: 2691893432422687172, guid: d84b44943f2563244bcd70ab4cfb2b39, type: 3}
       propertyPath: m_text
       value: 0 batteries
@@ -2222,6 +2230,10 @@ PrefabInstance:
     - target: {fileID: 3101928553187787953, guid: d84b44943f2563244bcd70ab4cfb2b39, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4675478556097329280, guid: d84b44943f2563244bcd70ab4cfb2b39, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4806992589988229911, guid: d84b44943f2563244bcd70ab4cfb2b39, type: 3}
       propertyPath: m_fontAsset

@@ -6,6 +6,7 @@ public class NewPlayerMovement : MonoBehaviour
 {
     private CharacterController characterController;
     private Animator axeAnimator;
+    private CellService cellService;
 
     private Vector3 moveDirection;
     private Vector3 velocity;
@@ -27,6 +28,7 @@ public class NewPlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        cellService = GameObject.Find("ServiceBar").GetComponent<CellService>();
         characterController = GetComponent<CharacterController>();
         healthScript = GetComponent<HealthAndRespawn>();
         axeAnimator = GameObject.Find("Axe").GetComponent<Animator>();
@@ -122,5 +124,29 @@ public class NewPlayerMovement : MonoBehaviour
         isDashing = false;
         yield return new WaitForSeconds(1);
         dashCooldown = false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Cellbox"))
+        {
+            cellService.ServiceUpdate(other.GetComponent<CellVolume>().cellPower);
+        }
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Cellbox") && cellService.service < other.GetComponent<CellVolume>().cellPower)
+        {
+            cellService.ServiceUpdate(other.GetComponent<CellVolume>().cellPower);
+            cellService.inCellBox = true;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Cellbox"))
+        {
+            cellService.ServiceUpdate(0);
+            cellService.inCellBox = false;
+        }
     }
 }

@@ -6,19 +6,26 @@ using TMPro;
 
 public class PhoneHandler : MonoBehaviour
 {
+    // Screen Management Variables
     enum Screen {HUD, Save};
+    Screen currentScreen = Screen.HUD;
     [SerializeField] GameObject SaveMode;
     [SerializeField] GameObject HUDMode;
+    // Text and other data information
     [SerializeField] TextMeshProUGUI rockText, battText, kitText;
-    CellService cell;
+    [SerializeField] TextMeshProUGUI SaveText;
+    [SerializeField] CellService cell;
     public string playerName;
+    bool canSave = false;
+    bool hasSaved = false;
+
+    // These two are for getting the inventory. Why did I do it this way? I don't know, it made sense at the time.
     Player player;
     byte[] inventoryTemp;
-    Screen currentScreen = Screen.HUD;
+    
     // Start is called before the first frame update, used to find anything we need in our Components/
     void Start()
     {
-        cell = GetComponentInChildren<CellService>();
         if (string.IsNullOrWhiteSpace(playerName))
             player = new Player();
         else
@@ -26,21 +33,65 @@ public class PhoneHandler : MonoBehaviour
         inventoryTemp = new byte[3];
     }
 
+    private void Update()
+    {
+        // ~~~~~~~~~~~~~~~~~~~ Screen Changing ~~~~~~~~~~~~~~~~~~~~~~~~
+        if (Input.mouseScrollDelta.y > 0 && currentScreen != Screen.HUD) // Positive values up, negative down
+        {// Positive means we want to see the HUD if we aren't already
+            SwitchMode(Screen.HUD);
+        }
+        else if (Input.mouseScrollDelta.y < 0 && currentScreen != Screen.Save) // Positive values up, negative down
+        {// Positive means we want to see the Save Menu if we aren't already
+            SwitchMode(Screen.Save);
+        }
+        // ~~~~ Checking for Checkpoints
+        if (canSave && !hasSaved && Input.GetKeyDown(KeyCode.C)) // Can we save? Have we not yet saved? Did we hit the button
+        {
+            hasSaved = true;
+            // Maddie put the things here for checkpointing.
+        }
+    }
     private void FixedUpdate()
     {
-        inventoryTemp = player.GetInventory(); // Remember, Rocks, Batts, Kits.
-        rockText.text = inventoryTemp[0].ToString() + " rocks";
-        battText.text = inventoryTemp[1].ToString() + " batteries";
-        kitText.text = inventoryTemp[2].ToString() + " medkits";
+        
+        // ~~~~~~~~~~~~~~~~~~~~~ Screen Updating ~~~~~~~~~~~~~~~~~~~~~~
+        if (currentScreen == Screen.HUD)
+        {
+            inventoryTemp = player.GetInventory(); // Remember, Rocks, Batts, Kits.
+            rockText.text = inventoryTemp[0].ToString() + " rocks";
+            battText.text = inventoryTemp[1].ToString() + " batteries";
+            kitText.text = inventoryTemp[2].ToString() + " medkits";
+        }
+        else if (currentScreen == Screen.Save)
+        {
+            if(cell.service == 3 && !hasSaved) // Maximum Cell Service only while we have not Checkpointed
+            {
+                SaveText.text = "Connection Established";
+                canSave = true;
+            }
+            else if (cell.service == 3 && hasSaved)
+            {
+                SaveText.text = "Location Logged.";
+            }
+            else
+            {
+                SaveText.text = "Unstable Connection";
+                canSave = false;
+            }
+        }
+        
     }
     void SwitchMode(Screen newMode)
     {
         HUDMode.SetActive(false);
+        SaveMode.SetActive(false);
         switch (newMode) 
         {
-
             case Screen.HUD:
                 HUDMode.SetActive(true);
+                break;
+            case Screen.Save:
+                SaveMode.SetActive(true);
                 break;
             default:
                 break;
@@ -48,13 +99,7 @@ public class PhoneHandler : MonoBehaviour
         currentScreen = newMode;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Cell"))
-        {
-            cell.ServiceUpdate(other.GetComponent<CellVolume>().cellPower);
-        }
-    }
+    
 }
 
 /// <summary>
