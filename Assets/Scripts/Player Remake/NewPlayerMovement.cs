@@ -39,6 +39,7 @@ public class NewPlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //random comment for nate
         // makes it so the player isn't building falling velocity while grounded
         if (Grounded() && velocity.y < 0)
         {
