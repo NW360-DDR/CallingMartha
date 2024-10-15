@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class GrabAndThrow : MonoBehaviour
 {
     private RaycastHit targetCheck;
+    private InventoryScript inventoryScript;
     public GameObject holdingObject;
     public GameObject heldObjectPlace;
     public GameObject rockPrefab;
@@ -19,27 +20,18 @@ public class GrabAndThrow : MonoBehaviour
 
     private int grabMask;
 
-    private HealthAndRespawn healthScript;
-    private FlashlightScript lightScript;
-
     private Collider holdingObjectCollider;
     private Rigidbody holdingObjectRB;
-
-    public int rockCount = 0;
-    public int medKitCount = 0;
-    public int flashLightBatteries = 0;
-    public int generatorItems = 0;
-    public bool axe = true;
 
     // Start is called before the first frame update
     void Start()
     {
         grabMask = 1 << 6;
-        healthScript = GetComponentInParent<HealthAndRespawn>();
-        lightScript = GetComponentInParent<FlashlightScript>();
 
         leftHandSprite = GameObject.Find("Lefthand");
         axeSprite = GameObject.Find("Axe");
+
+        inventoryScript = GetComponentInParent<InventoryScript>();
     }
 
     // Update is called once per frame
@@ -72,7 +64,8 @@ public class GrabAndThrow : MonoBehaviour
             holdingObjectCollider = null;
             holdingObject = null;
             holdingCheck = false;
-        }else if (holdingCheck && Input.GetMouseButton(1))
+        }
+        else if (holdingCheck && Input.GetMouseButton(1))
         {
             axeSprite.GetComponent<Image>().enabled = true;
             leftHandSprite.GetComponent<Image>().enabled = true;
@@ -86,19 +79,6 @@ public class GrabAndThrow : MonoBehaviour
             holdingObject = null;
             holdingCheck = false;
         }
-
-        //heal if the player has a medkit
-        if (Input.GetKeyDown(KeyCode.H) && medKitCount > 0)
-        {
-            Debug.Log("Used medkit!");
-            healthScript.health += 25;
-            medKitCount -= 1;
-
-            if (healthScript.health > 100)
-            {
-                healthScript.health = 100;
-            }
-        }
     }
 
     void TargetTesting()
@@ -111,65 +91,43 @@ public class GrabAndThrow : MonoBehaviour
             {
                 Debug.Log("Run grab event!");
                 HoldObject();
-            } else if (targetCheck.transform.CompareTag("Rock"))
+            }
+            else if (targetCheck.transform.CompareTag("Interactable"))
             {
-                rockCount += 1;
-
-                Destroy(targetCheck.transform.gameObject);
-                Debug.Log("Rock!");
-            } else if (targetCheck.transform.CompareTag("Medkit"))
+                targetCheck.transform.gameObject.SendMessageUpwards("Interact");
+            }
+            else if (targetCheck.transform.CompareTag("Axe"))
             {
-                medKitCount += 1;
-
-                Destroy(targetCheck.transform.gameObject);
-                Debug.Log("Medkit!");
-            } else if (targetCheck.transform.CompareTag("Axe") && canPickupAxe)
-            {
-                axe = true;
-                GetComponentInParent<AxeSlash>().rightHand.SetActive(false);
-                GetComponentInParent<AxeSlash>().axeSprite.SetActive(true);
-
-                Destroy(targetCheck.transform.gameObject);
-            } else if (targetCheck.transform.CompareTag("Checkpoint"))
-            {
-                Debug.Log("Updated Checkpoint!");
-                healthScript.checkpoint = targetCheck.transform.gameObject;
-            } else if (targetCheck.transform.CompareTag("Battery"))
-            {
-                if (flashLightBatteries <= 0)
+                if (canPickupAxe)
                 {
-                    lightScript.batteryLife = 100;
-                    lightScript.updatedBatteries = false;
+
+                    inventoryScript = GameObject.Find("Player (Remake)").GetComponent<InventoryScript>();
+
+                    inventoryScript.axe = true;
+
+                    GameObject.Find("Player (Remake)").GetComponentInParent<AxeSlash>().rightHand.SetActive(false);
+                    GameObject.Find("Player (Remake)").GetComponentInParent<AxeSlash>().axeSprite.SetActive(true);
+
+                    Destroy(targetCheck.transform.gameObject);
                 }
-
-                flashLightBatteries += 1;
-
-                Destroy(targetCheck.transform.gameObject);
-            } else if (targetCheck.transform.CompareTag("Generator"))
-            {
-                targetCheck.transform.gameObject.SendMessageUpwards("GeneratorCheck");
-            } else if (targetCheck.transform.CompareTag("Generator Item"))
-            {
-                generatorItems += 1;
-                Destroy(targetCheck.transform.gameObject);
             }
         }
-    }
 
-    void HoldObject()
-    {
-        //runs when the raycast finds a grabbable object
-        Debug.Log("Grabbable!");
-        holdingObject = targetCheck.collider.gameObject;
-        holdingCheck = true;
+        void HoldObject()
+        {
+            //runs when the raycast finds a grabbable object
+            Debug.Log("Grabbable!");
+            holdingObject = targetCheck.collider.gameObject;
+            holdingCheck = true;
 
-        holdingObjectCollider = holdingObject.GetComponent<Collider>();
-        holdingObjectRB = holdingObject.GetComponent<Rigidbody>();
+            holdingObjectCollider = holdingObject.GetComponent<Collider>();
+            holdingObjectRB = holdingObject.GetComponent<Rigidbody>();
 
-        holdingObjectRB.constraints = RigidbodyConstraints.FreezeRotation;
-        holdingObjectCollider.isTrigger = true;
-        axeSprite.GetComponent<Image>().enabled = false;
-        leftHandSprite.GetComponent<Image>().enabled = false;
-        GetComponentInParent<AxeSlash>().enabled = false;
+            holdingObjectRB.constraints = RigidbodyConstraints.FreezeRotation;
+            holdingObjectCollider.isTrigger = true;
+            axeSprite.GetComponent<Image>().enabled = false;
+            leftHandSprite.GetComponent<Image>().enabled = false;
+            GetComponentInParent<AxeSlash>().enabled = false;
+        }
     }
 }

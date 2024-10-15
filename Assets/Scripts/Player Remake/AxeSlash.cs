@@ -11,6 +11,7 @@ public class AxeSlash : MonoBehaviour
     public GameObject rightHand;
     public GameObject cam;
 
+    private InventoryScript inventoryScript;
     private GrabAndThrow grabScript;
     public bool attackSignal = false;
     public bool takeInput = true;
@@ -20,6 +21,7 @@ public class AxeSlash : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        inventoryScript = GetComponent<InventoryScript>();
         grabScript = GetComponentInChildren<GrabAndThrow>();
         axeSprite.GetComponent<Animator>().Play("Axe_Idle");
     }
@@ -37,7 +39,7 @@ public class AxeSlash : MonoBehaviour
         }
 
         // if the player is readying and releases the button, do the attack animation
-        if (Input.GetMouseButtonUp(0) && takeInput && grabScript.axe)
+        if (Input.GetMouseButtonUp(0) && takeInput && inventoryScript.axe)
         {
             if (axeSprite.GetComponent<Animator>().GetBool("HoldingDown"))
             {
@@ -49,19 +51,19 @@ public class AxeSlash : MonoBehaviour
         }
 
         // if the player can ready an attack, do so
-        if (Input.GetMouseButtonDown(0) && takeInput && grabScript.axe)
+        if (Input.GetMouseButtonDown(0) && takeInput && inventoryScript.axe)
         {
             axeSprite.GetComponent<Animator>().SetBool("HoldingDown", true);
         }
 
         // if the player has an axe, throw the axe
-        if (Input.GetKeyDown(KeyCode.Q) && takeInput && grabScript.axe && axeCooldownBool)
+        if (Input.GetKeyDown(KeyCode.Q) && takeInput && inventoryScript.axe && axeCooldownBool)
         {
             axeSprite.SetActive(false);
             rightHand.SetActive(true);
             GameObject currentAxe = Instantiate(axeThrowPrefab, hitBox.transform.position, hitBox.transform.rotation);
             currentAxe.GetComponent<Rigidbody>().AddForce(cam.transform.forward * 20, ForceMode.Impulse);
-            grabScript.axe = false;
+            inventoryScript.axe = false;
             grabScript.canPickupAxe = false;
             axeCooldownBool = false;
             StartCoroutine(AxeThrowCooldown());

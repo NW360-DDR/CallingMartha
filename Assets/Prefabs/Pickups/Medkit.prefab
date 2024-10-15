@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 1256475569361938916}
   - component: {fileID: 8937411011856540738}
   - component: {fileID: 1507187299688946319}
+  - component: {fileID: -4942174408099386099}
   m_Layer: 6
   m_Name: Medkit
-  m_TagString: Medkit
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -119,4 +120,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cda50bd01235b774781d9568802fb717, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  playerCam: {fileID: 0}
+--- !u!114 &-4942174408099386099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 903788170987035308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fd49492341f02c4f8befb9f95547a2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

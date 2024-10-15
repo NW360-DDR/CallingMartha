@@ -121,9 +121,9 @@ public class Player{
     public int[] GetInventory()
     {
         int[] temp = { 3, 4, 5 }; // Rocks, Batts, Kits
-        temp[0] = inventory.rockCount; // WHO HOLDS A DECIMAL NUMBER OF ROCKS
-        temp[1] = inventory.flashLightBatteries; // okay this one is almost debatable but what the fuck // This isn't in my version of the script yet, roll with it.
-        temp[2] = inventory.medKitCount; // WE AREN'T USING HALF A MEDKIT
+        //temp[0] = inventory.rockCount; // WHO HOLDS A DECIMAL NUMBER OF ROCKS
+        //temp[1] = inventory.flashLightBatteries; // okay this one is almost debatable but what the fuck // This isn't in my version of the script yet, roll with it.
+        //temp[2] = inventory.medKitCount; // WE AREN'T USING HALF A MEDKIT
 
         return temp;
     }

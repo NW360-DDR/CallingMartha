@@ -13,10 +13,13 @@ public class NewPlayerMovement : MonoBehaviour
     public float dashSpeed;
     public float dashTime;
 
+    public GameObject controlsScreen;
+
     private HealthAndRespawn healthScript;
 
     private bool isDashing = false;
     private bool dashCooldown = false;
+    private bool controlsUp = false;
 
     private int grabMask;
 
@@ -85,6 +88,16 @@ public class NewPlayerMovement : MonoBehaviour
             isDashing = true;
             speed *= dashSpeed;
             StartCoroutine(Dash());
+        }
+
+        if (Input.GetKeyDown(KeyCode.V) && !controlsUp)
+        {
+            controlsScreen.SetActive(true);
+            controlsUp = true;
+        }else if (Input.GetKeyDown(KeyCode.V) && controlsUp)
+        {
+            controlsScreen.SetActive(false);
+            controlsUp = false;
         }
     }
 
