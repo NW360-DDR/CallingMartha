@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Maddie's Stuff/Scenes/Empty.unity.meta
+guid: a246f829a3d2e6a43b8eb45997a21bd0
+========
 guid: 21b876e6d926ee0428e5adf8e5abe24e
+>>>>>>>> Prototype:Assets/Scenes/UseThisScene.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
