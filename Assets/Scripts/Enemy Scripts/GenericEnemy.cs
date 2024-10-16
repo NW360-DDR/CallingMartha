@@ -14,19 +14,23 @@ public class GenericEnemy : MonoBehaviour
     private Animator wolfAnim;
 
     // Navigation Parameters
-    Vector3 dest;
+    Vector3 dest; // This originally was meant to be part of a Save system for a longer game loop. May just scrap this variable if no longer needed or keep for debugging purposes.
     [SerializeField] float baseSpeed = 3.5f;
     [SerializeField] float chaseMult = 1.5f, chargeMult = 3f;
     [SerializeField] float wanderDist = 10f;
     [SerializeField] float chargeRange = 5f;
     [SerializeField] float chargeCooldown = 5f, chargeTimer = 0f;
+    // Variables for Idling. Rather misleading, the idleTimer gets used for a few more things than just idling, and should be renamed or split into multiple variables.
     public float idleTimer = 3;
     public float currIdle = 0;
     bool hunting = false;
-    int backState = 0;
-    float angleBase;
-    Vector3 EggmanHasanAnnouncement;
+    int backState = 0; // If this number is > 0, it means we need to pop multiple states at once, and this is the safest way to go about this.
+    float angleBase; // base viewing angle when navigating.
+    Vector3 homePos; // Where the enemy begins. Only wanders within certain range of this point.
+
     // Start is called before the first frame update
+    // NOTE: Most of these can probably just be assigned in the prefab for the sake of load times on Start.
+    // It's not an issue for now, but keep it in mind.
     void Start()
     {
         wolfAnim = GetComponentInChildren<Animator>();
@@ -37,11 +41,13 @@ public class GenericEnemy : MonoBehaviour
         brain.PushState(IdleState());
         angleBase = fov.angle;
         hurtBox.SetActive(false);
-        path = new();
-        EggmanHasanAnnouncement = transform.position;
+        path = new(); // Set a blank path just in case some thing needs to check path existence.
+        homePos = transform.position;
     }
 
-    void AttemptPath(Vector3 destination)
+    void AttemptPath(Vector3 destination) 
+        // Calculates whether a path can be successfully finished, and if it can't make it, it SHOULD stop trying to move to that location.
+        // This sometimes works, but other times it will keep trying to move towards the player. More testing needed to determine issue.
     {
         nav.CalculatePath(destination, path);
         if (path.status == NavMeshPathStatus.PathComplete)
@@ -56,6 +62,7 @@ public class GenericEnemy : MonoBehaviour
 
     private void Update()
     {
+        // Update handles brain override commands such as hunting the player once it sees them, and removing extra states.
         chargeTimer += Time.deltaTime;
         if (fov.canSeePlayer && !hunting)
         {
@@ -65,7 +72,7 @@ public class GenericEnemy : MonoBehaviour
                 brain.PushState(Chase());
             }
         }
-        else if (backState > 0)
+        else if (backState > 0) // This is only called if we need to pop multiple states, such as going from HoldOn -> Chase (normally HoldOn -> Charge -> Chase)
         {
             brain.PopState();
             backState -= 1;
@@ -73,6 +80,7 @@ public class GenericEnemy : MonoBehaviour
     }
 
     State IdleState()
+        // Initial state of the enemy. Does nothing until conditions are met to either Wander or Chase.
     {
         void IdleEnter()
         {
@@ -81,9 +89,7 @@ public class GenericEnemy : MonoBehaviour
         }
         void Idle()
         {
-            // TODO: Implement checks to enter other states such as Ohio or Florida.
 
-            // Otherwise, wait for IdleTimer to run out, then go somewhere else.
             currIdle += Time.deltaTime;
             if (currIdle >= idleTimer)
             {
@@ -92,7 +98,7 @@ public class GenericEnemy : MonoBehaviour
             }
 
         }
-        void IdleExit() // Empty
+        void IdleExit() // Empty placeholder for State Machine logic.
         {
 
         }
@@ -103,16 +109,15 @@ public class GenericEnemy : MonoBehaviour
     {
         void WanderEnter()
         {
-            Vector3 wanderDir = (wanderDist * Random.insideUnitSphere) + EggmanHasanAnnouncement; // Generate a random spot "maxDist" units away from the enemy to navigate towards.
+            Vector3 wanderDir = (wanderDist * Random.insideUnitSphere) + homePos; // Generate a random spot "maxDist" units away from the enemy to navigate towards.
             NavMesh.SamplePosition(wanderDir, out NavMeshHit nvm, wanderDist, NavMesh.AllAreas); // God I hope this is a spot that can be navigated to.
-            //nav.SetDestination(nvm.position);
             AttemptPath(nvm.position);
             dest = nav.destination;
             wolfAnim.SetBool("Running", true);
         }
         void Wander()
         {
-            if (nav.remainingDistance <= 0.25f) // Hey are we close to the destination?
+            if (nav.remainingDistance <= 0.25f) // Once we're within reasonable distance of the destination, we can leave the state and consider this point "navigated".
             {
                 nav.ResetPath();
                 brain.PopState();
@@ -121,7 +126,6 @@ public class GenericEnemy : MonoBehaviour
         }
         void WanderExit()
         {
-            // Empty
             wolfAnim.SetBool("Running", false);
         }
         return new(Wander, WanderEnter, WanderExit, "Wander");
