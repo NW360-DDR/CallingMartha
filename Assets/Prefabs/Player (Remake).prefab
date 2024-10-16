@@ -471,6 +471,7 @@ MonoBehaviour:
   speed: 3.5
   dashSpeed: 3
   dashTime: 0.25
+  controlsScreen: {fileID: 0}
 --- !u!114 &7607173335660912681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -663,7 +664,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 0.8431373, g: 0.79215693, b: 0.53333336, a: 1}
-  m_Intensity: 15
+  m_Intensity: 25
   m_Range: 50
   m_SpotAngle: 55.8
   m_InnerSpotAngle: 21.80208
