@@ -1473,6 +1473,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5554878142749178078}
+  - component: {fileID: 505792999404428382}
+  - component: {fileID: 5998100771699717787}
   m_Layer: 6
   m_Name: Campfire
   m_TagString: Checkpoint
@@ -1500,6 +1502,34 @@ Transform:
   - {fileID: 6897708185194211647}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0.953, y: -0.115, z: 0.733}
+--- !u!208 &505792999404428382
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7279030967750513965}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 8, y: 1, z: 8}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1, z: 0}
+  m_TimeToStationary: 0.5
+--- !u!114 &5998100771699717787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7279030967750513965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d13e7ad9633f30e4f8685b6ab85f98cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7364189221820435131
 GameObject:
   m_ObjectHideFlags: 0

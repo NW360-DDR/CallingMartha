@@ -18,6 +18,7 @@ TagManager:
   - Generator
   - Generator Item
   - Interactable
+  - Cellbox
   layers:
   - Default
   - TransparentFX
