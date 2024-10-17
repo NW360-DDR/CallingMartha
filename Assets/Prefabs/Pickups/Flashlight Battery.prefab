@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8937411011856540738}
   - component: {fileID: 8608705215165450996}
   - component: {fileID: -480719302360452322}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Flashlight Battery
   m_TagString: Interactable
   m_Icon: {fileID: 0}

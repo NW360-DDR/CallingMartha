@@ -132,7 +132,7 @@ public class GrabAndThrow : MonoBehaviour
 
     void TargetTesting()
     {
-        Physics.Raycast(transform.position, transform.forward, out targetCheck, 5, grabMask);
+        Physics.Raycast(transform.position, transform.forward, out targetCheck, 5);
     }
 
     void HoldObject()
