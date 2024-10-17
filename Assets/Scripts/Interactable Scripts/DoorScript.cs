@@ -5,12 +5,22 @@ using UnityEngine;
 public class DoorScript : Interactable
 {
     private Animator doorAnimator;
+    private bool doorOpen = false;
     void Interact()
     {
         //Do interact code here
 
         doorAnimator = GetComponentInParent<Animator>();
 
-        doorAnimator.SetTrigger("Open");
+        if (!doorOpen)
+        {
+            doorAnimator.SetTrigger("Open");
+            doorOpen = true;
+        }
+        else
+        {
+            doorAnimator.SetTrigger("Close");
+            doorOpen = false;
+        }
     }
 }
