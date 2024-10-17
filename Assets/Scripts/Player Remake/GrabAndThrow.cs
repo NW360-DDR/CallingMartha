@@ -52,6 +52,7 @@ public class GrabAndThrow : MonoBehaviour
             if (targetCheck.transform.CompareTag("Grabbable"))
             {
                 interactText.gameObject.SetActive(true);
+                interactText.text = "E - Pickup";
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     interactText.gameObject.SetActive(false);
@@ -61,6 +62,7 @@ public class GrabAndThrow : MonoBehaviour
             }
             else if (targetCheck.transform.CompareTag("Interactable"))
             {
+                interactText.text = "E - Interact";
                 interactText.gameObject.SetActive(true);
                 if (Input.GetKeyDown(KeyCode.E))
                 {

@@ -9,4 +9,6 @@ public class InventoryScript : MonoBehaviour
     public int flashLightBatteries = 0;
     public int generatorItems = 0;
     public bool axe = true;
+
+    public bool[] keys;
 }

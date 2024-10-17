@@ -590,6 +590,7 @@ MonoBehaviour:
   flashLightBatteries: 1
   generatorItems: 0
   axe: 1
+  keys: 00000000
 --- !u!1 &8183476400951475566
 GameObject:
   m_ObjectHideFlags: 0
