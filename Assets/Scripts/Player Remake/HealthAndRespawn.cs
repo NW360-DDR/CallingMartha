@@ -90,6 +90,7 @@ public class HealthAndRespawn : MonoBehaviour
         InventoryScript.enabled = true;
         GetComponent<AxeSlash>().enabled = true;
         GetComponent<NewPlayerMovement>().enabled = true;
+        grabScript.enabled = true;
         respawned = false;
     }
 

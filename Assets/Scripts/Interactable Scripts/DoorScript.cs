@@ -8,6 +8,8 @@ public class DoorScript : Interactable
     private bool doorOpen = false;
     private bool doorCooldown = false;
 
+    public bool blocked = false;
+    public GameObject blockingObject;
     public bool locked = false;
     public int keyNum = 0;
 
@@ -19,6 +21,7 @@ public class DoorScript : Interactable
         doorAnimator = GetComponentInParent<Animator>();
         inventoryScript = GameObject.Find("Player (Remake)").GetComponent<InventoryScript>();
 
+        //if locked is checked, check for correct key number
         if (locked)
         {
             if (inventoryScript.keys[keyNum] == true)
@@ -28,14 +31,19 @@ public class DoorScript : Interactable
             }
         }
 
-        if (!doorOpen && !locked && !doorCooldown)
+        //if blocked is checked, when object is gone, make blocked untrue
+        if (blockingObject == null)
+            blocked = false;
+
+        //actually open door
+        if (!doorOpen && !locked && !doorCooldown && !blocked)
         {
             doorAnimator.SetTrigger("Open");
             doorOpen = true;
             doorCooldown = true;
             StartCoroutine(DoorCooldownTimer());
         }
-        else if (!doorCooldown && !locked)
+        else if (!doorCooldown && !locked && !blocked)
         {
             doorAnimator.SetTrigger("Close");
             doorOpen = false;

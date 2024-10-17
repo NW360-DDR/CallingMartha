@@ -47,6 +47,7 @@ public class GrabAndThrow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //this large chunk of code is checking for what the player is looking at, then displaying text accordingly
         if (targetCheck.transform != null)
         {
             if (targetCheck.transform.CompareTag("Grabbable"))
@@ -68,22 +69,6 @@ public class GrabAndThrow : MonoBehaviour
                 {
                     targetCheck.transform.gameObject.SendMessageUpwards("Interact");
                     interactText.gameObject.SetActive(false);
-                }
-            }
-            else if (targetCheck.transform.CompareTag("Axe"))
-            {
-                interactText.gameObject.SetActive(true);
-                if (canPickupAxe && Input.GetKeyDown(KeyCode.E))
-                {
-                    interactText.gameObject.SetActive(false);
-                    inventoryScript = GameObject.Find("Player (Remake)").GetComponent<InventoryScript>();
-
-                    inventoryScript.axe = true;
-
-                    GameObject.Find("Player (Remake)").GetComponentInParent<AxeSlash>().rightHand.SetActive(false);
-                    GameObject.Find("Player (Remake)").GetComponentInParent<AxeSlash>().axeSprite.SetActive(true);
-
-                    Destroy(targetCheck.transform.gameObject);
                 }
             }
             else
@@ -134,12 +119,13 @@ public class GrabAndThrow : MonoBehaviour
 
     void TargetTesting()
     {
+        //the actual raycast
         Physics.Raycast(transform.position, transform.forward, out targetCheck, 5);
     }
 
     void HoldObject()
     {
-        //runs when the raycast finds a grabbable object
+        //runs when raycast found grabbable and player pressed E
         Debug.Log("Grabbable!");
         holdingObject = targetCheck.collider.gameObject;
         holdingCheck = true;
