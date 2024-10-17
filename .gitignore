@@ -62,4 +62,10 @@ sysinfo.txt
 crashlytics-build.properties
 
 
+[Uu]ser[Ss]ettings/
+
+ProjectSettings/Packages/com.unity.probuilder/Settings.json
+
+Assets/ProBuilder Testing ( Valerie )/Scenes/Old Scenes/
+
 UserSettings/

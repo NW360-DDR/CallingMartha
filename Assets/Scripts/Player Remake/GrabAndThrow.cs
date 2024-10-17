@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GrabAndThrow : MonoBehaviour
 {
@@ -9,15 +10,25 @@ public class GrabAndThrow : MonoBehaviour
     public GameObject heldObjectPlace;
     public GameObject rockPrefab;
 
+    private GameObject leftHandSprite;
+    private GameObject axeSprite;
+
     public bool holdingCheck = false;
 
+    public bool canPickupAxe = true;
+
     private int grabMask;
-    private int pickupMask;
 
     private HealthAndRespawn healthScript;
+    private FlashlightScript lightScript;
 
-    public float rockCount = 0;
-    public float medKitCount = 0;
+    private Collider holdingObjectCollider;
+    private Rigidbody holdingObjectRB;
+
+    public int rockCount = 0;
+    public int medKitCount = 0;
+    public int flashLightBatteries = 0;
+    public int generatorItems = 0;
     public bool axe = true;
 
     // Start is called before the first frame update
@@ -25,46 +36,58 @@ public class GrabAndThrow : MonoBehaviour
     {
         grabMask = 1 << 6;
         healthScript = GetComponentInParent<HealthAndRespawn>();
+        lightScript = GetComponentInParent<FlashlightScript>();
+
+        leftHandSprite = GameObject.Find("Lefthand");
+        axeSprite = GameObject.Find("Axe");
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Debug.DrawRay(transform.position, transform.forward * 2, Color.red);
-
         //if you right click, then check if whatever you are looking at is grabbable or a pickup
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             TargetTesting();
         }
 
+        //checks if the player is holding an object. if they are, set the location to the held object place position
         if (holdingCheck)
         {
-            holdingObject.transform.position = heldObjectPlace.transform.position;
+            holdingObject.transform.SetPositionAndRotation(heldObjectPlace.transform.position, heldObjectPlace.transform.rotation);
         }
 
         //if holding object and you click, throw object
         if (holdingCheck && Input.GetMouseButtonDown(0))
         {
-            holdingObject.GetComponent<Collider>().isTrigger = false;
-            holdingObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-            holdingObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            holdingObject.GetComponent<Rigidbody>().AddForce(transform.forward * 15, ForceMode.Impulse);
+            axeSprite.GetComponent<Image>().enabled = true;
+            leftHandSprite.GetComponent<Image>().enabled = true;
+            GetComponentInParent<AxeSlash>().enabled = true;
+            holdingObjectCollider.isTrigger = false;
+            holdingObjectRB.constraints = RigidbodyConstraints.None;
+            holdingObjectRB.velocity = Vector3.zero;
+            holdingObjectRB.AddForce(transform.forward * 15, ForceMode.Impulse);
+
+            holdingObjectRB = null;
+            holdingObjectCollider = null;
+            holdingObject = null;
+            holdingCheck = false;
+        }else if (holdingCheck && Input.GetMouseButton(1))
+        {
+            axeSprite.GetComponent<Image>().enabled = true;
+            leftHandSprite.GetComponent<Image>().enabled = true;
+            GetComponentInParent<AxeSlash>().enabled = true;
+            holdingObjectCollider.isTrigger = false;
+            holdingObjectRB.constraints = RigidbodyConstraints.None;
+            holdingObjectRB.velocity = Vector3.zero;
+
+            holdingObjectRB = null;
+            holdingObjectCollider = null;
             holdingObject = null;
             holdingCheck = false;
         }
 
-        //take rock out and hold it
-        if (Input.GetKeyDown(KeyCode.R) && rockCount > 0 && !holdingCheck)
-        {
-            holdingObject = Instantiate(rockPrefab, heldObjectPlace.transform.position, heldObjectPlace.transform.rotation);
-            holdingCheck = true;
-            holdingObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-            holdingObject.GetComponent<Collider>().isTrigger = true;
-            rockCount -= 1;
-        }
-
-        //heal if you have medkit
+        //heal if the player has a medkit
         if (Input.GetKeyDown(KeyCode.H) && medKitCount > 0)
         {
             Debug.Log("Used medkit!");
@@ -80,64 +103,73 @@ public class GrabAndThrow : MonoBehaviour
 
     void TargetTesting()
     {
+        //checking for whatever possible tags could be interacted with
+        //this is incredibly ineffecient and will be changed later
         if (Physics.Raycast(transform.position, transform.forward, out targetCheck, 5, grabMask))
         {
             if (targetCheck.transform.CompareTag("Grabbable"))
             {
                 Debug.Log("Run grab event!");
                 HoldObject();
-            }
-        }
-
-        if (Physics.Raycast(transform.position, transform.forward, out targetCheck, 5, grabMask))
-        {
-            if (targetCheck.transform.CompareTag("Rock"))
+            } else if (targetCheck.transform.CompareTag("Rock"))
             {
                 rockCount += 1;
 
                 Destroy(targetCheck.transform.gameObject);
                 Debug.Log("Rock!");
-            }
-        }
-
-        if (Physics.Raycast(transform.position, transform.forward, out targetCheck, 5, grabMask))
-        {
-            if (targetCheck.transform.CompareTag("Medkit"))
+            } else if (targetCheck.transform.CompareTag("Medkit"))
             {
                 medKitCount += 1;
 
                 Destroy(targetCheck.transform.gameObject);
                 Debug.Log("Medkit!");
-            }
-        }
-
-        if (Physics.Raycast(transform.position, transform.forward, out targetCheck, 5, grabMask))
-        {
-            if (targetCheck.transform.CompareTag("Axe"))
+            } else if (targetCheck.transform.CompareTag("Axe") && canPickupAxe)
             {
                 axe = true;
                 GetComponentInParent<AxeSlash>().rightHand.SetActive(false);
                 GetComponentInParent<AxeSlash>().axeSprite.SetActive(true);
 
                 Destroy(targetCheck.transform.gameObject);
-            }
-        }
-
-        if (Physics.Raycast(transform.position, transform.forward, out targetCheck, 5, grabMask))
-        {
-            if (targetCheck.transform.CompareTag("Checkpoint"))
+            } else if (targetCheck.transform.CompareTag("Checkpoint"))
             {
+                Debug.Log("Updated Checkpoint!");
                 healthScript.checkpoint = targetCheck.transform.gameObject;
+            } else if (targetCheck.transform.CompareTag("Battery"))
+            {
+                if (flashLightBatteries <= 0)
+                {
+                    lightScript.batteryLife = 100;
+                    lightScript.updatedBatteries = false;
+                }
+
+                flashLightBatteries += 1;
+
+                Destroy(targetCheck.transform.gameObject);
+            } else if (targetCheck.transform.CompareTag("Generator"))
+            {
+                targetCheck.transform.gameObject.SendMessageUpwards("GeneratorCheck");
+            } else if (targetCheck.transform.CompareTag("Generator Item"))
+            {
+                generatorItems += 1;
+                Destroy(targetCheck.transform.gameObject);
             }
         }
     }
 
     void HoldObject()
     {
+        //runs when the raycast finds a grabbable object
         Debug.Log("Grabbable!");
         holdingObject = targetCheck.collider.gameObject;
         holdingCheck = true;
-        holdingObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-        holdingObject.GetComponent<Collider>().isTrigger = true;
+
+        holdingObjectCollider = holdingObject.GetComponent<Collider>();
+        holdingObjectRB = holdingObject.GetComponent<Rigidbody>();
+
+        holdingObjectRB.constraints = RigidbodyConstraints.FreezeRotation;
+        holdingObjectCollider.isTrigger = true;
+        axeSprite.GetComponent<Image>().enabled = false;
+        leftHandSprite.GetComponent<Image>().enabled = false;
+        GetComponentInParent<AxeSlash>().enabled = false;
     }
 }

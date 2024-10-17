@@ -11,7 +11,7 @@ public class EnemySpawnTrigger : MonoBehaviour
 
         for (int i = 0; i < enemies.Length; i++)
         {
-            enemies[i].gameObject.SetActive(true);
+            enemies[i].SetActive(true);
         }
 
         Destroy(gameObject);
