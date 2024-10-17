@@ -32,7 +32,7 @@ public class MainMenuHandler : MonoBehaviour
     public void Prologue()
     {
         prologueStarted = true;
-        skip.gameObject.SetActive(true);
+        skip.SetActive(true);
     }
 
     public void QuitGame()
