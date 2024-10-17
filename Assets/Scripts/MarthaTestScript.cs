@@ -5,20 +5,28 @@ using System;
 
 public class MarthaTestScript : MonoBehaviour
 {
-	public StateMachine brain;
+	// StateMachine and navigation components, misc external
+	StateMachine brain;
+	NavMeshAgent nav;
+	NavMeshPath path;
+	FieldOfView fov;
+	private Animator anim;
+	public GameObject hurtBox;
+
+	// Navigation parameters
 	public Vector3 dest;
 	public Vector3 lastKnownPlayerLoc;
-	List<Vector3> detections;
-
-	private NavMeshAgent nav;
-	private float idleTimer;
-
 	public float baseSpeed = 3.5f;
 	public float chaseMult = 1.5f;
 
-	// logic for state changes
-	FieldOfView fov;
-	public string Currstate;
+
+
+
+
+
+	
+	private float idleTimer;
+
 	private bool hunting = false; //Becomes True during Chase, LookAround, Swipe and Charge
 	// Start is called before the first frame update
 	void Start()
@@ -27,7 +35,6 @@ public class MarthaTestScript : MonoBehaviour
 		brain = GetComponent<StateMachine>();
 		fov = GetComponent<FieldOfView>();
 		brain.PushState(Idle());
-		detections = new List<Vector3>();
 	}
 
 	private void Update()
@@ -37,15 +44,8 @@ public class MarthaTestScript : MonoBehaviour
 			hunting = true;
 			brain.PushState(ChaseState());
 		}
-		Currstate = brain.GetState();
 	}
 
-	public void HeardThing(Vector3 soundLoc)
-	{
-		// TO-DO: Make Martha navigate towards a noise if this gets called.
-		// TO-DO: Make Martha have navigation bias towards an area if multiple sounds are heard in the same area.
-		detections.Add(soundLoc);
-	}
 	
 	
    
