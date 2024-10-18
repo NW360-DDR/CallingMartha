@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NewPlayerMovement : MonoBehaviour
 {
-    private CharacterController characterController;
+    [SerializeField] CharacterController characterController;
     private Animator axeAnimator;
     private CellService cellService;
 
@@ -16,7 +16,7 @@ public class NewPlayerMovement : MonoBehaviour
 
     public GameObject controlsScreen;
 
-    private HealthAndRespawn healthScript;
+    [SerializeField] HealthAndRespawn healthScript;
 
     private bool isDashing = false;
     private bool dashCooldown = false;
@@ -32,8 +32,6 @@ public class NewPlayerMovement : MonoBehaviour
     void Start()
     {
         cellService = GameObject.Find("ServiceBar").GetComponent<CellService>();
-        characterController = GetComponent<CharacterController>();
-        healthScript = GetComponent<HealthAndRespawn>();
         axeAnimator = GameObject.Find("Axe").GetComponent<Animator>();
         grabMask = 1 << 6;
     }

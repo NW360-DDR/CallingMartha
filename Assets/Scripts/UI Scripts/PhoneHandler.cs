@@ -107,10 +107,12 @@ public class PhoneHandler : MonoBehaviour
 /// Converts most of the information from the player's various scripts into a single, easy to parse class.
 /// </summary>
 public class Player{
-     readonly GameObject main;
+     readonly public GameObject main;
      public InventoryScript inventory;
+     public HealthAndRespawn healthScript;
     public Player() 
     {
+        healthScript = main.GetComponent<HealthAndRespawn>();
         Debug.Log("No name specified, default constructor."); 
         main = GameObject.FindWithTag("Player");
         inventory = main.GetComponentInChildren<InventoryScript>();
@@ -120,6 +122,7 @@ public class Player{
     {
         main = GameObject.Find(playerName);
         inventory = main.GetComponentInChildren<InventoryScript>();
+        healthScript = main.GetComponent<HealthAndRespawn>();
     }
 
     public byte[] GetInventory() // Returns the players Rocks, Batteries, and Medkit counts for the UI.

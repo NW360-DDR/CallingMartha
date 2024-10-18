@@ -2,20 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using System;
 
 public class LeftHandController : MonoBehaviour
 {
     public Sprite[] items;
     public GameObject leftHand;
+    public GameObject phone;
+    public GameObject axe;
     public int currentEqupped = 0;
 
     public bool switchHandSignal = false;
+    public bool phoneOpen = false;
 
     private InventoryScript inventoryScript;
     private RockThrowScript rockScript;
     private FlashlightScript lightScript;
+    private AxeSlash axeScript;
 
     private Animator leftHandAnim;
+    private Animator phoneAnim;
+    private Animator axeAnim;
 
     private void Start()
     {
@@ -23,6 +30,9 @@ public class LeftHandController : MonoBehaviour
         rockScript = GetComponent<RockThrowScript>();
         lightScript = GetComponent<FlashlightScript>();
         leftHandAnim = leftHand.GetComponent<Animator>();
+        phoneAnim = phone.GetComponent<Animator>();
+        axeAnim = axe.GetComponent<Animator>();
+        axeScript = GetComponent<AxeSlash>();
     }
 
     // Update is called once per frame
@@ -36,6 +46,20 @@ public class LeftHandController : MonoBehaviour
             leftHandAnim.SetTrigger("SwitchingHand");
             rockScript.enabled = false;
             lightScript.enabled = true;
+        }
+
+        //take phone out and put axe away if player hits tab and is able to
+        if (Input.GetKeyDown(KeyCode.Tab) && !phoneOpen && axeScript.takeInput && !axeAnim.GetBool("HoldingDown"))
+        {
+            phoneAnim.SetBool("Phone Up", true);
+            axeAnim.SetBool("Lowered", true);
+            axeScript.takeInput = false;
+            phoneOpen = true;
+        }else if (Input.GetKeyDown(KeyCode.Tab) && phoneOpen)
+        {
+            phoneAnim.SetBool("Phone Up", false);
+            axeAnim.SetBool("Lowered", false);
+            phoneOpen = false;
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2) && currentEqupped != 1 && inventoryScript.rockCount >= 1)
