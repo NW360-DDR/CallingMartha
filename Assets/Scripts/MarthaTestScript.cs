@@ -16,7 +16,7 @@ public class MarthaTestScript : MonoBehaviour
 	// Navigation Parameters
 	public Vector3 dest;
 	public Vector3 lastKnownPlayerLoc;
-	float maxWanderDist = 20f;
+	readonly float maxWanderDist = 20f;
 	public float idleTimer = 3f;
 	float currIdle = 0f;
 	public float baseSpeed = 3.5f;
