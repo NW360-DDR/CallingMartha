@@ -7,7 +7,7 @@ public class HealthAndRespawn : MonoBehaviour
 {
     public int health = 3;
 
-    public GameObject checkpoint;
+    public Vector3 checkpoint;
     public Slider healthSlider;
     public RawImage redJelly;
 
@@ -84,7 +84,7 @@ public class HealthAndRespawn : MonoBehaviour
         Debug.Log("Respawn?");
         respawned = true;
         redJelly.color = new Color(redJelly.color.r, redJelly.color.g, redJelly.color.b, 0f);
-        transform.position = checkpoint.transform.position;
+        transform.position = checkpoint;
         health = 3;
         alive = true;
         yield return new WaitForSeconds(0.5f);
