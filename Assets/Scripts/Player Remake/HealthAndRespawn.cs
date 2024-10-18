@@ -8,6 +8,7 @@ public class HealthAndRespawn : MonoBehaviour
     public int health = 3;
 
     public GameObject checkpoint;
+    public Slider healthSlider;
     public RawImage redJelly;
 
     public bool alive = true;
@@ -40,6 +41,7 @@ public class HealthAndRespawn : MonoBehaviour
         }
 
         //heal if the player has a medkit and held down H for 1 second
+        healthSlider.value = healthHold;
         if (Input.GetKey(KeyCode.H) && InventoryScript.medKitCount > 0 && health < 3 && !healReset)
         {
             healthHold += Time.deltaTime;
