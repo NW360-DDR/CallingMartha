@@ -3,14 +3,13 @@ using UnityEngine.AI;
 
 public class GenericEnemy : MonoBehaviour
 {
-	// External Components
+	// StateMachine and navigation components, misc external
 	StateMachine brain;
 	NavMeshAgent nav;
 	NavMeshPath path;
 	FieldOfView fov;
 	public GameObject hurtBox;
 	private Animator wolfAnim;
-
 	// Navigation Parameters
 	Vector3 dest; // This originally was meant to be part of a Save system for a longer game loop. May just scrap this variable if no longer needed or keep for debugging purposes.
 	[SerializeField] float baseSpeed = 3.5f;
@@ -41,11 +40,13 @@ public class GenericEnemy : MonoBehaviour
 		hurtBox.SetActive(false);
 		path = new(); // Set a blank path just in case some thing needs to check path existence.
 		homePos = transform.position;
+		// TO DO: Check Maddie's timer for whether at least 50% has passed, then forcibly aggro self.
 	}
-
+	/// <summary>
+	/// Checks if the path in question can be reached.
+	/// </summary>
+	/// <param name="destination"></param>
 	void AttemptPath(Vector3 destination) 
-		// Calculates whether a path can be successfully finished, and if it can't make it, it SHOULD stop trying to move to that location.
-		// This sometimes works, but other times it will keep trying to move towards the player. More testing needed to determine issue.
 	{
 		nav.CalculatePath(destination, path);
 		if (path.status == NavMeshPathStatus.PathComplete)
@@ -57,6 +58,21 @@ public class GenericEnemy : MonoBehaviour
 			Debug.Log("Oh hey I'm blocked, oh well.");
 		}
 	}
+	/// <summary>
+	/// Permanently increases the speed of the enemy for the duration of the run.
+	/// </summary>
+	public void AggroUp()
+    {
+		baseSpeed *= 1.25f;
+    }
+	/// <summary>
+	/// Permanently increases the speed of the enemy for the duration of the run.
+	/// </summary>
+	/// <param name="amount"></param>
+	public void AggroUp(float amount)
+    {
+		baseSpeed *= amount;
+    }
 
 	private void Update()
 	{
@@ -78,8 +94,8 @@ public class GenericEnemy : MonoBehaviour
 	}
 
 	State IdleState()
-		// Initial state of the enemy. Does nothing until conditions are met to either Wander or Chase.
 	{
+		// Initial state of the enemy. Does nothing until conditions are met to either Wander or Chase.
 		void IdleEnter()
 		{
 			nav.ResetPath();
@@ -137,7 +153,6 @@ public class GenericEnemy : MonoBehaviour
 			hunting = true;
 			nav.speed = baseSpeed * chaseMult;
 			fov.angle = angleBase + 60;
-			//nav.SetDestination(fov.playerRef.transform.position);
 			AttemptPath(fov.playerRef.transform.position);
 			wolfAnim.SetBool("Running", true);
 		}
