@@ -31,6 +31,7 @@ public class PhoneHandler : MonoBehaviour
         else
             player = new Player(playerName);
         inventoryTemp = new byte[3];
+        player.healthScript.checkpoint = player.main.transform.position;
     }
 
     private void Update()

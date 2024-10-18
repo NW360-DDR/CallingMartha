@@ -66,7 +66,7 @@ public class HealthAndRespawn : MonoBehaviour
         if (other.CompareTag("Hurtbox") && !hurtCool)
         {
             health -= 1;
-            redJelly.color += new Color (redJelly.color.r, redJelly.color.g, redJelly.color.b, 0.05f);
+            redJelly.color += new Color (redJelly.color.r, redJelly.color.g, redJelly.color.b, 0.10f);
             hurtCool = true;
             healReset = true;
             StartCoroutine(HitCooldown());
