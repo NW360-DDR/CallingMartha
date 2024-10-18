@@ -97,6 +97,7 @@ public class PhoneHandler : MonoBehaviour
                 break;
         }
         currentScreen = newMode;
+        hasSaved = false;
     }
 
     
@@ -124,9 +125,9 @@ public class Player{
     public byte[] GetInventory() // Returns the players Rocks, Batteries, and Medkit counts for the UI.
     {
         byte[] temp = {3, 4, 5 }; // Rocks, Batts, Kits
-       temp[0] = (byte)inventory.rockCount;
-       temp[1] = (byte)inventory.flashLightBatteries;
-       temp[2] = (byte)inventory.medKitCount;
+        temp[0] = (byte)inventory.rockCount;
+        temp[1] = (byte)inventory.flashLightBatteries;
+        temp[2] = (byte)inventory.medKitCount;
 
         return temp;
     }

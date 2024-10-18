@@ -6,35 +6,35 @@ using System;
 public class MarthaTestScript : MonoBehaviour
 {
 	// StateMachine and navigation components, misc external
-	StateMachine brain;
-	NavMeshAgent nav;
+	[SerializeField] StateMachine brain;
+	[SerializeField] NavMeshAgent nav;
 	NavMeshPath path;
 	FieldOfView fov;
-	private Animator anim;
+	[SerializeField] Animator anim;
 	public GameObject hurtBox;
 
-	// Navigation parameters
+	// Navigation Parameters
 	public Vector3 dest;
 	public Vector3 lastKnownPlayerLoc;
+	readonly float maxWanderDist = 20f;
+	public float idleTimer = 3f;
+	float currIdle = 0f;
 	public float baseSpeed = 3.5f;
 	public float chaseMult = 1.5f;
 
+	bool hunting = false;
 
-
-
-
-
+	int backState = 0; // If this number is > 0, it means we need to pop multiple states at once, and this is the safest way to go about this.
+	float angleBase; // base viewing angle when navigating.
 	
-	private float idleTimer;
-
-	private bool hunting = false; //Becomes True during Chase, LookAround, Swipe and Charge
 	// Start is called before the first frame update
+	// Unlike the Generic enemy, these are serialized and therefore shouldn't need a GetComponent call.
 	void Start()
 	{
-		nav = GetComponent<NavMeshAgent>();
-		brain = GetComponent<StateMachine>();
-		fov = GetComponent<FieldOfView>();
 		brain.PushState(Idle());
+		idleTimer = Mathf.Infinity;
+		path = new();
+		angleBase = fov.angle;
 	}
 
 	private void Update()
@@ -44,18 +44,41 @@ public class MarthaTestScript : MonoBehaviour
 			hunting = true;
 			brain.PushState(ChaseState());
 		}
+		if (backState > 0)
+        {
+			brain.PopState();
+			backState--;
+        }
 	}
 
-	
-	
-   
+	public void KILL()
+    {
+		brain.PushState(MurderHobo());
+    }
+
+	/// <summary>
+	/// Checks if the path in question can be reached.
+	/// </summary>
+	/// <param name="destination"></param>
+	void AttemptPath(Vector3 destination)
+	{
+		nav.CalculatePath(destination, path);
+		if (path.status == NavMeshPathStatus.PathComplete)
+		{
+			nav.path = path;
+		}
+		else
+		{
+			Debug.Log("Oh hey I'm blocked, oh well.");
+		}
+	}
+
 	State Wander()
 	{
 		void WanderEnter()
 		{
-			float maxDist = 10f;
-			Vector3 wanderDir = (UnityEngine.Random.insideUnitSphere * maxDist) + transform.position; // Generate a random spot "maxDist" units away from the enemy to navigate towards.
-			NavMesh.SamplePosition(wanderDir, out NavMeshHit nvm, maxDist, NavMesh.AllAreas); // God I hope this is a spot that can be navigated to.
+			Vector3 wanderDir = (UnityEngine.Random.insideUnitSphere * maxWanderDist) + transform.position; // Generate a random spot "maxWanderDist" units away from the enemy to navigate towards.
+			NavMesh.SamplePosition(wanderDir, out NavMeshHit nvm, maxWanderDist, NavMesh.AllAreas); // God I hope this is a spot that can be navigated to.
 			nav.SetDestination(nvm.position);
 			dest = nav.destination;
 		}
@@ -74,7 +97,7 @@ public class MarthaTestScript : MonoBehaviour
 		}
 		return new State(Wander, WanderEnter, WanderExit, "Wander");
 	}
-	State LookState()
+	State Look()
 	{
 		void LookAroundEnter()
 		{
@@ -125,7 +148,7 @@ public class MarthaTestScript : MonoBehaviour
 				if (nav.remainingDistance <= 0.25f) // Hey are we close to the destination?
 				{
 					nav.ResetPath();
-					brain.PushState(LookState());
+					brain.PushState(Look());
 				}
 
 			}
@@ -162,4 +185,33 @@ public class MarthaTestScript : MonoBehaviour
 		}
 		return new State(Idle, IdleEnter, IdleExit, "Idle");
 	}
+	State MurderHobo()
+    {
+		void Enter()
+		{
+			dest = fov.playerRef.transform.position;
+			nav.SetDestination(dest);
+			nav.autoBraking = false; // Disable auto-braking so the navigation will just keep moving at a steady pace.
+			nav.speed = baseSpeed * chaseMult * 10; // Eviscerate this man's spinal column
+		}
+		void Update()
+        {
+			dest = fov.playerRef.transform.position;
+			AttemptPath(dest);
+			if (nav.remainingDistance < 0.5f)
+            {
+				hurtBox.SetActive(true);
+            }
+        }
+		
+		void Exit()
+		{
+			// There is no exiting MurderHobo mode.
+			brain.PushState(MurderHobo());
+			// There is only MurderHobo.
+		}
+
+
+		return new(Update, Enter, Exit, "MurderHobo");
+    }
 }
