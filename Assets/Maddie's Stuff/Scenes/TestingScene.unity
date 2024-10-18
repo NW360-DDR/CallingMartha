@@ -1671,6 +1671,14 @@ PrefabInstance:
       value: Player (Remake)
       objectReference: {fileID: 0}
     - target: {fileID: 7041161670826318313, guid: 9fe94e82a4aa3ff41aae2e27ab392045, type: 3}
+      propertyPath: axe
+      value: 
+      objectReference: {fileID: 524448883}
+    - target: {fileID: 7041161670826318313, guid: 9fe94e82a4aa3ff41aae2e27ab392045, type: 3}
+      propertyPath: phone
+      value: 
+      objectReference: {fileID: 1802366692}
+    - target: {fileID: 7041161670826318313, guid: 9fe94e82a4aa3ff41aae2e27ab392045, type: 3}
       propertyPath: leftHand
       value: 
       objectReference: {fileID: 524448882}
@@ -2753,6 +2761,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1802366692 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3378531170181316172, guid: 5b88db6f953061f4fb44f7ae625e80cd, type: 3}
+  m_PrefabInstance: {fileID: 524448880}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1853516804
 Mesh:
   m_ObjectHideFlags: 0
