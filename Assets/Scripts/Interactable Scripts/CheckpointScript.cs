@@ -10,6 +10,5 @@ public class CheckpointScript : MonoBehaviour
         healthScript = GameObject.Find("Player (Remake)").GetComponent<HealthAndRespawn>();
 
         Debug.Log("Updated Checkpoint!");
-        healthScript.checkpoint = this.gameObject;
     }
 }

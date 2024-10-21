@@ -957,12 +957,12 @@ GameObject:
   - component: {fileID: 3979180577962871230}
   - component: {fileID: 3613300238597904974}
   m_Layer: 5
-  m_Name: Health
+  m_Name: Health (Debug only)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6073945471048641007
 RectTransform:
   m_ObjectHideFlags: 0

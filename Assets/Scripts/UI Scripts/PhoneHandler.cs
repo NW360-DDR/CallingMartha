@@ -49,6 +49,9 @@ public class PhoneHandler : MonoBehaviour
         {
             hasSaved = true;
             // Maddie put the things here for checkpointing.
+            // You got it
+
+            player.healthScript.checkpoint = player.main.transform.position;
         }
     }
     private void FixedUpdate()
