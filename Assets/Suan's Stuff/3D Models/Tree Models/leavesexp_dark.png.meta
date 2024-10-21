@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: adbe56e0f41410343b854af0b293e168
+=======
+guid: 40630d164acd5c34d9d84995331c4d43
+>>>>>>> origin/Kenny
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}

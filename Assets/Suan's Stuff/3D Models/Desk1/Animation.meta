@@ -1,6 +1,15 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 5a8b87ff0a169034ea846d21c2725d0b
 folderAsset: yes
+=======
+<<<<<<<< HEAD:Assets/Kenny's Stuff/Scenes/Forest_ProBuilder.unity.meta
+guid: 0ed7258c1976e5e46b91a8ac29036169
+========
+guid: 88904c48e4072f24191a24e212dc4536
+folderAsset: yes
+>>>>>>>> origin/Kenny:Assets/Suan's Stuff/3D Models/Desk1/Animation.meta
+>>>>>>> origin/Kenny
 DefaultImporter:
   externalObjects: {}
   userData: 
