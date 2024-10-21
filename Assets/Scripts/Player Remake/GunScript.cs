@@ -20,7 +20,7 @@ public class GunScript : MonoBehaviour
         //its a gun. shoot it.
         if (Input.GetMouseButtonDown(1) && inventoryScript.bulletCount >= 1)
         {
-            //gun.GetComponent<Animator>().SetTrigger("Shoot");
+            gun.GetComponent<Animator>().SetTrigger("Shoot");
 
             inventoryScript.bulletCount -= 1;
         }

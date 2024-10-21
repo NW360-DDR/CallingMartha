@@ -15,6 +15,7 @@ public class FlashlightScript : MonoBehaviour
     public bool flickered = false;
 
     public GameObject leftHand;
+    private Animator leftHandAnim;
 
     public Sprite flashLightOff;
     public Sprite flashLightOn;
@@ -23,6 +24,7 @@ public class FlashlightScript : MonoBehaviour
     void Start()
     {
         InventoryScript = GetComponent<InventoryScript>();
+        leftHandAnim = leftHand.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -33,12 +35,12 @@ public class FlashlightScript : MonoBehaviour
         {
             flashlightObject.SetActive(true);
             flashlightOn = true;
-            leftHand.GetComponent<Image>().sprite = flashLightOn;
+            leftHandAnim.SetBool("FlashlightOn", true);
         }else if (Input.GetMouseButtonDown(1) && flashlightOn)
         {
             flashlightObject.SetActive(false);
             flashlightOn = false;
-            leftHand.GetComponent<Image>().sprite = flashLightOff;
+            leftHandAnim.SetBool("FlashlightOn", false);
         }
 
         //drain flashlight battery
@@ -67,7 +69,7 @@ public class FlashlightScript : MonoBehaviour
         {
             flashlightObject.SetActive(false);
             flashlightOn = false;
-            leftHand.GetComponent<Image>().sprite = flashLightOff;
+            leftHandAnim.SetBool("FlashlightOn", false);
         }
 
         //if flashlight battery hits 10, flicker
@@ -83,10 +85,10 @@ public class FlashlightScript : MonoBehaviour
             {
                 Debug.Log("Flickering!");
                 flashlightObject.SetActive(false);
-                leftHand.GetComponent<Image>().sprite = flashLightOff;
+                leftHandAnim.SetBool("FlashlightOn", false);
                 yield return new WaitForSeconds(Random.Range(0.05f, 0.15f));
                 flashlightObject.SetActive(true);
-                leftHand.GetComponent<Image>().sprite = flashLightOn;
+                leftHandAnim.SetBool("FlashlightOn", true);
                 yield return new WaitForSeconds(Random.Range(0.05f, 0.15f));
             }
         }
