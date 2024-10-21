@@ -1,9 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 <<<<<<<< HEAD:Assets/Suan's Stuff/3D Models/Door1/Door1.fbm/Door1_Metallic.png.meta
 guid: b189386ec6e4439449ca1f79cf146fc6
 ========
 guid: 2813ea39ad133194e96300516baed585
 >>>>>>>> origin/Kenny:Assets/Suan's Stuff/3D Models/WoodenBarrel/WoodenBarrel Textures/WoodenBarrel_Roughness.png.meta
+=======
+guid: b12a3b3ad5c1d614a99ebd24eb002c13
+>>>>>>> origin/Maddie
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
