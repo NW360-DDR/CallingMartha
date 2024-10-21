@@ -26,7 +26,7 @@ public class EclipseTimer : MonoBehaviour
 
         //check if timer hit eclipse timer length
         // multiply by 60 to make the number into minutes
-        if (timer > redFogTime * 60)
+        if (timer >= (eclipseTimerLength * 60))
         {
             Debug.Log("Eclipse happened! Time to die!");
             gameTimerActive = false;
@@ -36,8 +36,8 @@ public class EclipseTimer : MonoBehaviour
         //lunarMoon.transform.localPosition = new Vector3(Mathf.Clamp(timer / eclipseTimerLength, 0f, 1f) , 0, 0);
 
         //turn fog red over time once halfway point starts
-        if (timer > (eclipseTimerLength / 2)*60)
-        RenderSettings.fogColor = Color.Lerp(RenderSettings.fogColor, RedColor, (Time.deltaTime / (eclipseTimerLength * 60f)));
+        if (timer > redFogTime * 60)
+            RenderSettings.fogColor = Color.Lerp(RenderSettings.fogColor, RedColor, (Time.deltaTime / (eclipseTimerLength * 60f)));
     }
 
     //restarts current loaded scene (will probably change later)
