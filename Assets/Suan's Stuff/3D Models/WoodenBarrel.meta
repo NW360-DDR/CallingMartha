@@ -1,6 +1,15 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: bfaa449b03f949042a3c243062be9d04
 folderAsset: yes
+=======
+<<<<<<<< HEAD:Assets/Nate Scenes/Totally Legit Main Menu.unity.meta
+guid: a24c62054136cbe4fa330baec5f49894
+========
+guid: f2892fad38f56c446aa1ef1437ba10c7
+folderAsset: yes
+>>>>>>>> Kenny:Assets/Suan's Stuff/3D Models/WoodenBarrel.meta
+>>>>>>> Kenny
 DefaultImporter:
   externalObjects: {}
   userData: 

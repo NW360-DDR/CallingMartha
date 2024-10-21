@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 9fd6bbab88638654380883abac0f92f2
+=======
+<<<<<<<< HEAD:Assets/Fonts.meta
+guid: 1b68bc5efceb692439e43e2c31ee6096
+========
+guid: c4d826e587e2c2a47925ee3630d2549d
+>>>>>>>> Kenny:Assets/Suan's Stuff/Backup.meta
+>>>>>>> Kenny
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
