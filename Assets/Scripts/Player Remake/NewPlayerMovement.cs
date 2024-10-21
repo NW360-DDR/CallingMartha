@@ -5,7 +5,6 @@ using UnityEngine;
 public class NewPlayerMovement : MonoBehaviour
 {
     [SerializeField] CharacterController characterController;
-    private Animator axeAnimator;
     private CellService cellService;
 
     private Vector3 moveDirection;
@@ -32,7 +31,6 @@ public class NewPlayerMovement : MonoBehaviour
     void Start()
     {
         cellService = GameObject.Find("ServiceBar").GetComponent<CellService>();
-        axeAnimator = GameObject.Find("Axe").GetComponent<Animator>();
         grabMask = 1 << 6;
     }
 
