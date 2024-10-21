@@ -5,6 +5,7 @@ using UnityEngine;
 public class TutorialHandler : MonoBehaviour
 {
 	bool gamePaused = false;
+	GameObject currentTutorial;
 
     private void Update()
     {
@@ -13,21 +14,20 @@ public class TutorialHandler : MonoBehaviour
 			UncallScreen();
         }
     }
-    public void CallScreen(string tag)
+    public void CallScreen()
 	{
 		Debug.Log(tag);
 
 		Time.timeScale = 0;
 		// Show screen info here
-		// When input happens, 
+		gamePaused = true;
 
 	}
 
 	public void UncallScreen()
 	{
 		Time.timeScale = 1;
-		// Show screen info here
-		// When input happens, 
-
+		// Make screen info... un-show up.
+		gamePaused = false;
 	}
 }
