@@ -14,13 +14,14 @@ public class TutorialHandler : MonoBehaviour
 			UncallScreen();
         }
     }
-    public void CallScreen()
+    public void CallScreen(GameObject screen)
 	{
 		Debug.Log(tag);
 
 		Time.timeScale = 0;
 		// Show screen info here
 		gamePaused = true;
+		currentTutorial = screen;
 
 	}
 
@@ -29,5 +30,6 @@ public class TutorialHandler : MonoBehaviour
 		Time.timeScale = 1;
 		// Make screen info... un-show up.
 		gamePaused = false;
+		currentTutorial.SetActive(false);
 	}
 }
