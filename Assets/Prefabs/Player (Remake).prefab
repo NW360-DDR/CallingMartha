@@ -331,9 +331,9 @@ GameObject:
   - component: {fileID: 8780571491998576821}
   - component: {fileID: 7964418324737739107}
   - component: {fileID: 7041161670826318313}
-  - component: {fileID: 1034859081218810649}
   - component: {fileID: 4168797154450591856}
   - component: {fileID: 4133986875344182100}
+  - component: {fileID: 8929680878949345201}
   m_Layer: 3
   m_Name: Player (Remake)
   m_TagString: Player
@@ -499,7 +499,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitBox: {fileID: 2652596930408307476}
-  axeThrowPrefab: {fileID: 1868658233443335095, guid: 096e0f76eb69f4744b09fa8c08607396, type: 3}
   axeSprite: {fileID: 0}
   rightHand: {fileID: 0}
   cam: {fileID: 6362077302677595537}
@@ -518,7 +517,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 3
-  checkpoint: {fileID: 0}
+  checkpoint: {x: 0, y: 0, z: 0}
+  healthSlider: {fileID: 0}
   redJelly: {fileID: 0}
   alive: 1
 --- !u!114 &7041161670826318313
@@ -537,22 +537,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 8c2a60b7a0e53a848a4eb53240c8df56, type: 3}
   - {fileID: 21300000, guid: ce8d51008f45d3a488856de955643133, type: 3}
   leftHand: {fileID: 0}
+  phone: {fileID: 0}
+  axe: {fileID: 0}
   currentEqupped: 0
   switchHandSignal: 0
---- !u!114 &1034859081218810649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6634254539337635931}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2879a0d55bfabdf46bbf7be3966882eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rockPrefab: {fileID: 1868658233443335095, guid: bb92db1b2b8c15940bff00ebc4624e54, type: 3}
-  spawnLocation: {fileID: 8183476400951475566}
+  phoneOpen: 0
 --- !u!114 &4168797154450591856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -585,12 +574,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 054ab3fc2bc3c794b81cade7f368eb1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rockCount: 0
+  bulletCount: 0
   medKitCount: 0
   flashLightBatteries: 1
   generatorItems: 0
   axe: 1
   keys: 00000000
+--- !u!114 &8929680878949345201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6634254539337635931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c54b00e8be6f5b048a62ef1c2a3956ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnLocation: {fileID: 0}
+  gun: {fileID: 0}
 --- !u!1 &8183476400951475566
 GameObject:
   m_ObjectHideFlags: 0

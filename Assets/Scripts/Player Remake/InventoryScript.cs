@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InventoryScript : MonoBehaviour
 {
-    public int rockCount = 0;
+    public int bulletCount = 0;
     public int medKitCount = 0;
     public int flashLightBatteries = 0;
     public int generatorItems = 0;
