@@ -4,17 +4,6 @@ using UnityEngine;
 
 public class axeSpriteScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     // this is to send a signal to the axeslash script to actually attack
     void SendAttack()
     {
@@ -30,6 +19,7 @@ public class axeSpriteScript : MonoBehaviour
     //this is called in an animation event when idle starts
     void ResetInput()
     {
+        GetComponent<Animator>().ResetTrigger("IsAttacking");
         GameObject.Find("Player (Remake)").GetComponent<AxeSlash>().takeInput = true;
     }
 }
