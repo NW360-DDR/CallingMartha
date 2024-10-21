@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 253a565250b864c41be5dcf9b0cff05a
+guid: 557c60cfa8e31d94faa2e7efbad0d989
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Wolf Idle - Side (WIP) - Mirrored - Sprite Sheet_0
+      name: Wolf Idle - Side V2 (Mirrored)_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 3840
-        width: 1920
-        height: 1920
+        y: 848
+        width: 424
+        height: 424
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 02e0363d3aa555e4784d8f28ade0e8b3
-      internalID: -92280710
+      spriteID: 4c8c3f86bc5f93f478f60464943e6340
+      internalID: -335652883
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Wolf Idle - Side (WIP) - Mirrored - Sprite Sheet_1
+      name: Wolf Idle - Side V2 (Mirrored)_1
       rect:
         serializedVersion: 2
-        x: 1920
-        y: 3840
-        width: 1920
-        height: 1920
+        x: 424
+        y: 848
+        width: 424
+        height: 424
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +145,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f5fc25d0559ccfb44b2617e995b831f6
-      internalID: -1669913877
+      spriteID: c9415fc1aa541bf4f9daef55d54e4f64
+      internalID: -1035914496
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Wolf Idle - Side (WIP) - Mirrored - Sprite Sheet_2
+      name: Wolf Idle - Side V2 (Mirrored)_2
       rect:
         serializedVersion: 2
         x: 0
-        y: 1920
-        width: 1920
-        height: 1920
+        y: 424
+        width: 424
+        height: 424
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,20 +166,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a24886e1f8e9d6e48a5925e03d444824
-      internalID: -101403074
+      spriteID: 9567159bcc6358f4d94959710a0e60f3
+      internalID: -578251864
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Wolf Idle - Side (WIP) - Mirrored - Sprite Sheet_3
+      name: Wolf Idle - Side V2 (Mirrored)_3
       rect:
         serializedVersion: 2
-        x: 1920
-        y: 1920
-        width: 1920
-        height: 1920
+        x: 424
+        y: 424
+        width: 424
+        height: 424
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,20 +187,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a002a0954f24744d87042f0ef3008ab
-      internalID: -2108575378
+      spriteID: 6b9ab4437a538ba428fba95937672c1b
+      internalID: -1469398296
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Wolf Idle - Side (WIP) - Mirrored - Sprite Sheet_4
+      name: Wolf Idle - Side V2 (Mirrored)_4
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1920
-        height: 1920
+        width: 424
+        height: 424
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -208,20 +208,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c8b61ab35755b6d4cb00e97b120a3a9a
-      internalID: -218684940
+      spriteID: 9ca1d7187998dbc43a0ba8a20ee80dc8
+      internalID: 1281446949
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Wolf Idle - Side (WIP) - Mirrored - Sprite Sheet_5
+      name: Wolf Idle - Side V2 (Mirrored)_5
       rect:
         serializedVersion: 2
-        x: 1920
+        x: 424
         y: 0
-        width: 1920
-        height: 1920
+        width: 424
+        height: 424
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -229,8 +229,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fffea8515df3a724a805947b934e36a8
-      internalID: 983495597
+      spriteID: 388c3ad8acc0eb64287b8a0f54a9aa6c
+      internalID: 2139650122
       vertices: []
       indices: 
       edges: []
@@ -246,12 +246,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Wolf Idle - Side (WIP) - Mirrored - Sprite Sheet_0: -92280710
-      Wolf Idle - Side (WIP) - Mirrored - Sprite Sheet_1: -1669913877
-      Wolf Idle - Side (WIP) - Mirrored - Sprite Sheet_2: -101403074
-      Wolf Idle - Side (WIP) - Mirrored - Sprite Sheet_3: -2108575378
-      Wolf Idle - Side (WIP) - Mirrored - Sprite Sheet_4: -218684940
-      Wolf Idle - Side (WIP) - Mirrored - Sprite Sheet_5: 983495597
+      Wolf Idle - Side V2 (Mirrored)_0: -335652883
+      Wolf Idle - Side V2 (Mirrored)_1: -1035914496
+      Wolf Idle - Side V2 (Mirrored)_2: -578251864
+      Wolf Idle - Side V2 (Mirrored)_3: -1469398296
+      Wolf Idle - Side V2 (Mirrored)_4: 1281446949
+      Wolf Idle - Side V2 (Mirrored)_5: 2139650122
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
