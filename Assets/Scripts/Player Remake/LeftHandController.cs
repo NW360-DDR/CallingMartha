@@ -16,7 +16,7 @@ public class LeftHandController : MonoBehaviour
     public bool phoneOpen = false;
 
     private InventoryScript inventoryScript;
-    private RockThrowScript rockScript;
+    private GunScript gunScript;
     private FlashlightScript lightScript;
     private AxeSlash axeScript;
 
@@ -27,7 +27,7 @@ public class LeftHandController : MonoBehaviour
     private void Start()
     {
         inventoryScript = GetComponent<InventoryScript>();
-        rockScript = GetComponent<RockThrowScript>();
+        gunScript = GetComponent<GunScript>();
         lightScript = GetComponent<FlashlightScript>();
         leftHandAnim = leftHand.GetComponent<Animator>();
         phoneAnim = phone.GetComponent<Animator>();
@@ -44,7 +44,7 @@ public class LeftHandController : MonoBehaviour
         {
             currentEqupped = 0;
             leftHandAnim.SetTrigger("SwitchingHand");
-            rockScript.enabled = false;
+            gunScript.enabled = false;
             lightScript.enabled = true;
         }
 
@@ -62,11 +62,11 @@ public class LeftHandController : MonoBehaviour
             phoneOpen = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha2) && currentEqupped != 1 && inventoryScript.rockCount >= 1)
+        if (Input.GetKeyDown(KeyCode.Alpha2) && currentEqupped != 1 && inventoryScript.bulletCount >= 1)
         {
             currentEqupped = 1;
             leftHandAnim.SetTrigger("SwitchingHand");
-            rockScript.enabled = true;
+            gunScript.enabled = true;
             lightScript.flashlightObject.SetActive(false);
             lightScript.flashlightOn = false;
             lightScript.enabled = false;
@@ -74,11 +74,11 @@ public class LeftHandController : MonoBehaviour
         }
 
         //if the player runs out of rocks, automatically switch to the first equip slot
-        if (inventoryScript.rockCount == 0 && currentEqupped == 1)
+        if (inventoryScript.bulletCount == 0 && currentEqupped == 1)
         {
             currentEqupped = 0;
             leftHandAnim.SetTrigger("SwitchingHand");
-            rockScript.enabled = false;
+            gunScript.enabled = false;
             lightScript.enabled = true;
         }
 

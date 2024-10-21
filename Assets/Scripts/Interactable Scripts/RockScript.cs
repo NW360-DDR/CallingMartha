@@ -10,7 +10,7 @@ public class RockScript : Interactable
         //Do interact code here
 
         inventoryScript = GameObject.Find("Player (Remake)").GetComponent<InventoryScript>();
-        inventoryScript.rockCount += 1;
+        inventoryScript.bulletCount += 1;
 
         Destroy(gameObject);
     }

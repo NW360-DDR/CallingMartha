@@ -62,7 +62,7 @@ public class PhoneHandler : MonoBehaviour
         if (currentScreen == Screen.HUD)
         {
             inventoryTemp = player.GetInventory(); // Remember, Rocks, Batts, Kits.
-            rockText.text = inventoryTemp[0].ToString() + " rocks";
+            rockText.text = inventoryTemp[0].ToString() + " bullets";
             battText.text = inventoryTemp[1].ToString() + " batteries";
             kitText.text = inventoryTemp[2].ToString() + " medkits";
         }
@@ -132,7 +132,7 @@ public class Player{
     public byte[] GetInventory() // Returns the players Rocks, Batteries, and Medkit counts for the UI.
     {
         byte[] temp = {3, 4, 5 }; // Rocks, Batts, Kits
-        temp[0] = (byte)inventory.rockCount;
+        temp[0] = (byte)inventory.bulletCount;
         temp[1] = (byte)inventory.flashLightBatteries;
         temp[2] = (byte)inventory.medKitCount;
 
