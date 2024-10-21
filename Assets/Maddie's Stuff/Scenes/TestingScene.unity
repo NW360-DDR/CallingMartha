@@ -121,7 +121,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 6e2500472c4861f45903956693d0203e, type: 2}
 --- !u!1001 &4737594
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -975,7 +975,7 @@ GameObject:
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!64 &567960444
 MeshCollider:
@@ -1999,7 +1999,7 @@ GameObject:
   - component: {fileID: 1541223149}
   - component: {fileID: 1541223148}
   - component: {fileID: 1541223147}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Cube (3)
   m_TagString: Interactable
   m_Icon: {fileID: 0}
