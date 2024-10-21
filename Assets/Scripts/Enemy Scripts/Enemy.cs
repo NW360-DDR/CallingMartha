@@ -27,6 +27,14 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    void GetShot()
+    {
+        Debug.Log("Ouch!");
+        health -= 100;
+        GetComponent<NavMeshAgent>().speed = 0;
+        StartCoroutine(ResetSpeed());
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("AxeHitbox"))

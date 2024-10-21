@@ -19,6 +19,7 @@ TagManager:
   - Generator Item
   - Interactable
   - Cellbox
+  - Shootable
   layers:
   - Default
   - TransparentFX
