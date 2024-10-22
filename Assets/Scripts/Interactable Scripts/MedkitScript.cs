@@ -8,7 +8,8 @@ public class MedkitScript : Interactable
     void Interact()
     {
         //Do interact code here
-
+        logString = "Picked up a Medkit.";
+        SendLog();
         inventoryScript = GameObject.Find("Player (Remake)").GetComponent<InventoryScript>();
         inventoryScript.medKitCount += 1;
 
