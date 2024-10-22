@@ -7,11 +7,23 @@ public class AudioManager : MonoBehaviour
 
     public bool AudioPlaying = false;
 
+    private AudioSource[] allAudioSources;
+    public int AudioSourcesPlaying = 0;
 
     // Start is called before the first frame update
     void Start()
     {
         
+    }
+
+    void StopAllAudio()
+    {
+        allAudioSources = FindObjectsOfType(typeof(AudioSource)) as AudioSource[];
+
+        foreach (AudioSource audioS in allAudioSources)
+        {
+            audioS.Stop();
+        }
     }
 
     // Update is called once per frame
@@ -20,6 +32,13 @@ public class AudioManager : MonoBehaviour
        if (AudioPlaying == true)
         {
             Debug.Log("AUDIO MANAGER SEES YOU!!!");
+            Debug.Log("AudioSourcesPlaying = " + AudioSourcesPlaying);
+
+            if (AudioSourcesPlaying > 1)
+            {
+                StopAllAudio();
+            }
+
         }
     }
 

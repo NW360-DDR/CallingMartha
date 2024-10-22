@@ -36,6 +36,7 @@ public class InGame3Start : MonoBehaviour
         {
             InGameClip.Play();
             AudioManager.AudioPlaying = true;
+            AudioManager.AudioSourcesPlaying += 1;
             StartCoroutine(WaittoEnd());
             BoxCollider.enabled = false;
             
@@ -46,6 +47,7 @@ public class InGame3Start : MonoBehaviour
     {
         // Gives object enough time to play the audio, wait a second, then die.
         yield return new WaitForSeconds(ClipLength);
+        AudioManager.AudioSourcesPlaying -= 1;
         Destroy(this.gameObject);
     }
 }
