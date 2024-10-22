@@ -44,9 +44,11 @@ public class EclipseTimer : MonoBehaviour
     }
 
     //restarts current loaded scene (will probably change later)
-    IEnumerator Restart()
+    public IEnumerator Restart()
     {
-        yield return new WaitForSeconds(5);
+        Debug.Log("Restarting...");
+        yield return new WaitForSeconds(2);
+        Debug.Log("Restarted!");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
