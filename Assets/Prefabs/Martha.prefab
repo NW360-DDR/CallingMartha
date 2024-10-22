@@ -28,8 +28,8 @@ Transform:
   m_GameObject: {fileID: 782955792047173918}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.0000029504295}
-  m_LocalPosition: {x: 0, y: 1.47, z: 1}
-  m_LocalScale: {x: 2.3963656, y: 2.2368426, z: 1.4201523}
+  m_LocalPosition: {x: 0, y: 0.22000003, z: 0}
+  m_LocalScale: {x: 3.6848917, y: 2.2368426, z: 1.4201523}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5885204146939647971}
@@ -155,9 +155,9 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 2
   m_Speed: 1
-  m_Acceleration: 50
+  m_Acceleration: 25
   avoidancePriority: 50
-  m_AngularSpeed: 500
+  m_AngularSpeed: 1000
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -257,7 +257,7 @@ MonoBehaviour:
   dest: {x: 0, y: 0, z: 0}
   lastKnownPlayerLoc: {x: 0, y: 0, z: 0}
   idleTimer: 3
-  baseSpeed: 3.5
+  baseSpeed: 2
   chaseMult: 1.5
 --- !u!1001 &5309206602502797634
 PrefabInstance:
@@ -273,7 +273,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1946616381629747858, guid: 27e0104e6422ecd44b21160034eede24, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.75
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1946616381629747858, guid: 27e0104e6422ecd44b21160034eede24, type: 3}
       propertyPath: m_LocalPosition.z
@@ -311,13 +311,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: Werewolf Martha - Placeholder
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 809448328793031872, guid: 27e0104e6422ecd44b21160034eede24, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3249380608732660357, guid: 27e0104e6422ecd44b21160034eede24, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7056299578366816505}
   m_SourcePrefab: {fileID: 100100000, guid: 27e0104e6422ecd44b21160034eede24, type: 3}
 --- !u!4 &5957648846525377488 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1946616381629747858, guid: 27e0104e6422ecd44b21160034eede24, type: 3}
   m_PrefabInstance: {fileID: 5309206602502797634}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7256997968880597959 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3249380608732660357, guid: 27e0104e6422ecd44b21160034eede24, type: 3}
+  m_PrefabInstance: {fileID: 5309206602502797634}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7056299578366816505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7256997968880597959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 420a35d9fe1829749875dbf8b4384d84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
