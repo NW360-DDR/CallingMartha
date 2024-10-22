@@ -8,7 +8,8 @@ public class GeneratorItemScript : Interactable
     void Interact()
     {
         //Do interact code here
-
+        logString = "This looks like it'll help to fix a generator...";
+        SendLog();
         inventoryScript = GameObject.Find("Player (Remake)").GetComponent<InventoryScript>();
 
         inventoryScript.generatorItems += 1;

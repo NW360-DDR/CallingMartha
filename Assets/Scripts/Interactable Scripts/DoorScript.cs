@@ -27,12 +27,27 @@ public class DoorScript : Interactable
             {
                 locked = false;
                 inventoryScript.keys[keyNum] = false;
+                logString = "Door Unlocked.";
+                SendLog();
+            }
+            else
+            {
+                logString = "I need a key for this...";
+                SendLog();
             }
         }
 
         //if blocked is checked, when object is gone, make blocked untrue
         if (blockingObject == null)
+        {
             blocked = false;
+        }
+        else
+        {
+            logString = "There's something blocking this...";
+            SendLog();
+        }
+            
 
         //actually open door
         if (!doorOpen && !locked && !blocked)

@@ -9,7 +9,8 @@ public class BatteriesScript : Interactable
     void Interact()
     {
         //Do interact code here
-
+        logString = "Picked up Batteries.";
+        SendLog();
         inventoryScript = GameObject.Find("Player (Remake)").GetComponent<InventoryScript>();
         lightScript = GameObject.Find("Player (Remake)").GetComponent<FlashlightScript>();
 

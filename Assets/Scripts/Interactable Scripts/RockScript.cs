@@ -8,7 +8,8 @@ public class RockScript : Interactable
     void Interact()
     {
         //Do interact code here
-
+        logString = "Picked up Rock.";
+        SendLog();
         inventoryScript = GameObject.Find("Player (Remake)").GetComponent<InventoryScript>();
         inventoryScript.bulletCount += 1;
 

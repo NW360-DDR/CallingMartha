@@ -10,7 +10,8 @@ public class AmmoScript : Interactable
     void Interact()
     {
         //Do interact code here
-
+        logString = "Picked up Ammo.";
+        SendLog();
         inventoryScript = GameObject.Find("Player (Remake)").GetComponent<InventoryScript>();
         inventoryScript.bulletCount += bulletCount;
 

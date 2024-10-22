@@ -1,6 +1,15 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+<<<<<<<< HEAD:Assets/Nate Scenes/Forest-ProBuilder.unity.meta
+guid: 864854ecaabee674f9cb804acbc35b30
+========
+guid: f2892fad38f56c446aa1ef1437ba10c7
+folderAsset: yes
+>>>>>>>> origin/Kenny:Assets/Suan's Stuff/3D Models/WoodenBarrel.meta
+=======
 guid: bfaa449b03f949042a3c243062be9d04
 folderAsset: yes
+>>>>>>> origin/Maddie
 DefaultImporter:
   externalObjects: {}
   userData: 
