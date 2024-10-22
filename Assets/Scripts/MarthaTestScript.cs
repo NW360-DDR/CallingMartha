@@ -6,12 +6,13 @@ using System;
 public class MarthaTestScript : MonoBehaviour
 {
 	// StateMachine and navigation components, misc external
-	[SerializeField] StateMachine brain;
+	public StateMachine brain;
 	[SerializeField] NavMeshAgent nav;
 	NavMeshPath path;
-	FieldOfView fov;
+	[SerializeField] FieldOfView fov;
 	[SerializeField] Animator anim;
 	public GameObject hurtBox;
+	Enemy health;
 
 	// Navigation Parameters
 	public Vector3 dest;
@@ -54,6 +55,7 @@ public class MarthaTestScript : MonoBehaviour
 	public void KILL()
     {
 		brain.PushState(MurderHobo());
+		Destroy(health);
     }
 
 	/// <summary>

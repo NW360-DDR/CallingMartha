@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+guid: a3e5cda283249084eb1c8a4ecd2d9be4
+=======
 guid: 604a8f53cb1ad5a4593dcf4e16d7aa3b
+>>>>>>> origin/Maddie
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []

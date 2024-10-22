@@ -14,6 +14,7 @@ public class EclipseTimer : MonoBehaviour
     public Color RedColor;
 
     public GameObject lunarMoon;
+    public MarthaTestScript MarthFireEmblem;
 
     private void Start()
     {
@@ -30,7 +31,9 @@ public class EclipseTimer : MonoBehaviour
         {
             Debug.Log("Eclipse happened! Time to die!");
             gameTimerActive = false;
-            StartCoroutine(Restart());
+            if (!MarthFireEmblem.brain.GetState().Equals("MurderHobo"))
+                MarthFireEmblem.KILL();
+            //StartCoroutine(Restart());
         }
 
         //lunarMoon.transform.localPosition = new Vector3(Mathf.Clamp(timer / eclipseTimerLength, 0f, 1f) , 0, 0);
