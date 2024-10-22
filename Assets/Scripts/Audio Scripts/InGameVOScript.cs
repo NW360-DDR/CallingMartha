@@ -47,7 +47,7 @@ public class InGame3Start : MonoBehaviour
     {
         // Gives object enough time to play the audio, wait a second, then die.
         yield return new WaitForSeconds(ClipLength);
-        AudioManager.AudioSourcesPlaying -= 1;
+        AudioManager.AudioSourcesPlaying = 0;
         Destroy(this.gameObject);
     }
 }

@@ -39,7 +39,7 @@ public class InGameVOScriptMod : MonoBehaviour
     public IEnumerator WaittoEnd()
     {
         yield return new WaitForSeconds(ClipLength);
-        AudioManager.AudioSourcesPlaying -= 1;
+        AudioManager.AudioSourcesPlaying = 0;
         Destroy(this.gameObject);
     }
 }

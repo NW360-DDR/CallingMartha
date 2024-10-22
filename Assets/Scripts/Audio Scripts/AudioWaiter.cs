@@ -44,7 +44,7 @@ public class AudioWaiter : MonoBehaviour
         AudioManager.AudioPlaying = true;
         AudioManager.AudioSourcesPlaying += 1;
         yield return new WaitForSeconds(ClipLength);
-        AudioManager.AudioSourcesPlaying -= 1;
+        AudioManager.AudioSourcesPlaying = 0;
         Destroy(this.gameObject);
     }
 }
