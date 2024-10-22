@@ -40,7 +40,7 @@ public class EclipseTimer : MonoBehaviour
 
         //turn fog red over time once halfway point starts
         if (timer > redFogTime * 60)
-            RenderSettings.fogColor = Color.Lerp(RenderSettings.fogColor, RedColor, (Time.deltaTime / (eclipseTimerLength * 60f)));
+            RenderSettings.fogColor = Color.Lerp(RenderSettings.fogColor, RedColor, (Time.deltaTime / (eclipseTimerLength * 30f)));
     }
 
     //restarts current loaded scene (will probably change later)
