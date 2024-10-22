@@ -8,6 +8,7 @@ public class GunScript : MonoBehaviour
     public GameObject gun;
 
     private InventoryScript inventoryScript;
+    public LayerMask excludeLayer;
 
     private RaycastHit hit;
 
@@ -25,7 +26,7 @@ public class GunScript : MonoBehaviour
         {
             gun.GetComponent<Animator>().SetTrigger("Shoot");
 
-            Physics.Raycast(spawnLocation.transform.position, spawnLocation.transform.forward, out hit);
+            Physics.Raycast(spawnLocation.transform.position, spawnLocation.transform.forward, out hit, 15, ~excludeLayer);
 
             if (hit.collider != null)
             {

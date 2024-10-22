@@ -2285,6 +2285,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 597345010416298379, guid: 9fe94e82a4aa3ff41aae2e27ab392045, type: 3}
+      propertyPath: excludeLayer.m_Bits
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 4168797154450591856, guid: 9fe94e82a4aa3ff41aae2e27ab392045, type: 3}
       propertyPath: leftHand
       value: 
@@ -2369,6 +2373,10 @@ PrefabInstance:
       propertyPath: gun
       value: 
       objectReference: {fileID: 524448882}
+    - target: {fileID: 8929680878949345201, guid: 9fe94e82a4aa3ff41aae2e27ab392045, type: 3}
+      propertyPath: excludeLayer.m_Bits
+      value: 12
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2493,6 +2501,14 @@ PrefabInstance:
     - target: {fileID: 3756338908044275771, guid: 098725ba20f1136428266c4bb76b1b37, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5229804498528400372, guid: 098725ba20f1136428266c4bb76b1b37, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432317001151705429, guid: 098725ba20f1136428266c4bb76b1b37, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3258,6 +3274,10 @@ PrefabInstance:
     - target: {fileID: 8567258663560938272, guid: a0084be76e76afa48a2b6dcd75111e50, type: 3}
       propertyPath: m_Name
       value: Cellbox
+      objectReference: {fileID: 0}
+    - target: {fileID: 8567258663560938272, guid: a0084be76e76afa48a2b6dcd75111e50, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9136114631400751636, guid: a0084be76e76afa48a2b6dcd75111e50, type: 3}
       propertyPath: cellPower

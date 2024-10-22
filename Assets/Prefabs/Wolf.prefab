@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 3756338908044275771}
   - component: {fileID: 1208645724495422316}
   m_Layer: 0
-  m_Name: Generic Enemy Demo
+  m_Name: Wolf
   m_TagString: Wolf
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -232,7 +232,7 @@ GameObject:
   - component: {fileID: 8885474510111137459}
   - component: {fileID: 7323830175658947727}
   - component: {fileID: 5253271942362665622}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Big Phil
   m_TagString: Hurtbox
   m_Icon: {fileID: 0}
@@ -400,7 +400,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 84d51de5c76f342448d2eeb57b0da2e9, type: 3}
+  m_Sprite: {fileID: 1544433732, guid: e05d7d8427a42484dac2bff8f924633c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
