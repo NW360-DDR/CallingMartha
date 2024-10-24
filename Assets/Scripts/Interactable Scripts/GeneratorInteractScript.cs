@@ -17,9 +17,13 @@ public class GeneratorInteractScript : Interactable
         if (inventoryScript.generatorItems < 3 && !fixedCheck)
         {
             Debug.Log("Sorry! Can't fix!");
+            logString = "This generator needs work...";
+            SendLog();
         }
         else
         {
+            logString = "Generator repaired.";
+            SendLog();
             fixedCheck = true;
             for (int i = 0; i < thingsToTurnOn.Length; i++)
             {

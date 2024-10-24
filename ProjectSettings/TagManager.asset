@@ -20,6 +20,7 @@ TagManager:
   - Interactable
   - Cellbox
   - Shootable
+  - Die
   layers:
   - Default
   - TransparentFX

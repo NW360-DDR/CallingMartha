@@ -14,6 +14,7 @@ public class EclipseTimer : MonoBehaviour
     public Color RedColor;
 
     public GameObject lunarMoon;
+    public MarthaTestScript MarthFireEmblem;
 
     private void Start()
     {
@@ -30,20 +31,24 @@ public class EclipseTimer : MonoBehaviour
         {
             Debug.Log("Eclipse happened! Time to die!");
             gameTimerActive = false;
-            StartCoroutine(Restart());
+            if (!MarthFireEmblem.brain.GetState().Equals("MurderHobo"))
+                MarthFireEmblem.KILL();
+            //StartCoroutine(Restart());
         }
 
         //lunarMoon.transform.localPosition = new Vector3(Mathf.Clamp(timer / eclipseTimerLength, 0f, 1f) , 0, 0);
 
         //turn fog red over time once halfway point starts
         if (timer > redFogTime * 60)
-            RenderSettings.fogColor = Color.Lerp(RenderSettings.fogColor, RedColor, (Time.deltaTime / (eclipseTimerLength * 60f)));
+            RenderSettings.fogColor = Color.Lerp(RenderSettings.fogColor, RedColor, (Time.deltaTime / (eclipseTimerLength * 30f)));
     }
 
     //restarts current loaded scene (will probably change later)
-    IEnumerator Restart()
+    public IEnumerator Restart()
     {
-        yield return new WaitForSeconds(5);
+        Debug.Log("Restarting...");
+        yield return new WaitForSeconds(2);
+        Debug.Log("Restarted!");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

@@ -416,14 +416,14 @@ RectTransform:
   m_GameObject: {fileID: 471595170}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.91161, y: 0.91161, z: 0.91161}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1759178185}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -300, y: -510}
+  m_AnchoredPosition: {x: -266.44067, y: -510}
   m_SizeDelta: {x: 600, y: 50}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &471595172
@@ -454,10 +454,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Lorem Ipsum Dolor et idk I''m just guessing what the latin is up to this
-    point, anyways Big Jimmy crashed the car, your wife is a werewolf, and your car''s
-    extended warranty is about to expire. Fuck em up, g.
-
+  m_text: 'You and your wife were having a conversation while driving down a winding
+    road in backwoods Pennsylvania. A news story about missing livestock and an upcoming
+    lunar eclipse made your wife, Martha, turn it off and start reacting oddly towards
+    the broadcast, asking you about if supernatural creatures were real. In the tense
+    conversation, you missed a turn and crashed the car. Waking up, Martha is gone.
+    You need to find her.
 
 '
   m_isRightToLeft: 0
@@ -486,8 +488,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 26.99
+  m_fontSizeBase: 26.99
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -637,7 +639,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1039,7 +1041,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -46.10169, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1628348995
@@ -1145,7 +1147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5445c31e881e7c04cbc79c2239e9ff14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainGame: Forest-ProBuilder
+  MainGame: Alpha_Level
   scrollSpeed: 60
   text: {fileID: 471595173}
   skip: {fileID: 1560624349}
