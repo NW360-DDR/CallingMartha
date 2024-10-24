@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 88249183fbacb344eab1734704d69b4b
+guid: e3210a97af84b624a9623606aed79d89
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 568
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Axe Swing (Sprite Sheet)_0
+      name: Rescaled - Axe Swing (Sprite Sheet)_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4854367bc9e829b4cb2ef9704bded0cd
-      internalID: -1649582192
+      spriteID: 5b2efc3bb519a77489754d03a7076f2a
+      internalID: -390513848
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Axe Swing (Sprite Sheet)_1
+      name: Rescaled - Axe Swing (Sprite Sheet)_1
       rect:
         serializedVersion: 2
         x: 1920
@@ -145,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dcb2afabaf44d324f8013b0807710f14
-      internalID: -799201560
+      spriteID: 9331134acfc1a4f4eb54a9e28dbbb9e9
+      internalID: 2112506343
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Axe Swing (Sprite Sheet)_2
+      name: Rescaled - Axe Swing (Sprite Sheet)_2
       rect:
         serializedVersion: 2
         x: 0
@@ -166,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9e420bb9e8e95d24597f296852f74ad7
-      internalID: -918296665
+      spriteID: 4e2d7da5768cb9745a8bbc863cdb1863
+      internalID: -127740407
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Axe Swing (Sprite Sheet)_3
+      name: Rescaled - Axe Swing (Sprite Sheet)_3
       rect:
         serializedVersion: 2
         x: 1920
@@ -187,14 +187,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 99c297104f08b3942aca4f0d13b7e1c6
-      internalID: 829854690
+      spriteID: 8c4282921bbc4234e9e767e7b9586850
+      internalID: 485442052
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Axe Swing (Sprite Sheet)_4
+      name: Rescaled - Axe Swing (Sprite Sheet)_4
       rect:
         serializedVersion: 2
         x: 0
@@ -208,14 +208,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 44f35eead301b974e9a592ba3ba10df3
-      internalID: 122810012
+      spriteID: 82f0efdeea4bf344f935f8950c7ca07a
+      internalID: 47916413
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Axe Swing (Sprite Sheet)_5
+      name: Rescaled - Axe Swing (Sprite Sheet)_5
       rect:
         serializedVersion: 2
         x: 1920
@@ -229,14 +229,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5a634b843f6437244ad454a316eafbbc
-      internalID: 721325463
+      spriteID: 54371d1b5feed744786ba4141f0ca6c4
+      internalID: 1202233590
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Axe Swing (Sprite Sheet)_6
+      name: Rescaled - Axe Swing (Sprite Sheet)_6
       rect:
         serializedVersion: 2
         x: 0
@@ -250,14 +250,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0691f066e3042e44aab505719cf94452
-      internalID: -873896907
+      spriteID: 8d3ca5e47061923428bb71bbf835a67c
+      internalID: 1022204210
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Axe Swing (Sprite Sheet)_7
+      name: Rescaled - Axe Swing (Sprite Sheet)_7
       rect:
         serializedVersion: 2
         x: 1920
@@ -271,8 +271,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 03ef74c9401a906439fa3d120d15fe66
-      internalID: -1128842661
+      spriteID: 5f070f1da5a68134d98557ba40dd9089
+      internalID: 38246158
       vertices: []
       indices: 
       edges: []
@@ -280,7 +280,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: e15db35eeb4a55d409260b524e8f403a
     internalID: 0
     vertices: []
     indices: 
@@ -288,14 +288,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Axe Swing (Sprite Sheet)_0: -1649582192
-      Axe Swing (Sprite Sheet)_1: -799201560
-      Axe Swing (Sprite Sheet)_2: -918296665
-      Axe Swing (Sprite Sheet)_3: 829854690
-      Axe Swing (Sprite Sheet)_4: 122810012
-      Axe Swing (Sprite Sheet)_5: 721325463
-      Axe Swing (Sprite Sheet)_6: -873896907
-      Axe Swing (Sprite Sheet)_7: -1128842661
+      Rescaled - Axe Swing (Sprite Sheet)_0: -390513848
+      Rescaled - Axe Swing (Sprite Sheet)_1: 2112506343
+      Rescaled - Axe Swing (Sprite Sheet)_2: -127740407
+      Rescaled - Axe Swing (Sprite Sheet)_3: 485442052
+      Rescaled - Axe Swing (Sprite Sheet)_4: 47916413
+      Rescaled - Axe Swing (Sprite Sheet)_5: 1202233590
+      Rescaled - Axe Swing (Sprite Sheet)_6: 1022204210
+      Rescaled - Axe Swing (Sprite Sheet)_7: 38246158
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
