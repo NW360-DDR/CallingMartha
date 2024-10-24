@@ -6,7 +6,6 @@ public class DoorScript : Interactable
 {
     private Animator doorAnimator;
     private bool doorOpen = false;
-    private bool doorCooldown = false;
 
     public bool blocked = false;
     public GameObject blockingObject;
@@ -51,25 +50,15 @@ public class DoorScript : Interactable
             
 
         //actually open door
-        if (!doorOpen && !locked && !doorCooldown && !blocked)
+        if (!doorOpen && !locked && !blocked)
         {
-            doorAnimator.SetTrigger("Open");
+            doorAnimator.SetBool("Open", true);
             doorOpen = true;
-            doorCooldown = true;
-            StartCoroutine(DoorCooldownTimer());
         }
-        else if (!doorCooldown && !locked && !blocked)
+        else if (!locked && !blocked)
         {
-            doorAnimator.SetTrigger("Close");
+            doorAnimator.SetBool("Open", false);
             doorOpen = false;
-            doorCooldown = true;
-            StartCoroutine(DoorCooldownTimer());
         }
-    }
-
-    IEnumerator DoorCooldownTimer()
-    {
-        yield return new WaitForSeconds(0.5f);
-        doorCooldown = false;
     }
 }

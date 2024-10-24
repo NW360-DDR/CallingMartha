@@ -44,6 +44,7 @@ public class LeftHandController : MonoBehaviour
         {
             currentEqupped = 0;
             leftHandAnim.SetTrigger("SwitchingHand");
+            leftHandAnim.SetTrigger("ToFlashlight");
             gunScript.enabled = false;
             lightScript.enabled = true;
         }
@@ -66,27 +67,28 @@ public class LeftHandController : MonoBehaviour
         {
             currentEqupped = 1;
             leftHandAnim.SetTrigger("SwitchingHand");
+            leftHandAnim.SetTrigger("ToGun");
             gunScript.enabled = true;
             lightScript.flashlightObject.SetActive(false);
             lightScript.flashlightOn = false;
             lightScript.enabled = false;
-            lightScript.leftHand.GetComponent<Image>().sprite = lightScript.flashLightOff;
+            leftHandAnim.SetBool("FlashlightOn", false);
         }
 
         //if the player runs out of rocks, automatically switch to the first equip slot
-        if (inventoryScript.bulletCount == 0 && currentEqupped == 1)
+        /*if (inventoryScript.bulletCount == 0 && currentEqupped == 1 && Input.GetMouseButtonDown(1))
         {
             currentEqupped = 0;
             leftHandAnim.SetTrigger("SwitchingHand");
             gunScript.enabled = false;
             lightScript.enabled = true;
-        }
+        }*/
 
         //if recieving signal from the UI gods, run the change hand method
-        if (switchHandSignal)
+        /*if (switchHandSignal)
         {
             ChangeCurrentEquipped();
-        }
+        }*/
     }
 
     void ChangeCurrentEquipped()

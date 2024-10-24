@@ -16,6 +16,7 @@ public class HealthAndRespawn : MonoBehaviour
     private bool hurtCool = false;
     private InventoryScript InventoryScript;
     private GrabAndThrow grabScript;
+    private EclipseTimer timerScript;
     private bool healReset = false;
     private float healthHold = 0;
 
@@ -24,6 +25,7 @@ public class HealthAndRespawn : MonoBehaviour
         InventoryScript = GetComponent<InventoryScript>();
         grabScript = GetComponentInChildren<GrabAndThrow>();
         redJelly = GameObject.Find("Red Overlay").GetComponent<RawImage>();
+        timerScript = GameObject.Find("EclipseTimer").GetComponent<EclipseTimer>();
     }
 
     // Update is called once per frame
@@ -75,6 +77,19 @@ public class HealthAndRespawn : MonoBehaviour
         if (other.CompareTag("Spawn Trigger"))
         {
             other.GetComponent<EnemySpawnTrigger>().SendMessageUpwards("SpawnEnemies");
+        }
+
+        if (other.CompareTag("Die"))
+        {
+            health = 0;
+            redJelly.color += new Color(redJelly.color.r, redJelly.color.g, redJelly.color.b, 0.20f);
+            respawned = true;
+            alive = false;
+            GetComponent<CameraScript>().enabled = false;
+            grabScript.enabled = false;
+            GetComponent<AxeSlash>().enabled = false;
+            GetComponent<NewPlayerMovement>().enabled = false;
+            StartCoroutine(timerScript.Restart());
         }
     }
 

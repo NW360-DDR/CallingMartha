@@ -19,6 +19,8 @@ TagManager:
   - Generator Item
   - Interactable
   - Cellbox
+  - Shootable
+  - Die
   layers:
   - Default
   - TransparentFX

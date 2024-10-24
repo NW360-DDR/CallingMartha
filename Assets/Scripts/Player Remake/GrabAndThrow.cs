@@ -20,7 +20,7 @@ public class GrabAndThrow : MonoBehaviour
 
     public bool canPickupAxe = true;
 
-    private int grabMask;
+    public LayerMask excludeLayer;
 
     private Collider holdingObjectCollider;
     private Rigidbody holdingObjectRB;
@@ -29,8 +29,6 @@ public class GrabAndThrow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        grabMask = 1 << 6;
-
         leftHandSprite = GameObject.Find("Lefthand");
         axeSprite = GameObject.Find("Axe");
 
@@ -121,7 +119,7 @@ public class GrabAndThrow : MonoBehaviour
     void TargetTesting()
     {
         //the actual raycast
-        Physics.Raycast(transform.position, transform.forward, out targetCheck, 5);
+        Physics.Raycast(transform.position, transform.forward, out targetCheck, 5, ~excludeLayer);
     }
 
     void HoldObject()
