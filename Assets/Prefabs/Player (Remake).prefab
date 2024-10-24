@@ -144,6 +144,7 @@ GameObject:
   - component: {fileID: 30742452302723402}
   - component: {fileID: 6336426401270336483}
   - component: {fileID: 6211745320145534659}
+  - component: {fileID: 5563425836188518915}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -186,7 +187,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 9fb722778ba9323498654ff98ca443a9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -239,6 +240,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5563425836188518915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4265805192663099969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474aaff70bc8015469bd392a385f3346, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6362077302677595537
 GameObject:
   m_ObjectHideFlags: 0
@@ -440,10 +453,10 @@ GameObject:
   - component: {fileID: 7607173335660912681}
   - component: {fileID: 8780571491998576821}
   - component: {fileID: 7964418324737739107}
-  - component: {fileID: 7041161670826318313}
   - component: {fileID: 4168797154450591856}
   - component: {fileID: 4133986875344182100}
   - component: {fileID: 8929680878949345201}
+  - component: {fileID: 7014161008852923288}
   m_Layer: 3
   m_Name: Player (Remake)
   m_TagString: Player
@@ -631,27 +644,6 @@ MonoBehaviour:
   healthSlider: {fileID: 0}
   redJelly: {fileID: 0}
   alive: 1
---- !u!114 &7041161670826318313
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6634254539337635931}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4721239a0e47401409d021dc7dc98556, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  items:
-  - {fileID: 21300000, guid: 8c2a60b7a0e53a848a4eb53240c8df56, type: 3}
-  - {fileID: 21300000, guid: ce8d51008f45d3a488856de955643133, type: 3}
-  leftHand: {fileID: 0}
-  phone: {fileID: 0}
-  axe: {fileID: 0}
-  currentEqupped: 0
-  switchHandSignal: 0
-  phoneOpen: 0
 --- !u!114 &4168797154450591856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -707,6 +699,20 @@ MonoBehaviour:
   excludeLayer:
     serializedVersion: 2
     m_Bits: 0
+--- !u!114 &7014161008852923288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6634254539337635931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93a937b558eb8e3409a74e4a9bff2a3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon: {fileID: 4265805192663099969}
+  currentEquipped: 0
 --- !u!1 &8183476400951475566
 GameObject:
   m_ObjectHideFlags: 0
