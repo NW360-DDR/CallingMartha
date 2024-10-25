@@ -7,14 +7,10 @@ using UnityEngine.UI;
 public class GrabAndThrow : MonoBehaviour
 {
     private RaycastHit targetCheck;
-    private InventoryScript inventoryScript;
     public GameObject holdingObject;
     public GameObject heldObjectPlace;
     public GameObject rockPrefab;
     private TextMeshProUGUI interactText;
-
-    private GameObject leftHandSprite;
-    private GameObject axeSprite;
 
     public bool holdingCheck = false;
 
@@ -29,10 +25,6 @@ public class GrabAndThrow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        leftHandSprite = GameObject.Find("Lefthand");
-        axeSprite = GameObject.Find("Axe");
-
-        inventoryScript = GetComponentInParent<InventoryScript>();
         interactText = GameObject.Find("Interact Text").GetComponent<TextMeshProUGUI>();
         interactText.gameObject.SetActive(false);
     }
@@ -85,9 +77,8 @@ public class GrabAndThrow : MonoBehaviour
         //if holding object and you click, throw object
         if (holdingCheck && Input.GetMouseButtonDown(0))
         {
-            axeSprite.GetComponent<Image>().enabled = true;
-            leftHandSprite.GetComponent<Image>().enabled = true;
             GetComponentInParent<AxeSlash>().enabled = true;
+            GetComponentInParent<GunScript>().enabled = true;
             holdingObjectCollider.isTrigger = false;
             holdingObjectRB.constraints = RigidbodyConstraints.None;
             holdingObjectRB.velocity = Vector3.zero;
@@ -101,9 +92,8 @@ public class GrabAndThrow : MonoBehaviour
         }
         else if (holdingCheck && Input.GetMouseButton(1))
         {
-            axeSprite.GetComponent<Image>().enabled = true;
-            leftHandSprite.GetComponent<Image>().enabled = true;
             GetComponentInParent<AxeSlash>().enabled = true;
+            GetComponentInParent<GunScript>().enabled = true;
             holdingObjectCollider.isTrigger = false;
             holdingObjectRB.constraints = RigidbodyConstraints.None;
             holdingObjectRB.velocity = Vector3.zero;
@@ -134,8 +124,7 @@ public class GrabAndThrow : MonoBehaviour
 
         holdingObjectRB.constraints = RigidbodyConstraints.FreezeRotation;
         holdingObjectCollider.isTrigger = true;
-        axeSprite.GetComponent<Image>().enabled = false;
-        leftHandSprite.GetComponent<Image>().enabled = false;
         GetComponentInParent<AxeSlash>().enabled = false;
+        GetComponentInParent<GunScript>().enabled = false;
     }
 }
