@@ -1374,7 +1374,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5446802837076012358, guid: 5b88db6f953061f4fb44f7ae625e80cd, type: 3}
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4772967036511344669, guid: 5b88db6f953061f4fb44f7ae625e80cd, type: 3}
+    - {fileID: 8966131768551897672, guid: 5b88db6f953061f4fb44f7ae625e80cd, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 10307463885587589, guid: 5b88db6f953061f4fb44f7ae625e80cd, type: 3}
@@ -1384,16 +1386,6 @@ PrefabInstance:
 --- !u!1 &524448881 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4870218010087735748, guid: 5b88db6f953061f4fb44f7ae625e80cd, type: 3}
-  m_PrefabInstance: {fileID: 524448880}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &524448882 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4772967036511344669, guid: 5b88db6f953061f4fb44f7ae625e80cd, type: 3}
-  m_PrefabInstance: {fileID: 524448880}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &524448883 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8966131768551897672, guid: 5b88db6f953061f4fb44f7ae625e80cd, type: 3}
   m_PrefabInstance: {fileID: 524448880}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &567960443
@@ -2571,7 +2563,7 @@ PrefabInstance:
     - target: {fileID: 4168797154450591856, guid: 9fe94e82a4aa3ff41aae2e27ab392045, type: 3}
       propertyPath: leftHand
       value: 
-      objectReference: {fileID: 524448882}
+      objectReference: {fileID: 0}
     - target: {fileID: 4168797154450591856, guid: 9fe94e82a4aa3ff41aae2e27ab392045, type: 3}
       propertyPath: batteryLife
       value: 15
@@ -2583,7 +2575,7 @@ PrefabInstance:
     - target: {fileID: 7041161670826318313, guid: 9fe94e82a4aa3ff41aae2e27ab392045, type: 3}
       propertyPath: axe
       value: 
-      objectReference: {fileID: 524448883}
+      objectReference: {fileID: 0}
     - target: {fileID: 7041161670826318313, guid: 9fe94e82a4aa3ff41aae2e27ab392045, type: 3}
       propertyPath: phone
       value: 
@@ -2643,7 +2635,7 @@ PrefabInstance:
     - target: {fileID: 8780571491998576821, guid: 9fe94e82a4aa3ff41aae2e27ab392045, type: 3}
       propertyPath: axeSprite
       value: 
-      objectReference: {fileID: 524448883}
+      objectReference: {fileID: 0}
     - target: {fileID: 8780571491998576821, guid: 9fe94e82a4aa3ff41aae2e27ab392045, type: 3}
       propertyPath: rightHand
       value: 
@@ -2651,7 +2643,7 @@ PrefabInstance:
     - target: {fileID: 8929680878949345201, guid: 9fe94e82a4aa3ff41aae2e27ab392045, type: 3}
       propertyPath: gun
       value: 
-      objectReference: {fileID: 524448882}
+      objectReference: {fileID: 245374869}
     - target: {fileID: 8929680878949345201, guid: 9fe94e82a4aa3ff41aae2e27ab392045, type: 3}
       propertyPath: excludeLayer.m_Bits
       value: 12
