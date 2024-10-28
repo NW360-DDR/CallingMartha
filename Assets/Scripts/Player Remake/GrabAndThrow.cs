@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class GrabAndThrow : MonoBehaviour
 {
-    private RaycastHit targetCheck;
+    public RaycastHit targetCheck;
     private InventoryScript inventoryScript;
     public GameObject holdingObject;
     public GameObject heldObjectPlace;
@@ -24,7 +24,6 @@ public class GrabAndThrow : MonoBehaviour
 
     private Collider holdingObjectCollider;
     private Rigidbody holdingObjectRB;
-
 
     // Start is called before the first frame update
     void Start()
