@@ -12,7 +12,7 @@ public class GeneratorItemScript : Interactable
         SendLog();
         inventoryScript = GameObject.Find("Player (Remake)").GetComponent<InventoryScript>();
 
-        inventoryScript.generatorItems += 1;
+        inventoryScript.generatorItems++;
         Destroy(gameObject);
     }
 }

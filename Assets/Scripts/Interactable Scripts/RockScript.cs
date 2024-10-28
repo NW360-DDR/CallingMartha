@@ -11,7 +11,7 @@ public class RockScript : Interactable
         logString = "Picked up Rock.";
         SendLog();
         inventoryScript = GameObject.Find("Player (Remake)").GetComponent<InventoryScript>();
-        inventoryScript.bulletCount += 1;
+        inventoryScript.bulletCount++;
 
         Destroy(gameObject);
     }
