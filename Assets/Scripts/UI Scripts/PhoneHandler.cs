@@ -16,6 +16,7 @@ public class PhoneHandler : MonoBehaviour
     [SerializeField] TextMeshProUGUI SaveText;
     [SerializeField] CellService cell;
     public string playerName;
+    public float phoneBatteryLife = 100;
     bool canSave = false;
     bool hasSaved = false;
 

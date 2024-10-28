@@ -6,45 +6,42 @@ using UnityEngine;
 public class FlashlightScript : MonoBehaviour
 {
     public GameObject flashlightObject;
+    private Light flashlightLight;
 
     private InventoryScript InventoryScript;
+    private PhoneHandler phoneHandler;
 
     public bool flashlightOn = false;
     public float batteryLife = 100;
     public bool updatedBatteries = false;
     public bool flickered = false;
 
-    public GameObject leftHand;
-    private Animator leftHandAnim;
-
-    public Sprite flashLightOff;
-    public Sprite flashLightOn;
-
     // Start is called before the first frame update
     void Start()
     {
         InventoryScript = GetComponent<InventoryScript>();
-        leftHandAnim = leftHand.GetComponent<Animator>();
+        phoneHandler = GameObject.Find("PhoneCanvas").GetComponent<PhoneHandler>();
+        flashlightLight = flashlightObject.GetComponent<Light>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        flashlightLight.intensity = phoneHandler.phoneBatteryLife * 1.5f;
+
         //if the flashlight is not on, turn it on. if it is on, turn it off
-        if (Input.GetMouseButtonDown(1) && InventoryScript.flashLightBatteries > 0 && !flashlightOn)
+        if (Input.GetMouseButtonDown(0) && InventoryScript.flashLightBatteries > 0 && phoneHandler.phoneBatteryLife > 0 && !flashlightOn)
         {
             flashlightObject.SetActive(true);
             flashlightOn = true;
-            leftHandAnim.SetBool("FlashlightOn", true);
-        }else if (Input.GetMouseButtonDown(1) && flashlightOn)
+        }else if (Input.GetMouseButtonDown(0) && flashlightOn)
         {
             flashlightObject.SetActive(false);
             flashlightOn = false;
-            leftHandAnim.SetBool("FlashlightOn", false);
         }
 
         //drain flashlight battery
-        if (flashlightOn && batteryLife > 0)
+        /*if (flashlightOn && batteryLife > 0)
         {
             batteryLife -= Time.deltaTime * 2;
         }
@@ -62,6 +59,13 @@ public class FlashlightScript : MonoBehaviour
                 flickered = false;
                 updatedBatteries = false;
             }
+        }*/
+
+        if (phoneHandler.phoneBatteryLife <= 0)
+        {
+            Debug.Log("Battery life gone!");
+            flashlightObject.SetActive(false);
+            flashlightOn = false;
         }
 
         //automatically turn off flashlight if the battery reaches 0 and there are no batteries left
@@ -69,7 +73,6 @@ public class FlashlightScript : MonoBehaviour
         {
             flashlightObject.SetActive(false);
             flashlightOn = false;
-            leftHandAnim.SetBool("FlashlightOn", false);
         }
 
         //if flashlight battery hits 10, flicker
@@ -85,10 +88,8 @@ public class FlashlightScript : MonoBehaviour
             {
                 Debug.Log("Flickering!");
                 flashlightObject.SetActive(false);
-                leftHandAnim.SetBool("FlashlightOn", false);
                 yield return new WaitForSeconds(Random.Range(0.05f, 0.15f));
                 flashlightObject.SetActive(true);
-                leftHandAnim.SetBool("FlashlightOn", true);
                 yield return new WaitForSeconds(Random.Range(0.05f, 0.15f));
             }
         }

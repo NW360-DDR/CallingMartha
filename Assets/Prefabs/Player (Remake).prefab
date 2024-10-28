@@ -394,7 +394,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4680982589783674130}
   - component: {fileID: 8151290730401089199}
-  - component: {fileID: 3457750098929474837}
   - component: {fileID: 1085649380732354960}
   m_Layer: 3
   m_Name: Hands Camera
@@ -469,14 +468,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &3457750098929474837
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6308749904369532545}
-  m_Enabled: 1
 --- !u!114 &1085649380732354960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -926,12 +917,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashlightObject: {fileID: 9120104487017277093}
   flashlightOn: 0
-  batteryLife: 15
+  batteryLife: 100
   updatedBatteries: 0
   flickered: 0
-  leftHand: {fileID: 0}
-  flashLightOff: {fileID: 21300000, guid: 8c2a60b7a0e53a848a4eb53240c8df56, type: 3}
-  flashLightOn: {fileID: 21300000, guid: c55add11ff08e7d49a3ed38a61074082, type: 3}
 --- !u!114 &4133986875344182100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -980,7 +968,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 4265805192663099969}
-  phone: {fileID: 0}
+  phone: {fileID: 4197754646362111416}
+  flashlightLight: {fileID: 9120104487017277093}
   currentEquipped: 0
 --- !u!1 &8183476400951475566
 GameObject:
@@ -1250,6 +1239,10 @@ PrefabInstance:
     - target: {fileID: 1046274396289550326, guid: d84b44943f2563244bcd70ab4cfb2b39, type: 3}
       propertyPath: m_Name
       value: PhoneCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 1046274396289550326, guid: d84b44943f2563244bcd70ab4cfb2b39, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1046274396289550326, guid: d84b44943f2563244bcd70ab4cfb2b39, type: 3}
       propertyPath: m_IsActive
