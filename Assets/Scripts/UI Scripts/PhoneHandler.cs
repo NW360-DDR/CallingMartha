@@ -39,11 +39,11 @@ public class PhoneHandler : MonoBehaviour
     private void Update()
     {
         // ~~~~~~~~~~~~~~~~~~~ Screen Changing ~~~~~~~~~~~~~~~~~~~~~~~~
-        if (Input.mouseScrollDelta.y > 0 && currentScreen != Screen.HUD) // Positive values up, negative down
+        if (Input.GetKeyDown(KeyCode.Z) && currentScreen != Screen.HUD) // Positive values up, negative down
         {// Positive means we want to see the HUD if we aren't already
             SwitchMode(Screen.HUD);
         }
-        else if (Input.mouseScrollDelta.y < 0 && currentScreen != Screen.Save) // Positive values up, negative down
+        else if (Input.GetKeyDown(KeyCode.C) && currentScreen != Screen.Save) // Positive values up, negative down
         {// Positive means we want to see the Save Menu if we aren't already
             SwitchMode(Screen.Save);
         }
