@@ -2502,6 +2502,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4988315639946939381, guid: 9fe94e82a4aa3ff41aae2e27ab392045, type: 3}
+      propertyPath: phoneBatteryLife
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 6634254539337635931, guid: 9fe94e82a4aa3ff41aae2e27ab392045, type: 3}
       propertyPath: m_Name
       value: Player (Remake)
