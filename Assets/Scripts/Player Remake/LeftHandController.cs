@@ -50,11 +50,10 @@ public class LeftHandController : MonoBehaviour
         }
 
         //take phone out and put axe away if player hits tab and is able to
-        if (Input.GetKeyDown(KeyCode.Tab) && !phoneOpen && axeScript.takeInput && !axeAnim.GetBool("HoldingDown"))
+        if (Input.GetKeyDown(KeyCode.Tab) && !phoneOpen && !axeAnim.GetBool("HoldingDown"))
         {
             phoneAnim.SetBool("Phone Up", true);
             axeAnim.SetBool("Lowered", true);
-            axeScript.takeInput = false;
             phoneOpen = true;
         }else if (Input.GetKeyDown(KeyCode.Tab) && phoneOpen)
         {

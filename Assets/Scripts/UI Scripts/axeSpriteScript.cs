@@ -20,6 +20,5 @@ public class axeSpriteScript : MonoBehaviour
     void ResetInput()
     {
         GetComponent<Animator>().ResetTrigger("IsAttacking");
-        GameObject.Find("Player (Remake)").GetComponent<AxeSlash>().takeInput = true;
     }
 }

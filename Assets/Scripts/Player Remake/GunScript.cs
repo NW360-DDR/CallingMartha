@@ -22,7 +22,7 @@ public class GunScript : MonoBehaviour
     {
         Debug.DrawRay(spawnLocation.transform.position, spawnLocation.transform.forward, Color.red);
         //its a gun. shoot it.
-        if (Input.GetMouseButtonDown(1) && inventoryScript.bulletCount >= 1)
+        if (Input.GetMouseButtonDown(0) && inventoryScript.bulletCount >= 1)
         {
             gun.GetComponent<Animator>().SetTrigger("Shoot");
 

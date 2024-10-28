@@ -6,19 +6,17 @@ using UnityEngine.UI;
 public class AxeSlash : MonoBehaviour
 {
     public GameObject hitBox;
-    public GameObject axeSprite;
-    public GameObject rightHand;
-    public GameObject cam;
+    public GameObject weapon;
 
     private InventoryScript inventoryScript;
+    private Animator axeAnim;
     public bool attackSignal = false;
-    public bool takeInput = true;
 
     // Start is called before the first frame update
     void Start()
     {
         inventoryScript = GetComponent<InventoryScript>();
-        axeSprite.GetComponent<Animator>().Play("Axe_Idle");
+        axeAnim = weapon.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -33,8 +31,14 @@ public class AxeSlash : MonoBehaviour
             TurnOffHitbox();
         }
 
+        // if the player clicks, attack
+        if (Input.GetMouseButtonDown(0))
+        {
+            axeAnim.SetTrigger("Attack");
+        }
+
         // if the player is readying and releases the button, do the attack animation
-        if (Input.GetMouseButtonUp(0) && takeInput && inventoryScript.axe)
+        /*if (Input.GetMouseButtonUp(0) && takeInput && inventoryScript.axe)
         {
             if (axeSprite.GetComponent<Animator>().GetBool("HoldingDown"))
             {
@@ -49,7 +53,7 @@ public class AxeSlash : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && takeInput && inventoryScript.axe)
         {
             axeSprite.GetComponent<Animator>().SetBool("HoldingDown", true);
-        }
+        }*/
     }
 
     void TurnOnHitbox()
