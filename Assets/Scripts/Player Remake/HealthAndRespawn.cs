@@ -91,6 +91,7 @@ public class HealthAndRespawn : MonoBehaviour
             grabScript.enabled = false;
             GetComponent<AxeSlash>().enabled = false;
             GetComponent<NewPlayerMovement>().enabled = false;
+            gameObject.AddComponent<Rigidbody>();
             StartCoroutine(timerScript.Restart());
         }
     }
