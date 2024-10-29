@@ -33,7 +33,7 @@ public class EquippedScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.mouseScrollDelta.y > 0 && inventoryScript.bulletCount <= 0)
+        if (Input.mouseScrollDelta.y > 0 && inventoryScript.bulletCount <= 0 && currentEquipped != 0)
         {
             currentEquipped = 0;
             UpdateEquipped();
@@ -43,7 +43,7 @@ public class EquippedScript : MonoBehaviour
             currentEquipped--;
             UpdateEquipped();
         }
-        else if (Input.mouseScrollDelta.y < 0 && inventoryScript.bulletCount <= 0)
+        else if (Input.mouseScrollDelta.y < 0 && inventoryScript.bulletCount <= 0 && currentEquipped != 2)
         {
             currentEquipped = 2;
             UpdateEquipped();
