@@ -5,39 +5,37 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
 
-    public AudioSource BaseAmbiSource;
-    public AudioClip BaseAmbi;
-    public AudioClip BaseAmbi2;
+    public bool AudioPlaying = false;
+
+    private AudioSource[] allAudioSources;
+    public int AudioSourcesPlaying = 0;
 
     // Start is called before the first frame update
-    void Start()
+
+
+    void StopAllAudio()
     {
-        BaseAmbiSource = GetComponent<AudioSource>();
-        BaseAmbi = BaseAmbiSource.clip;
-        Debug.Log("Audio Clip Length : " + BaseAmbiSource.clip.length);
+        allAudioSources = FindObjectsOfType(typeof(AudioSource)) as AudioSource[];
+
+        foreach (AudioSource audioS in allAudioSources)
+        {
+            audioS.Stop();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+       if (AudioPlaying == true)
         {
-            SwitchAudio();
+
+            if (AudioSourcesPlaying > 1)
+            {
+                StopAllAudio();
+            }
+
         }
     }
 
-    void SwitchAudio()
-    {
-        if (BaseAmbiSource.clip = BaseAmbi)
-        {
-            BaseAmbiSource.clip = BaseAmbi2;
-            BaseAmbiSource.Play();
-        }
-
-        else if (BaseAmbiSource.clip = BaseAmbi2)
-        {
-            BaseAmbiSource.clip = BaseAmbi;
-            BaseAmbiSource.Play();
-        }
-    }
+   
 }

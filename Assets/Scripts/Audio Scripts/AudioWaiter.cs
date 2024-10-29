@@ -8,17 +8,9 @@ public class AudioWaiter : MonoBehaviour
     public float Delay;
     public float ClipLength;
     public Collider BoxCollider;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public AudioManager AudioManager;
+    // Start is called before the first frame update
 
     public void OnTriggerEnter(Collider other)
     {
@@ -39,7 +31,10 @@ public class AudioWaiter : MonoBehaviour
     {
         Debug.Log("I'm Playing!!!");
         InGame5.Play();
+        AudioManager.AudioPlaying = true;
+        AudioManager.AudioSourcesPlaying += 1;
         yield return new WaitForSeconds(ClipLength);
+        AudioManager.AudioSourcesPlaying = 0;
         Destroy(this.gameObject);
     }
 }
