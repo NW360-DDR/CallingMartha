@@ -1109,6 +1109,7 @@ MonoBehaviour:
   phone: {fileID: 4197754646362111416}
   flashlightLight: {fileID: 9120104487017277093}
   currentEquipped: 0
+  batteryDrainMultiplier: 1.5
 --- !u!1 &8183476400951475566
 GameObject:
   m_ObjectHideFlags: 0

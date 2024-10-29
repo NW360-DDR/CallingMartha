@@ -17,6 +17,7 @@ public class EquippedScript : MonoBehaviour
     private PhoneHandler phoneHandler;
 
     public int currentEquipped = 0;
+    public float batteryDrainMultiplier = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -55,7 +56,7 @@ public class EquippedScript : MonoBehaviour
 
         if (currentEquipped == 2 && phoneHandler.phoneBatteryLife > 0)
         {
-            phoneHandler.phoneBatteryLife -= Time.deltaTime;
+            phoneHandler.phoneBatteryLife -= Time.deltaTime * batteryDrainMultiplier;
         }
     }
 
