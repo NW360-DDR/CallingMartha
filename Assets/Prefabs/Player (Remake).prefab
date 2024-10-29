@@ -1312,15 +1312,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 761941312253879261, guid: d84b44943f2563244bcd70ab4cfb2b39, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.0028648046
+      value: 0.0024258879
       objectReference: {fileID: 0}
     - target: {fileID: 761941312253879261, guid: d84b44943f2563244bcd70ab4cfb2b39, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.0028648046
+      value: 0.0024258879
       objectReference: {fileID: 0}
     - target: {fileID: 761941312253879261, guid: d84b44943f2563244bcd70ab4cfb2b39, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.0028648046
+      value: 0.0024258879
       objectReference: {fileID: 0}
     - target: {fileID: 761941312253879261, guid: d84b44943f2563244bcd70ab4cfb2b39, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1504,7 +1504,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e727de900ed935a4f9a0d5e233f53f2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalIntensity: 0.01
+  verticalIntensity: 0.02
   horizontalIntensity: 0.01
   effectSpeed: 8
   resetSpeed: 8
