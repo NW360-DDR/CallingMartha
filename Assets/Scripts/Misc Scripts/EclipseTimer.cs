@@ -37,9 +37,9 @@ public class EclipseTimer : MonoBehaviour
 
         //lunarMoon.transform.localPosition = new Vector3(Mathf.Clamp(timer / eclipseTimerLength, 0f, 1f) , 0, 0);
 
-        //turn fog red over time once halfway point starts
+        //turn fog red over time once it hits fog timer
         if (timer > redFogTime * 60)
-            RenderSettings.fogColor = Color.Lerp(RenderSettings.fogColor, RedColor, (Time.deltaTime / (eclipseTimerLength * 30f)));
+            RenderSettings.fogColor = Color.Lerp(RenderSettings.fogColor, RedColor, (Time.deltaTime / (eclipseTimerLength * 15f)));
     }
 
     //restarts current loaded scene (will probably change later)

@@ -98,6 +98,11 @@ public class NewPlayerMovement : MonoBehaviour
             controlsScreen.SetActive(false);
             controlsUp = false;
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 
     private bool Grounded()
