@@ -45,10 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e727de900ed935a4f9a0d5e233f53f2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalIntensity: 0.03
-  horizontalIntensity: 0.03
+  verticalIntensity: 0.05
+  horizontalIntensity: 0.05
   effectSpeed: 8
   resetSpeed: 8
+  playerMovement: {fileID: 0}
 --- !u!1 &1339521971615757378
 GameObject:
   m_ObjectHideFlags: 0
@@ -836,6 +837,7 @@ MonoBehaviour:
   horizontalIntensity: 0
   effectSpeed: 8
   resetSpeed: 8
+  playerMovement: {fileID: 0}
 --- !u!1 &6634254539337635931
 GameObject:
   m_ObjectHideFlags: 0
@@ -1509,6 +1511,7 @@ MonoBehaviour:
   horizontalIntensity: 0.01
   effectSpeed: 8
   resetSpeed: 8
+  playerMovement: {fileID: 0}
 --- !u!224 &7836367426694440229 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 761941312253879261, guid: d84b44943f2563244bcd70ab4cfb2b39, type: 3}
