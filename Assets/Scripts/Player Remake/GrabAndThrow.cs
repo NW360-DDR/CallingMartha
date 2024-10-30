@@ -74,7 +74,7 @@ public class GrabAndThrow : MonoBehaviour
         }
 
         //if holding object and you click, throw object
-        if (holdingCheck && Input.GetMouseButtonDown(0))
+        /*if (holdingCheck && Input.GetMouseButtonDown(0))
         {
             GetComponentInParent<AxeSlash>().enabled = true;
             GetComponentInParent<GunScript>().enabled = true;
@@ -88,8 +88,9 @@ public class GrabAndThrow : MonoBehaviour
             holdingObject = null;
             holdingCheck = false;
             interactText.gameObject.SetActive(false);
-        }
-        else if (holdingCheck && Input.GetMouseButton(1))
+        }*/
+
+        if (holdingCheck && Input.GetMouseButton(0))
         {
             GetComponentInParent<AxeSlash>().enabled = true;
             GetComponentInParent<GunScript>().enabled = true;

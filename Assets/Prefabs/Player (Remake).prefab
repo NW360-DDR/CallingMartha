@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e727de900ed935a4f9a0d5e233f53f2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalIntensity: 0.05
-  horizontalIntensity: 0.05
+  verticalIntensity: 0.03
+  horizontalIntensity: 0.03
   effectSpeed: 8
   resetSpeed: 8
 --- !u!1 &1339521971615757378
@@ -832,7 +832,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e727de900ed935a4f9a0d5e233f53f2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalIntensity: 0.1
+  verticalIntensity: 0.05
   horizontalIntensity: 0
   effectSpeed: 8
   resetSpeed: 8
@@ -1109,7 +1109,7 @@ MonoBehaviour:
   phone: {fileID: 4197754646362111416}
   flashlightLight: {fileID: 9120104487017277093}
   currentEquipped: 0
-  batteryDrainMultiplier: 1.5
+  batteryDrainMultiplier: 1.3
 --- !u!1 &8183476400951475566
 GameObject:
   m_ObjectHideFlags: 0

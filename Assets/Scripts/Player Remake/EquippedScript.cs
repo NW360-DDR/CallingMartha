@@ -33,31 +33,38 @@ public class EquippedScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.mouseScrollDelta.y > 0 && inventoryScript.bulletCount <= 0)
+        if (Input.mouseScrollDelta.y > 0 && inventoryScript.bulletCount <= 0 && currentEquipped != 0)
         {
             currentEquipped = 0;
-            UpdateEquipped();
+            StartCoroutine(SendUpdate());
         }
         else if (Input.mouseScrollDelta.y > 0 && currentEquipped != 0)
         {
             currentEquipped--;
-            UpdateEquipped();
+            StartCoroutine(SendUpdate());
         }
-        else if (Input.mouseScrollDelta.y < 0 && inventoryScript.bulletCount <= 0)
+        else if (Input.mouseScrollDelta.y < 0 && inventoryScript.bulletCount <= 0 && currentEquipped != 2)
         {
             currentEquipped = 2;
-            UpdateEquipped();
+            StartCoroutine(SendUpdate());
         }
         else if (Input.mouseScrollDelta.y < 0 && currentEquipped != 2)
         {
             currentEquipped++;
-            UpdateEquipped();
+            StartCoroutine(SendUpdate());
         }
 
         if (currentEquipped == 2 && phoneHandler.phoneBatteryLife > 0)
         {
             phoneHandler.phoneBatteryLife -= Time.deltaTime * batteryDrainMultiplier;
         }
+    }
+
+    IEnumerator SendUpdate()
+    {
+        //buffer switching so they don't conflict
+        yield return new WaitForSeconds(0.09f);
+        UpdateEquipped();
     }
 
     void UpdateEquipped()
