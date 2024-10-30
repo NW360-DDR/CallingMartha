@@ -23,20 +23,20 @@ public class PlayerBobbing : MonoBehaviour
         playerMovement = GameObject.Find("Player (Remake)").GetComponent<NewPlayerMovement>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         Vector3 inputV = new(Input.GetAxis("Vertical"), 0, Input.GetAxis("Horizontal"));
+        sinTime += Time.deltaTime * effectSpeed;
+        float sinY = verticalIntensity * Mathf.Sin(sinTime);
+        Vector3 sinX = verticalIntensity * -Mathf.Cos(sinTime / 2) * horizontalIntensity * transform.right;
         if (inputV.magnitude > 0f && playerMovement.Grounded())
         {
-            sinTime += Time.deltaTime * effectSpeed;
-            float sinY = verticalIntensity * Mathf.Sin(sinTime);
-            Vector3 sinX =  verticalIntensity * -Mathf.Cos(sinTime/2) * horizontalIntensity * transform.right;
-            transform.localPosition = new Vector3
+            transform.localPosition = Vector3.Lerp(transform.localPosition, new Vector3
             {
                 x = transform.localPosition.x,
                 y = origPos.y + sinY,
                 z = transform.localPosition.z
-            };
+            }, effectSpeed * 2);
             transform.position += sinX;
 
         }
