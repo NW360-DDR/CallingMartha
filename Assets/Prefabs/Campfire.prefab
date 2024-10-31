@@ -1679,7 +1679,7 @@ GameObject:
   - component: {fileID: 5554878142749178078}
   - component: {fileID: 505792999404428382}
   - component: {fileID: 5998100771699717787}
-  - component: {fileID: 6399398307529820721}
+  - component: {fileID: 7692401039241599113}
   m_Layer: 6
   m_Name: Campfire
   m_TagString: Interactable
@@ -1737,8 +1737,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectsToTurnOn: {fileID: 3532645213364884709}
---- !u!65 &6399398307529820721
-BoxCollider:
+--- !u!135 &7692401039241599113
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1756,8 +1756,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 5.6346164, y: 2.3150468, z: 4.976192}
-  m_Center: {x: -0.08620101, y: 0.65751964, z: 1.5901791}
+  m_Radius: 2.6033216
+  m_Center: {x: 2.377842e-10, y: 0.24324386, z: 1.4858006}
 --- !u!1 &7364189221820435131
 GameObject:
   m_ObjectHideFlags: 0
