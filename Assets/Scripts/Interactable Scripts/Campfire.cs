@@ -16,6 +16,8 @@ public class Campfire : Interactable
 
         if (isLit.enabled != true && inventoryScript.lighters > 0)
         {
+            logString = "Used Lighter";
+            SendLog();
             isLit.enabled = true;
             objectsToTurnOn.SetActive(true);
             inventoryScript.lighters--;
@@ -23,6 +25,9 @@ public class Campfire : Interactable
             StartCoroutine(TurnOff());
         }else
         {
+            logString = "Need Lighter";
+            SendLog();
+
             Debug.Log("Fuck you!");
         }
     }
