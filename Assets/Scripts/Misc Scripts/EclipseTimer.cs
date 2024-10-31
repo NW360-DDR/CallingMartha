@@ -16,6 +16,8 @@ public class EclipseTimer : MonoBehaviour
     public GameObject lunarMoon;
     public MarthaTestScript MarthFireEmblem;
 
+    public AudioSource TimerEndSound;
+
     private void Start()
     {
         StartCoroutine(UpdateMoon());
@@ -30,6 +32,7 @@ public class EclipseTimer : MonoBehaviour
         if (timer >= (eclipseTimerLength * 60))
         {
             Debug.Log("Eclipse happened! Time to die!");
+            TimerEndSound.Play();
             gameTimerActive = false;
             if (!MarthFireEmblem.brain.GetState().Equals("MurderHobo"))
                 MarthFireEmblem.KILL();
