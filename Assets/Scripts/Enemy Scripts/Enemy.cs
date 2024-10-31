@@ -29,10 +29,8 @@ public class Enemy : MonoBehaviour
 
     void GetShot()
     {
-        Debug.Log("Ouch!");
-        health -= 100;
-        GetComponent<NavMeshAgent>().speed = 0;
-        StartCoroutine(ResetSpeed());
+        Debug.Log("I done got shot!");
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -43,32 +41,6 @@ public class Enemy : MonoBehaviour
             health -= 50;
             GetComponent<NavMeshAgent>().speed = 0;
             StartCoroutine(ResetSpeed());
-        }
-    }
-
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.CompareTag("Rock"))
-        {
-            if (other.gameObject.GetComponent<Rigidbody>().velocity.magnitude > 0.5f)
-            {
-                Debug.Log("Ouch!");
-                Destroy(other.gameObject);
-                health -= 50;
-                GetComponent<NavMeshAgent>().speed = 0;
-                StartCoroutine(ResetSpeed());
-            }
-        }
-
-        if (other.gameObject.CompareTag("Axe"))
-        {
-            if (other.gameObject.GetComponent<Rigidbody>().velocity.magnitude > 0.5f)
-            {
-                Debug.Log("Ouch!");
-                health -= 100;
-                GetComponent<NavMeshAgent>().speed = 0;
-                StartCoroutine(ResetSpeed());
-            }
         }
     }
 

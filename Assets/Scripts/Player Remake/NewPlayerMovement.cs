@@ -37,27 +37,6 @@ public class NewPlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //random comment for nate
-        // makes it so the player isn't building falling velocity while grounded
-        if (Grounded() && velocity.y < 0)
-        {
-            velocity.y = -2f;
-        }
-
-        //make animation play based on input from axis
-        if (Input.GetAxisRaw("Horizontal") == 0f && Input.GetAxisRaw("Vertical") == 0f)
-        {
-            GetComponentInChildren<Animator>().SetBool("isWalking", false);
-
-        }
-        else
-        {
-            if (Grounded())
-            {
-                GetComponentInChildren<Animator>().SetBool("isWalking", true);
-            }
-        }
-
         //set the movement direction vector3 if the player is still alive
         if (healthScript.alive)
         {
@@ -98,9 +77,14 @@ public class NewPlayerMovement : MonoBehaviour
             controlsScreen.SetActive(false);
             controlsUp = false;
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 
-    private bool Grounded()
+    public bool Grounded()
     {
         if (Physics.Raycast(transform.position, Vector3.down, out groundCheck, 1.17f))
         {

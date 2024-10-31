@@ -14,7 +14,7 @@ public class EclipseTimer : MonoBehaviour
     public Color RedColor;
 
     public GameObject lunarMoon;
-    public MarthaTestScript MarthFireEmblem;
+    public MarthaTestScript Martha;
 
     public AudioSource TimerEndSound;
 
@@ -34,16 +34,15 @@ public class EclipseTimer : MonoBehaviour
             Debug.Log("Eclipse happened! Time to die!");
             TimerEndSound.Play();
             gameTimerActive = false;
-            if (!MarthFireEmblem.brain.GetState().Equals("MurderHobo"))
-                MarthFireEmblem.KILL();
-            //StartCoroutine(Restart());
+            if (!Martha.brain.GetState().Equals("MurderHobo"))
+                Martha.KILL();
         }
 
         //lunarMoon.transform.localPosition = new Vector3(Mathf.Clamp(timer / eclipseTimerLength, 0f, 1f) , 0, 0);
 
-        //turn fog red over time once halfway point starts
+        //turn fog red over time once it hits fog timer
         if (timer > redFogTime * 60)
-            RenderSettings.fogColor = Color.Lerp(RenderSettings.fogColor, RedColor, (Time.deltaTime / (eclipseTimerLength * 30f)));
+            RenderSettings.fogColor = Color.Lerp(RenderSettings.fogColor, RedColor, (Time.deltaTime / (eclipseTimerLength * 15f)));
     }
 
     //restarts current loaded scene (will probably change later)

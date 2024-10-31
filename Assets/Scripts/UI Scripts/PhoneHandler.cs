@@ -7,15 +7,17 @@ using TMPro;
 public class PhoneHandler : MonoBehaviour
 {
     // Screen Management Variables
-    enum Screen {HUD, Save};
+    enum Screen {HUD, Save, Off};
     Screen currentScreen = Screen.HUD;
     [SerializeField] GameObject SaveMode;
     [SerializeField] GameObject HUDMode;
+    [SerializeField] GameObject OffMode;
     // Text and other data information
     [SerializeField] TextMeshProUGUI rockText, battText, kitText;
     [SerializeField] TextMeshProUGUI SaveText;
     [SerializeField] CellService cell;
     public string playerName;
+    public float phoneBatteryLife = 100;
     bool canSave = false;
     bool hasSaved = false;
 
@@ -37,13 +39,17 @@ public class PhoneHandler : MonoBehaviour
     private void Update()
     {
         // ~~~~~~~~~~~~~~~~~~~ Screen Changing ~~~~~~~~~~~~~~~~~~~~~~~~
-        if (Input.mouseScrollDelta.y > 0 && currentScreen != Screen.HUD) // Positive values up, negative down
+        if (Input.GetKeyDown(KeyCode.Z) && currentScreen != Screen.HUD) // Positive values up, negative down
         {// Positive means we want to see the HUD if we aren't already
             SwitchMode(Screen.HUD);
         }
-        else if (Input.mouseScrollDelta.y < 0 && currentScreen != Screen.Save) // Positive values up, negative down
+        else if (Input.GetKeyDown(KeyCode.C) && currentScreen != Screen.Save) // Positive values up, negative down
         {// Positive means we want to see the Save Menu if we aren't already
             SwitchMode(Screen.Save);
+        }
+        else if(phoneBatteryLife <= 0)
+        {
+            SwitchMode(Screen.Off);
         }
         // ~~~~ Checking for Checkpoints
         if (canSave && !hasSaved && Input.GetKeyDown(KeyCode.C)) // Can we save? Have we not yet saved? Did we hit the button
@@ -96,6 +102,9 @@ public class PhoneHandler : MonoBehaviour
                 break;
             case Screen.Save:
                 SaveMode.SetActive(true);
+                break;
+            case Screen.Off:
+                OffMode.SetActive(true);
                 break;
             default:
                 break;

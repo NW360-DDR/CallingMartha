@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using Unity.VisualScripting;
 
 public class HealthAndRespawn : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class HealthAndRespawn : MonoBehaviour
     private EclipseTimer timerScript;
     private bool healReset = false;
     private float healthHold = 0;
+    private Rigidbody playerRB;
+    private Animator blackScreen;
 
     private void Start()
     {
@@ -26,6 +29,7 @@ public class HealthAndRespawn : MonoBehaviour
         grabScript = GetComponentInChildren<GrabAndThrow>();
         redJelly = GameObject.Find("Red Overlay").GetComponent<RawImage>();
         timerScript = GameObject.Find("EclipseTimer").GetComponent<EclipseTimer>();
+        blackScreen = GameObject.Find("Fade").GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -68,7 +72,7 @@ public class HealthAndRespawn : MonoBehaviour
         if (other.CompareTag("Hurtbox") && !hurtCool)
         {
             health -= 1;
-            redJelly.color += new Color (redJelly.color.r, redJelly.color.g, redJelly.color.b, 0.10f);
+            redJelly.color += new Color (redJelly.color.r, redJelly.color.g, redJelly.color.b, 0.50f);
             hurtCool = true;
             healReset = true;
             StartCoroutine(HitCooldown());
@@ -82,13 +86,14 @@ public class HealthAndRespawn : MonoBehaviour
         if (other.CompareTag("Die"))
         {
             health = 0;
-            redJelly.color += new Color(redJelly.color.r, redJelly.color.g, redJelly.color.b, 0.20f);
+            redJelly.color += new Color(redJelly.color.r, redJelly.color.g, redJelly.color.b, 0.60f);
             respawned = true;
             alive = false;
             GetComponent<CameraScript>().enabled = false;
             grabScript.enabled = false;
             GetComponent<AxeSlash>().enabled = false;
             GetComponent<NewPlayerMovement>().enabled = false;
+            gameObject.AddComponent<Rigidbody>();
             StartCoroutine(timerScript.Restart());
         }
     }
@@ -97,23 +102,29 @@ public class HealthAndRespawn : MonoBehaviour
     {
         //resets player location and health
         Debug.Log("Respawn?");
+        gameObject.AddComponent<Rigidbody>();
+        playerRB = GetComponent<Rigidbody>();
+        yield return new WaitForSeconds(1.5f);
+        blackScreen.SetBool("FadeIn", true);
         respawned = true;
         redJelly.color = new Color(redJelly.color.r, redJelly.color.g, redJelly.color.b, 0f);
         transform.position = checkpoint;
         health = 3;
         alive = true;
         yield return new WaitForSeconds(0.5f);
+        Destroy(playerRB);
         GetComponent<CameraScript>().enabled = true;
         InventoryScript.enabled = true;
         GetComponent<AxeSlash>().enabled = true;
         GetComponent<NewPlayerMovement>().enabled = true;
         grabScript.enabled = true;
         respawned = false;
+        blackScreen.SetBool("FadeIn", false);
     }
 
     IEnumerator HitCooldown()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1.5f);
         healReset = false;
         hurtCool = false;
     }

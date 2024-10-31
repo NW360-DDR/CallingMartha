@@ -18,9 +18,6 @@ public class AxeScript : Interactable
 
             inventoryScript.axe = true;
 
-            GameObject.Find("Player (Remake)").GetComponentInParent<AxeSlash>().rightHand.SetActive(false);
-            GameObject.Find("Player (Remake)").GetComponentInParent<AxeSlash>().axeSprite.SetActive(true);
-
             Destroy(gameObject);
         }
     }

@@ -11,7 +11,7 @@ public class MedkitScript : Interactable
         logString = "Picked up a Medkit.";
         SendLog();
         inventoryScript = GameObject.Find("Player (Remake)").GetComponent<InventoryScript>();
-        inventoryScript.medKitCount += 1;
+        inventoryScript.medKitCount++;
 
         Destroy(gameObject);
         Debug.Log("Medkit!");
