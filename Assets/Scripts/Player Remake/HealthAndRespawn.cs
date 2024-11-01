@@ -33,11 +33,12 @@ public class HealthAndRespawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (health <= 0 && !respawned)
+        if (health <= 0 && !respawned && alive)
         {
             //kill player and run the respawn coroutine
             alive = false;
             GetComponent<CameraScript>().enabled = false;
+            playerRB = gameObject.AddComponent<Rigidbody>();
             grabScript.enabled = false;
             GetComponent<AxeSlash>().enabled = false;
             GetComponent<NewPlayerMovement>().enabled = false;
@@ -100,7 +101,6 @@ public class HealthAndRespawn : MonoBehaviour
     {
         //resets player location and health
         Debug.Log("Respawn?");
-        playerRB = gameObject.AddComponent<Rigidbody>();
         yield return new WaitForSeconds(1.5f);
         blackScreen.SetBool("FadeIn", true);
         respawned = true;

@@ -13,6 +13,7 @@ public class MarthaTestScript : MonoBehaviour
 	[SerializeField] FieldOfView fov;
 	[SerializeField] Animator anim;
 	public GameObject hurtBox;
+	public GameObject killBox;
 	Enemy health;
 
 	// Navigation Parameters
@@ -211,6 +212,7 @@ public class MarthaTestScript : MonoBehaviour
 			nav.SetDestination(dest);
 			nav.autoBraking = false; // Disable auto-braking so the navigation will just keep moving at a steady pace.
 			nav.speed = baseSpeed * chaseMult * 10; // Eviscerate this man's spinal column
+			killBox.SetActive(true);
 		}
 		void Update()
         {
@@ -270,7 +272,7 @@ public class MarthaTestScript : MonoBehaviour
             {
 				brain.PushState(BossBackAway());
             }
-			else if (nav.remainingDistance < 0.25f)
+			else if (nav.remainingDistance < 1f)
             {
 				brain.PushState(Attack());
             }
