@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -48,8 +47,8 @@ public class StateMachine : MonoBehaviour
     }
 
     // Pop removes a state from the top of the stack.
-    // Pop also seems to break things more often than not.
-    // Very likely I just forgot the best way to utilize it.
+    // When Nate isn't a dumbass, it works perfectly fine.
+    // Unfortunately Nate is often a dumbass.
     public void PopState()
     {
         if (GetCurrentState() != null)

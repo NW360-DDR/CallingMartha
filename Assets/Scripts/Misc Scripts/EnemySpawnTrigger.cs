@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawnTrigger : MonoBehaviour
 {
     public GameObject[] enemies;
+    // NOTE: This could also be done so that it just enables an empty parent of the enemie group and only need to enable one thing.
     void SpawnEnemies()
     {
         Debug.Log("It worked!");

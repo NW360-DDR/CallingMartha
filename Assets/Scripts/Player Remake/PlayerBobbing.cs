@@ -1,10 +1,4 @@
-using System.Collections;
-
-using System.Collections.Generic;
-
 using UnityEngine;
-
-
 
 public class PlayerBobbing : MonoBehaviour
 {
@@ -38,7 +32,6 @@ public class PlayerBobbing : MonoBehaviour
                 z = transform.localPosition.z
             }, effectSpeed * 2);
             transform.position += sinX;
-
         }
         else
         {
@@ -46,14 +39,9 @@ public class PlayerBobbing : MonoBehaviour
             StopHeadbob();
         }
     }
-
     private void StopHeadbob()
     {
-
         if (transform.localPosition == origPos) return;
-
         transform.localPosition = Vector3.Lerp(transform.localPosition, origPos, resetSpeed * Time.deltaTime);
-
     }
-
 }
