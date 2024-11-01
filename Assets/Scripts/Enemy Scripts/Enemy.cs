@@ -9,6 +9,8 @@ public class Enemy : MonoBehaviour
 
     private Animator spriteAnim;
     private AngleCalc angleCalcScript;
+
+    public AudioSource Yelp;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,12 +25,14 @@ public class Enemy : MonoBehaviour
 
         if (health <= 0)
         {
+            Yelp.Play();
             Destroy(gameObject);
         }
     }
 
     void GetShot()
     {
+        Yelp.Play();
         Debug.Log("I done got shot!");
         Destroy(gameObject);
     }
@@ -39,6 +43,7 @@ public class Enemy : MonoBehaviour
         {
             Debug.Log("Ouch!");
             health -= 50;
+            Yelp.Play();
             GetComponent<NavMeshAgent>().speed = 0;
             StartCoroutine(ResetSpeed());
         }
