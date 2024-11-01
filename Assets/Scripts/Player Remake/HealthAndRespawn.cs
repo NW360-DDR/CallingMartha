@@ -1,8 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
-using Unity.VisualScripting;
 
 public class HealthAndRespawn : MonoBehaviour
 {
@@ -102,8 +100,7 @@ public class HealthAndRespawn : MonoBehaviour
     {
         //resets player location and health
         Debug.Log("Respawn?");
-        gameObject.AddComponent<Rigidbody>();
-        playerRB = GetComponent<Rigidbody>();
+        playerRB = gameObject.AddComponent<Rigidbody>();
         yield return new WaitForSeconds(1.5f);
         blackScreen.SetBool("FadeIn", true);
         respawned = true;

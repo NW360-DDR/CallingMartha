@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -31,6 +30,10 @@ public class EclipseTimer : MonoBehaviour
         {
             Debug.Log("Eclipse happened! Time to die!");
             gameTimerActive = false;
+            if (!Martha.gameObject.activeSelf)
+            {
+                Martha.gameObject.SetActive(true);
+            }
             if (!Martha.brain.GetState().Equals("MurderHobo"))
                 Martha.KILL();
         }
