@@ -8287,10 +8287,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3562087898952072853}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d13e7ad9633f30e4f8685b6ab85f98cf, type: 3}
+  m_Script: {fileID: 11500000, guid: 71013c3bfcb814143a377bdba4d32175, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectsToTurnOn: {fileID: 0}
+  objectsToTurnOn: {fileID: 3532645213364884709}
 --- !u!1 &6198680724897407670
 GameObject:
   m_ObjectHideFlags: 0
@@ -8470,7 +8470,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7279030967750513965}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d13e7ad9633f30e4f8685b6ab85f98cf, type: 3}
+  m_Script: {fileID: 11500000, guid: 71013c3bfcb814143a377bdba4d32175, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   objectsToTurnOn: {fileID: 3532645213364884709}
