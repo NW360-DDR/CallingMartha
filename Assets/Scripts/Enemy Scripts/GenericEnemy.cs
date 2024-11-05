@@ -4,7 +4,7 @@ using UnityEngine.AI;
 public class GenericEnemy : MonoBehaviour
 {
 	// StateMachine and navigation components, misc external
-	StateMachine brain;
+	public StateMachine brain;
 	NavMeshAgent nav;
 	NavMeshPath path;
 	FieldOfView fov;
@@ -61,18 +61,6 @@ public class GenericEnemy : MonoBehaviour
 	/// <summary>
 	/// Permanently increases the speed of the enemy for the duration of the run.
 	/// </summary>
-	public void AggroUp()
-    {
-		baseSpeed *= 1.25f;
-    }
-	/// <summary>
-	/// Permanently increases the speed of the enemy for the duration of the run.
-	/// </summary>
-	/// <param name="amount"></param>
-	public void AggroUp(float amount)
-    {
-		baseSpeed *= amount;
-    }
 
 	private void Update()
 	{
