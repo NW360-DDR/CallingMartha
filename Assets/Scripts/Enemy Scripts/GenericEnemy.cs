@@ -161,8 +161,8 @@ public class GenericEnemy : MonoBehaviour
 
 
 			dest = fov.playerRef.transform.position;
-			//nav.SetDestination(dest);
-			AttemptPath(dest);
+			nav.SetDestination(dest);
+			//AttemptPath(dest);
 			if ((nav.remainingDistance < chargeRange) && chargeTimer >= chargeCooldown)
 			{
 				brain.PushState(Charge());
