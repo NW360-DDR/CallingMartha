@@ -15,6 +15,8 @@ public class EclipseTimer : MonoBehaviour
     public GameObject lunarMoon;
     public MarthaTestScript Martha;
 
+    public AudioSource TimerEndSound;
+
     private void Start()
     {
         StartCoroutine(UpdateMoon());
@@ -28,6 +30,7 @@ public class EclipseTimer : MonoBehaviour
         // multiply by 60 to make the number into minutes
         if (timer >= (eclipseTimerLength * 60))
         {
+            
             Debug.Log("Eclipse happened! Time to die!");
             gameTimerActive = false;
             if (!Martha.gameObject.activeSelf)
@@ -35,7 +38,10 @@ public class EclipseTimer : MonoBehaviour
                 Martha.gameObject.SetActive(true);
             }
             if (!Martha.brain.GetState().Equals("MurderHobo"))
+            {
                 Martha.KILL();
+                TimerEndSound.Play();
+            }
         }
 
         //lunarMoon.transform.localPosition = new Vector3(Mathf.Clamp(timer / eclipseTimerLength, 0f, 1f) , 0, 0);

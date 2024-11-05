@@ -4,6 +4,7 @@ public class GeneratorInteractScript : Interactable
 {
     private InventoryScript inventoryScript;
     private bool fixedCheck = false;
+    public int itemsNeeded = 3;
     public GameObject[] thingsToTurnOn;
     void Interact()
     {
@@ -12,7 +13,7 @@ public class GeneratorInteractScript : Interactable
         Debug.Log("Gen Check!");
         inventoryScript = GameObject.Find("Player (Remake)").GetComponent<InventoryScript>();
 
-        if (inventoryScript.generatorItems < 3 && !fixedCheck)
+        if (inventoryScript.generatorItems < itemsNeeded && !fixedCheck)
         {
             Debug.Log("Sorry! Can't fix!");
             logString = "This generator needs work...";
@@ -23,6 +24,7 @@ public class GeneratorInteractScript : Interactable
             logString = "Generator repaired.";
             SendLog();
             fixedCheck = true;
+            inventoryScript.generatorItems = 0;
             for (int i = 0; i < thingsToTurnOn.Length; i++)
             {
                 thingsToTurnOn[i].SetActive(true);

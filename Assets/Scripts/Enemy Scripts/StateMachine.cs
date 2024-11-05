@@ -10,6 +10,8 @@ public class StateMachine : MonoBehaviour
 {
     public Stack<State> States { get; set; } //auto implements the get/sets properties
 
+    public string Peek;
+
     private void Awake()
     {
         States = new Stack<State>();
@@ -20,6 +22,7 @@ public class StateMachine : MonoBehaviour
         if (GetCurrentState() != null)
         {
             GetCurrentState().ActiveAction.Invoke();  //if we have a state let's invoke it every frame
+            Peek = GetCurrentState().name;
         }
     }
 

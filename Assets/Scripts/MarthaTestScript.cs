@@ -13,6 +13,7 @@ public class MarthaTestScript : MonoBehaviour
 	[SerializeField] FieldOfView fov;
 	[SerializeField] Animator anim;
 	public GameObject hurtBox;
+	public GameObject killBox;
 	Enemy health;
 
 	// Navigation Parameters
@@ -21,7 +22,7 @@ public class MarthaTestScript : MonoBehaviour
 	readonly float maxWanderDist = 20f;
 	public float idleTimer = 3f;
 	float currIdle = 0f;
-	public float baseSpeed = 3.5f;
+	public float baseSpeed = 25f;
 	public float chaseMult = 1.5f;
 
 	bool hunting = false;
@@ -33,25 +34,67 @@ public class MarthaTestScript : MonoBehaviour
 	public float attackCooldown = 0.75f;
 	[SerializeField] int BossHealth = 500;
 	public float bossSpeed = 25f;
+	[SerializeField] float chargeRange = 5f;
+	[SerializeField] float chargeCooldown = 5f, chargeTimer = 0f;
 	float deNavTimer = 0f; // How long until the boss gives up and walks away.
 	public float RetreatTimer = 3f;
+
+	State HoldOn()
+	{
+		void Enter()
+		{
+			hurtBox.SetActive(false);
+			nav.ResetPath();
+			currIdle = 1;
+			//wolfAnim.SetBool("Running", false);
+		}
+		void Update()
+		{
+			// Otherwise, wait for IdleTimer to run out, then go somewhere else.
+			currIdle += Time.deltaTime;
+			if (currIdle >= idleTimer)
+			{
+				backState++;
+				brain.PopState();
+			}
+		}
+		void Exit(){}
+		return new(Update, Enter, Exit, "HoldUp");
+	}
+
+
+
+
+
+
+
+
+
+
+
+
 
 	// Start is called before the first frame update
 	void Start()
 	{
 		brain.PushState(Idle());
-		idleTimer = Mathf.Infinity;
+		idleTimer = 1000000000000000000000f;
 		path = new();
 		angleBase = fov.angle;
 	}
 
 	private void Update()
 	{
+		chargeTimer += Time.deltaTime;
 		if (fov.canSeePlayer && !hunting)
 		{
 			hunting = true;
 			brain.PushState(BossFight_Chase());
 		}
+        else
+        {
+			idleTimer = 3f;
+        }
 		if (backState > 0)
 		{
 			brain.PopState();
@@ -211,6 +254,7 @@ public class MarthaTestScript : MonoBehaviour
 			nav.SetDestination(dest);
 			nav.autoBraking = false; // Disable auto-braking so the navigation will just keep moving at a steady pace.
 			nav.speed = baseSpeed * chaseMult * 10; // Eviscerate this man's spinal column
+			killBox.SetActive(true);
 		}
 		void Update()
         {
@@ -250,18 +294,20 @@ public class MarthaTestScript : MonoBehaviour
     {
 		brain.PushState(BossFight_Chase());
 		nav.speed = bossSpeed;
-    }
+		idleTimer = 3f;
+		health = GetComponent<Enemy>();
+		if (health != null)
+		{
+			health.health = BossHealth;
+			AttemptPathBoss(fov.playerRef.transform.position);
+		}
+	}
 	State BossFight_Chase()
     {
 
 		void Enter()
 		{
-			health = GetComponent<Enemy>();
-			if (health != null)
-            {
-				health.health = BossHealth;
-				AttemptPathBoss(fov.playerRef.transform.position);
-            }
+			
 		}
 		void Update()
         {
@@ -270,44 +316,55 @@ public class MarthaTestScript : MonoBehaviour
             {
 				brain.PushState(BossBackAway());
             }
-			else if (nav.remainingDistance < 0.25f)
-            {
+			if ((nav.remainingDistance < chargeRange) && chargeTimer >= chargeCooldown)
+			{
 				brain.PushState(Attack());
-            }
-        }
+			}
+		}
 		void Exit()
         {
 			deNavTimer = 0;
         }
 
 
-		return new(Update, Enter, Exit);
+		return new(Update, Enter, Exit, "Boss Chase");
     }
 
 	State Attack()
     {
+		float chargeMult = 3f;
 		void Enter()
-        {
-			nav.ResetPath();
+		{
 			hurtBox.SetActive(true);
-			currIdle = 0f;
-        }
-		void Update()
-        {
-			currIdle += Time.deltaTime;
-			if (currIdle >= attackCooldown)
-            {
-				brain.PopState();
-            }
-        }
-		void Exit()
-        {
-			hurtBox.SetActive(false);
-			currIdle = 0f;
-        }
+			Vector3 newTarget = fov.playerRef.transform.position - transform.position; // The player destination is exactly where we want to charge. 
+			newTarget = chargeRange * 1.2f * newTarget.normalized; // And we want to go in that direction notably farther than just where the player is.
+			newTarget += transform.position; // Add this direction + magnitude to our current position, and we should get a proper destination.
+											 //nav.SetDestination(newTarget);
+			AttemptPath(newTarget);
+			nav.speed = baseSpeed * chargeMult;
+			//wolfAnim.SetBool("Running", true);
+		}
 
-		return new(Update, Enter, Exit);
-    }
+		void Update()
+		{
+			if (nav.remainingDistance < 0.25f)
+			{
+				brain.PushState(HoldOn());
+			}
+		}
+
+		void Exit()
+		{
+			nav.speed = baseSpeed;
+			chargeTimer = 0.0f;
+			hurtBox.SetActive(false);
+			//wolfAnim.SetBool("Running", false);
+		}
+		return new State(Update, Enter, Exit, "Charge");
+	}
+
+
+
 
 	State BossBackAway()
     {
@@ -334,7 +391,7 @@ public class MarthaTestScript : MonoBehaviour
 		{
 			// Empty
 		}
-		return new State(Wander, WanderEnter, WanderExit, "Wander");
+		return new State(Wander, WanderEnter, WanderExit, "Backing Away");
 	}
 
 }
