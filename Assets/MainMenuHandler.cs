@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -19,14 +18,21 @@ public class MainMenuHandler : MonoBehaviour
             text.rectTransform.Translate(Time.deltaTime * scrollSpeed * Vector2.up);
             if (Input.GetKeyDown(KeyCode.E) || text.rectTransform.position.y >= 0)
             {
-                StartGame();
+                StartCoroutine(StartGame());
             }
         }
     }
 
-    public void StartGame()
+  
+
+    IEnumerator StartGame()
     {
-        SceneManager.LoadScene(MainGame);
+        prologueStarted = true;
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(MainGame);
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
     }
 
     public void Prologue()
@@ -40,3 +46,4 @@ public class MainMenuHandler : MonoBehaviour
         Application.Quit();
     }
 }
+
