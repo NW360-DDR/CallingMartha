@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.FullSerializer.Internal;
 using UnityEngine;
 
 public class EquippedScript : MonoBehaviour
@@ -33,7 +34,7 @@ public class EquippedScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.mouseScrollDelta.y > 0 && inventoryScript.bulletCount <= 0 && currentEquipped != 0)
+        /*if (Input.mouseScrollDelta.y > 0 && inventoryScript.bulletCount <= 0 && currentEquipped != 0)
         {
             currentEquipped = 0;
             StartCoroutine(SendUpdate());
@@ -46,6 +47,31 @@ public class EquippedScript : MonoBehaviour
         else if (Input.mouseScrollDelta.y < 0 && inventoryScript.bulletCount <= 0 && currentEquipped != 2)
         {
             currentEquipped = 2;
+            StartCoroutine(SendUpdate());
+        }
+        else if (Input.mouseScrollDelta.y < 0 && currentEquipped != 2)
+        {
+            currentEquipped++;
+            StartCoroutine(SendUpdate());
+        }*/
+
+        if (Input.GetKeyDown(KeyCode.Alpha1) && currentEquipped != 0)
+        {
+            currentEquipped = 0;
+            StartCoroutine(SendUpdate());
+        }else if (Input.GetKeyDown(KeyCode.Alpha2) && currentEquipped != 1)
+        {
+            currentEquipped = 1;
+            StartCoroutine(SendUpdate());
+        }else if (Input.GetKeyDown(KeyCode.Alpha3) && currentEquipped != 2)
+        {
+            currentEquipped = 2;
+            StartCoroutine(SendUpdate());
+        }
+
+        if (Input.mouseScrollDelta.y > 0 && currentEquipped != 0)
+        {
+            currentEquipped--;
             StartCoroutine(SendUpdate());
         }
         else if (Input.mouseScrollDelta.y < 0 && currentEquipped != 2)
@@ -82,7 +108,7 @@ public class EquippedScript : MonoBehaviour
             flashlightLight.SetActive(false);
         }
 
-        if (currentEquipped == 1 && inventoryScript.bulletCount > 0)
+        if (currentEquipped == 1)
         {
             currentEquipped = 1;
             gunScript.enabled = true;

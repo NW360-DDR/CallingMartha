@@ -206,7 +206,7 @@ public class GenericEnemy : MonoBehaviour
 		{
 			hurtBox.SetActive(false);
 			nav.ResetPath();
-			currIdle = 1;
+			currIdle = 2.85f;
 			wolfAnim.SetBool("Running", false);
 		}
 		void Update()
