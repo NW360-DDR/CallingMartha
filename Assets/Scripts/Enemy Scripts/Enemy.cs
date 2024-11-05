@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
     public float health = 100;
+    public bool isAnimated = true;
+    public bool isMartha = false;
 
     private Animator spriteAnim;
     private AngleCalc angleCalcScript;
@@ -21,12 +24,13 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isAnimated)
         spriteAnim.SetFloat("Rotation", angleCalcScript.index);
 
         if (health <= 0)
         {
             Yelp.Play();
-            Destroy(gameObject);
+            StartCoroutine(Die());
         }
     }
 
@@ -53,5 +57,14 @@ public class Enemy : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         GetComponent<NavMeshAgent>().speed = 3.5f;
+    }
+
+    IEnumerator Die()
+    {
+        yield return new WaitForSeconds(0.1f);
+        Debug.Log("Oh no! Am Dead!");
+        if(isMartha)
+        SceneManager.LoadScene("End Scene");
+        Destroy(gameObject);
     }
 }
