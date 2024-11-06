@@ -86,13 +86,13 @@ public class NewPlayerMovement : MonoBehaviour
 
     public bool Grounded()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, out groundCheck, 1.17f))
+        if (Physics.Raycast(transform.position, Vector3.down, out groundCheck, 1.2f))
         {
             if (groundCheck.transform.CompareTag("Ground") || groundCheck.transform.CompareTag("Grabbable"))
             {
                 return true;
             }
-            else if (Physics.Raycast(transform.position, Vector3.down, out groundCheck, 1.17f, grabMask))
+            else if (Physics.Raycast(transform.position, Vector3.down, out groundCheck, 1.2f, grabMask))
             {
                 return true;
             }

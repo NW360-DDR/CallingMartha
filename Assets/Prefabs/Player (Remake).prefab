@@ -1076,6 +1076,7 @@ MonoBehaviour:
   medKitCount: 0
   flashLightBatteries: 1
   generatorItems: 0
+  lighters: 0
   axe: 1
   keys: 00000000
 --- !u!114 &8929680878949345201
@@ -1111,7 +1112,7 @@ MonoBehaviour:
   phone: {fileID: 4197754646362111416}
   flashlightLight: {fileID: 9120104487017277093}
   currentEquipped: 0
-  batteryDrainMultiplier: 1.3
+  batteryDrainMultiplier: 0.5
 --- !u!1 &8183476400951475566
 GameObject:
   m_ObjectHideFlags: 0
