@@ -196,8 +196,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09e4df647125a554cb4471505c1bfc47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brain: {fileID: 0}
+  brain: {fileID: 5425874590111644774}
   hurtBox: {fileID: 5229804498528400372}
+  rb: {fileID: -7314679952262224163}
   baseSpeed: 3.5
   chaseMult: 1.5
   chargeMult: 3
