@@ -45,11 +45,18 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.CompareTag("AxeHitbox"))
         {
-            Debug.Log("Ouch!");
-            health -= 50;
-            Yelp.Play();
-            GetComponent<NavMeshAgent>().speed = 0;
-            StartCoroutine(ResetSpeed());
+            GenericEnemy brain = GetComponent<GenericEnemy>();
+            if (!brain.brain.GetState().Equals("GetHit"))
+            {
+                brain.DoDamage();
+                Debug.Log("Ouch!");
+                health -= 50;
+                Yelp.Play();
+            }
+            
+            //GetComponent<NavMeshAgent>().speed = 0;
+            //StartCoroutine(ResetSpeed());
+            
         }
     }
 
