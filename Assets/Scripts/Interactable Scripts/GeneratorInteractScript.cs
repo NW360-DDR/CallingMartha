@@ -6,6 +6,7 @@ public class GeneratorInteractScript : Interactable
     private bool fixedCheck = false;
     public int itemsNeeded = 3;
     public GameObject[] thingsToTurnOn;
+    public GameObject[] thingsToTurnOff;
     void Interact()
     {
         //Do interact code here
@@ -28,6 +29,10 @@ public class GeneratorInteractScript : Interactable
             for (int i = 0; i < thingsToTurnOn.Length; i++)
             {
                 thingsToTurnOn[i].SetActive(true);
+            }
+            for (int i = 0; i < thingsToTurnOff.Length; i++)
+            {
+                thingsToTurnOff[i].SetActive(false);
             }
         }
     }
