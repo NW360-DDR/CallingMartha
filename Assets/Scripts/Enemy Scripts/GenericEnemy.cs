@@ -21,6 +21,7 @@ public class GenericEnemy : MonoBehaviour
 	// Variables for Idling. Rather misleading, the idleTimer gets used for a few more things than just idling, and should be renamed or split into multiple variables.
 	public float idleTimer = 3;
 	public float currIdle = 0;
+	public float ChargeDuration = 1.85f;
 	bool hunting = false;
 	int backState = 0; // If this number is > 0, it means we need to pop multiple states at once, and this is the safest way to go about this.
 	float angleBase; // base viewing angle when navigating.
@@ -184,17 +185,15 @@ public class GenericEnemy : MonoBehaviour
 		void Update()
 		{
 			chargeTimer += Time.deltaTime;
-			if (nav.remainingDistance < 0.25f || chargeTimer >= 1.25f)
+			if (nav.remainingDistance < -0.25f || chargeTimer >= ChargeDuration)
 			{
-				//brain.PushState(HoldOn());
-				brain.PopState();
+				brain.PushState(HoldOn());
 			}
 		}
 
 		void Exit()
 		{
 			nav.speed = baseSpeed;
-			chargeTimer = 0.0f;
 			hurtBox.SetActive(false);
 			wolfAnim.SetBool("Running", false);
 		}
@@ -207,13 +206,12 @@ public class GenericEnemy : MonoBehaviour
 		{
 			hurtBox.SetActive(false);
 			nav.ResetPath();
-			currIdle = 2.85f;
 			wolfAnim.SetBool("Running", false);
 		}
 		void Update()
 		{
-			currIdle += Time.deltaTime;
-			if (currIdle >= idleTimer)
+			chargeTimer += Time.deltaTime;
+			if (chargeTimer >= ChargeDuration)
 			{
 				backState++;
 				brain.PopState();
