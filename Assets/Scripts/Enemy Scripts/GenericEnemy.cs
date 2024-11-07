@@ -147,8 +147,8 @@ public class GenericEnemy : MonoBehaviour
 		void Update()
 		{
 			dest = fov.playerRef.transform.position;
-			//nav.SetDestination(dest);
-			AttemptPath(dest);
+			nav.SetDestination(dest);
+			//AttemptPath(dest);
 			if ((nav.remainingDistance < chargeRange) && chargeTimer >= chargeCooldown)
 			{
 				brain.PushState(Charge());
@@ -207,7 +207,7 @@ public class GenericEnemy : MonoBehaviour
 		{
 			hurtBox.SetActive(false);
 			nav.ResetPath();
-			currIdle = 1f;
+			currIdle = 2.85f;
 			wolfAnim.SetBool("Running", false);
 		}
 		void Update()

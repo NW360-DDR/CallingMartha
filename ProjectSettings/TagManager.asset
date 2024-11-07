@@ -21,6 +21,7 @@ TagManager:
   - Cellbox
   - Shootable
   - Die
+  - Barrel
   layers:
   - Default
   - TransparentFX

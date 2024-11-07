@@ -45,9 +45,8 @@ GameObject:
   - component: {fileID: 5744507013981974657}
   - component: {fileID: 3749851516429202108}
   - component: {fileID: 2791920281726742106}
-  - component: {fileID: 6654145321672630735}
-  - component: {fileID: 7481949012558806882}
-  - component: {fileID: 9173711192795321862}
+  - component: {fileID: 933823536762755670}
+  - component: {fileID: 7608207082479579550}
   m_Layer: 0
   m_Name: Campfire
   m_TagString: Checkpoint
@@ -8240,8 +8239,35 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3562087898952072853}
   m_Mesh: {fileID: 0}
---- !u!64 &6654145321672630735
-MeshCollider:
+--- !u!54 &933823536762755670
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3562087898952072853}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &7608207082479579550
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -8258,39 +8284,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
---- !u!208 &7481949012558806882
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3562087898952072853}
-  m_Enabled: 1
   serializedVersion: 3
-  m_Shape: 0
-  m_Extents: {x: 1.94, y: 0.41000003, z: 1.94}
-  m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
-  m_Center: {x: -1.003, y: 0.33800003, z: -6.3570004}
-  m_TimeToStationary: 0.5
---- !u!114 &9173711192795321862
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3562087898952072853}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71013c3bfcb814143a377bdba4d32175, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectsToTurnOn: {fileID: 3532645213364884709}
+  m_Size: {x: 0.4318328, y: 0.32219723, z: 0.44209898}
+  m_Center: {x: -0.52160555, y: 0.07944413, z: -0.19647057}
 --- !u!1 &6198680724897407670
 GameObject:
   m_ObjectHideFlags: 0
