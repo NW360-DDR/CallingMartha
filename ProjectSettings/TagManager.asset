@@ -17,6 +17,10 @@ TagManager:
   - Wolf
   - Generator
   - Generator Item
+  - Interactable
+  - Cellbox
+  - Shootable
+  - Die
   layers:
   - Default
   - TransparentFX
@@ -25,7 +29,7 @@ TagManager:
   - Water
   - UI
   - Grabbable
-  - 
+  - FirstPerson
   - 
   - 
   - 

@@ -8,22 +8,17 @@ public class InGameVOScriptMod : MonoBehaviour
     public AudioSource InGameClip;
     public float ClipLength;
     public Collider BoxCollider;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public AudioManager AudioManager;
+    // Start is called before the first frame update
+ 
     public void OnTriggerExit(Collider other)
     {
         if (other.tag == "Player")
         {
             InGameClip.Play();
+            AudioManager.AudioPlaying = true;
+            AudioManager.AudioSourcesPlaying += 1;
             StartCoroutine(WaittoEnd());
             BoxCollider.enabled = false;
 
@@ -35,6 +30,7 @@ public class InGameVOScriptMod : MonoBehaviour
     public IEnumerator WaittoEnd()
     {
         yield return new WaitForSeconds(ClipLength);
+        AudioManager.AudioSourcesPlaying = 0;
         Destroy(this.gameObject);
     }
 }

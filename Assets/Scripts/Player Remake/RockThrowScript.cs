@@ -9,18 +9,23 @@ public class RockThrowScript : MonoBehaviour
     public GameObject spawnLocation;
 
     private GameObject thrownRock;
+    private InventoryScript inventoryScript;
 
+    private void Start()
+    {
+        inventoryScript = GetComponent<InventoryScript>();
+    }
 
     // Update is called once per frame
     void Update()
     {
         //its a rock. throw it.
-        if (Input.GetMouseButtonDown(1) && GetComponentInChildren<GrabAndThrow>().rockCount >= 1)
+        if (Input.GetMouseButtonDown(1) && inventoryScript.bulletCount >= 1)
         {
             thrownRock = Instantiate(rockPrefab, spawnLocation.transform.position, spawnLocation.transform.rotation);
-            thrownRock.GetComponent<Rigidbody>().AddForce(spawnLocation.transform.forward * 30, ForceMode.Impulse);
+            thrownRock.GetComponent<Rigidbody>().AddForce(spawnLocation.transform.forward * 25, ForceMode.Impulse);
             thrownRock = null;
-            GetComponentInChildren<GrabAndThrow>().rockCount -= 1;
+            inventoryScript.bulletCount -= 1;
         }
     }
 }

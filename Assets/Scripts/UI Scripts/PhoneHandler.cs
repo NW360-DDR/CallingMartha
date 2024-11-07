@@ -6,124 +6,144 @@ using TMPro;
 
 public class PhoneHandler : MonoBehaviour
 {
-   const KeyCode Z = KeyCode.Z, C = KeyCode.C;
-    enum Screen {GPS, VM, Log, HUD};
-    [SerializeField] GameObject GPSMode;
-    [SerializeField] GameObject VoicemailMode;
-    [SerializeField] GameObject LogMode;
-    [SerializeField] GameObject HUDMode;
-    [SerializeField] RawImage HPBar, BattBar;
-    float barWidth;
-    [SerializeField] TextMeshProUGUI rockText, battText, kitText;
-    CellService cell;
-    public string playerName;
-    Player player;
-    int[] temp;
+    // Screen Management Variables
+    enum Screen {HUD, Save, Off};
     Screen currentScreen = Screen.HUD;
+    [SerializeField] GameObject SaveMode;
+    [SerializeField] GameObject HUDMode;
+    [SerializeField] GameObject OffMode;
+    // Text and other data information
+    [SerializeField] TextMeshProUGUI rockText, battText, kitText;
+    [SerializeField] TextMeshProUGUI SaveText;
+    [SerializeField] CellService cell;
+    public string playerName;
+    public float phoneBatteryLife = 100;
+    bool canSave = false;
+    bool hasSaved = false;
+
+    // These two are for getting the inventory. Why did I do it this way? I don't know, it made sense at the time.
+    Player player;
+    byte[] inventoryTemp;
+    
     // Start is called before the first frame update, used to find anything we need in our Components/
     void Start()
     {
-        cell = GetComponentInChildren<CellService>();
-        barWidth = HPBar.rectTransform.rect.width;
         if (string.IsNullOrWhiteSpace(playerName))
             player = new Player();
         else
             player = new Player(playerName);
-        temp = new int[3];
+        inventoryTemp = new byte[3];
+        player.healthScript.checkpoint = player.main.transform.position;
     }
 
-    void Update()
+    private void Update()
     {
-        if (Input.GetKeyDown(Z))
-        { // For now, Z just enables the HUD, and C enables the minimap
+        // ~~~~~~~~~~~~~~~~~~~ Screen Changing ~~~~~~~~~~~~~~~~~~~~~~~~
+        if (Input.GetKeyDown(KeyCode.Z) && currentScreen != Screen.HUD) // Positive values up, negative down
+        {// Positive means we want to see the HUD if we aren't already
             SwitchMode(Screen.HUD);
         }
-        else if (Input.GetKeyDown(C))
-        {
-            SwitchMode(Screen.GPS);
+        else if (Input.GetKeyDown(KeyCode.C) && currentScreen != Screen.Save) // Positive values up, negative down
+        {// Positive means we want to see the Save Menu if we aren't already
+            SwitchMode(Screen.Save);
         }
+        else if(phoneBatteryLife <= 0)
+        {
+            SwitchMode(Screen.Off);
+        }
+        // ~~~~ Checking for Checkpoints
+        if (canSave && !hasSaved && Input.GetKeyDown(KeyCode.C)) // Can we save? Have we not yet saved? Did we hit the button
+        {
+            hasSaved = true;
+            // Maddie put the things here for checkpointing.
+            // You got it
 
+            player.healthScript.checkpoint = player.main.transform.position;
+        }
     }
     private void FixedUpdate()
     {
+        
+        // ~~~~~~~~~~~~~~~~~~~~~ Screen Updating ~~~~~~~~~~~~~~~~~~~~~~
         if (currentScreen == Screen.HUD)
         {
-            temp = player.GetInventory(); // Remember, Rocks, Batts, Kits.
-            rockText.text = temp[0].ToString();
-            battText.text = temp[1].ToString();
-            kitText.text = temp[2].ToString();
-            HPBar.rectTransform.sizeDelta = new(barWidth * (player.GetHealth() / 100f), HPBar.rectTransform.sizeDelta.y);
-            BattBar.rectTransform.sizeDelta = new(barWidth * (player.GetBatt() / 100f), BattBar.rectTransform.sizeDelta.y);
+            inventoryTemp = player.GetInventory(); // Remember, Rocks, Batts, Kits.
+            rockText.text = inventoryTemp[0].ToString() + " bullets";
+            battText.text = inventoryTemp[1].ToString() + " lighters";
+            kitText.text = inventoryTemp[2].ToString() + " medkits";
         }
+        else if (currentScreen == Screen.Save)
+        {
+            if(cell.service == 3 && !hasSaved) // Maximum Cell Service only while we have not Checkpointed
+            {
+                SaveText.text = "Connection Established";
+                canSave = true;
+            }
+            else if (cell.service == 3 && hasSaved)
+            {
+                SaveText.text = "Location Logged.";
+            }
+            else
+            {
+                SaveText.text = "Unstable Connection";
+                canSave = false;
+            }
+        }
+        
     }
     void SwitchMode(Screen newMode)
     {
-        GPSMode.SetActive(false);
-        VoicemailMode.SetActive(false);
-        LogMode.SetActive(false);
         HUDMode.SetActive(false);
+        SaveMode.SetActive(false);
         switch (newMode) 
         {
-            case Screen.GPS:
-                GPSMode.SetActive(true);
-                break;
             case Screen.HUD:
                 HUDMode.SetActive(true);
+                break;
+            case Screen.Save:
+                SaveMode.SetActive(true);
+                break;
+            case Screen.Off:
+                OffMode.SetActive(true);
                 break;
             default:
                 break;
         }
         currentScreen = newMode;
+        hasSaved = false;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Cell"))
-        {
-            cell.ServiceUpdate(other.GetComponent<CellVolume>().cellPower);
-        }
-    }
+    
 }
 
+/// <summary>
+/// Converts most of the information from the player's various scripts into a single, easy to parse class.
+/// </summary>
 public class Player{
-     readonly GameObject main;
-     public GrabAndThrow inventory;
-     readonly HealthAndRespawn health;
-    readonly FlashlightScript light;
-    
-
+     readonly public GameObject main;
+     public InventoryScript inventory;
+     public HealthAndRespawn healthScript;
     public Player() 
     {
-        Debug.Log("No name specified, default constructor.");
+        healthScript = main.GetComponent<HealthAndRespawn>();
+        Debug.Log("No name specified, default constructor."); 
         main = GameObject.FindWithTag("Player");
-        inventory = main.GetComponentInChildren<GrabAndThrow>();
-        health = main.GetComponent<HealthAndRespawn>();
-        light = main.GetComponent<FlashlightScript>();
+        inventory = main.GetComponentInChildren<InventoryScript>();
         
     }
     public Player(string playerName)
     {
         main = GameObject.Find(playerName);
-        inventory = main.GetComponentInChildren<GrabAndThrow>();
-        health = main.GetComponent<HealthAndRespawn>();
-        light = main.GetComponent<FlashlightScript>();
-    }
-    public int GetHealth()
-    {
-        return health.health; // Why is health a float? Do we need decimal accuracy when we only add or remove in integer increments?
+        inventory = main.GetComponentInChildren<InventoryScript>();
+        healthScript = main.GetComponent<HealthAndRespawn>();
     }
 
-    public float GetBatt()
+    public byte[] GetInventory() // Returns the players Rocks, Batteries, and Medkit counts for the UI.
     {
-        return light.batteryLife;
-    }
-
-    public int[] GetInventory()
-    {
-        int[] temp = { 3, 4, 5 }; // Rocks, Batts, Kits
-        temp[0] = inventory.rockCount; // WHO HOLDS A DECIMAL NUMBER OF ROCKS
-        temp[1] = inventory.flashLightBatteries; // okay this one is almost debatable but what the fuck // This isn't in my version of the script yet, roll with it.
-        temp[2] = inventory.medKitCount; // WE AREN'T USING HALF A MEDKIT
+        byte[] temp = {3, 4, 5 }; // Rocks, Batts, Kits
+        temp[0] = (byte)inventory.bulletCount;
+        temp[1] = (byte)inventory.lighters;
+        temp[2] = (byte)inventory.medKitCount;
 
         return temp;
     }

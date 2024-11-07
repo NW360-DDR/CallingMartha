@@ -6,26 +6,23 @@ using System;
 // Cant use "new" with MonoBehaviour and we don't want to inherit that stuff anyways
 public class State
 {
-    public Action ActiveAction;
+    public Action ActiveAction; // Happens every frame except first and last
     public Action OnEnterAction; //what happens when we enter the state
     public Action OnExitAction; //what happens when we leave the state
-    public string name;
+    public string name; // Used for debug purposes
 
 
-    //let's create a constructor
-    //state is going to be methods on our objects
-    //while "in" a state a method will be executed every frame
+
     public State(Action active, Action onEnter, Action onExit, string stateName)
     {
         // We got 3 major things to keep in mind; what do we do when we start a state, when we are actively in the state, and when we leave a state
-        // for example, when we exit
-        // Ohio, we regain our sanity and possibly our will to live
         ActiveAction = active;
         OnEnterAction = onEnter;
         OnExitAction = onExit;
         name = stateName;
     }
 
+    // Fallback constructor in case someone pushes a state without a name to the Machine. It'll still work, just won't be as debuggable.
     public State(Action active, Action onEnter, Action onExit)
     {
         ActiveAction = active;
@@ -53,7 +50,7 @@ public class State
         }
     }
 
-    //whenver a state is removed we'll call the OnExit
+    //whenever a state is removed we'll call the OnExit
     public void OnExit()
     {
         if (OnExitAction != null)

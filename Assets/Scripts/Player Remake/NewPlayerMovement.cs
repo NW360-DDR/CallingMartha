@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class NewPlayerMovement : MonoBehaviour
 {
-    private CharacterController characterController;
-    private Animator axeAnimator;
+    [SerializeField] CharacterController characterController;
+    private CellService cellService;
 
     private Vector3 moveDirection;
     private Vector3 velocity;
@@ -13,10 +13,13 @@ public class NewPlayerMovement : MonoBehaviour
     public float dashSpeed;
     public float dashTime;
 
-    private HealthAndRespawn healthScript;
+    public GameObject controlsScreen;
+
+    [SerializeField] HealthAndRespawn healthScript;
 
     private bool isDashing = false;
     private bool dashCooldown = false;
+    private bool controlsUp = false;
 
     private int grabMask;
 
@@ -27,35 +30,13 @@ public class NewPlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        characterController = GetComponent<CharacterController>();
-        healthScript = GetComponent<HealthAndRespawn>();
-        axeAnimator = GameObject.Find("Axe").GetComponent<Animator>();
+        cellService = GameObject.Find("ServiceBar").GetComponent<CellService>();
         grabMask = 1 << 6;
     }
 
     // Update is called once per frame
     void Update()
     {
-        // makes it so the player isn't building falling velocity while grounded
-        if (Grounded() && velocity.y < 0)
-        {
-            velocity.y = -2f;
-        }
-
-        //make animation play based on input from axis
-        if (Input.GetAxisRaw("Horizontal") == 0f && Input.GetAxisRaw("Vertical") == 0f)
-        {
-            GetComponentInChildren<Animator>().SetBool("isWalking", false);
-
-        }
-        else
-        {
-            if (Grounded())
-            {
-                GetComponentInChildren<Animator>().SetBool("isWalking", true);
-            }
-        }
-
         //set the movement direction vector3 if the player is still alive
         if (healthScript.alive)
         {
@@ -86,9 +67,24 @@ public class NewPlayerMovement : MonoBehaviour
             speed *= dashSpeed;
             StartCoroutine(Dash());
         }
+
+        if (Input.GetKeyDown(KeyCode.V) && !controlsUp)
+        {
+            controlsScreen.SetActive(true);
+            controlsUp = true;
+        }else if (Input.GetKeyDown(KeyCode.V) && controlsUp)
+        {
+            controlsScreen.SetActive(false);
+            controlsUp = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 
-    private bool Grounded()
+    public bool Grounded()
     {
         if (Physics.Raycast(transform.position, Vector3.down, out groundCheck, 1.17f))
         {
@@ -122,5 +118,29 @@ public class NewPlayerMovement : MonoBehaviour
         isDashing = false;
         yield return new WaitForSeconds(1);
         dashCooldown = false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Cellbox"))
+        {
+            cellService.ServiceUpdate(other.GetComponent<CellVolume>().cellPower);
+        }
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Cellbox") && cellService.service < other.GetComponent<CellVolume>().cellPower)
+        {
+            cellService.ServiceUpdate(other.GetComponent<CellVolume>().cellPower);
+            cellService.inCellBox = true;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Cellbox"))
+        {
+            cellService.ServiceUpdate(0);
+            cellService.inCellBox = false;
+        }
     }
 }
