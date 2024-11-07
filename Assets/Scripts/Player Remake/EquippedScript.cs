@@ -16,9 +16,11 @@ public class EquippedScript : MonoBehaviour
     private AxeSlash axeScript;
     private FlashlightScript flashlightScript;
     private PhoneHandler phoneHandler;
+    TextLogThingy textLog;
 
     public int currentEquipped = 0;
     public float batteryDrainMultiplier = 1;
+    private bool hasOpenedPhone = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +31,7 @@ public class EquippedScript : MonoBehaviour
         axeScript = GetComponent<AxeSlash>();
         flashlightScript = GetComponent<FlashlightScript>();
         phoneHandler = GameObject.Find("PhoneCanvas").GetComponent<PhoneHandler>();
+        textLog = GameObject.FindAnyObjectByType<TextLogThingy>();
     }
 
     // Update is called once per frame
@@ -123,6 +126,12 @@ public class EquippedScript : MonoBehaviour
 
         if (currentEquipped == 2)
         {
+            if (!hasOpenedPhone)
+            {
+                textLog.TextPush("Phone battery will drain. \n Be careful.");
+                hasOpenedPhone = true;
+            }
+
             currentEquipped = 2;
             gunScript.enabled = false;
             axeScript.enabled = false;
