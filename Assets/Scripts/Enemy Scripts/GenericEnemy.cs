@@ -218,7 +218,7 @@ public class GenericEnemy : MonoBehaviour
 			}
 		}
 		void Exit() // Empty
-		{}
+		{ chargeTimer = 0; }
 		return new(Update, Enter, Exit, "HoldUp");
 	}
 
