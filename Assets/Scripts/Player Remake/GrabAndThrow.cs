@@ -24,6 +24,7 @@ public class GrabAndThrow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //arbitrary comment for nate
         interactText = GameObject.Find("Interact Text").GetComponent<TextMeshProUGUI>();
         interactText.gameObject.SetActive(false);
     }
