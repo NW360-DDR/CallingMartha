@@ -88,7 +88,8 @@ public class GenericEnemy : MonoBehaviour
 		{
 			nav.ResetPath();
 			wolfAnim.SetBool("Running", false);
-		}
+            wolfAnim.speed = 1;
+        }
 		void Idle()
 		{
 
@@ -116,7 +117,8 @@ public class GenericEnemy : MonoBehaviour
 			AttemptPath(nvm.position);
 			dest = nav.destination;
 			wolfAnim.SetBool("Running", true);
-		}
+            wolfAnim.speed = 1;
+        }
 		void Wander()
 		{
 			if (nav.remainingDistance <= 0.25f) // Once we're within reasonable distance of the destination, we can leave the state and consider this point "navigated".
@@ -144,7 +146,8 @@ public class GenericEnemy : MonoBehaviour
 			fov.angle = angleBase + 60;
 			AttemptPath(fov.playerRef.transform.position);
 			wolfAnim.SetBool("Running", true);
-		}
+            wolfAnim.speed = 1;
+        }
 		void Update()
 		{
 			dest = fov.playerRef.transform.position;
@@ -179,6 +182,7 @@ public class GenericEnemy : MonoBehaviour
 			nav.SetDestination(nvm.position);
 			nav.speed = baseSpeed * chargeMult;
 			wolfAnim.SetBool("Running", true);
+			wolfAnim.speed = 2.5f;
 			chargeTimer = 0f;
 		}
 
@@ -195,7 +199,8 @@ public class GenericEnemy : MonoBehaviour
 		{
 			nav.speed = baseSpeed;
 			hurtBox.SetActive(false);
-			wolfAnim.SetBool("Running", false);
+            wolfAnim.speed = 1;
+            wolfAnim.SetBool("Running", false);
 		}
 		return new State(Update, Enter, Exit, "Charge");
 	}
@@ -207,7 +212,8 @@ public class GenericEnemy : MonoBehaviour
 			hurtBox.SetActive(false);
 			nav.ResetPath();
 			wolfAnim.SetBool("Running", false);
-		}
+            wolfAnim.speed = 1;
+        }
 		void Update()
 		{
 			chargeTimer += Time.deltaTime;
@@ -231,6 +237,7 @@ public class GenericEnemy : MonoBehaviour
 			nav.isStopped = true;
 			rb.isKinematic = false;
 			rb.AddForce(((transform.position - fov.playerRef.transform.position).normalized) * 3, ForceMode.Impulse);
+            wolfAnim.speed = 1;
         }
 
 		void Update()
