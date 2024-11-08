@@ -204,10 +204,11 @@ MonoBehaviour:
   chargeMult: 3
   wanderDist: 10
   chargeRange: 10
-  chargeCooldown: 1
+  chargeCooldown: 2
   chargeTimer: 1
   idleTimer: 3
   currIdle: 0
+  ChargeDuration: 2
 --- !u!114 &1208645724495422316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -498,7 +499,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5229804498528400372}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
