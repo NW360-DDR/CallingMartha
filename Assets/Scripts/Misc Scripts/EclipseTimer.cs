@@ -7,7 +7,7 @@ public class EclipseTimer : MonoBehaviour
     public float timer;
     public float eclipseTimerLength = 30;
     public float redFogTime = 2.5f;
-    private bool gameTimerActive = true;
+    public bool gameTimerActive = true;
 
     private Vector3 targetPos = Vector3.zero;
     public Color RedColor;
@@ -24,7 +24,7 @@ public class EclipseTimer : MonoBehaviour
     void Update()
     {
         //start timer
-        timer += Time.deltaTime;
+        timer += gameTimerActive ? Time.deltaTime : 0;
 
         //check if timer hit eclipse timer length
         // multiply by 60 to make the number into minutes
@@ -74,3 +74,5 @@ public class EclipseTimer : MonoBehaviour
         yield return new WaitForSeconds(1);
     }
 }
+
+

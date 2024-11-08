@@ -255,3 +255,4 @@ public class GenericEnemy : MonoBehaviour
 		brain.PushState(GetHit());
     }
 }
+ 

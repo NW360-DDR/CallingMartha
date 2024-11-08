@@ -42,7 +42,15 @@ public class HealthAndRespawn : MonoBehaviour
             grabScript.enabled = false;
             GetComponent<AxeSlash>().enabled = false;
             GetComponent<NewPlayerMovement>().enabled = false;
-            StartCoroutine(Respawn());
+            if (!timerScript.gameTimerActive)
+            {
+                StartCoroutine(timerScript.Restart());
+            }
+            else
+            {
+                StartCoroutine(Respawn());
+            }
+            
         }
 
         //heal if the player has a medkit and held down H for 1 second

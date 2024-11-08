@@ -48,4 +48,3 @@ public class MainMenuHandler : MonoBehaviour
         Application.Quit();
     }
 }
-
