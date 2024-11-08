@@ -18,6 +18,7 @@ public class PhoneHandler : MonoBehaviour
     [SerializeField] CellService cell;
     public string playerName;
     public float phoneBatteryLife = 100;
+    public Slider batterySlider;
     bool canSave = false;
     bool hasSaved = false;
 
@@ -63,7 +64,8 @@ public class PhoneHandler : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        
+        batterySlider.value = phoneBatteryLife;
+
         // ~~~~~~~~~~~~~~~~~~~~~ Screen Updating ~~~~~~~~~~~~~~~~~~~~~~
         if (currentScreen == Screen.HUD)
         {
