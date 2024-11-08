@@ -27,6 +27,8 @@ public class GenericEnemy : MonoBehaviour
 	float angleBase; // base viewing angle when navigating.
 	Vector3 homePos; // Where the enemy begins. Only wanders within certain range of this point.
 
+	public AudioSource attackSound;
+
 	// Start is called before the first frame update
 	// NOTE: Most of these can probably just be assigned in the prefab for the sake of load times on Start.
 	// It's not an issue for now, but keep it in mind.

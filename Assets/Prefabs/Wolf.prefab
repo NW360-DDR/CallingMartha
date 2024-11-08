@@ -209,6 +209,7 @@ MonoBehaviour:
   idleTimer: 3
   currIdle: 0
   ChargeDuration: 2
+  attackSound: {fileID: 0}
 --- !u!114 &1208645724495422316
 MonoBehaviour:
   m_ObjectHideFlags: 0
