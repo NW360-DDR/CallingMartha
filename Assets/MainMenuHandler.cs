@@ -13,7 +13,12 @@ public class MainMenuHandler : MonoBehaviour
     public TextMeshProUGUI text;
     public GameObject skip;
 
-     void Update()
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+    void Update()
     {
         if (prologueStarted)
         {
