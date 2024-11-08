@@ -45,14 +45,29 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.CompareTag("AxeHitbox"))
         {
-            GenericEnemy brain = GetComponent<GenericEnemy>();
-            if (!brain.brain.GetState().Equals("GetHit"))
+            try
             {
-                brain.DoDamage();
-                Debug.Log("Ouch!");
-                health -= 50;
-                Yelp.Play();
+                GenericEnemy brain = GetComponent<GenericEnemy>();
+                if (!brain.brain.GetState().Equals("GetHit"))
+                {
+                    brain.DoDamage();
+                    Debug.Log("Ouch!");
+                    health -= 50;
+                    Yelp.Play();
+                }
             }
+            catch (System.Exception)
+            {
+
+                MarthaTestScript brain = GetComponent<MarthaTestScript>();
+                if (!brain.brain.GetState().Equals("GetHit"))
+                {
+                    Debug.Log("Ouch! Martha wtf");
+                    health -= 50;
+                    Yelp.Play();
+                }
+            }
+            
             
             //GetComponent<NavMeshAgent>().speed = 0;
             //StartCoroutine(ResetSpeed());
