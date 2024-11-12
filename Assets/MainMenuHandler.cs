@@ -50,6 +50,7 @@ public class MainMenuHandler : MonoBehaviour
 
     public void QuitGame()
     {
+        Debug.Log("Clicked!");
         Application.Quit();
     }
 }

@@ -24,6 +24,7 @@ public class EclipseTimer : MonoBehaviour
     void Update()
     {
         //start timer
+        if (gameTimerActive)
         timer += gameTimerActive ? Time.deltaTime : 0;
 
         //check if timer hit eclipse timer length
@@ -32,7 +33,6 @@ public class EclipseTimer : MonoBehaviour
         {
             
             Debug.Log("Eclipse happened! Time to die!");
-            gameTimerActive = false;
             if (!Martha.gameObject.activeSelf)
             {
                 Martha.gameObject.SetActive(true);
