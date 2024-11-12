@@ -22,7 +22,7 @@ public class MainMenuHandler : MonoBehaviour
     {
         if (prologueStarted)
         {
-            text.rectTransform.Translate(Time.deltaTime * scrollSpeed * Vector2.up);
+            text.rectTransform.Translate(Time.deltaTime * (text.rectTransform.position.y >= 0 ? 0 : scrollSpeed) * Vector2.up);
             if (Input.GetKeyDown(KeyCode.E))
             {
                 StartCoroutine(StartGame());
