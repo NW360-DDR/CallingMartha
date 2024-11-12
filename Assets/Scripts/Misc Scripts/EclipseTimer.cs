@@ -24,7 +24,6 @@ public class EclipseTimer : MonoBehaviour
     void Update()
     {
         //start timer
-        if (gameTimerActive)
         timer += gameTimerActive ? Time.deltaTime : 0;
 
         //check if timer hit eclipse timer length

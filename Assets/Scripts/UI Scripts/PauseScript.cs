@@ -5,14 +5,14 @@ using UnityEngine;
 public class PauseScript : MonoBehaviour
 {
     private EclipseTimer eclipseScript;
-    private GameObject pauseMenu;
+    public GameObject pauseMenu;
     private void Start()
     {
         eclipseScript = GameObject.Find("EclipseTimer").GetComponent<EclipseTimer>();
-        pauseMenu = GameObject.Find("Pause Menu");
     }
     public void ContinueClick()
     {
+        Time.timeScale = 1;
         pauseMenu.SetActive(false);
         eclipseScript.gameTimerActive = true;
         Cursor.lockState = CursorLockMode.Locked;
@@ -23,5 +23,6 @@ public class PauseScript : MonoBehaviour
     public void QuitClick()
     {
         Debug.Log("Clicked Quit!");
+        Application.Quit();
     }
 }

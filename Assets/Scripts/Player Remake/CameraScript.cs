@@ -14,13 +14,11 @@ public class CameraScript : MonoBehaviour
 
     private float xRotation;
     private float yRotation;
-    private EclipseTimer eclipseScript;
 
     // Start is called before the first frame update
     void Start()
     {
         cam = GetComponentInChildren<Camera>();
-        eclipseScript = GameObject.Find("EclipseTimer").GetComponent<EclipseTimer>();
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -29,8 +27,7 @@ public class CameraScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (eclipseScript.gameTimerActive)
+        if (Time.timeScale > 0)
         {
             mouseX = Input.GetAxisRaw("Mouse X");
             mouseY = Input.GetAxisRaw("Mouse Y");
@@ -41,8 +38,8 @@ public class CameraScript : MonoBehaviour
             cam.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
 
             transform.rotation = Quaternion.Euler(0, yRotation, 0);
-        }
 
-        xRotation = Mathf.Clamp(xRotation, -90, 90);
+            xRotation = Mathf.Clamp(xRotation, -90, 90);
+        }
     }
 }

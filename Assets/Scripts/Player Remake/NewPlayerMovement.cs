@@ -16,8 +16,6 @@ public class NewPlayerMovement : MonoBehaviour
     public GameObject controlsScreen;
     public GameObject pauseMenu;
 
-    private EclipseTimer eclipseTimerScript;
-
     [SerializeField] HealthAndRespawn healthScript;
 
     private bool isDashing = false;
@@ -34,7 +32,6 @@ public class NewPlayerMovement : MonoBehaviour
     void Start()
     {
         cellService = GameObject.Find("ServiceBar").GetComponent<CellService>();
-        eclipseTimerScript = GameObject.Find("EclipseTimer").GetComponent<EclipseTimer>();
         grabMask = 1 << 6;
         pauseMenu.SetActive(false);
     }
@@ -85,9 +82,7 @@ public class NewPlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            //Application.Quit();
-
-            eclipseTimerScript.gameTimerActive = false;
+            Time.timeScale = 0;
             pauseMenu.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
