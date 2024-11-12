@@ -100,6 +100,10 @@ public class MarthaTestScript : MonoBehaviour
 
 	public void KILL()
     {
+		if (!brain.gameObject.activeSelf)
+        {
+			brain.gameObject.SetActive(true);
+        }
 		brain.PushState(MurderHobo());
 		Destroy(health);
     }
