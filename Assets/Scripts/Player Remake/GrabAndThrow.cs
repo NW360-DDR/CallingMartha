@@ -38,6 +38,7 @@ public class GrabAndThrow : MonoBehaviour
         if (holdingCheck)
         {
             holdingObjectRB.MovePosition(Vector3.Lerp(holdingObject.transform.position, heldObjectPlace.transform.position, Time.deltaTime * 10f));
+            holdingObjectRB.MoveRotation(Quaternion.Lerp(holdingObject.transform.rotation, heldObjectPlace.transform.rotation, Time.deltaTime * 10f));
             holdingObjectRB.velocity = Vector3.zero;
             //holdingObject.transform.SetPositionAndRotation(heldObjectPlace.transform.position, heldObjectPlace.transform.rotation);
             //holdingObjectRB.MovePosition(heldObjectPlace.transform.position);
