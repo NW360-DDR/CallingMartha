@@ -1428,6 +1428,7 @@ MonoBehaviour:
   dashSpeed: 3
   dashTime: 0.25
   controlsScreen: {fileID: 0}
+  pauseMenu: {fileID: 0}
   healthScript: {fileID: 7964418324737739107}
 --- !u!114 &7607173335660912681
 MonoBehaviour:
@@ -1568,7 +1569,7 @@ Transform:
   m_GameObject: {fileID: 8183476400951475566}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2}
+  m_LocalPosition: {x: 0, y: 0, z: 1.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

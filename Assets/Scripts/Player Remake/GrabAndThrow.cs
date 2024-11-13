@@ -33,6 +33,16 @@ public class GrabAndThrow : MonoBehaviour
     {
         if (!holdingCheck)
         TargetTesting();
+
+        //checks if the player is holding an object. if they are, set the location to the held object place position
+        if (holdingCheck)
+        {
+            holdingObjectRB.MovePosition(Vector3.Lerp(holdingObject.transform.position, heldObjectPlace.transform.position, Time.deltaTime * 10f));
+            holdingObjectRB.velocity = Vector3.zero;
+            //holdingObject.transform.SetPositionAndRotation(heldObjectPlace.transform.position, heldObjectPlace.transform.rotation);
+            //holdingObjectRB.MovePosition(heldObjectPlace.transform.position);
+            interactText.gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -49,7 +59,8 @@ public class GrabAndThrow : MonoBehaviour
                 {
                     GetComponentInParent<AxeSlash>().enabled = true;
                     GetComponentInParent<GunScript>().enabled = true;
-                    holdingObjectCollider.isTrigger = false;
+                    //holdingObjectCollider.isTrigger = false;
+                    holdingObjectRB.useGravity = true;
                     holdingObjectRB.constraints = RigidbodyConstraints.None;
                     holdingObjectRB.velocity = Vector3.zero;
 
@@ -79,13 +90,6 @@ public class GrabAndThrow : MonoBehaviour
                 interactText.gameObject.SetActive(false);
         } else
             interactText.gameObject.SetActive(false);
-
-        //checks if the player is holding an object. if they are, set the location to the held object place position
-        if (holdingCheck)
-        {
-            holdingObject.transform.SetPositionAndRotation(heldObjectPlace.transform.position, heldObjectPlace.transform.rotation);
-            interactText.gameObject.SetActive(false);
-        }
 
         //if holding object and you click, throw object
         /*if (holdingCheck && Input.GetMouseButtonDown(0))
@@ -122,7 +126,8 @@ public class GrabAndThrow : MonoBehaviour
         holdingObjectRB = holdingObject.GetComponent<Rigidbody>();
 
         holdingObjectRB.constraints = RigidbodyConstraints.FreezeRotation;
-        holdingObjectCollider.isTrigger = true;
+        holdingObjectRB.useGravity = false;
+        //holdingObjectCollider.isTrigger = true;
         GetComponentInParent<AxeSlash>().enabled = false;
         GetComponentInParent<GunScript>().enabled = false;
     }

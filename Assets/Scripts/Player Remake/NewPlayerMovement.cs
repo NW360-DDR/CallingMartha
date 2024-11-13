@@ -13,13 +13,13 @@ public class NewPlayerMovement : MonoBehaviour
     public float dashSpeed;
     public float dashTime;
 
-    public GameObject controlsScreen;
+    public GameObject pauseMenu;
+    private EclipseTimer eclipseScript;
 
     [SerializeField] HealthAndRespawn healthScript;
 
     private bool isDashing = false;
     private bool dashCooldown = false;
-    private bool controlsUp = false;
 
     private int grabMask;
 
@@ -31,7 +31,9 @@ public class NewPlayerMovement : MonoBehaviour
     void Start()
     {
         cellService = GameObject.Find("ServiceBar").GetComponent<CellService>();
+        eclipseScript = GameObject.Find("EclipseTimer").GetComponent<EclipseTimer>();
         grabMask = 1 << 6;
+        pauseMenu.SetActive(false);
     }
 
     // Update is called once per frame
@@ -68,19 +70,20 @@ public class NewPlayerMovement : MonoBehaviour
             StartCoroutine(Dash());
         }
 
-        if (Input.GetKeyDown(KeyCode.V) && !controlsUp)
+        if (Input.GetKeyDown(KeyCode.Escape) && pauseMenu.active)
         {
-            controlsScreen.SetActive(true);
-            controlsUp = true;
-        }else if (Input.GetKeyDown(KeyCode.V) && controlsUp)
-        {
-            controlsScreen.SetActive(false);
-            controlsUp = false;
+            Time.timeScale = 1;
+            pauseMenu.SetActive(false);
+            eclipseScript.gameTimerActive = true;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
-
-        if (Input.GetKeyDown(KeyCode.Escape))
+        else if (Input.GetKeyDown(KeyCode.Escape) && !pauseMenu.active)
         {
-            Application.Quit();
+            Time.timeScale = 0;
+            pauseMenu.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
 
