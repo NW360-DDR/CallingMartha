@@ -22,6 +22,7 @@ TagManager:
   - Shootable
   - Die
   - Barrel
+  - Martha
   layers:
   - Default
   - TransparentFX
