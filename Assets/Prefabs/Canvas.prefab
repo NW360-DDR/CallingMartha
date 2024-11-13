@@ -740,14 +740,26 @@ MonoBehaviour:
 
     E - Interact
 
+    H (Hold) - Heal
+
     Space - Jump
 
-    Scroll Wheel - Change
-    equipped
+    Scroll
+    Wheel - Change equipped
 
-    Shift - Dash
+    Shift - Dodge
 
-    Mouse 1 - Attack'
+    Left Click - Attack/Phone flashlight
+
+    Z/C
+    - Change phone screen
+
+    Escape - Exit game
+
+
+
+
+    -Press V to exit-'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e18d6c0de731dcb4783c8dc1ab890ecc, type: 2}
   m_sharedMaterial: {fileID: 3199603977523517805, guid: e18d6c0de731dcb4783c8dc1ab890ecc, type: 2}

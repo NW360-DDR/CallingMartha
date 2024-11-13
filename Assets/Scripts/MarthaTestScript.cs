@@ -62,18 +62,6 @@ public class MarthaTestScript : MonoBehaviour
 		return new(Update, Enter, Exit, "HoldUp");
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -99,6 +87,7 @@ public class MarthaTestScript : MonoBehaviour
 		{
 			brain.PopState();
 			backState--;
+			chargeTimer++;
 		}
 		if (health != null)
 		{
@@ -111,6 +100,10 @@ public class MarthaTestScript : MonoBehaviour
 
 	public void KILL()
     {
+		if (!brain.gameObject.activeSelf)
+        {
+			brain.gameObject.SetActive(true);
+        }
 		brain.PushState(MurderHobo());
 		Destroy(health);
     }
@@ -260,10 +253,7 @@ public class MarthaTestScript : MonoBehaviour
         {
 			dest = fov.playerRef.transform.position;
 			AttemptPath(dest);
-			if (nav.remainingDistance < 0.5f)
-            {
-				hurtBox.SetActive(true);
-            }
+			killBox.SetActive(true);
         }
 		
 		void Exit()
@@ -335,6 +325,7 @@ public class MarthaTestScript : MonoBehaviour
 		float chargeMult = 3f;
 		void Enter()
 		{
+			chargeTimer = 0.0f;
 			hurtBox.SetActive(true);
 			Vector3 newTarget = fov.playerRef.transform.position - transform.position; // The player destination is exactly where we want to charge. 
 			newTarget = chargeRange * 1.2f * newTarget.normalized; // And we want to go in that direction notably farther than just where the player is.
@@ -347,8 +338,10 @@ public class MarthaTestScript : MonoBehaviour
 
 		void Update()
 		{
+			hurtBox.SetActive(true);
 			if (nav.remainingDistance < 0.25f)
 			{
+				chargeTimer = 0.0f;
 				brain.PushState(HoldOn());
 			}
 		}
@@ -356,7 +349,6 @@ public class MarthaTestScript : MonoBehaviour
 		void Exit()
 		{
 			nav.speed = baseSpeed;
-			chargeTimer = 0.0f;
 			hurtBox.SetActive(false);
 			//wolfAnim.SetBool("Running", false);
 		}

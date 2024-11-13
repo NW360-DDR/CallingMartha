@@ -13,11 +13,16 @@ public class MainMenuHandler : MonoBehaviour
     public TextMeshProUGUI text;
     public GameObject skip;
 
-     void Update()
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+    void Update()
     {
         if (prologueStarted)
         {
-            text.rectTransform.Translate(Time.deltaTime * scrollSpeed * Vector2.up);
+            text.rectTransform.Translate(Time.deltaTime * (text.rectTransform.position.y >= 0 ? 0 : scrollSpeed) * Vector2.up);
             if (Input.GetKeyDown(KeyCode.E))
             {
                 StartCoroutine(StartGame());

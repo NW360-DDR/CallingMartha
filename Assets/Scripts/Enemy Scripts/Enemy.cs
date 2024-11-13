@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
     {
         spriteAnim = GetComponentInChildren<Animator>();
         angleCalcScript = GetComponent<AngleCalc>();
+        Yelp = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -45,7 +46,7 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.CompareTag("AxeHitbox"))
         {
-            try
+            if (!isMartha)
             {
                 GenericEnemy brain = GetComponent<GenericEnemy>();
                 if (!brain.brain.GetState().Equals("GetHit"))
@@ -56,7 +57,7 @@ public class Enemy : MonoBehaviour
                     Yelp.Play();
                 }
             }
-            catch (System.Exception)
+            else
             {
 
                 MarthaTestScript brain = GetComponent<MarthaTestScript>();
