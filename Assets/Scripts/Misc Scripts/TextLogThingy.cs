@@ -12,7 +12,7 @@ public class TextLogThingy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        TextPush("");
+        TextPush("Press Escape to pause game");
     }
     public void TextPush(string text)
     {
