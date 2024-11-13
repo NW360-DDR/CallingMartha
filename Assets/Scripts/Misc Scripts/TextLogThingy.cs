@@ -14,7 +14,6 @@ public class TextLogThingy : MonoBehaviour
     {
         TextPush("");
     }
-
     public void TextPush(string text)
     {
         HUDText.text = text;

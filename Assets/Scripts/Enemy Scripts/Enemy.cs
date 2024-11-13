@@ -42,6 +42,13 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
 
+    void ShootWife()
+    {
+        Debug.Log("Ouch! You Shot Your Wife!");
+        health -= 100;
+        Yelp.Play();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("AxeHitbox"))

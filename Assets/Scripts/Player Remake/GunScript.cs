@@ -26,16 +26,19 @@ public class GunScript : MonoBehaviour
         {
             gun.GetComponent<Animator>().SetTrigger("Shoot");
 
-            Physics.Raycast(spawnLocation.transform.position, spawnLocation.transform.forward, out hit, 15, ~excludeLayer);
+            Physics.Raycast(spawnLocation.transform.position, spawnLocation.transform.forward, out hit, 30, ~excludeLayer);
 
             if (hit.collider != null)
             {
-                if (hit.transform.CompareTag("Wolf"))
+                string tag = hit.transform.tag;
+                if (tag.Equals("Wolf"))
                 {
                     hit.transform.SendMessageUpwards("GetShot");
                 }
-                else if (hit.transform.CompareTag("Shootable"))
+                else if (tag.Equals("Shootable"))
                     Destroy(hit.transform.gameObject);
+                else if (tag.Equals("Martha"))
+                    hit.transform.SendMessageUpwards("ShootWife");
             }
 
             inventoryScript.bulletCount -= 1;

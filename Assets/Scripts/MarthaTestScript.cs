@@ -15,6 +15,7 @@ public class MarthaTestScript : MonoBehaviour
 	public GameObject hurtBox;
 	public GameObject killBox;
 	Enemy health;
+	public EclipseTimer gameTimer;
 
 	// Navigation Parameters
 	public Vector3 dest;
@@ -24,11 +25,9 @@ public class MarthaTestScript : MonoBehaviour
 	float currIdle = 0f;
 	public float baseSpeed = 25f;
 	public float chaseMult = 1.5f;
-
 	bool hunting = false;
 
 	int backState = 0; // If this number is > 0, it means we need to pop multiple states at once, and this is the safest way to go about this.
-	float angleBase; // base viewing angle when navigating.
 
 	//Boss Fight Variables
 	public float attackCooldown = 0.75f;
@@ -38,6 +37,7 @@ public class MarthaTestScript : MonoBehaviour
 	[SerializeField] float chargeCooldown = 5f, chargeTimer = 0f;
 	float deNavTimer = 0f; // How long until the boss gives up and walks away.
 	public float RetreatTimer = 3f;
+	
 
 	State HoldOn()
 	{
@@ -68,7 +68,6 @@ public class MarthaTestScript : MonoBehaviour
 		brain.PushState(Idle());
 		idleTimer = 1000000000000000000000f;
 		path = new();
-		angleBase = fov.angle;
 	}
 
 	private void Update()
@@ -97,13 +96,20 @@ public class MarthaTestScript : MonoBehaviour
 			}
 		}
 	}
-
+	
 	public void KILL()
     {
 		if (!brain.gameObject.activeSelf)
         {
 			brain.gameObject.SetActive(true);
         }
+		// It seems we want to make Martha start off closer than she usually is. I personally disagree, but fair enough.
+		Vector3 temp = fov.playerRef.transform.position;
+		float rand = UnityEngine.Random.Range(0, 1);
+		temp += (new Vector3(MathF.Cos(rand), 100, MathF.Sin(rand)) * (fov.radius * 0.3f));
+		Physics.Raycast(temp, Vector3.down, out RaycastHit checkVert, Mathf.Infinity);
+		temp.y = checkVert.transform.position.y;
+		transform.position = temp;
 		brain.PushState(MurderHobo());
 		Destroy(health);
     }
@@ -124,7 +130,31 @@ public class MarthaTestScript : MonoBehaviour
 			Debug.Log("Oh hey I'm blocked, oh well.");
 		}
 	}
+	void AttemptPathBoss(Vector3 destination)
+	{
+		nav.CalculatePath(destination, path);
+		if (path.status == NavMeshPathStatus.PathComplete)
+		{
+			nav.path = path;
 
+		}
+		else // This will only occur if the wolf physically cannot make it to the player.
+		{
+			deNavTimer += Time.deltaTime;
+		}
+	}
+	public void StartBossFight()
+	{
+		brain.PushState(BossFight_Chase());
+		nav.speed = bossSpeed;
+		idleTimer = 3f;
+		health = GetComponent<Enemy>();
+		if (health != null)
+		{
+			health.health = BossHealth;
+			AttemptPathBoss(fov.playerRef.transform.position);
+		}
+	}
 	State Wander()
 	{
 		void WanderEnter()
@@ -149,71 +179,6 @@ public class MarthaTestScript : MonoBehaviour
 		}
 		return new State(Wander, WanderEnter, WanderExit, "Wander");
 	}
-	State Look()
-	{
-		void LookAroundEnter()
-		{
-			idleTimer = 8f;
-
-		}// TODO: Use this state to look for the player once we lose them for "idleTimer" seconds. Whatever that ends up being. Basically an angry Wander state with a few lookAround additions.
-		void LookAround()
-		{
-			idleTimer -= Time.deltaTime;
-			if (idleTimer <= 0)
-			{
-				brain.PopState();
-				backState++;
-			}
-			else if (nav.remainingDistance <= 0.25)// If we still have time to look, and we aren't moving to look, pick a random spot around where we last saw the player to start looking again.
-			{
-				Vector3 searchDir = (UnityEngine.Random.insideUnitSphere * 5f) + lastKnownPlayerLoc;
-				NavMesh.SamplePosition(searchDir, out NavMeshHit nvm, 5f, NavMesh.AllAreas); // God I hope this is a spot that can be navigated to.
-				nav.SetDestination(nvm.position);
-				dest = nav.destination;
-			}
-		}
-		void LookAroundExit()
-		{
-			idleTimer = 5f;
-		}
-		return new State(LookAround, LookAroundEnter, LookAroundExit, "LookAround");
-	}
-	State ChaseState() 
-	{
-		void ChaseEnter()
-		{
-			dest = fov.playerRef.transform.position;
-			nav.SetDestination(dest);
-			nav.autoBraking = false; // Disable auto-braking so the navigation will just keep moving at a steady pace.
-			nav.speed = baseSpeed * chaseMult;
-		}
-		void Chase()
-		{
-
-			dest = fov.playerRef.transform.position;
-			lastKnownPlayerLoc = dest;
-			if (fov.canSeePlayer) //If we can still see the player, keep going.
-			{
-				nav.SetDestination(dest);
-			}
-			else // If not, keep moving to the destination, and when we get there, scream into the void
-			{
-				if (nav.remainingDistance <= 0.25f) // Hey are we close to the destination?
-				{
-					nav.ResetPath();
-					brain.PushState(Look());
-				}
-
-			}
-		}
-		void ChaseExit()
-		{
-			nav.autoBraking = true;
-			nav.speed = baseSpeed;
-			fov.angle = angleBase;
-		}
-		return new State(Chase, ChaseEnter, ChaseExit, "Chase");
-	}
 	State Idle()
 	{
 		void IdleEnter()
@@ -223,7 +188,10 @@ public class MarthaTestScript : MonoBehaviour
 		void Idle()
 		{
 			// TODO: Implement checks to enter other states such as Ohio or Florida.
-
+			if (gameTimer.timer >= (gameTimer.eclipseTimerLength * 60))
+            {
+				KILL();
+            }
 			// Otherwise, wait for IdleTimer to run out, then go somewhere else.
 			idleTimer -= Time.deltaTime;
 			if (idleTimer <= 0)
@@ -252,7 +220,7 @@ public class MarthaTestScript : MonoBehaviour
 		void Update()
         {
 			dest = fov.playerRef.transform.position;
-			AttemptPath(dest);
+			nav.SetDestination(dest);
 			killBox.SetActive(true);
         }
 		
@@ -266,32 +234,6 @@ public class MarthaTestScript : MonoBehaviour
 
 		return new(Update, Enter, Exit, "MurderHobo");
     }
-
-	void AttemptPathBoss(Vector3 destination)
-    {
-		nav.CalculatePath(destination, path);
-		if (path.status == NavMeshPathStatus.PathComplete)
-        {
-			nav.path = path;
-
-        }
-        else // This will only occur if the wolf physically cannot make it to the player.
-        {
-			deNavTimer += Time.deltaTime;
-        }
-    }
-	public void StartBossFight()
-    {
-		brain.PushState(BossFight_Chase());
-		nav.speed = bossSpeed;
-		idleTimer = 3f;
-		health = GetComponent<Enemy>();
-		if (health != null)
-		{
-			health.health = BossHealth;
-			AttemptPathBoss(fov.playerRef.transform.position);
-		}
-	}
 	State BossFight_Chase()
     {
 
@@ -319,7 +261,6 @@ public class MarthaTestScript : MonoBehaviour
 
 		return new(Update, Enter, Exit, "Boss Chase");
     }
-
 	State Attack()
     {
 		float chargeMult = 3f;
@@ -354,10 +295,6 @@ public class MarthaTestScript : MonoBehaviour
 		}
 		return new State(Update, Enter, Exit, "Charge");
 	}
-
-
-
-
 	State BossBackAway()
     {
 		void WanderEnter()
