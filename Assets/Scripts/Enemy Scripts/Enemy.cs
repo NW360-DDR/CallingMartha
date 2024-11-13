@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
     {
         spriteAnim = GetComponentInChildren<Animator>();
         angleCalcScript = GetComponent<AngleCalc>();
+        Yelp = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -45,11 +46,33 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.CompareTag("AxeHitbox"))
         {
-            Debug.Log("Ouch!");
-            health -= 50;
-            Yelp.Play();
-            GetComponent<NavMeshAgent>().speed = 0;
-            StartCoroutine(ResetSpeed());
+            if (!isMartha)
+            {
+                GenericEnemy brain = GetComponent<GenericEnemy>();
+                if (!brain.brain.GetState().Equals("GetHit"))
+                {
+                    brain.DoDamage();
+                    Debug.Log("Ouch!");
+                    health -= 50;
+                    Yelp.Play();
+                }
+            }
+            else
+            {
+
+                MarthaTestScript brain = GetComponent<MarthaTestScript>();
+                if (!brain.brain.GetState().Equals("GetHit"))
+                {
+                    Debug.Log("Ouch! Martha wtf");
+                    health -= 50;
+                    Yelp.Play();
+                }
+            }
+            
+            
+            //GetComponent<NavMeshAgent>().speed = 0;
+            //StartCoroutine(ResetSpeed());
+            
         }
     }
 

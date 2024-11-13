@@ -4,12 +4,13 @@ using UnityEngine.AI;
 public class GenericEnemy : MonoBehaviour
 {
 	// StateMachine and navigation components, misc external
-	StateMachine brain;
+	public StateMachine brain;
 	NavMeshAgent nav;
 	NavMeshPath path;
 	FieldOfView fov;
 	public GameObject hurtBox;
 	private Animator wolfAnim;
+	[SerializeField]Rigidbody rb;
 	// Navigation Parameters
 	Vector3 dest; // This originally was meant to be part of a Save system for a longer game loop. May just scrap this variable if no longer needed or keep for debugging purposes.
 	[SerializeField] float baseSpeed = 3.5f;
@@ -20,6 +21,7 @@ public class GenericEnemy : MonoBehaviour
 	// Variables for Idling. Rather misleading, the idleTimer gets used for a few more things than just idling, and should be renamed or split into multiple variables.
 	public float idleTimer = 3;
 	public float currIdle = 0;
+	public float ChargeDuration = 1.85f;
 	bool hunting = false;
 	int backState = 0; // If this number is > 0, it means we need to pop multiple states at once, and this is the safest way to go about this.
 	float angleBase; // base viewing angle when navigating.
@@ -58,21 +60,7 @@ public class GenericEnemy : MonoBehaviour
 			Debug.Log("Oh hey I'm blocked, oh well.");
 		}
 	}
-	/// <summary>
-	/// Permanently increases the speed of the enemy for the duration of the run.
-	/// </summary>
-	public void AggroUp()
-    {
-		baseSpeed *= 1.25f;
-    }
-	/// <summary>
-	/// Permanently increases the speed of the enemy for the duration of the run.
-	/// </summary>
-	/// <param name="amount"></param>
-	public void AggroUp(float amount)
-    {
-		baseSpeed *= amount;
-    }
+	
 
 	private void Update()
 	{
@@ -100,7 +88,8 @@ public class GenericEnemy : MonoBehaviour
 		{
 			nav.ResetPath();
 			wolfAnim.SetBool("Running", false);
-		}
+            wolfAnim.speed = 1;
+        }
 		void Idle()
 		{
 
@@ -128,7 +117,8 @@ public class GenericEnemy : MonoBehaviour
 			AttemptPath(nvm.position);
 			dest = nav.destination;
 			wolfAnim.SetBool("Running", true);
-		}
+            wolfAnim.speed = 1;
+        }
 		void Wander()
 		{
 			if (nav.remainingDistance <= 0.25f) // Once we're within reasonable distance of the destination, we can leave the state and consider this point "navigated".
@@ -149,20 +139,20 @@ public class GenericEnemy : MonoBehaviour
 	{
 		void Enter()
 		{
+			chargeTimer = 0f;
 			// Toggle the hunting flag, start chasing, and make it so the player has to work harder to evade the enemy than just running past them.
 			hunting = true;
 			nav.speed = baseSpeed * chaseMult;
 			fov.angle = angleBase + 60;
 			AttemptPath(fov.playerRef.transform.position);
 			wolfAnim.SetBool("Running", true);
-		}
+            wolfAnim.speed = 1;
+        }
 		void Update()
 		{
-
-
 			dest = fov.playerRef.transform.position;
-			//nav.SetDestination(dest);
-			AttemptPath(dest);
+			nav.SetDestination(dest);
+			//AttemptPath(dest);
 			if ((nav.remainingDistance < chargeRange) && chargeTimer >= chargeCooldown)
 			{
 				brain.PushState(Charge());
@@ -188,15 +178,18 @@ public class GenericEnemy : MonoBehaviour
 			Vector3 newTarget = fov.playerRef.transform.position - transform.position; // The player destination is exactly where we want to charge. 
 			newTarget = chargeRange * 1.2f * newTarget.normalized; // And we want to go in that direction notably farther than just where the player is.
 			newTarget += transform.position; // Add this direction + magnitude to our current position, and we should get a proper destination.
-			//nav.SetDestination(newTarget);
-			AttemptPath(newTarget);
+			NavMesh.SamplePosition(newTarget, out NavMeshHit nvm, chargeRange, NavMesh.AllAreas); // God I hope this is a spot that can be navigated to.
+			nav.SetDestination(nvm.position);
 			nav.speed = baseSpeed * chargeMult;
 			wolfAnim.SetBool("Running", true);
+			wolfAnim.speed = 2.5f;
+			chargeTimer = 0f;
 		}
 
 		void Update()
 		{
-			if (nav.remainingDistance < 0.25f)
+			chargeTimer += Time.deltaTime;
+			if (nav.remainingDistance < -0.25f || chargeTimer >= ChargeDuration)
 			{
 				brain.PushState(HoldOn());
 			}
@@ -205,9 +198,9 @@ public class GenericEnemy : MonoBehaviour
 		void Exit()
 		{
 			nav.speed = baseSpeed;
-			chargeTimer = 0.0f;
 			hurtBox.SetActive(false);
-			wolfAnim.SetBool("Running", false);
+            wolfAnim.speed = 1;
+            wolfAnim.SetBool("Running", false);
 		}
 		return new State(Update, Enter, Exit, "Charge");
 	}
@@ -218,27 +211,55 @@ public class GenericEnemy : MonoBehaviour
 		{
 			hurtBox.SetActive(false);
 			nav.ResetPath();
-			currIdle = 1;
 			wolfAnim.SetBool("Running", false);
-		}
+            wolfAnim.speed = 1;
+        }
 		void Update()
 		{
-
-			// Otherwise, wait for IdleTimer to run out, then go somewhere else.
-			currIdle += Time.deltaTime;
-			if (currIdle >= idleTimer)
+			chargeTimer += Time.deltaTime;
+			if (chargeTimer >= ChargeDuration)
 			{
 				backState++;
 				brain.PopState();
-				
 			}
-
 		}
 		void Exit() // Empty
-		{
-
-		}
+		{ chargeTimer = 0; }
 		return new(Update, Enter, Exit, "HoldUp");
 	}
 
+	State GetHit()
+    {
+		float timer = 0.5f;
+		
+		void Enter()
+        {
+			nav.isStopped = true;
+			rb.isKinematic = false;
+			rb.AddForce(((transform.position - fov.playerRef.transform.position).normalized) * 3, ForceMode.Impulse);
+            wolfAnim.speed = 1;
+        }
+
+		void Update()
+        {
+			timer -= Time.deltaTime;
+			if (timer <= 0f)
+            {
+				brain.PopState();
+            }
+        }
+
+		void Exit()
+        {
+			nav.isStopped = false;
+			rb.isKinematic = true;
+        }
+
+		return new(Update, Enter, Exit, "GetHit");
+    }
+	public void DoDamage()
+    {
+		brain.PushState(GetHit());
+    }
 }
+ 

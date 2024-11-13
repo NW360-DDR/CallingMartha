@@ -12,7 +12,7 @@ public class TextLogThingy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        TextPush("Hi");
+        TextPush("Press V for controls");
     }
 
     public void TextPush(string text)
