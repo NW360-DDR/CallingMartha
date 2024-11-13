@@ -32,7 +32,6 @@ public class EclipseTimer : MonoBehaviour
         {
             
             Debug.Log("Eclipse happened! Time to die!");
-            gameTimerActive = false;
             if (!Martha.gameObject.activeSelf)
             {
                 Martha.gameObject.SetActive(true);
