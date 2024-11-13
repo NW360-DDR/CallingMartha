@@ -35,9 +35,6 @@ public class EclipseTimer : MonoBehaviour
             if (!Martha.gameObject.activeSelf)
             {
                 Martha.gameObject.SetActive(true);
-            }
-            if (!Martha.brain.GetState().Equals("MurderHobo"))
-            {
                 Martha.KILL();
                 TimerEndSound.Play();
             }
