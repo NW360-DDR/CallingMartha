@@ -115,9 +115,9 @@ public class HealthAndRespawn : MonoBehaviour
         health = 3;
         playerScript.velocity.y = 0;
         alive = true;
+        transform.position = checkpoint;
         yield return new WaitForSeconds(0.5f);
         Destroy(playerRB);
-        transform.position = checkpoint;
         GetComponent<CameraScript>().enabled = true;
         InventoryScript.enabled = true;
         GetComponent<AxeSlash>().enabled = true;
