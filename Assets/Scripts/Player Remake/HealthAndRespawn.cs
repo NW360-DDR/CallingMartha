@@ -90,7 +90,16 @@ public class HealthAndRespawn : MonoBehaviour
 
         if (other.CompareTag("Die"))
         {
-            Die();
+            health = 0;
+            redJelly.color += new Color(redJelly.color.r, redJelly.color.g, redJelly.color.b, 0.60f);
+            respawned = true;
+            alive = false;
+            GetComponent<CameraScript>().enabled = false;
+            grabScript.enabled = false;
+            GetComponent<AxeSlash>().enabled = false;
+            GetComponent<NewPlayerMovement>().enabled = false;
+            gameObject.AddComponent<Rigidbody>();
+            StartCoroutine(timerScript.Restart());
         }
     }
 
@@ -98,16 +107,17 @@ public class HealthAndRespawn : MonoBehaviour
     {
         //resets player location and health
         Debug.Log("Respawn?");
+        playerRB.AddForce(transform.right, ForceMode.Impulse);
         yield return new WaitForSeconds(1.5f);
         blackScreen.SetBool("FadeIn", true);
         respawned = true;
         redJelly.color = new Color(redJelly.color.r, redJelly.color.g, redJelly.color.b, 0f);
-        transform.position = checkpoint;
         health = 3;
         playerScript.velocity.y = 0;
         alive = true;
         yield return new WaitForSeconds(0.5f);
         Destroy(playerRB);
+        transform.position = checkpoint;
         GetComponent<CameraScript>().enabled = true;
         InventoryScript.enabled = true;
         GetComponent<AxeSlash>().enabled = true;
@@ -122,20 +132,6 @@ public class HealthAndRespawn : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         healReset = false;
         hurtCool = false;
-    }
-
-    public void Die()
-    {
-        health = 0;
-        redJelly.color += new Color(redJelly.color.r, redJelly.color.g, redJelly.color.b, 0.60f);
-        respawned = true;
-        alive = false;
-        GetComponent<CameraScript>().enabled = false;
-        grabScript.enabled = false;
-        GetComponent<AxeSlash>().enabled = false;
-        GetComponent<NewPlayerMovement>().enabled = false;
-        gameObject.AddComponent<Rigidbody>();
-        StartCoroutine(timerScript.Restart());
     }
 
     public void GetHurt()
