@@ -7,6 +7,7 @@ public class GeneratorInteractScript : Interactable
     public int itemsNeeded = 3;
     public GameObject[] thingsToTurnOn;
     public GameObject[] thingsToTurnOff;
+    public GameObject[] thingsToDestroy;
     void Interact()
     {
         //Do interact code here
@@ -33,6 +34,10 @@ public class GeneratorInteractScript : Interactable
             for (int i = 0; i < thingsToTurnOff.Length; i++)
             {
                 thingsToTurnOff[i].SetActive(false);
+            }
+            for (int i = 0;i < thingsToDestroy.Length; i++)
+            {
+                Destroy(thingsToDestroy[i]);
             }
         }
     }

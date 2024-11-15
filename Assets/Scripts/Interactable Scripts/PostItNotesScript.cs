@@ -4,21 +4,15 @@ using UnityEngine;
 
 public class PostItNotesScript : Interactable
 {
-    public int noteNum = 0;
+    [TextArea(3,10)] //makes textarea in inspector bigger
+    public string noteText;
 
     // Start is called before the first frame update
     void Interact()
     {
-        if (noteNum == 0)
-        {
-            logString = "\"Station phones haven't been working too well. \n The watch tower should have cell service. \n I need to head over later.\" \n\n -Officer Ronan";
-            SendLog();
-        }
+        // Public string (from editor) that gets sent to log, then outputs the text
 
-        else if (noteNum == 1)
-        {
-            logString = "This is another test.";
-            SendLog();
-        }
+        logString = noteText;
+        SendLog();
     }
 }
