@@ -56,7 +56,7 @@ public class GrabAndThrow : MonoBehaviour
             {
                 interactText.gameObject.SetActive(true);
                 interactText.text = "E - Pickup";
-                if (holdingCheck && Input.GetKeyDown(KeyCode.E))
+                if (holdingCheck && Input.GetKeyDown(KeyCode.E) && Time.timeScale > 0)
                 {
                     GetComponentInParent<AxeSlash>().enabled = true;
                     GetComponentInParent<GunScript>().enabled = true;
@@ -70,7 +70,7 @@ public class GrabAndThrow : MonoBehaviour
                     holdingObject = null;
                     holdingCheck = false;
                     interactText.gameObject.SetActive(false);
-                } else if (Input.GetKeyDown(KeyCode.E))
+                } else if (Input.GetKeyDown(KeyCode.E) && Time.timeScale > 0)
                 {
                     interactText.gameObject.SetActive(false);
                     Debug.Log("Run grab event!");
@@ -81,7 +81,7 @@ public class GrabAndThrow : MonoBehaviour
             {
                 interactText.text = "E - Interact";
                 interactText.gameObject.SetActive(true);
-                if (Input.GetKeyDown(KeyCode.E))
+                if (Input.GetKeyDown(KeyCode.E) && Time.timeScale > 0)
                 {
                     targetCheck.transform.gameObject.SendMessageUpwards("Interact");
                     interactText.gameObject.SetActive(false);
