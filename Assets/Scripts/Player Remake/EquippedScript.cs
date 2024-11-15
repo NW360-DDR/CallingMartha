@@ -60,19 +60,19 @@ public class EquippedScript : MonoBehaviour
             StartCoroutine(SendUpdate());
         }*/
 
-        if (Input.GetKeyDown(KeyCode.Alpha1) && currentEquipped != 0 && takeInput)
+        if (Input.GetKeyDown(KeyCode.Alpha1) && currentEquipped != 0 && takeInput && Time.timeScale > 0)
         {
             allowAttack = false;
             currentEquipped = 0;
             takeInput = false;
             StartCoroutine(SendUpdate());
-        }else if (Input.GetKeyDown(KeyCode.Alpha2) && currentEquipped != 1 && takeInput)
+        }else if (Input.GetKeyDown(KeyCode.Alpha2) && currentEquipped != 1 && takeInput && Time.timeScale > 0)
         {
             allowAttack = false;
             currentEquipped = 1;
             takeInput = false;
             StartCoroutine(SendUpdate());
-        }else if (Input.GetKeyDown(KeyCode.Alpha3) && currentEquipped != 2 && takeInput)
+        }else if (Input.GetKeyDown(KeyCode.Alpha3) && currentEquipped != 2 && takeInput && Time.timeScale > 0)
         {
             allowAttack = false;
             currentEquipped = 2;
@@ -80,14 +80,14 @@ public class EquippedScript : MonoBehaviour
             StartCoroutine(SendUpdate());
         }
 
-        if (Input.mouseScrollDelta.y > 0 && currentEquipped != 0 && takeInput)
+        if (Input.mouseScrollDelta.y > 0 && currentEquipped != 0 && takeInput && Time.timeScale > 0)
         {
             allowAttack = false;
             currentEquipped--;
             takeInput = false;
             StartCoroutine(SendUpdate());
         }
-        else if (Input.mouseScrollDelta.y < 0 && currentEquipped != 2 && takeInput)
+        else if (Input.mouseScrollDelta.y < 0 && currentEquipped != 2 && takeInput && Time.timeScale > 0)
         {
             allowAttack = false;
             currentEquipped++;

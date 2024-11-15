@@ -8,7 +8,7 @@ public class NewPlayerMovement : MonoBehaviour
     private CellService cellService;
 
     private Vector3 moveDirection;
-    private Vector3 velocity;
+    public Vector3 velocity;
     public float speed = 5;
     public float dashSpeed;
     public float dashTime;
@@ -49,7 +49,10 @@ public class NewPlayerMovement : MonoBehaviour
         characterController.Move((moveDirection * speed) * Time.deltaTime);
 
         //artificial gravity
-        velocity.y += gravity * Time.deltaTime;
+        if (!Grounded())
+        {
+            velocity.y += gravity * Time.deltaTime;
+        }
 
         //set velocity so the player will fall
         characterController.Move(velocity * Time.deltaTime);
@@ -89,10 +92,14 @@ public class NewPlayerMovement : MonoBehaviour
 
     public bool Grounded()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, out groundCheck, 1.2f))
+        if (Physics.Raycast(transform.position, Vector3.down, out groundCheck, 1.35f))
         {
             if (groundCheck.transform.CompareTag("Ground") || groundCheck.transform.CompareTag("Grabbable"))
             {
+                if (velocity.y < -16)
+                {
+                    healthScript.GetHurt();
+                }
                 return true;
             }
             else if (Physics.Raycast(transform.position, Vector3.down, out groundCheck, 1.2f, grabMask))
