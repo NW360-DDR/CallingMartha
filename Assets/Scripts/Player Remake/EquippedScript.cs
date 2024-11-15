@@ -22,6 +22,7 @@ public class EquippedScript : MonoBehaviour
     public float batteryDrainMultiplier = 1;
     private bool hasOpenedPhone = false;
     private bool takeInput = true;
+    public bool allowAttack = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -61,16 +62,19 @@ public class EquippedScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha1) && currentEquipped != 0 && takeInput)
         {
+            allowAttack = false;
             currentEquipped = 0;
             takeInput = false;
             StartCoroutine(SendUpdate());
         }else if (Input.GetKeyDown(KeyCode.Alpha2) && currentEquipped != 1 && takeInput)
         {
+            allowAttack = false;
             currentEquipped = 1;
             takeInput = false;
             StartCoroutine(SendUpdate());
         }else if (Input.GetKeyDown(KeyCode.Alpha3) && currentEquipped != 2 && takeInput)
         {
+            allowAttack = false;
             currentEquipped = 2;
             takeInput = false;
             StartCoroutine(SendUpdate());
@@ -78,12 +82,14 @@ public class EquippedScript : MonoBehaviour
 
         if (Input.mouseScrollDelta.y > 0 && currentEquipped != 0 && takeInput)
         {
+            allowAttack = false;
             currentEquipped--;
             takeInput = false;
             StartCoroutine(SendUpdate());
         }
         else if (Input.mouseScrollDelta.y < 0 && currentEquipped != 2 && takeInput)
         {
+            allowAttack = false;
             currentEquipped++;
             takeInput = false;
             StartCoroutine(SendUpdate());

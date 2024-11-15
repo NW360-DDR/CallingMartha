@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class GunScript : MonoBehaviour
@@ -8,6 +9,7 @@ public class GunScript : MonoBehaviour
     public GameObject gun;
 
     private InventoryScript inventoryScript;
+    private EquippedScript equipScript;
     public LayerMask excludeLayer;
 
     private RaycastHit hit;
@@ -15,6 +17,7 @@ public class GunScript : MonoBehaviour
     private void Start()
     {
         inventoryScript = GetComponent<InventoryScript>();
+        equipScript = GetComponent<EquippedScript>();
     }
 
     // Update is called once per frame
@@ -22,7 +25,7 @@ public class GunScript : MonoBehaviour
     {
         Debug.DrawRay(spawnLocation.transform.position, spawnLocation.transform.forward, Color.red);
         //its a gun. shoot it.
-        if (Input.GetMouseButtonDown(0) && inventoryScript.bulletCount >= 1)
+        if (Input.GetMouseButtonDown(0) && inventoryScript.bulletCount >= 1 && Time.timeScale > 0 && equipScript.allowAttack)
         {
             gun.GetComponent<Animator>().SetTrigger("Shoot");
 
