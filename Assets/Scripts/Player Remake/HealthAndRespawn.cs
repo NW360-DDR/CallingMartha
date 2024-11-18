@@ -112,10 +112,10 @@ public class HealthAndRespawn : MonoBehaviour
         blackScreen.SetBool("FadeIn", true);
         respawned = true;
         redJelly.color = new Color(redJelly.color.r, redJelly.color.g, redJelly.color.b, 0f);
+        transform.position = checkpoint;
         health = 3;
         playerScript.velocity.y = 0;
         alive = true;
-        transform.position = checkpoint;
         yield return new WaitForSeconds(0.5f);
         Destroy(playerRB);
         GetComponent<CameraScript>().enabled = true;
