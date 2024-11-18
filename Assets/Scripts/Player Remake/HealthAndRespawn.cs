@@ -80,7 +80,7 @@ public class HealthAndRespawn : MonoBehaviour
         //player can only be hurt when hurtcooldown is over, also reset the healing timer if player is healing
         if (other.CompareTag("Hurtbox") && !hurtCool)
         {
-            GetHurt();
+            GetHurt(1);
         }
 
         if (other.CompareTag("Spawn Trigger"))
@@ -134,9 +134,9 @@ public class HealthAndRespawn : MonoBehaviour
         hurtCool = false;
     }
 
-    public void GetHurt()
+    public void GetHurt(int damage)
     {
-        health -= 1;
+        health -= damage;
         redJelly.color += new Color(redJelly.color.r, redJelly.color.g, redJelly.color.b, 0.50f);
         hurtCool = true;
         healReset = true;

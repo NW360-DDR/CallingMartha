@@ -6,7 +6,6 @@ public class AxeSlash : MonoBehaviour
     public GameObject hitBox;
     public GameObject weapon;
 
-    private InventoryScript inventoryScript;
     private EquippedScript equipScript;
     private Animator axeAnim;
     public bool attackSignal = false;
@@ -14,7 +13,6 @@ public class AxeSlash : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        inventoryScript = GetComponent<InventoryScript>();
         equipScript = GetComponent<EquippedScript>();
         axeAnim = weapon.GetComponent<Animator>();
     }

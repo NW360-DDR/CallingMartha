@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
 
 public class NewPlayerMovement : MonoBehaviour
@@ -12,6 +13,7 @@ public class NewPlayerMovement : MonoBehaviour
     public float speed = 5;
     public float dashSpeed;
     public float dashTime;
+    public float airTime = 0;
 
     public GameObject pauseMenu;
     private EclipseTimer eclipseScript;
@@ -52,6 +54,14 @@ public class NewPlayerMovement : MonoBehaviour
         if (!Grounded())
         {
             velocity.y += gravity * Time.deltaTime;
+            airTime += Time.deltaTime;
+        }else
+        {
+            if (airTime > 1.6f)
+            {
+                healthScript.GetHurt(3);
+            }
+            airTime = 0;
         }
 
         //set velocity so the player will fall
@@ -96,10 +106,6 @@ public class NewPlayerMovement : MonoBehaviour
         {
             if (groundCheck.transform.CompareTag("Ground") || groundCheck.transform.CompareTag("Grabbable"))
             {
-                if (velocity.y < -16)
-                {
-                    healthScript.GetHurt();
-                }
                 return true;
             }
             else if (Physics.Raycast(transform.position, Vector3.down, out groundCheck, 1.2f, grabMask))
