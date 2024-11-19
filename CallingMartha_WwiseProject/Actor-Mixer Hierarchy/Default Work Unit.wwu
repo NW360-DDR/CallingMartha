@@ -1,6 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{9779F26B-F5B8-4439-9939-19BBA0B40F23}" SchemaVersion="110">
 	<AudioObjects>
-		<WorkUnit Name="Default Work Unit" ID="{9779F26B-F5B8-4439-9939-19BBA0B40F23}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{9779F26B-F5B8-4439-9939-19BBA0B40F23}" PersistMode="Standalone">
+			<ChildrenList>
+				<RandomSequenceContainer Name="WolfFar" ID="{BCFA1078-7C57-43CA-A4DC-7D9A8C87877F}" ShortID="147132735">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{44BFD5D5-6990-4DAB-A852-AAA8D2E14E60}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{5D38A325-9DB9-443F-8D38-7E4E0B2D1639}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<Sound Name="wolf_call_far_1" ID="{D7E9DE22-D745-4242-ABAD-C57A2CF73D40}" ShortID="1011810773">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{44BFD5D5-6990-4DAB-A852-AAA8D2E14E60}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{5D38A325-9DB9-443F-8D38-7E4E0B2D1639}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="wolf_call_far_1" ID="{42BBA35A-4735-478D-9E8B-5D78A3A2ED61}">
+									<Language>SFX</Language>
+									<AudioFile>wolf_call_far_1.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="414469841"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="wolf_call_far_1" ID="{42BBA35A-4735-478D-9E8B-5D78A3A2ED61}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="wolf_call_far_2" ID="{83DD2437-A7AF-4B33-8FA8-9A13F1C840EA}" ShortID="11402851">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{44BFD5D5-6990-4DAB-A852-AAA8D2E14E60}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{5D38A325-9DB9-443F-8D38-7E4E0B2D1639}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="wolf_call_far_2" ID="{B8C12572-2F59-4600-9FB5-416486D46B81}">
+									<Language>SFX</Language>
+									<AudioFile>wolf_call_far_2.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="322787194"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="wolf_call_far_2" ID="{B8C12572-2F59-4600-9FB5-416486D46B81}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="wolf_call_far_3" ID="{E2808C66-5F1B-400A-A68D-5834C8378133}" ShortID="791755335">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{44BFD5D5-6990-4DAB-A852-AAA8D2E14E60}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{5D38A325-9DB9-443F-8D38-7E4E0B2D1639}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="wolf_call_far_3" ID="{42D988C5-A897-4AF5-901A-E3D3336A2A8D}">
+									<Language>SFX</Language>
+									<AudioFile>wolf_call_far_3.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="320772771"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="wolf_call_far_3" ID="{42D988C5-A897-4AF5-901A-E3D3336A2A8D}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="wolf_call_far_4" ID="{B8D10DB7-D148-40D6-94E0-126FC4944CE0}" ShortID="868908195">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{44BFD5D5-6990-4DAB-A852-AAA8D2E14E60}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{5D38A325-9DB9-443F-8D38-7E4E0B2D1639}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="wolf_call_far_4" ID="{12AFAB66-8728-46D9-ADED-64B4AF05B43D}">
+									<Language>SFX</Language>
+									<AudioFile>wolf_call_far_4.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="470931709"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="wolf_call_far_4" ID="{12AFAB66-8728-46D9-ADED-64B4AF05B43D}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="wolf_call_far_5" ID="{03095EA9-E5FD-4A46-B7AB-56E1CFCAF1D8}" ShortID="324353189">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{44BFD5D5-6990-4DAB-A852-AAA8D2E14E60}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{5D38A325-9DB9-443F-8D38-7E4E0B2D1639}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="wolf_call_far_5" ID="{46967417-2C9E-4FF4-8D78-F290AB491975}">
+									<Language>SFX</Language>
+									<AudioFile>wolf_call_far_5.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="892326562"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="wolf_call_far_5" ID="{46967417-2C9E-4FF4-8D78-F290AB491975}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+				</RandomSequenceContainer>
+			</ChildrenList>
+		</WorkUnit>
 	</AudioObjects>
 </WwiseDocument>

@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{0BEF6D6C-77FC-4A23-89D5-B3AEEA740FE6}" SchemaVersion="110">
 	<Events>
-		<WorkUnit Name="Default Work Unit" ID="{0BEF6D6C-77FC-4A23-89D5-B3AEEA740FE6}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{0BEF6D6C-77FC-4A23-89D5-B3AEEA740FE6}" PersistMode="Standalone">
+			<ChildrenList>
+				<Event Name="WolfFarPlay" ID="{C73C63C8-DF6E-4786-835F-1FAF63055037}">
+					<ChildrenList>
+						<Action Name="" ID="{09DF1A17-8B6A-4E00-95F1-D1856404A466}" ShortID="25481495">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="WolfFar" ID="{BCFA1078-7C57-43CA-A4DC-7D9A8C87877F}" WorkUnitID="{9779F26B-F5B8-4439-9939-19BBA0B40F23}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
 	</Events>
 </WwiseDocument>
