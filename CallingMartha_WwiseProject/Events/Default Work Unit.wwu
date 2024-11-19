@@ -12,6 +12,18 @@
 								</Reference>
 							</ReferenceList>
 						</Action>
+						<Action Name="" ID="{9EB8D8CD-022C-4EB0-8798-5F0A560E5596}" ShortID="503485816">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Exploration" ID="{FA87DF8F-EEB8-40CB-B340-2C9235DE9E98}" WorkUnitID="{D51D4454-2D28-4CEC-A3E2-985E7F0987DE}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="ExplorationPlay" ID="{9D8550AE-E90A-484B-8FE9-B3B9E9BA4225}">
+					<ChildrenList>
+						<Action Name="" ID="{0E59A329-C3B2-41A7-B28C-27D7AFBAFF8C}" ShortID="1051908833"/>
 					</ChildrenList>
 				</Event>
 			</ChildrenList>

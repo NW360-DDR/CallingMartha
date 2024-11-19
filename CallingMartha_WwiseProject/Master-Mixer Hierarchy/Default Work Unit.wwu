@@ -10,6 +10,16 @@
 						</Reference>
 					</ReferenceList>
 				</Bus>
+				<Bus Name="WolfReverb" ID="{DE4895A8-1B5F-4DB6-867F-601F91AF4A30}">
+					<ReferenceList>
+						<Reference Name="AudioDevice" PluginName="System" CompanyID="0" PluginID="174" PluginType="7">
+							<ObjectRef Name="System" ID="{CB0E6FA4-A5D5-4964-83B5-D2B7554F117C}" WorkUnitID="{9592D173-290E-43C7-98E5-9C8B059554DD}"/>
+						</Reference>
+						<Reference Name="Effect0" PluginName="Wwise RoomVerb" CompanyID="0" PluginID="118" PluginType="3">
+							<ObjectRef Name="Have_U_Ever_Been_Outside" ID="{FE29AE8D-FD86-4652-A95D-68D32F5760EC}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+						</Reference>
+					</ReferenceList>
+				</Bus>
 			</ChildrenList>
 		</WorkUnit>
 	</Busses>
