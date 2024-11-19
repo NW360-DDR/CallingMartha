@@ -183,6 +183,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d602484f7523544282744610d7cc790, type: 3}
+--- !u!1 &64090786 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 782955792047173918, guid: 54369fa8249a1af47acfe9ea8921309b, type: 3}
+  m_PrefabInstance: {fileID: 1717514817}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &81817261
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3315,6 +3320,17 @@ MonoBehaviour:
   isMartha: 1
   Yelp: {fileID: 0}
   deadWolf: {fileID: 0}
+--- !u!114 &1486114701 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2022052411230835911, guid: 54369fa8249a1af47acfe9ea8921309b, type: 3}
+  m_PrefabInstance: {fileID: 1717514817}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1486114698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 550980b2c2c4552479c230f0678e8b0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &1494869902
 Mesh:
   m_ObjectHideFlags: 0
@@ -4619,11 +4635,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2022052411230835911, guid: 54369fa8249a1af47acfe9ea8921309b, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4294861448869966391, guid: 54369fa8249a1af47acfe9ea8921309b, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4344879818639307742, guid: 54369fa8249a1af47acfe9ea8921309b, type: 3}
+      propertyPath: fov
+      value: 
+      objectReference: {fileID: 1486114701}
+    - target: {fileID: 4344879818639307742, guid: 54369fa8249a1af47acfe9ea8921309b, type: 3}
+      propertyPath: killBox
+      value: 
+      objectReference: {fileID: 64090786}
+    - target: {fileID: 4344879818639307742, guid: 54369fa8249a1af47acfe9ea8921309b, type: 3}
+      propertyPath: gameTimer
+      value: 
+      objectReference: {fileID: 1264945748}
+    - target: {fileID: 4344879818639307742, guid: 54369fa8249a1af47acfe9ea8921309b, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5885204146939647971, guid: 54369fa8249a1af47acfe9ea8921309b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4671,7 +4703,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7466197321143683412, guid: 54369fa8249a1af47acfe9ea8921309b, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
