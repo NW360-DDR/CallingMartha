@@ -329,6 +329,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3249380608732660357, guid: 27e0104e6422ecd44b21160034eede24, type: 3}
       insertIndex: -1
       addedObject: {fileID: 477227715115723520}
+    - targetCorrespondingSourceObject: {fileID: 3249380608732660357, guid: 27e0104e6422ecd44b21160034eede24, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4827747926692800840}
   m_SourcePrefab: {fileID: 100100000, guid: 27e0104e6422ecd44b21160034eede24, type: 3}
 --- !u!4 &5957648846525377488 stripped
 Transform:
@@ -353,3 +356,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCam: {fileID: 0}
+--- !u!95 &4827747926692800840
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7256997968880597959}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 20dc94d337232924d8a1768ac978d82e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
