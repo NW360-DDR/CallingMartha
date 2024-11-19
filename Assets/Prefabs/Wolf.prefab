@@ -157,6 +157,7 @@ MonoBehaviour:
   isAnimated: 1
   isMartha: 0
   Yelp: {fileID: 1788498740770653312}
+  deadWolf: {fileID: 8291701754459658372, guid: fb63285d9c0d34b4d9eb10c14c00d2ba, type: 3}
 --- !u!114 &1390833056263577101
 MonoBehaviour:
   m_ObjectHideFlags: 0

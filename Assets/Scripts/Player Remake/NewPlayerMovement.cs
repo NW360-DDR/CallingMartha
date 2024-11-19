@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
 
 public class NewPlayerMovement : MonoBehaviour
@@ -8,12 +9,12 @@ public class NewPlayerMovement : MonoBehaviour
     private CellService cellService;
 
     private Vector3 moveDirection;
-    private Vector3 velocity;
+    public Vector3 velocity;
     public float speed = 5;
     public float dashSpeed;
     public float dashTime;
+    public float airTime = 0;
 
-    public GameObject controlsScreen;
     public GameObject pauseMenu;
     private EclipseTimer eclipseScript;
 
@@ -21,7 +22,6 @@ public class NewPlayerMovement : MonoBehaviour
 
     private bool isDashing = false;
     private bool dashCooldown = false;
-    private bool controlsUp = false;
 
     private int grabMask;
 
@@ -51,7 +51,18 @@ public class NewPlayerMovement : MonoBehaviour
         characterController.Move((moveDirection * speed) * Time.deltaTime);
 
         //artificial gravity
-        velocity.y += gravity * Time.deltaTime;
+        if (!Grounded())
+        {
+            velocity.y += gravity * Time.deltaTime;
+            airTime += Time.deltaTime;
+        }else
+        {
+            if (airTime > 1.6f)
+            {
+                healthScript.GetHurt(3);
+            }
+            airTime = 0;
+        }
 
         //set velocity so the player will fall
         characterController.Move(velocity * Time.deltaTime);
@@ -70,16 +81,6 @@ public class NewPlayerMovement : MonoBehaviour
             isDashing = true;
             speed *= dashSpeed;
             StartCoroutine(Dash());
-        }
-
-        if (Input.GetKeyDown(KeyCode.V) && !controlsUp)
-        {
-            controlsScreen.SetActive(true);
-            controlsUp = true;
-        }else if (Input.GetKeyDown(KeyCode.V) && controlsUp)
-        {
-            controlsScreen.SetActive(false);
-            controlsUp = false;
         }
 
         if (Input.GetKeyDown(KeyCode.Escape) && pauseMenu.active)
@@ -101,7 +102,7 @@ public class NewPlayerMovement : MonoBehaviour
 
     public bool Grounded()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, out groundCheck, 1.2f))
+        if (Physics.Raycast(transform.position, Vector3.down, out groundCheck, 1.35f))
         {
             if (groundCheck.transform.CompareTag("Ground") || groundCheck.transform.CompareTag("Grabbable"))
             {
