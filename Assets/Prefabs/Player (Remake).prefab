@@ -1427,7 +1427,7 @@ MonoBehaviour:
   speed: 3.5
   dashSpeed: 3
   dashTime: 0.25
-  controlsScreen: {fileID: 0}
+  pauseMenu: {fileID: 0}
   healthScript: {fileID: 7964418324737739107}
 --- !u!114 &7607173335660912681
 MonoBehaviour:
@@ -1543,6 +1543,7 @@ MonoBehaviour:
   flashlightLight: {fileID: 9120104487017277093}
   currentEquipped: 0
   batteryDrainMultiplier: 0.5
+  allowAttack: 1
 --- !u!1 &8183476400951475566
 GameObject:
   m_ObjectHideFlags: 0
@@ -1828,6 +1829,10 @@ PrefabInstance:
       propertyPath: batterySlider
       value: 
       objectReference: {fileID: 5238588847699019835}
+    - target: {fileID: 2691893432422687172, guid: d84b44943f2563244bcd70ab4cfb2b39, type: 3}
+      propertyPath: m_ActiveFontFeatures.Array.data[0]
+      value: 1801810542
+      objectReference: {fileID: 0}
     - target: {fileID: 2705786673668910461, guid: d84b44943f2563244bcd70ab4cfb2b39, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0.5
@@ -1844,9 +1849,17 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -523.59595
       objectReference: {fileID: 0}
+    - target: {fileID: 3101928553187787953, guid: d84b44943f2563244bcd70ab4cfb2b39, type: 3}
+      propertyPath: m_ActiveFontFeatures.Array.data[0]
+      value: 1801810542
+      objectReference: {fileID: 0}
     - target: {fileID: 3135983475530328092, guid: d84b44943f2563244bcd70ab4cfb2b39, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4806992589988229911, guid: d84b44943f2563244bcd70ab4cfb2b39, type: 3}
+      propertyPath: m_ActiveFontFeatures.Array.data[0]
+      value: 1801810542
       objectReference: {fileID: 0}
     - target: {fileID: 4827427804304276369, guid: d84b44943f2563244bcd70ab4cfb2b39, type: 3}
       propertyPath: m_Layer

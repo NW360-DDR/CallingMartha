@@ -9,11 +9,13 @@ public class Enemy : MonoBehaviour
     public float health = 100;
     public bool isAnimated = true;
     public bool isMartha = false;
+    private bool dead = false;
 
     private Animator spriteAnim;
     private AngleCalc angleCalcScript;
 
     public AudioSource Yelp;
+    public GameObject deadWolf;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,7 +41,14 @@ public class Enemy : MonoBehaviour
     {
         Yelp.Play();
         Debug.Log("I done got shot!");
-        Destroy(gameObject);
+        StartCoroutine(Die());
+    }
+
+    void ShootWife()
+    {
+        Debug.Log("Ouch! You Shot Your Wife!");
+        health -= 100;
+        Yelp.Play();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -84,6 +93,12 @@ public class Enemy : MonoBehaviour
 
     IEnumerator Die()
     {
+        if (!isMartha && !dead)
+        {
+            dead = true;
+            Instantiate(deadWolf, transform.position, transform.rotation);
+        }
+
         yield return new WaitForSeconds(0.1f);
         Debug.Log("Oh no! Am Dead!");
         if(isMartha)
