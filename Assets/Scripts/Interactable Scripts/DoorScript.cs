@@ -13,6 +13,9 @@ public class DoorScript : Interactable
     public int keyNum = 0;
 
     private InventoryScript inventoryScript;
+
+    [TextArea(3, 10)] //makes textarea in inspector bigger
+    public string doorText;
     void Interact()
     {
         //Do interact code here
@@ -27,12 +30,12 @@ public class DoorScript : Interactable
             {
                 locked = false;
                 inventoryScript.keys[keyNum] = false;
-                logString = "Door Unlocked.";
+                logString = doorText;
                 SendLog();
             }
             else
             {
-                logString = "I need a key for this...";
+                logString = doorText;
                 SendLog();
             }
         }
@@ -44,7 +47,7 @@ public class DoorScript : Interactable
         }
         else
         {
-            logString = "There's something blocking this...";
+            logString = doorText;
             SendLog();
         }
             
