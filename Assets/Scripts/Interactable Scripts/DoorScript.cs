@@ -30,8 +30,6 @@ public class DoorScript : Interactable
             {
                 locked = false;
                 inventoryScript.keys[keyNum] = false;
-                logString = doorText;
-                SendLog();
             }
             else
             {
