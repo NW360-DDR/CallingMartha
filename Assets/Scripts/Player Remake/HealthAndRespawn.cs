@@ -114,7 +114,7 @@ public class HealthAndRespawn : MonoBehaviour
         redJelly.color = new Color(redJelly.color.r, redJelly.color.g, redJelly.color.b, 0f);
         transform.position = checkpoint;
         health = 3;
-        playerScript.moveDirection.y = 0;
+        playerScript.velocity.y = 0;
         alive = true;
         yield return new WaitForSeconds(0.5f);
         Destroy(playerRB);
