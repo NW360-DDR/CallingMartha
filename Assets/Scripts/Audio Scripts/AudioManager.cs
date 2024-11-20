@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public string HurtEvent = "";
-
-    public string DeathEvent = "";
+  
 
     // Start is called before the first frame update
 
@@ -21,12 +19,17 @@ public class AudioManager : MonoBehaviour
 
     public void PlayerHurt()
     {
-        FMODUnity.RuntimeManager.PlayOneShot(HurtEvent, transform.position);
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Michael/Play_MichaelHurt");
     }
 
     public void PlayerDead()
     {
-        FMODUnity.RuntimeManager.PlayOneShot(DeathEvent, transform.position);
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Michael/PlayMichaelDead");
+    }
+
+    public void WolfHurt()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Woves/Play_WovesHurt");
     }
 
    

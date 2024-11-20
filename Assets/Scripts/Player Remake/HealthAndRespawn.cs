@@ -40,6 +40,7 @@ public class HealthAndRespawn : MonoBehaviour
         {
             //kill player and run the respawn coroutine
             alive = false;
+            AudioManager.PlayerDead();
             GetComponent<CameraScript>().enabled = false;
             playerRB = gameObject.AddComponent<Rigidbody>();
             grabScript.enabled = false;
