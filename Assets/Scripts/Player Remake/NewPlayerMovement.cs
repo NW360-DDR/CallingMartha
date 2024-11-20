@@ -8,12 +8,14 @@ public class NewPlayerMovement : MonoBehaviour
     [SerializeField] CharacterController characterController;
     private CellService cellService;
 
-    private Vector3 moveDirection;
-    public Vector3 velocity;
+    public Vector3 moveDirection;
+    private Vector3 velocity;
     public float speed = 5;
     public float dashSpeed;
     public float dashTime;
     public float airTime = 0;
+
+    public bool isGrounded;
 
     public GameObject pauseMenu;
     private EclipseTimer eclipseScript;
@@ -26,9 +28,10 @@ public class NewPlayerMovement : MonoBehaviour
     private int grabMask;
 
     readonly private float gravity = -9.81f;
+    public float fallDamageThreshold = -15f;
 
     private RaycastHit groundCheck;
-
+    bool willDie = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,11 +39,14 @@ public class NewPlayerMovement : MonoBehaviour
         eclipseScript = GameObject.Find("EclipseTimer").GetComponent<EclipseTimer>();
         grabMask = 1 << 6;
         pauseMenu.SetActive(false);
+        velocity = Vector3.zero;
     }
 
     // Update is called once per frame
     void Update()
     {
+        
+
         //set the movement direction vector3 if the player is still alive
         if (healthScript.alive)
         {
@@ -48,31 +54,41 @@ public class NewPlayerMovement : MonoBehaviour
         }
 
         //actually move the player
-        characterController.Move((moveDirection * speed) * Time.deltaTime);
+        //characterController.Move((moveDirection * speed) * Time.deltaTime);
+        moveDirection *= speed;
 
         //artificial gravity
-        if (!Grounded())
+        if (!characterController.isGrounded)
         {
             velocity.y += gravity * Time.deltaTime;
-            airTime += Time.deltaTime;
-        }else
+            if (Mathf.Abs(velocity.y) >= Mathf.Abs(fallDamageThreshold))
+            {
+                willDie = true;
+            }
+            else
+            {
+                willDie = false;
+            }
+        }
+        else
         {
-            if (airTime > 1.6f)
+            if (willDie)
             {
                 healthScript.GetHurt(3);
             }
-            airTime = 0;
         }
-
-        //set velocity so the player will fall
-        characterController.Move(velocity * Time.deltaTime);
-
+        isGrounded = characterController.isGrounded;
         //let the player jump if they are grounded and not dashing
-        if (Input.GetKeyDown(KeyCode.Space) && Grounded() && !isDashing)
+        if (Input.GetKeyDown(KeyCode.Space) && characterController.isGrounded && !isDashing)
         {
-            velocity.y = Mathf.Sqrt(1.5f * -2f * gravity);
+            velocity.y = Mathf.Sqrt(3f * -gravity);
             GetComponentInChildren<Animator>().SetBool("isWalking", false);
         }
+        moveDirection += velocity;
+        
+        characterController.Move((moveDirection) * Time.deltaTime);
+
+        
 
         //allow the player to dash if they are grounded and not on cooldown
         if (Input.GetKeyDown(KeyCode.LeftShift) && Grounded() && !dashCooldown)
@@ -83,20 +99,23 @@ public class NewPlayerMovement : MonoBehaviour
             StartCoroutine(Dash());
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape) && pauseMenu.active)
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Time.timeScale = 1;
-            pauseMenu.SetActive(false);
-            eclipseScript.gameTimerActive = true;
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
-        else if (Input.GetKeyDown(KeyCode.Escape) && !pauseMenu.active)
-        {
-            Time.timeScale = 0;
-            pauseMenu.SetActive(true);
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            if (pauseMenu.activeSelf)
+            {
+                Time.timeScale = 1;
+                pauseMenu.SetActive(false);
+                eclipseScript.gameTimerActive = true;
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
+            else
+            {
+                Time.timeScale = 0;
+                pauseMenu.SetActive(true);
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
         }
     }
 
