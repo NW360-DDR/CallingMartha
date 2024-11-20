@@ -21,6 +21,9 @@ public class HealthAndRespawn : MonoBehaviour
     private Rigidbody playerRB;
     private Animator blackScreen;
 
+    //SOUND STUFF
+    public AudioManager AudioManager;
+
     private void Start()
     {
         InventoryScript = GetComponent<InventoryScript>();
@@ -72,6 +75,7 @@ public class HealthAndRespawn : MonoBehaviour
         {
             Debug.Log("ATTACK NOISE ATTACK NOISE GRR ARRGGG");
             health -= 1;
+            AudioManager.PlayerHurt();
             redJelly.color += new Color (redJelly.color.r, redJelly.color.g, redJelly.color.b, 0.50f);
             hurtCool = true;
             healReset = true;
