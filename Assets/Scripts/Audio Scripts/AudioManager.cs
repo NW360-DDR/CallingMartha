@@ -8,9 +8,6 @@ public class AudioManager : MonoBehaviour
   //Maybe I'll have time to go back and make this look good or do things better, but for right now I just need it to do things.
   //Also not sure when they made it I didn't need a using FMODorsomethingrather statement above this, but I'm not going to question it.
 
-
-    
-
     // Update is called once per frame
     void Update()
     {
