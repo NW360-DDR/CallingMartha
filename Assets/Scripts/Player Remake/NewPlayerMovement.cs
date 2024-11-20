@@ -9,7 +9,7 @@ public class NewPlayerMovement : MonoBehaviour
     private CellService cellService;
 
     public Vector3 moveDirection;
-    private Vector3 velocity;
+    public Vector3 velocity;
     public float speed = 5;
     public float dashSpeed;
     public float dashTime;
@@ -72,10 +72,12 @@ public class NewPlayerMovement : MonoBehaviour
         }
         else
         {
-            if (willDie)
+            if (willDie && healthScript.alive)
             {
                 healthScript.GetHurt(3);
+                willDie = false;
             }
+            velocity.y = -4f;
         }
         isGrounded = characterController.isGrounded;
         //let the player jump if they are grounded and not dashing
