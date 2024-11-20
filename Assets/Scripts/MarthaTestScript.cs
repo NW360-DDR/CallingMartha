@@ -65,8 +65,7 @@ public class MarthaTestScript : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
-		brain.PushState(Idle());
-		idleTimer = 1000000000000000000000f;
+		brain.PushState(DoNothingUntilCalled());
 		path = new();
 	}
 
@@ -78,10 +77,10 @@ public class MarthaTestScript : MonoBehaviour
 			hunting = true;
 			brain.PushState(BossFight_Chase());
 		}
-        else
-        {
+		else
+		{
 			idleTimer = 3f;
-        }
+		}
 		if (backState > 0)
 		{
 			brain.PopState();
@@ -98,11 +97,11 @@ public class MarthaTestScript : MonoBehaviour
 	}
 	
 	public void KILL()
-    {
+	{
 		if (!brain.gameObject.activeSelf)
-        {
+		{
 			brain.gameObject.SetActive(true);
-        }
+		}
 		// It seems we want to make Martha start off closer than she usually is. I personally disagree, but fair enough.
 		Vector3 temp = fov.playerRef.transform.position;
 		float rand = UnityEngine.Random.Range(0, 1);
@@ -112,7 +111,7 @@ public class MarthaTestScript : MonoBehaviour
 		transform.position = temp;
 		brain.PushState(MurderHobo());
 		Destroy(health);
-    }
+	}
 
 	/// <summary>
 	/// Checks if the path in question can be reached.
@@ -155,60 +154,16 @@ public class MarthaTestScript : MonoBehaviour
 			AttemptPathBoss(fov.playerRef.transform.position);
 		}
 	}
-	State Wander()
+	
+	State DoNothingUntilCalled()
 	{
-		void WanderEnter()
-		{
-			Vector3 wanderDir = (UnityEngine.Random.insideUnitSphere * maxWanderDist) + transform.position; // Generate a random spot "maxWanderDist" units away from the enemy to navigate towards.
-			NavMesh.SamplePosition(wanderDir, out NavMeshHit nvm, maxWanderDist, NavMesh.AllAreas); // God I hope this is a spot that can be navigated to.
-			nav.SetDestination(nvm.position);
-			dest = nav.destination;
-		}
-		void Wander()
-		{
-			if (nav.remainingDistance <= 0.25f) // Hey are we close to the destination?
-			{
-				nav.ResetPath();
-				brain.PopState();
-			}
+		static void yee(){}
 
-		}
-		void WanderExit()
-		{
-			// Empty
-		}
-		return new State(Wander, WanderEnter, WanderExit, "Wander");
+		return new(yee, yee, yee, "Awaiting State...");
 	}
-	State Idle()
-	{
-		void IdleEnter()
-		{
-			nav.ResetPath();
-		}
-		void Idle()
-		{
-			// TODO: Implement checks to enter other states such as Ohio or Florida.
-			if (gameTimer.timer >= (gameTimer.eclipseTimerLength * 60))
-            {
-				KILL();
-            }
-			// Otherwise, wait for IdleTimer to run out, then go somewhere else.
-			idleTimer -= Time.deltaTime;
-			if (idleTimer <= 0)
-			{
-				brain.PushState(Wander());
-				idleTimer = UnityEngine.Random.Range(1, 3);
-			}
 
-		}
-		void IdleExit() // Empty
-		{
-
-		}
-		return new State(Idle, IdleEnter, IdleExit, "Idle");
-	}
 	State MurderHobo()
-    {
+	{
 		void Enter()
 		{
 			dest = fov.playerRef.transform.position;
@@ -218,11 +173,11 @@ public class MarthaTestScript : MonoBehaviour
 			killBox.SetActive(true);
 		}
 		void Update()
-        {
+		{
 			dest = fov.playerRef.transform.position;
 			nav.SetDestination(dest);
 			killBox.SetActive(true);
-        }
+		}
 		
 		void Exit()
 		{
@@ -233,36 +188,36 @@ public class MarthaTestScript : MonoBehaviour
 
 
 		return new(Update, Enter, Exit, "MurderHobo");
-    }
+	}
 	State BossFight_Chase()
-    {
+	{
 
 		void Enter()
 		{
 			
 		}
 		void Update()
-        {
+		{
 			AttemptPathBoss(fov.playerRef.transform.position);
 			if (deNavTimer >= RetreatTimer) // Implying we haven't been able to reach the player for a bit.
-            {
+			{
 				brain.PushState(BossBackAway());
-            }
+			}
 			if ((nav.remainingDistance < chargeRange) && chargeTimer >= chargeCooldown)
 			{
 				brain.PushState(Attack());
 			}
 		}
 		void Exit()
-        {
+		{
 			deNavTimer = 0;
-        }
+		}
 
 
 		return new(Update, Enter, Exit, "Boss Chase");
-    }
+	}
 	State Attack()
-    {
+	{
 		float chargeMult = 3f;
 		void Enter()
 		{
@@ -296,11 +251,11 @@ public class MarthaTestScript : MonoBehaviour
 		return new State(Update, Enter, Exit, "Charge");
 	}
 	State BossBackAway()
-    {
+	{
 		void WanderEnter()
 		{
 			while (nav.pathStatus != NavMeshPathStatus.PathComplete)
-            {
+			{
 				Vector3 wanderDir = (UnityEngine.Random.insideUnitSphere * maxWanderDist) + transform.position; // Generate a random spot "maxWanderDist" units away from the enemy to navigate towards.
 				NavMesh.SamplePosition(wanderDir, out NavMeshHit nvm, maxWanderDist, NavMesh.AllAreas); // God I hope this is a spot that can be navigated to.
 				AttemptPath(nvm.position);
