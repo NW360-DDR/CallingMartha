@@ -53,7 +53,7 @@ public class Enemy : MonoBehaviour
                 brain.DoDamage();
                 Debug.Log("Ouch!");
                 health -= 50;
-                AudioManager.WolfHurt();
+                AudioManager.WolfAttack();
             }
             
             //GetComponent<NavMeshAgent>().speed = 0;
