@@ -23,6 +23,7 @@ TagManager:
   - Die
   - Barrel
   - Martha
+  - Breakable
   layers:
   - Default
   - TransparentFX

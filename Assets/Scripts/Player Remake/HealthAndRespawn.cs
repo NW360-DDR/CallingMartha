@@ -19,7 +19,7 @@ public class HealthAndRespawn : MonoBehaviour
     private bool healReset = false;
     private float healthHold = 0;
     private Rigidbody playerRB;
-    private Animator blackScreen;
+    public Animator blackScreen;
     private NewPlayerMovement playerScript;
 
     private void Start()
