@@ -1424,9 +1424,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterController: {fileID: 2094806520271669530}
+  velocity: {x: 0, y: 0, z: 0}
   speed: 3.5
   dashSpeed: 3
   dashTime: 0.25
+  airTime: 0
   pauseMenu: {fileID: 0}
   healthScript: {fileID: 7964418324737739107}
 --- !u!114 &7607173335660912681
@@ -1455,6 +1457,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitBox: {fileID: 2652596930408307476}
   weapon: {fileID: 4265805192663099969}
+  cam: {fileID: 2448535036677490919}
   attackSignal: 0
 --- !u!114 &7964418324737739107
 MonoBehaviour:
@@ -1473,6 +1476,7 @@ MonoBehaviour:
   healthSlider: {fileID: 0}
   redJelly: {fileID: 0}
   alive: 1
+  blackScreen: {fileID: 0}
 --- !u!114 &4168797154450591856
 MonoBehaviour:
   m_ObjectHideFlags: 0
