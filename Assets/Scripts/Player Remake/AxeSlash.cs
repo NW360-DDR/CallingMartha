@@ -27,7 +27,9 @@ public class AxeSlash : MonoBehaviour
         if (attackSignal)
         {
             TurnOnHitbox();
-        }else
+            BreakableCheck();
+        }
+        else
         {
             TurnOffHitbox();
         }
@@ -36,7 +38,6 @@ public class AxeSlash : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && equipScript.allowAttack && Time.timeScale > 0)
         {
             axeAnim.SetTrigger("Attack");
-            BreakableCheck();
         }
     }
 
