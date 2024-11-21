@@ -1424,13 +1424,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterController: {fileID: 2094806520271669530}
+  moveDirection: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
   speed: 3.5
   dashSpeed: 3
   dashTime: 0.25
   airTime: 0
+  isGrounded: 0
   pauseMenu: {fileID: 0}
   healthScript: {fileID: 7964418324737739107}
+  fallDamageThreshold: -15
 --- !u!114 &7607173335660912681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1459,6 +1462,9 @@ MonoBehaviour:
   weapon: {fileID: 4265805192663099969}
   cam: {fileID: 2448535036677490919}
   attackSignal: 0
+  excludeLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &7964418324737739107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1860,6 +1866,10 @@ PrefabInstance:
     - target: {fileID: 3135983475530328092, guid: d84b44943f2563244bcd70ab4cfb2b39, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3455404415870804141, guid: d84b44943f2563244bcd70ab4cfb2b39, type: 3}
+      propertyPath: m_ActiveFontFeatures.Array.data[0]
+      value: 1801810542
       objectReference: {fileID: 0}
     - target: {fileID: 4806992589988229911, guid: d84b44943f2563244bcd70ab4cfb2b39, type: 3}
       propertyPath: m_ActiveFontFeatures.Array.data[0]

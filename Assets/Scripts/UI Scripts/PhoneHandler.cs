@@ -79,19 +79,30 @@ public class PhoneHandler : MonoBehaviour
             if(cell.service == 3 && !hasSaved) // Maximum Cell Service only while we have not Checkpointed
             {
                 SaveText.text = "Connection Established";
+                SaveText.GetComponentInParent<RawImage>().color = Color.green;
                 canSave = true;
             }
             else if (cell.service == 3 && hasSaved)
             {
                 SaveText.text = "Location Logged.";
+                StartCoroutine(SetTextBack());
             }
             else
             {
                 SaveText.text = "Unstable Connection";
+                SaveText.GetComponentInParent<RawImage>().color = Color.red;
                 canSave = false;
             }
         }
-        
+    }
+    IEnumerator SetTextBack()
+    {
+        if (currentScreen == Screen.Save)
+        {
+            yield return new WaitForSeconds(1);
+            hasSaved = false;
+            SaveText.text = "Connection Established";
+        }  
     }
     void SwitchMode(Screen newMode)
     {
