@@ -7,36 +7,43 @@ public class NewPlayerMovement : MonoBehaviour
     [SerializeField] CharacterController characterController;
     private CellService cellService;
 
-    private Vector3 moveDirection;
-    private Vector3 velocity;
+    public Vector3 moveDirection;
+    public Vector3 velocity;
     public float speed = 5;
     public float dashSpeed;
     public float dashTime;
+    public float airTime = 0;
 
-    public GameObject controlsScreen;
+    public bool isGrounded;
+
+    public GameObject pauseMenu;
+    private EclipseTimer eclipseScript;
 
     [SerializeField] HealthAndRespawn healthScript;
+    private PhoneHandler phoneScript;
 
     private bool isDashing = false;
     private bool dashCooldown = false;
-    private bool controlsUp = false;
-
-    private int grabMask;
 
     readonly private float gravity = -9.81f;
+    public float fallDamageThreshold = -15f;
 
-    private RaycastHit groundCheck;
-
+    bool willDie = false;
     // Start is called before the first frame update
     void Start()
     {
         cellService = GameObject.Find("ServiceBar").GetComponent<CellService>();
-        grabMask = 1 << 6;
+        eclipseScript = GameObject.Find("EclipseTimer").GetComponent<EclipseTimer>();
+        phoneScript = gameObject.GetComponentInChildren<PhoneHandler>();
+        pauseMenu.SetActive(false);
+        velocity = Vector3.zero;
     }
 
     // Update is called once per frame
     void Update()
     {
+        
+
         //set the movement direction vector3 if the player is still alive
         if (healthScript.alive)
         {
@@ -44,23 +51,46 @@ public class NewPlayerMovement : MonoBehaviour
         }
 
         //actually move the player
-        characterController.Move((moveDirection * speed) * Time.deltaTime);
+        //characterController.Move((moveDirection * speed) * Time.deltaTime);
+        moveDirection *= speed;
 
         //artificial gravity
-        velocity.y += gravity * Time.deltaTime;
-
-        //set velocity so the player will fall
-        characterController.Move(velocity * Time.deltaTime);
-
-        //let the player jump if they are grounded and not dashing
-        if (Input.GetKeyDown(KeyCode.Space) && Grounded() && !isDashing)
+        if (!characterController.isGrounded)
         {
-            velocity.y = Mathf.Sqrt(1.5f * -2f * gravity);
+            velocity.y += gravity * Time.deltaTime;
+            if (Mathf.Abs(velocity.y) >= Mathf.Abs(fallDamageThreshold))
+            {
+                willDie = true;
+            }
+            else
+            {
+                willDie = false;
+            }
+        }
+        else
+        {
+            if (willDie && healthScript.alive)
+            {
+                healthScript.GetHurt(3);
+                willDie = false;
+            }
+            velocity.y = -4f;
+        }
+        isGrounded = characterController.isGrounded;
+        //let the player jump if they are grounded and not dashing
+        if (Input.GetKeyDown(KeyCode.Space) && characterController.isGrounded && !isDashing)
+        {
+            velocity.y = Mathf.Sqrt(3f * -gravity);
             GetComponentInChildren<Animator>().SetBool("isWalking", false);
         }
+        moveDirection += velocity;
+        
+        characterController.Move((moveDirection) * Time.deltaTime);
+
+        
 
         //allow the player to dash if they are grounded and not on cooldown
-        if (Input.GetKeyDown(KeyCode.LeftShift) && Grounded() && !dashCooldown)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && isGrounded && !dashCooldown)
         {
             dashCooldown = true;
             isDashing = true;
@@ -68,45 +98,23 @@ public class NewPlayerMovement : MonoBehaviour
             StartCoroutine(Dash());
         }
 
-        if (Input.GetKeyDown(KeyCode.V) && !controlsUp)
-        {
-            controlsScreen.SetActive(true);
-            controlsUp = true;
-        }else if (Input.GetKeyDown(KeyCode.V) && controlsUp)
-        {
-            controlsScreen.SetActive(false);
-            controlsUp = false;
-        }
-
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Application.Quit();
-        }
-    }
-
-    public bool Grounded()
-    {
-        if (Physics.Raycast(transform.position, Vector3.down, out groundCheck, 1.2f))
-        {
-            if (groundCheck.transform.CompareTag("Ground") || groundCheck.transform.CompareTag("Grabbable"))
+            if (pauseMenu.activeSelf)
             {
-                return true;
-            }
-            else if (Physics.Raycast(transform.position, Vector3.down, out groundCheck, 1.2f, grabMask))
-            {
-                return true;
+                Time.timeScale = 1;
+                pauseMenu.SetActive(false);
+                eclipseScript.gameTimerActive = true;
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
             }
             else
             {
-                GetComponentInChildren<Animator>().SetBool("isWalking", false);
-                return false;
-
+                Time.timeScale = 0;
+                pauseMenu.SetActive(true);
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
             }
-        }else
-        {
-            GetComponentInChildren<Animator>().Play("Camera_Idle");
-            GetComponentInChildren<Animator>().SetBool("isWalking", false);
-            return false;
         }
     }
 
@@ -125,6 +133,11 @@ public class NewPlayerMovement : MonoBehaviour
         if (other.CompareTag("Cellbox"))
         {
             cellService.ServiceUpdate(other.GetComponent<CellVolume>().cellPower);
+
+            if (other.GetComponent<CellVolume>().gettingCall)
+            {
+                phoneScript.gettingCall = true;
+            }
         }
     }
     private void OnTriggerStay(Collider other)
@@ -141,6 +154,7 @@ public class NewPlayerMovement : MonoBehaviour
         {
             cellService.ServiceUpdate(0);
             cellService.inCellBox = false;
+            phoneScript.gettingCall = false;
         }
     }
 }

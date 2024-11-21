@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class EquippedEventScript : MonoBehaviour
 {
+    private EquippedScript equipScript;
     // Start is called before the first frame update
     void Start()
     {
-        
+        equipScript = GetComponentInParent<EquippedScript>();
     }
 
     // Update is called once per frame
@@ -19,5 +20,10 @@ public class EquippedEventScript : MonoBehaviour
     void EndSwitch()
     {
         GetComponent<Animator>().SetBool("SwitchingHand", false);
+    }
+
+    void AllowAttack()
+    {
+        equipScript.allowAttack = true;
     }
 }

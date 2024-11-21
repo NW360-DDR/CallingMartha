@@ -9,18 +9,19 @@ public class Enemy : MonoBehaviour
     public float health = 100;
     public bool isAnimated = true;
     public bool isMartha = false;
+    private bool dead = false;
 
     private Animator spriteAnim;
     private AngleCalc angleCalcScript;
 
-    //SOUND STUFF
-    public AudioManager AudioManager;
-
+    public AudioSource Yelp;
+    public GameObject deadWolf;
     // Start is called before the first frame update
     void Start()
     {
         spriteAnim = GetComponentInChildren<Animator>();
         angleCalcScript = GetComponent<AngleCalc>();
+        Yelp = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -31,30 +32,52 @@ public class Enemy : MonoBehaviour
 
         if (health <= 0)
         {
-            AudioManager.WolfHurt();
+            Yelp.Play();
             StartCoroutine(Die());
         }
     }
 
     void GetShot()
     {
-        AudioManager.WolfHurt();
+        Yelp.Play();
         Debug.Log("I done got shot!");
-        Destroy(gameObject);
+        StartCoroutine(Die());
+    }
+
+    void ShootWife()
+    {
+        Debug.Log("Ouch! You Shot Your Wife!");
+        health -= 100;
+        Yelp.Play();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("AxeHitbox"))
         {
-            GenericEnemy brain = GetComponent<GenericEnemy>();
-            if (!brain.brain.GetState().Equals("GetHit"))
+            if (!isMartha)
             {
-                brain.DoDamage();
-                Debug.Log("Ouch!");
-                health -= 50;
-                AudioManager.WolfAttack();
+                GenericEnemy brain = GetComponent<GenericEnemy>();
+                if (!brain.brain.GetState().Equals("GetHit"))
+                {
+                    brain.DoDamage();
+                    Debug.Log("Ouch!");
+                    health -= 50;
+                    Yelp.Play();
+                }
             }
+            else
+            {
+
+                MarthaTestScript brain = GetComponent<MarthaTestScript>();
+                if (!brain.brain.GetState().Equals("GetHit"))
+                {
+                    Debug.Log("Ouch! Martha wtf");
+                    health -= 50;
+                    Yelp.Play();
+                }
+            }
+            
             
             //GetComponent<NavMeshAgent>().speed = 0;
             //StartCoroutine(ResetSpeed());
@@ -70,6 +93,12 @@ public class Enemy : MonoBehaviour
 
     IEnumerator Die()
     {
+        if (!isMartha && !dead)
+        {
+            dead = true;
+            Instantiate(deadWolf, transform.position, transform.rotation);
+        }
+
         yield return new WaitForSeconds(0.1f);
         Debug.Log("Oh no! Am Dead!");
         if(isMartha)

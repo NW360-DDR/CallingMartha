@@ -27,16 +27,19 @@ public class CameraScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        mouseX = Input.GetAxisRaw("Mouse X");
-        mouseY = Input.GetAxisRaw("Mouse Y");
+        if (Time.timeScale > 0)
+        {
+            mouseX = Input.GetAxisRaw("Mouse X");
+            mouseY = Input.GetAxisRaw("Mouse Y");
 
-        yRotation += mouseX * sensitivityX * multiplier;
-        xRotation -= mouseY * sensitivityY * multiplier;
+            yRotation += mouseX * sensitivityX * multiplier;
+            xRotation -= mouseY * sensitivityY * multiplier;
 
-        cam.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
+            cam.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
 
-        transform.rotation = Quaternion.Euler(0, yRotation, 0);
+            transform.rotation = Quaternion.Euler(0, yRotation, 0);
 
-        xRotation = Mathf.Clamp(xRotation, -90, 90);
+            xRotation = Mathf.Clamp(xRotation, -90, 90);
+        }
     }
 }

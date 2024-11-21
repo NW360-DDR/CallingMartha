@@ -21,6 +21,8 @@ public class EquippedScript : MonoBehaviour
     public int currentEquipped = 0;
     public float batteryDrainMultiplier = 1;
     private bool hasOpenedPhone = false;
+    private bool takeInput = true;
+    public bool allowAttack = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -58,28 +60,38 @@ public class EquippedScript : MonoBehaviour
             StartCoroutine(SendUpdate());
         }*/
 
-        if (Input.GetKeyDown(KeyCode.Alpha1) && currentEquipped != 0)
+        if (Input.GetKeyDown(KeyCode.Alpha1) && currentEquipped != 0 && takeInput && Time.timeScale > 0)
         {
+            allowAttack = false;
             currentEquipped = 0;
+            takeInput = false;
             StartCoroutine(SendUpdate());
-        }else if (Input.GetKeyDown(KeyCode.Alpha2) && currentEquipped != 1)
+        }else if (Input.GetKeyDown(KeyCode.Alpha2) && currentEquipped != 1 && takeInput && Time.timeScale > 0)
         {
+            allowAttack = false;
             currentEquipped = 1;
+            takeInput = false;
             StartCoroutine(SendUpdate());
-        }else if (Input.GetKeyDown(KeyCode.Alpha3) && currentEquipped != 2)
+        }else if (Input.GetKeyDown(KeyCode.Alpha3) && currentEquipped != 2 && takeInput && Time.timeScale > 0)
         {
+            allowAttack = false;
             currentEquipped = 2;
+            takeInput = false;
             StartCoroutine(SendUpdate());
         }
 
-        if (Input.mouseScrollDelta.y > 0 && currentEquipped != 0)
+        if (Input.mouseScrollDelta.y > 0 && currentEquipped != 0 && takeInput && Time.timeScale > 0)
         {
+            allowAttack = false;
             currentEquipped--;
+            takeInput = false;
             StartCoroutine(SendUpdate());
         }
-        else if (Input.mouseScrollDelta.y < 0 && currentEquipped != 2)
+        else if (Input.mouseScrollDelta.y < 0 && currentEquipped != 2 && takeInput && Time.timeScale > 0)
         {
+            allowAttack = false;
             currentEquipped++;
+            takeInput = false;
             StartCoroutine(SendUpdate());
         }
 
@@ -141,5 +153,6 @@ public class EquippedScript : MonoBehaviour
             phoneAnim.SetBool("PhoneOpen", true);
             flashlightLight.SetActive(false);
         }
+        takeInput = true;
     }
 }
