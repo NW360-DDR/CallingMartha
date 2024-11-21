@@ -22,6 +22,8 @@ public class HealthAndRespawn : MonoBehaviour
     public Animator blackScreen;
     private NewPlayerMovement playerScript;
 
+    public AudioManager AudioManager;
+
     private void Start()
     {
         InventoryScript = GetComponent<InventoryScript>();
@@ -91,6 +93,7 @@ public class HealthAndRespawn : MonoBehaviour
         if (other.CompareTag("Die"))
         {
             health = 0;
+            AudioManager.PlayerDead();
             redJelly.color += new Color(redJelly.color.r, redJelly.color.g, redJelly.color.b, 0.60f);
             respawned = true;
             alive = false;
@@ -137,6 +140,7 @@ public class HealthAndRespawn : MonoBehaviour
     public void GetHurt(int damage)
     {
         health -= damage;
+        AudioManager.PlayerHurt();
         redJelly.color += new Color(redJelly.color.r, redJelly.color.g, redJelly.color.b, 0.50f);
         hurtCool = true;
         healReset = true;
