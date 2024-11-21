@@ -1675,7 +1675,7 @@ MonoBehaviour:
   attackSignal: 0
   excludeLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 12
 --- !u!114 &7964418324737739107
 MonoBehaviour:
   m_ObjectHideFlags: 0
