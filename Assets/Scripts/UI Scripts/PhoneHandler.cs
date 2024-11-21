@@ -7,11 +7,12 @@ using TMPro;
 public class PhoneHandler : MonoBehaviour
 {
     // Screen Management Variables
-    enum Screen {HUD, Save, Off};
+    enum Screen {HUD, Save, Off, Call};
     Screen currentScreen = Screen.HUD;
     [SerializeField] GameObject SaveMode;
     [SerializeField] GameObject HUDMode;
     [SerializeField] GameObject OffMode;
+    [SerializeField] GameObject CallMode;
     // Text and other data information
     [SerializeField] TextMeshProUGUI rockText, battText, kitText;
     [SerializeField] TextMeshProUGUI SaveText;
@@ -21,6 +22,7 @@ public class PhoneHandler : MonoBehaviour
     public Slider batterySlider;
     bool canSave = false;
     bool hasSaved = false;
+    public bool gettingCall = false;
 
     // These two are for getting the inventory. Why did I do it this way? I don't know, it made sense at the time.
     Player player;
@@ -48,6 +50,15 @@ public class PhoneHandler : MonoBehaviour
         {// Positive means we want to see the Save Menu if we aren't already
             SwitchMode(Screen.Save);
         }
+        else if(gettingCall)
+        {
+            SwitchMode(Screen.Call);
+            //play ringtone
+        }
+        else if (!gettingCall && currentScreen == Screen.Call)
+        {
+            SwitchMode(Screen.HUD);
+        }
         else if(phoneBatteryLife <= 0)
         {
             SwitchMode(Screen.Off);
@@ -60,6 +71,12 @@ public class PhoneHandler : MonoBehaviour
             // You got it
 
             player.healthScript.checkpoint = player.main.transform.position;
+        }
+
+        if (gettingCall && Input.GetKeyDown(KeyCode.C))
+        {
+            Debug.Log("Play call!");
+            //play call audio
         }
     }
     private void FixedUpdate()
@@ -108,6 +125,7 @@ public class PhoneHandler : MonoBehaviour
     {
         HUDMode.SetActive(false);
         SaveMode.SetActive(false);
+        CallMode.SetActive(false);
         switch (newMode) 
         {
             case Screen.HUD:
@@ -115,6 +133,9 @@ public class PhoneHandler : MonoBehaviour
                 break;
             case Screen.Save:
                 SaveMode.SetActive(true);
+                break;
+            case Screen.Call:
+                CallMode.SetActive(true);
                 break;
             case Screen.Off:
                 OffMode.SetActive(true);

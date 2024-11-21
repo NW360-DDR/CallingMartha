@@ -4563,6 +4563,10 @@ PrefabInstance:
       propertyPath: cellPower
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 9136114631400751636, guid: a0084be76e76afa48a2b6dcd75111e50, type: 3}
+      propertyPath: gettingCall
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -20,6 +20,7 @@ public class NewPlayerMovement : MonoBehaviour
     private EclipseTimer eclipseScript;
 
     [SerializeField] HealthAndRespawn healthScript;
+    private PhoneHandler phoneScript;
 
     private bool isDashing = false;
     private bool dashCooldown = false;
@@ -33,6 +34,7 @@ public class NewPlayerMovement : MonoBehaviour
     {
         cellService = GameObject.Find("ServiceBar").GetComponent<CellService>();
         eclipseScript = GameObject.Find("EclipseTimer").GetComponent<EclipseTimer>();
+        phoneScript = gameObject.GetComponentInChildren<PhoneHandler>();
         pauseMenu.SetActive(false);
         velocity = Vector3.zero;
     }
@@ -131,6 +133,11 @@ public class NewPlayerMovement : MonoBehaviour
         if (other.CompareTag("Cellbox"))
         {
             cellService.ServiceUpdate(other.GetComponent<CellVolume>().cellPower);
+
+            if (other.GetComponent<CellVolume>().gettingCall)
+            {
+                phoneScript.gettingCall = true;
+            }
         }
     }
     private void OnTriggerStay(Collider other)
@@ -147,6 +154,7 @@ public class NewPlayerMovement : MonoBehaviour
         {
             cellService.ServiceUpdate(0);
             cellService.inCellBox = false;
+            phoneScript.gettingCall = false;
         }
     }
 }
