@@ -24,6 +24,10 @@ public class PhoneHandler : MonoBehaviour
     bool hasSaved = false;
     public bool gettingCall = false;
 
+    public AudioManager AudioManager;
+    public GameObject VoiceMail;
+    public FMODUnity.StudioEventEmitter VoicemailEmmiter;
+
     // These two are for getting the inventory. Why did I do it this way? I don't know, it made sense at the time.
     Player player;
     byte[] inventoryTemp;
@@ -53,7 +57,7 @@ public class PhoneHandler : MonoBehaviour
         else if(gettingCall)
         {
             SwitchMode(Screen.Call);
-            //play ringtone
+            AudioManager.PhoneNotification();
         }
         else if (!gettingCall && currentScreen == Screen.Call)
         {
@@ -76,7 +80,7 @@ public class PhoneHandler : MonoBehaviour
         if (gettingCall && Input.GetKeyDown(KeyCode.C))
         {
             Debug.Log("Play call!");
-            //play call audio
+            VoiceMail.SetActive(true);
         }
     }
     private void FixedUpdate()

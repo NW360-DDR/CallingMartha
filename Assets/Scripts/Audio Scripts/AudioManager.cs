@@ -34,5 +34,12 @@ public class AudioManager : MonoBehaviour
         FMODUnity.RuntimeManager.PlayOneShot("event/SFX/Wolves/Play_WolvesAttack");
     }
 
+    public void PhoneNotification()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event/SFX/Other/Play_PhoneNotification");
+    }
+
+    
+
    
 }

@@ -1521,6 +1521,7 @@ Transform:
   m_Children:
   - {fileID: 8395753690310498754}
   - {fileID: 4287347645270191825}
+  - {fileID: 6494156713101525776}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8951557302771053292
@@ -1694,6 +1695,7 @@ MonoBehaviour:
   redJelly: {fileID: 0}
   alive: 1
   blackScreen: {fileID: 0}
+  AudioManager: {fileID: 0}
 --- !u!114 &4168797154450591856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2068,6 +2070,69 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8395753690310498754}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8383968811867067307
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6494156713101525776}
+  - component: {fileID: 4871730752909414214}
+  m_Layer: 3
+  m_Name: PlayerAudio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &6494156713101525776
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8383968811867067307}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7925986709532169317}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4871730752909414214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8383968811867067307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -197108298
+      Data2: 1109343598
+      Data3: 887892616
+      Data4: -1694054815
+    Path: event:/Voicelines/Play_MarthaVoicemail
+  Event: 
+  PlayEvent: 11
+  StopEvent: 12
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &9120104487017277093
 GameObject:
   m_ObjectHideFlags: 0
@@ -2323,9 +2388,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5366790436114971133}
     - target: {fileID: 2551471247327628557, guid: d84b44943f2563244bcd70ab4cfb2b39, type: 3}
+      propertyPath: VoiceMail
+      value: 
+      objectReference: {fileID: 8383968811867067307}
+    - target: {fileID: 2551471247327628557, guid: d84b44943f2563244bcd70ab4cfb2b39, type: 3}
       propertyPath: batterySlider
       value: 
       objectReference: {fileID: 5238588847699019835}
+    - target: {fileID: 2551471247327628557, guid: d84b44943f2563244bcd70ab4cfb2b39, type: 3}
+      propertyPath: VoicemailEmmiter
+      value: 
+      objectReference: {fileID: 4871730752909414214}
     - target: {fileID: 2691893432422687172, guid: d84b44943f2563244bcd70ab4cfb2b39, type: 3}
       propertyPath: m_ActiveFontFeatures.Array.data[0]
       value: 1801810542
