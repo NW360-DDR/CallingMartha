@@ -57,7 +57,7 @@ public class PhoneHandler : MonoBehaviour
         else if(gettingCall)
         {
             SwitchMode(Screen.Call);
-            AudioManager.PhoneNotification();
+
         }
         else if (!gettingCall && currentScreen == Screen.Call)
         {
@@ -185,4 +185,5 @@ public class Player{
 
         return temp;
     }
+
 }

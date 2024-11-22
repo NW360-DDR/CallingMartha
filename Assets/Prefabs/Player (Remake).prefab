@@ -1214,6 +1214,7 @@ GameObject:
   - component: {fileID: 9047667709824818956}
   - component: {fileID: 235486620367568624}
   - component: {fileID: 6902891433966417159}
+  - component: {fileID: 5136609368731167764}
   m_Layer: 3
   m_Name: Camera
   m_TagString: Untagged
@@ -1403,6 +1404,19 @@ MonoBehaviour:
   effectSpeed: 8
   resetSpeed: 8
   playerMovement: {fileID: 0}
+--- !u!114 &5136609368731167764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6362077302677595537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 6634254539337635931}
 --- !u!1 &6530238085579967000
 GameObject:
   m_ObjectHideFlags: 0
@@ -1646,6 +1660,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 0}
   healthScript: {fileID: 7964418324737739107}
   fallDamageThreshold: -15
+  AudioManager: {fileID: 4338490700010159838, guid: 5815eb253703c0b46bd6fa919eda32d0, type: 3}
 --- !u!114 &7607173335660912681
 MonoBehaviour:
   m_ObjectHideFlags: 0
