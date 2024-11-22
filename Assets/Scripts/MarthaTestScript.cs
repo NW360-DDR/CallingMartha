@@ -37,30 +37,6 @@ public class MarthaTestScript : MonoBehaviour
 	[SerializeField] float chargeCooldown = 5f, chargeTimer = 0f;
 	float deNavTimer = 0f; // How long until the boss gives up and walks away.
 	public float RetreatTimer = 3f;
-	
-
-	State HoldOn()
-	{
-		void Enter()
-		{
-			hurtBox.SetActive(false);
-			nav.ResetPath();
-			currIdle = 1;
-			//wolfAnim.SetBool("Running", false);
-		}
-		void Update()
-		{
-			// Otherwise, wait for IdleTimer to run out, then go somewhere else.
-			currIdle += Time.deltaTime;
-			if (currIdle >= idleTimer)
-			{
-				backState++;
-				brain.PopState();
-			}
-		}
-		void Exit(){}
-		return new(Update, Enter, Exit, "HoldUp");
-	}
 
 	// Start is called before the first frame update
 	void Start()
@@ -69,7 +45,7 @@ public class MarthaTestScript : MonoBehaviour
 		path = new();
 	}
 
-	private void Update()
+	void Update()
 	{
 		chargeTimer += Time.deltaTime;
 		if (fov.canSeePlayer && !hunting)
@@ -102,21 +78,18 @@ public class MarthaTestScript : MonoBehaviour
 		{
 			brain.gameObject.SetActive(true);
 		}
+		/*
 		// It seems we want to make Martha start off closer than she usually is. I personally disagree, but fair enough.
 		Vector3 temp = fov.playerRef.transform.position;
-		float rand = UnityEngine.Random.Range(0, 1);
-		temp += (new Vector3(MathF.Cos(rand), 100, MathF.Sin(rand)) * (fov.radius * 0.3f));
+		float rand = UnityEngine.Random.Range(0, 360);
+		temp += new Vector3(MathF.Cos(rand), 100, MathF.Sin(rand) * (fov.radius * 0.3f));
 		Physics.Raycast(temp, Vector3.down, out RaycastHit checkVert, Mathf.Infinity);
 		temp.y = checkVert.transform.position.y;
 		transform.position = temp;
+		*/
 		brain.PushState(MurderHobo());
 		Destroy(health);
 	}
-
-	/// <summary>
-	/// Checks if the path in question can be reached.
-	/// </summary>
-	/// <param name="destination"></param>
 	void AttemptPath(Vector3 destination)
 	{
 		nav.CalculatePath(destination, path);
@@ -161,14 +134,34 @@ public class MarthaTestScript : MonoBehaviour
 
 		return new(yee, yee, yee, "Awaiting State...");
 	}
-
+	State HoldOn()
+	{
+		void Enter()
+		{
+			hurtBox.SetActive(false);
+			nav.ResetPath();
+			currIdle = 1;
+			//wolfAnim.SetBool("Running", false);
+		}
+		void Update()
+		{
+			// Otherwise, wait for IdleTimer to run out, then go somewhere else.
+			currIdle += Time.deltaTime;
+			if (currIdle >= idleTimer)
+			{
+				backState++;
+				brain.PopState();
+			}
+		}
+		void Exit() { }
+		return new(Update, Enter, Exit, "HoldUp");
+	}
 	State MurderHobo()
 	{
 		void Enter()
 		{
 			dest = fov.playerRef.transform.position;
 			nav.SetDestination(dest);
-			nav.autoBraking = false; // Disable auto-braking so the navigation will just keep moving at a steady pace.
 			nav.speed = baseSpeed * chaseMult * 10; // Eviscerate this man's spinal column
 			killBox.SetActive(true);
 		}
@@ -191,11 +184,7 @@ public class MarthaTestScript : MonoBehaviour
 	}
 	State BossFight_Chase()
 	{
-
-		void Enter()
-		{
-			
-		}
+		void Enter(){}
 		void Update()
 		{
 			AttemptPathBoss(fov.playerRef.transform.position);
@@ -212,8 +201,6 @@ public class MarthaTestScript : MonoBehaviour
 		{
 			deNavTimer = 0;
 		}
-
-
 		return new(Update, Enter, Exit, "Boss Chase");
 	}
 	State Attack()
@@ -226,7 +213,6 @@ public class MarthaTestScript : MonoBehaviour
 			Vector3 newTarget = fov.playerRef.transform.position - transform.position; // The player destination is exactly where we want to charge. 
 			newTarget = chargeRange * 1.2f * newTarget.normalized; // And we want to go in that direction notably farther than just where the player is.
 			newTarget += transform.position; // Add this direction + magnitude to our current position, and we should get a proper destination.
-											 //nav.SetDestination(newTarget);
 			AttemptPath(newTarget);
 			nav.speed = baseSpeed * chargeMult;
 			//wolfAnim.SetBool("Running", true);
@@ -269,12 +255,8 @@ public class MarthaTestScript : MonoBehaviour
 				nav.ResetPath();
 				brain.PopState();
 			}
-
 		}
-		void WanderExit()
-		{
-			// Empty
-		}
+		void WanderExit(){}
 		return new State(Wander, WanderEnter, WanderExit, "Backing Away");
 	}
 
