@@ -2392,6 +2392,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8383968811867067307}
     - target: {fileID: 2551471247327628557, guid: d84b44943f2563244bcd70ab4cfb2b39, type: 3}
+      propertyPath: AudioManager
+      value: 
+      objectReference: {fileID: 4338490700010159838, guid: 5815eb253703c0b46bd6fa919eda32d0, type: 3}
+    - target: {fileID: 2551471247327628557, guid: d84b44943f2563244bcd70ab4cfb2b39, type: 3}
       propertyPath: batterySlider
       value: 
       objectReference: {fileID: 5238588847699019835}
