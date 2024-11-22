@@ -57,6 +57,7 @@ public class AxeSlash : MonoBehaviour
 
         if (checkForBreakable.transform != null)
         {
+            Debug.Log(checkForBreakable.transform.name);
             if (checkForBreakable.transform.CompareTag("Breakable"))
             {
                 Debug.Log("Can be broken!");
