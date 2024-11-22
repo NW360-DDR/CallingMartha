@@ -39,6 +39,11 @@ public class AudioManager : MonoBehaviour
         FMODUnity.RuntimeManager.PlayOneShot("event/SFX/Other/Play_PhoneNotification");
     }
 
+    public void MarthaVoicemail()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event/Voicelines/Play_MarthaVoicemail");
+    }
+
     
 
    
