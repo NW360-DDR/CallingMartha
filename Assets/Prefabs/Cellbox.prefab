@@ -118,4 +118,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d760a7ea37ef9d645b603fbcc1e9b210, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gettingCall: 0
+  AudioManager: {fileID: 4338490700010159838, guid: 5815eb253703c0b46bd6fa919eda32d0, type: 3}
   cellPower: 1

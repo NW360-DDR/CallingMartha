@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-  //For right now this is going to look like a mess of single line classes that do the same thing over and over again, but with different sounds.
-  //Maybe I'll have time to go back and make this look good or do things better, but for right now I just need it to do things.
-  //Also not sure when they made it I didn't need a using FMODorsomethingrather statement above this, but I'm not going to question it.
+    //For right now this is going to look like a mess of single line classes that do the same thing over and over again, but with different sounds.
+    //Maybe I'll have time to go back and make this look good or do things better, but for right now I just need it to do things.
+    //Also not sure when they made it I didn't need a using FMODorsomethingrather statement above this, but I'm not going to question it.
 
+
+    public bool phoneNotifPlaying = false;
     // Update is called once per frame
     void Update()
     {
@@ -31,17 +33,19 @@ public class AudioManager : MonoBehaviour
 
     public void WolfAttack()
     {
-        FMODUnity.RuntimeManager.PlayOneShot("event/SFX/Wolves/Play_WolvesAttack");
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Wolves/Play_WolvesAttack");
     }
 
     public void PhoneNotification()
     {
-        FMODUnity.RuntimeManager.PlayOneShot("event/SFX/Other/Play_PhoneNotification");
+        Debug.Log("WITNESS ME!!!!! MOTOROLA!!!!!");
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Voicelines/Play_PhoneNotification");
+        
     }
 
     public void MarthaVoicemail()
     {
-        FMODUnity.RuntimeManager.PlayOneShot("event/Voicelines/Play_MarthaVoicemail");
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Voicelines/Play_MarthaVoicemail");
     }
 
     
