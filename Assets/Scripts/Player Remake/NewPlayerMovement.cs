@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
 
 public class NewPlayerMovement : MonoBehaviour
@@ -21,23 +20,21 @@ public class NewPlayerMovement : MonoBehaviour
     private EclipseTimer eclipseScript;
 
     [SerializeField] HealthAndRespawn healthScript;
+    private PhoneHandler phoneScript;
 
     private bool isDashing = false;
     private bool dashCooldown = false;
 
-    private int grabMask;
-
     readonly private float gravity = -9.81f;
     public float fallDamageThreshold = -15f;
 
-    private RaycastHit groundCheck;
     bool willDie = false;
     // Start is called before the first frame update
     void Start()
     {
         cellService = GameObject.Find("ServiceBar").GetComponent<CellService>();
         eclipseScript = GameObject.Find("EclipseTimer").GetComponent<EclipseTimer>();
-        grabMask = 1 << 6;
+        phoneScript = gameObject.GetComponentInChildren<PhoneHandler>();
         pauseMenu.SetActive(false);
         velocity = Vector3.zero;
     }
@@ -93,7 +90,7 @@ public class NewPlayerMovement : MonoBehaviour
         
 
         //allow the player to dash if they are grounded and not on cooldown
-        if (Input.GetKeyDown(KeyCode.LeftShift) && Grounded() && !dashCooldown)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && isGrounded && !dashCooldown)
         {
             dashCooldown = true;
             isDashing = true;
@@ -121,32 +118,6 @@ public class NewPlayerMovement : MonoBehaviour
         }
     }
 
-    public bool Grounded()
-    {
-        if (Physics.Raycast(transform.position, Vector3.down, out groundCheck, 1.35f))
-        {
-            if (groundCheck.transform.CompareTag("Ground") || groundCheck.transform.CompareTag("Grabbable"))
-            {
-                return true;
-            }
-            else if (Physics.Raycast(transform.position, Vector3.down, out groundCheck, 1.2f, grabMask))
-            {
-                return true;
-            }
-            else
-            {
-                GetComponentInChildren<Animator>().SetBool("isWalking", false);
-                return false;
-
-            }
-        }else
-        {
-            GetComponentInChildren<Animator>().Play("Camera_Idle");
-            GetComponentInChildren<Animator>().SetBool("isWalking", false);
-            return false;
-        }
-    }
-
     //this is run when the dash is used
     IEnumerator Dash()
     {
@@ -162,6 +133,11 @@ public class NewPlayerMovement : MonoBehaviour
         if (other.CompareTag("Cellbox"))
         {
             cellService.ServiceUpdate(other.GetComponent<CellVolume>().cellPower);
+
+            if (other.GetComponent<CellVolume>().gettingCall)
+            {
+                phoneScript.gettingCall = true;
+            }
         }
     }
     private void OnTriggerStay(Collider other)
@@ -178,6 +154,7 @@ public class NewPlayerMovement : MonoBehaviour
         {
             cellService.ServiceUpdate(0);
             cellService.inCellBox = false;
+            phoneScript.gettingCall = false;
         }
     }
 }
