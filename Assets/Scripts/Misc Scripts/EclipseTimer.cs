@@ -8,6 +8,7 @@ public class EclipseTimer : MonoBehaviour
     public float eclipseTimerLength = 30;
     public float redFogTime = 2.5f;
     public bool gameTimerActive = true;
+    public bool enteredArena = false;
 
     private Vector3 targetPos = Vector3.zero;
     public Color RedColor;

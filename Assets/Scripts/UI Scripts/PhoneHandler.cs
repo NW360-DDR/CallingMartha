@@ -7,11 +7,12 @@ using TMPro;
 public class PhoneHandler : MonoBehaviour
 {
     // Screen Management Variables
-    enum Screen {HUD, Save, Off};
+    enum Screen {HUD, Save, Off, Call};
     Screen currentScreen = Screen.HUD;
     [SerializeField] GameObject SaveMode;
     [SerializeField] GameObject HUDMode;
     [SerializeField] GameObject OffMode;
+    [SerializeField] GameObject CallMode;
     // Text and other data information
     [SerializeField] TextMeshProUGUI rockText, battText, kitText;
     [SerializeField] TextMeshProUGUI SaveText;
@@ -21,6 +22,11 @@ public class PhoneHandler : MonoBehaviour
     public Slider batterySlider;
     bool canSave = false;
     bool hasSaved = false;
+    public bool gettingCall = false;
+
+    public AudioManager AudioManager;
+    public GameObject VoiceMail;
+    public FMODUnity.StudioEventEmitter VoicemailEmmiter;
 
     // These two are for getting the inventory. Why did I do it this way? I don't know, it made sense at the time.
     Player player;
@@ -48,6 +54,15 @@ public class PhoneHandler : MonoBehaviour
         {// Positive means we want to see the Save Menu if we aren't already
             SwitchMode(Screen.Save);
         }
+        else if(gettingCall)
+        {
+            SwitchMode(Screen.Call);
+
+        }
+        else if (!gettingCall && currentScreen == Screen.Call)
+        {
+            SwitchMode(Screen.HUD);
+        }
         else if(phoneBatteryLife <= 0)
         {
             SwitchMode(Screen.Off);
@@ -60,6 +75,12 @@ public class PhoneHandler : MonoBehaviour
             // You got it
 
             player.healthScript.checkpoint = player.main.transform.position;
+        }
+
+        if (gettingCall && Input.GetKeyDown(KeyCode.C))
+        {
+            Debug.Log("Play call!");
+            VoiceMail.SetActive(true);
         }
     }
     private void FixedUpdate()
@@ -79,24 +100,36 @@ public class PhoneHandler : MonoBehaviour
             if(cell.service == 3 && !hasSaved) // Maximum Cell Service only while we have not Checkpointed
             {
                 SaveText.text = "Connection Established";
+                SaveText.GetComponentInParent<RawImage>().color = Color.green;
                 canSave = true;
             }
             else if (cell.service == 3 && hasSaved)
             {
                 SaveText.text = "Location Logged.";
+                StartCoroutine(SetTextBack());
             }
             else
             {
                 SaveText.text = "Unstable Connection";
+                SaveText.GetComponentInParent<RawImage>().color = Color.red;
                 canSave = false;
             }
         }
-        
+    }
+    IEnumerator SetTextBack()
+    {
+        if (currentScreen == Screen.Save)
+        {
+            yield return new WaitForSeconds(1);
+            hasSaved = false;
+            SaveText.text = "Connection Established";
+        }  
     }
     void SwitchMode(Screen newMode)
     {
         HUDMode.SetActive(false);
         SaveMode.SetActive(false);
+        CallMode.SetActive(false);
         switch (newMode) 
         {
             case Screen.HUD:
@@ -104,6 +137,9 @@ public class PhoneHandler : MonoBehaviour
                 break;
             case Screen.Save:
                 SaveMode.SetActive(true);
+                break;
+            case Screen.Call:
+                CallMode.SetActive(true);
                 break;
             case Screen.Off:
                 OffMode.SetActive(true);
@@ -149,4 +185,5 @@ public class Player{
 
         return temp;
     }
+
 }

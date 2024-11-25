@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/End Scene.unity
     guid: fcd245f156387284081e5888af974c40
+  - enabled: 1
+    path: Assets/Maddie's Stuff/Scenes/Maddie_Build2_Beta_Level.unity
+    guid: ac36d1f360ed176489686ce9caba1278
   m_configObjects: {}

@@ -23,7 +23,7 @@ public class PlayerBobbing : MonoBehaviour
         sinTime += Time.deltaTime * effectSpeed;
         float sinY = verticalIntensity * Mathf.Sin(sinTime);
         Vector3 sinX = verticalIntensity * -Mathf.Cos(sinTime / 2) * horizontalIntensity * transform.right;
-        if (inputV.magnitude > 0f && playerMovement.Grounded())
+        if (inputV.magnitude > 0f && playerMovement.isGrounded)
         {
             transform.localPosition = Vector3.Lerp(transform.localPosition, new Vector3
             {
