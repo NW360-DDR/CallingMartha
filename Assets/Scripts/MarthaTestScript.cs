@@ -26,6 +26,7 @@ public class MarthaTestScript : MonoBehaviour
 	public float baseSpeed = 25f;
 	public float chaseMult = 1.5f;
 	bool hunting = false;
+	public Vector3 MapSpot = new(28.19f, -13.193f, 106.9f);
 
 	int backState = 0; // If this number is > 0, it means we need to pop multiple states at once, and this is the safest way to go about this.
 
@@ -78,17 +79,17 @@ public class MarthaTestScript : MonoBehaviour
 		{
 			brain.gameObject.SetActive(true);
 		}
-		/*
-		// It seems we want to make Martha start off closer than she usually is. I personally disagree, but fair enough.
-		Vector3 temp = fov.playerRef.transform.position;
-		float rand = UnityEngine.Random.Range(0, 360);
-		temp += new Vector3(MathF.Cos(rand), 100, MathF.Sin(rand) * (fov.radius * 0.3f));
-		Physics.Raycast(temp, Vector3.down, out RaycastHit checkVert, Mathf.Infinity);
-		temp.y = checkVert.transform.position.y;
-		transform.position = temp;
-		*/
-		brain.PushState(MurderHobo());
-		Destroy(health);
+		if (gameTimer.enteredArena)
+        {
+			StartBossFight();
+        }
+        else
+        {
+			nav.Warp(MapSpot);
+			brain.PushState(MurderHobo());
+		}
+		
+		
 	}
 	void AttemptPath(Vector3 destination)
 	{
@@ -134,32 +135,11 @@ public class MarthaTestScript : MonoBehaviour
 
 		return new(yee, yee, yee, "Awaiting State...");
 	}
-	State HoldOn()
-	{
-		void Enter()
-		{
-			hurtBox.SetActive(false);
-			nav.ResetPath();
-			currIdle = 1;
-			//wolfAnim.SetBool("Running", false);
-		}
-		void Update()
-		{
-			// Otherwise, wait for IdleTimer to run out, then go somewhere else.
-			currIdle += Time.deltaTime;
-			if (currIdle >= idleTimer)
-			{
-				backState++;
-				brain.PopState();
-			}
-		}
-		void Exit() { }
-		return new(Update, Enter, Exit, "HoldUp");
-	}
 	State MurderHobo()
 	{
 		void Enter()
 		{
+			Destroy(health);
 			dest = fov.playerRef.transform.position;
 			nav.SetDestination(dest);
 			nav.speed = baseSpeed * chaseMult * 10; // Eviscerate this man's spinal column
@@ -259,5 +239,26 @@ public class MarthaTestScript : MonoBehaviour
 		void WanderExit(){}
 		return new State(Wander, WanderEnter, WanderExit, "Backing Away");
 	}
-
+	State HoldOn()
+	{
+		void Enter()
+		{
+			hurtBox.SetActive(false);
+			nav.ResetPath();
+			currIdle = 1;
+			//wolfAnim.SetBool("Running", false);
+		}
+		void Update()
+		{
+			// Otherwise, wait for IdleTimer to run out, then go somewhere else.
+			currIdle += Time.deltaTime;
+			if (currIdle >= idleTimer)
+			{
+				backState++;
+				brain.PopState();
+			}
+		}
+		void Exit() { }
+		return new(Update, Enter, Exit, "HoldUp");
+	}
 }
