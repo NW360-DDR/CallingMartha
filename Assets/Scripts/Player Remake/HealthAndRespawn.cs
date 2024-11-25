@@ -120,6 +120,7 @@ public class HealthAndRespawn : MonoBehaviour
         playerScript.velocity.y = 0;
         alive = true;
         yield return new WaitForSeconds(0.5f);
+        playerScript.willDie = false;
         Destroy(playerRB);
         GetComponent<CameraScript>().enabled = true;
         InventoryScript.enabled = true;
