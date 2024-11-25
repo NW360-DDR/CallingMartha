@@ -10,8 +10,12 @@ public class AudioManager : MonoBehaviour
 
     public FMODUnity.EventReference PlayerHurtSound;
     public FMODUnity.EventReference PlayerDeadSound;
+
+
     public FMODUnity.EventReference WolfHurtSound;
     public FMODUnity.EventReference WolfAttackSound;
+
+
     public FMODUnity.EventReference PhoneNotificationSound;
     public FMODUnity.EventReference MarthaVoicemailSound;
     public FMODUnity.EventReference EclipseTimerEndSound;
