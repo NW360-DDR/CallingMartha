@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 public class AxeSlash : MonoBehaviour
@@ -5,14 +6,14 @@ public class AxeSlash : MonoBehaviour
     public GameObject hitBox;
     public GameObject weapon;
 
-    private InventoryScript inventoryScript;
+    private EquippedScript equipScript;
     private Animator axeAnim;
     public bool attackSignal = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        inventoryScript = GetComponent<InventoryScript>();
+        equipScript = GetComponent<EquippedScript>();
         axeAnim = weapon.GetComponent<Animator>();
     }
 
@@ -29,7 +30,7 @@ public class AxeSlash : MonoBehaviour
         }
 
         // if the player clicks, attack
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && equipScript.allowAttack && Time.timeScale > 0)
         {
             axeAnim.SetTrigger("Attack");
         }
