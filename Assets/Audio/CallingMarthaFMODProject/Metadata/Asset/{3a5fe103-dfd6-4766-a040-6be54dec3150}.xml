@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EncodableAsset" id="{3a5fe103-dfd6-4766-a040-6be54dec3150}">
+		<property name="assetPath">
+			<value>SFX/Michael Hurt/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{0bdf5cd8-d7d6-4dc5-958d-e09ba647c4ff}</destination>
+		</relationship>
+	</object>
+</objects>
