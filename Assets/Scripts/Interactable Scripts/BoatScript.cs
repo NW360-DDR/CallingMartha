@@ -21,6 +21,7 @@ public class BoatScript : Interactable
     IEnumerator MovePlayer()
     {
         yield return new WaitForSeconds(1);
+        Debug.Log("Moving player");
         player.transform.position = teleportPos.transform.position;
         healthScript.blackScreen.SetBool("FadeIn", false);
     }

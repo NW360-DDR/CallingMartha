@@ -4051,6 +4051,7 @@ MonoBehaviour:
   itemsNeeded: 3
   thingsToTurnOn: []
   thingsToTurnOff: []
+  thingsToDestroy: []
 --- !u!65 &1541223148
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5022,6 +5023,10 @@ PrefabInstance:
     - target: {fileID: 6416599897740622130, guid: 54369fa8249a1af47acfe9ea8921309b, type: 3}
       propertyPath: m_Name
       value: Martha
+      objectReference: {fileID: 0}
+    - target: {fileID: 6416599897740622130, guid: 54369fa8249a1af47acfe9ea8921309b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7466197321143683412, guid: 54369fa8249a1af47acfe9ea8921309b, type: 3}
       propertyPath: m_Enabled
