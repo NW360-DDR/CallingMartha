@@ -14,6 +14,7 @@ public class AudioManager : MonoBehaviour
     public FMODUnity.EventReference WolfAttackSound;
     public FMODUnity.EventReference PhoneNotificationSound;
     public FMODUnity.EventReference MarthaVoicemailSound;
+    public FMODUnity.EventReference EclipseTimerEndSound;
     // Update is called once per frame
     void Update()
     {
@@ -50,5 +51,10 @@ public class AudioManager : MonoBehaviour
     public void MarthaVoicemail()
     {
         FMODUnity.RuntimeManager.PlayOneShot(MarthaVoicemailSound);
+    }
+
+    public void EclipseTimerEnd()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(EclipseTimerEndSound);
     }
 }

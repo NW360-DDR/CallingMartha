@@ -16,7 +16,7 @@ public class EclipseTimer : MonoBehaviour
     public GameObject lunarMoon;
     public MarthaTestScript Martha;
 
-    public AudioSource TimerEndSound;
+    public AudioManager AudioManager;
 
     private void Start()
     {
@@ -37,7 +37,7 @@ public class EclipseTimer : MonoBehaviour
             {
                 Martha.gameObject.SetActive(true);
                 Martha.KILL();
-                TimerEndSound.Play();
+                AudioManager.EclipseTimerEnd();
             }
         }
 
