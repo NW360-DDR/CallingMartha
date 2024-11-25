@@ -343,8 +343,8 @@ MonoBehaviour:
   - Build/Desktop/Master
   Banks:
   - Build/Desktop/Music
-  - Build/Desktop/SFX
-  - Build/Desktop/Voicelines
+  - SFX
+  - Voicelines
   BanksToLoad: []
   LiveUpdatePort: 9264
   EnableMemoryTracking: 0
