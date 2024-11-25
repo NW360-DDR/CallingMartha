@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="Workspace" id="{04b327a5-8001-4b0e-82d2-85b8f76188f2}">
 		<property name="builtBanksOutputDirectory">
-			<value>D:/MARTHAHERE/CallingMartha/Assets/Audio/FMODBanks</value>
+			<value>Build</value>
 		</property>
 		<property name="builtBanksMirrorBrowserFolderHierarchy">
 			<value>true</value>

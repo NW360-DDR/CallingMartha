@@ -9,7 +9,7 @@ public class AudioManager : MonoBehaviour
     //Also not sure when they made it I didn't need a using FMODorsomethingrather statement above this, but I'm not going to question it.
 
 
-    public bool phoneNotifPlaying = false;
+    
     // Update is called once per frame
     void Update()
     {
