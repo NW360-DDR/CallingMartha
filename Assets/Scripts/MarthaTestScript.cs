@@ -19,7 +19,6 @@ public class MarthaTestScript : MonoBehaviour
 
 	// Navigation Parameters
 	public Vector3 dest;
-	public Vector3 lastKnownPlayerLoc;
 	readonly float maxWanderDist = 20f;
 	public float idleTimer = 3f;
 	float currIdle = 0f;
@@ -87,9 +86,7 @@ public class MarthaTestScript : MonoBehaviour
         {
 			nav.Warp(MapSpot);
 			brain.PushState(MurderHobo());
-		}
-		
-		
+		}	
 	}
 	void AttemptPath(Vector3 destination)
 	{
@@ -128,7 +125,6 @@ public class MarthaTestScript : MonoBehaviour
 			AttemptPathBoss(fov.playerRef.transform.position);
 		}
 	}
-	
 	State DoNothingUntilCalled()
 	{
 		static void yee(){}
@@ -140,6 +136,8 @@ public class MarthaTestScript : MonoBehaviour
 		void Enter()
 		{
 			Destroy(health);
+			Destroy(hurtBox);
+
 			dest = fov.playerRef.transform.position;
 			nav.SetDestination(dest);
 			nav.speed = baseSpeed * chaseMult * 10; // Eviscerate this man's spinal column
@@ -200,7 +198,7 @@ public class MarthaTestScript : MonoBehaviour
 
 		void Update()
 		{
-			hurtBox.SetActive(true);
+			if (hurtBox != null) hurtBox.SetActive(true);
 			if (nav.remainingDistance < 0.25f)
 			{
 				chargeTimer = 0.0f;
