@@ -87,7 +87,7 @@ public class GrabAndThrow : MonoBehaviour
                 interactText.gameObject.SetActive(true);
                 if (Input.GetKeyDown(KeyCode.E) && Time.timeScale > 0)
                 {
-                    targetCheck.transform.gameObject.SendMessageUpwards("Interact");
+                    targetCheck.transform.gameObject.SendMessage("Interact");
                     interactText.gameObject.SetActive(false);
                 }
             }

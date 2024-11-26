@@ -5850,6 +5850,10 @@ PrefabInstance:
       propertyPath: locked
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4454110988171367976, guid: a8232f884fd780642a445e9764b19c4a, type: 3}
+      propertyPath: doorText
+      value: AAAAAAAAAAAAAAAAAA
+      objectReference: {fileID: 0}
     - target: {fileID: 7718907364873429403, guid: a8232f884fd780642a445e9764b19c4a, type: 3}
       propertyPath: m_Name
       value: Door
