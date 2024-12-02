@@ -137,11 +137,14 @@ public class MarthaTestScript : MonoBehaviour
 		{
 			Destroy(health);
 			Destroy(hurtBox);
-
 			dest = fov.playerRef.transform.position;
 			nav.SetDestination(dest);
-			nav.speed = baseSpeed * chaseMult * 10; // Eviscerate this man's spinal column
+			nav.speed = baseSpeed * chaseMult * 2; // Eviscerate this man's spinal column
 			killBox.SetActive(true);
+			nav.radius = 0.01f;
+			nav.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
+			nav.autoBraking = false;
+			fov.canSeePlayer = true;
 		}
 		void Update()
 		{
