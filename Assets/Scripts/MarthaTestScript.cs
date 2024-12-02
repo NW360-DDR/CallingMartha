@@ -135,7 +135,6 @@ public class MarthaTestScript : MonoBehaviour
 	{
 		void Enter()
 		{
-			Destroy(health);
 			Destroy(hurtBox);
 			dest = fov.playerRef.transform.position;
 			nav.SetDestination(dest);
@@ -151,6 +150,7 @@ public class MarthaTestScript : MonoBehaviour
 			dest = fov.playerRef.transform.position;
 			nav.SetDestination(dest);
 			killBox.SetActive(true);
+			health.health = 42069;
 		}
 		
 		void Exit()
