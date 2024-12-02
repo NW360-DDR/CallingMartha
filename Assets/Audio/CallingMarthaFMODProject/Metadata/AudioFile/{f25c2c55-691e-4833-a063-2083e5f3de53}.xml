@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{f25c2c55-691e-4833-a063-2083e5f3de53}">
+		<property name="assetPath">
+			<value>SFX/Other/Phone/ESM_HCGUI_fx_select_click_digital_buzz_tapped_notes.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>96</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.19737499999999999</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{0bdf5cd8-d7d6-4dc5-958d-e09ba647c4ff}</destination>
+		</relationship>
+	</object>
+</objects>

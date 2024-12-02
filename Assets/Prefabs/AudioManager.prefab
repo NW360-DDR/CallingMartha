@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6200730402173509406}
-  - component: {fileID: 4338490700010159838}
+  - component: {fileID: 1475774074161801930}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4338490700010159838
+--- !u!114 &1475774074161801930
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,3 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf5d9180e4ee7794f85b7a76271d920c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerHurtSound:
+    Guid:
+      Data1: 503857124
+      Data2: 1253655376
+      Data3: -583710036
+      Data4: 1746816117
+    Path: event:/SFX/Michael/Play_MichaelHurt

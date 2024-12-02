@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{e7a3532b-5e0d-42e0-9cc7-167d8679aadb}">
+		<property name="assetPath">
+			<value>SFX/Other/Birds and Bats/ESM_Horror_Game_Vocal_Creature_Giant_Bat_Flutter_Fly_Flap_Wings_Hiss_Vocal_2.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>96</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>4.8784062500000003</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{0bdf5cd8-d7d6-4dc5-958d-e09ba647c4ff}</destination>
+		</relationship>
+	</object>
+</objects>
