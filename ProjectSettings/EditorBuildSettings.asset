@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/Nate Scenes/Totally Legit Main Menu.unity
     guid: a24c62054136cbe4fa330baec5f49894
   - enabled: 1
-    path: Assets/Scenes/Beta 0.7 level.unity
-    guid: 2bcf73d292a42c34794a73c4574ee71b
+    path: Assets/Scenes/12-2-2024 build.unity
+    guid: 5fa31c19bfee97f4bbfb9767945d08ee
   - enabled: 1
     path: Assets/Scenes/End Scene.unity
     guid: fcd245f156387284081e5888af974c40

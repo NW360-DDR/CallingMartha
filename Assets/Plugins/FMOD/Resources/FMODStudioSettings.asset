@@ -340,9 +340,9 @@ MonoBehaviour:
   RealChannelSettings: []
   Plugins: []
   MasterBanks:
-  - Build/Desktop/Master
+  - Master
   Banks:
-  - Build/Desktop/Music
+  - Music
   - SFX
   - Voicelines
   BanksToLoad:
