@@ -1317,6 +1317,7 @@ MonoBehaviour:
   holdingObject: {fileID: 0}
   heldObjectPlace: {fileID: 8183476400951475566}
   rockPrefab: {fileID: 1868658233443335095, guid: bb92db1b2b8c15940bff00ebc4624e54, type: 3}
+  underPlayer: {fileID: 8589829829513022280}
   holdingCheck: 0
   canPickupAxe: 1
   excludeLayer:
@@ -1536,6 +1537,7 @@ Transform:
   - {fileID: 8395753690310498754}
   - {fileID: 4287347645270191825}
   - {fileID: 6494156713101525776}
+  - {fileID: 2104865398790252330}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8951557302771053292
@@ -1660,6 +1662,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 0}
   healthScript: {fileID: 7964418324737739107}
   fallDamageThreshold: -15
+  willDie: 0
   AudioManager: {fileID: 4338490700010159838, guid: 5815eb253703c0b46bd6fa919eda32d0, type: 3}
 --- !u!114 &7607173335660912681
 MonoBehaviour:
@@ -2148,6 +2151,37 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
+--- !u!1 &8589829829513022280
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2104865398790252330}
+  m_Layer: 3
+  m_Name: Bottom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2104865398790252330
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8589829829513022280}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1, z: 0.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7925986709532169317}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9120104487017277093
 GameObject:
   m_ObjectHideFlags: 0
