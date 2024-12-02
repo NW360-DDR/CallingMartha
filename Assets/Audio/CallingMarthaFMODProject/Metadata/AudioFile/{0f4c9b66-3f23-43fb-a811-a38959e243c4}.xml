@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{0f4c9b66-3f23-43fb-a811-a38959e243c4}">
 		<property name="assetPath">
-			<value>SFX/Other/Birds and Bats/SPLC-3916_FX_Oneshot_Birds_Wing_Flaps_Pigeon.wav</value>
+			<value>SFX/Other/Birds and Bats/WingFlaps4.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>

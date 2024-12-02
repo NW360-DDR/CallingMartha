@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{44b1ca3b-1cb3-418a-b6d5-182f8ea17272}">
 		<property name="assetPath">
-			<value>SFX/Other/Axe/Axe Impact (Flash).wav</value>
+			<value>SFX/Other/Axe/AxeImpactFlesh.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>96</value>

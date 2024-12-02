@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{522dbae8-377b-470e-9a85-fde31e90117c}">
 		<property name="assetPath">
-			<value>SFX/Other/Axe/ESM_FG_FX_one_shot_farming_axe_sword_swing_attack_1_tool_whoosh.wav</value>
+			<value>SFX/Other/Axe/AxeSwing1.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>96</value>

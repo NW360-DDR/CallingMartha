@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{a12d0c36-2764-4390-b764-029d861df1fa}">
 		<property name="assetPath">
-			<value>SFX/Other/Axe/ESM_MG3_fx_impacts_axe_swing_movement_03.wav</value>
+			<value>SFX/Other/Axe/AxeSwing3.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>96</value>

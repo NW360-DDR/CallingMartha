@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{ec9fa81d-fde3-4ab1-aaf4-c5ea81b8f9ea}">
 		<property name="assetPath">
-			<value>SFX/Other/Birds and Bats/SCP_AP_ambience_birds_crows.wav</value>
+			<value>SFX/Other/Birds and Bats/Crows.wav</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>

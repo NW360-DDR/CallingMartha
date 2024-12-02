@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{500f18e7-7d3a-458b-8976-10bf200cb9a7}">
 		<property name="assetPath">
-			<value>SFX/Other/Birds and Bats/STELOUSE_percussion_one_shot_crow_caw.wav</value>
+			<value>SFX/Other/Birds and Bats/Crow_Single2.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>

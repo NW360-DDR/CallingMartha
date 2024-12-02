@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{cafaf8f4-2302-4d76-9feb-b5aa5f4c33c3}">
 		<property name="assetPath">
-			<value>UI/Play Button/MO_SV2_perc_keypress.wav</value>
+			<value>UI/Play Button/DigitalClick2.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>

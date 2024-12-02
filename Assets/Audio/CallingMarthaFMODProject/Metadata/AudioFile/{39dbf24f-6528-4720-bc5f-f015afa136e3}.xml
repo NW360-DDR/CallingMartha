@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{39dbf24f-6528-4720-bc5f-f015afa136e3}">
 		<property name="assetPath">
-			<value>SFX/Michael/MichaelVocalEffort/BreathHeavyMale_SFXB.1980.wav</value>
+			<value>SFX/Michael/MichaelVocalEffort/HeavyBreath.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>96</value>

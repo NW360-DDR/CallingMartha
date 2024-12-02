@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{5f844ede-f912-4804-921e-aae1f1244295}">
 		<property name="assetPath">
-			<value>SFX/Other/Weather/FF_SJ_ambience_thunder_green.wav</value>
+			<value>SFX/Other/Weather/Thunder2.wav</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>

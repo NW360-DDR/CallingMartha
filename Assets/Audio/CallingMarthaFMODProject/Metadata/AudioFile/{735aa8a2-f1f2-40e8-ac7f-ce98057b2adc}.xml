@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{735aa8a2-f1f2-40e8-ac7f-ce98057b2adc}">
 		<property name="assetPath">
-			<value>UI/Play Button/ESM_MG3_fx_button_confirm_simple_menu_text_01.wav</value>
+			<value>UI/Play Button/DigitalClick1.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>96</value>
