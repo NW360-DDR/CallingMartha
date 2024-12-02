@@ -5,7 +5,7 @@
 			<value>Play_MichaelDead</value>
 		</property>
 		<property name="outputFormat">
-			<value>0</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{ac5366c6-cf2c-4eb4-8c21-ce0c1c952d64}</destination>
@@ -92,6 +92,12 @@
 		<property name="length">
 			<value>3</value>
 		</property>
+		<relationship name="sounds">
+			<destination>{4f45d73a-0485-4a98-bbdd-4cc489e6f6e3}</destination>
+			<destination>{88e2591b-dcda-42ba-b9a0-5d501d09e7d6}</destination>
+			<destination>{ec33353a-cb2c-4f1d-9ec3-f7eb07e19c2a}</destination>
+			<destination>{7320209b-8ac9-4c2e-8ad3-aba592a8935b}</destination>
+		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{3a049a70-8caa-406a-8444-c61d4e28f038}">
 		<property name="name">
@@ -114,6 +120,26 @@
 	</object>
 	<object class="MixerBusPanner" id="{a948258e-3562-48b2-93c3-f463af9b240d}" />
 	<object class="MixerBusFader" id="{95c9497b-825f-49f8-a6f0-0c169d4450bf}" />
+	<object class="SingleSound" id="{4f45d73a-0485-4a98-bbdd-4cc489e6f6e3}">
+		<relationship name="audioFile">
+			<destination>{42fe7c58-a660-4ca1-900e-d8a22910894d}</destination>
+		</relationship>
+	</object>
+	<object class="SingleSound" id="{88e2591b-dcda-42ba-b9a0-5d501d09e7d6}">
+		<relationship name="audioFile">
+			<destination>{a1cc033a-c767-42c5-8178-07a9bf7ed942}</destination>
+		</relationship>
+	</object>
+	<object class="SingleSound" id="{ec33353a-cb2c-4f1d-9ec3-f7eb07e19c2a}">
+		<relationship name="audioFile">
+			<destination>{a43ec968-fda6-42f6-a938-3c8b42caa64c}</destination>
+		</relationship>
+	</object>
+	<object class="SingleSound" id="{7320209b-8ac9-4c2e-8ad3-aba592a8935b}">
+		<relationship name="audioFile">
+			<destination>{f4ee7f99-9b8d-4a31-8dde-79496c5bee16}</destination>
+		</relationship>
+	</object>
 	<object class="MixerBusEffectChain" id="{1de4ccb5-e840-4fa1-8894-64c7b71d4d56}">
 		<relationship name="effects">
 			<destination>{5163654f-748b-4ed1-bd28-010284d86f33}</destination>
