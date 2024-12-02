@@ -38,6 +38,7 @@ public class AudioManager : MonoBehaviour
     public void WolfHurt()
     {
         FMODUnity.RuntimeManager.PlayOneShot(WolfHurtSound);
+        Debug.Log("Wolf Ouch");
     }
 
     public void WolfAttack()

@@ -5,7 +5,7 @@
 			<value>Play_WolvesNear</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{6279f080-2d92-4a6f-b076-ba81c50abd43}</destination>
@@ -114,6 +114,7 @@
 	<object class="MixerBusEffectChain" id="{bd52bce9-ca49-499c-9e02-6a43bc123ffa}">
 		<relationship name="effects">
 			<destination>{a8068f99-607b-4ec8-bc83-202bae797ef7}</destination>
+			<destination>{4aefc347-99e8-440d-9340-9c9f7ef05b32}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{7a49c03d-7524-4a8e-b421-82561c427c41}" />
@@ -135,5 +136,16 @@
 	</object>
 	<object class="MixerBusPanner" id="{122ddb19-84fc-42c9-8675-087742994ff8}" />
 	<object class="MixerBusFader" id="{a8068f99-607b-4ec8-bc83-202bae797ef7}" />
+	<object class="SpatialiserEffect" id="{4aefc347-99e8-440d-9340-9c9f7ef05b32}">
+		<property name="distanceRolloffType">
+			<value>2</value>
+		</property>
+		<property name="maximumDistance">
+			<value>10</value>
+		</property>
+		<property name="overrideRange">
+			<value>true</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{23a40867-d3bf-4244-a28d-c4ce68fc8348}" />
 </objects>
