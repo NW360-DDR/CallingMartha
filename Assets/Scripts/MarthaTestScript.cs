@@ -26,6 +26,7 @@ public class MarthaTestScript : MonoBehaviour
 	public float chaseMult = 1.5f;
 	bool hunting = false;
 	public Vector3 MapSpot = new(28.19f, -13.193f, 106.9f);
+	public GameObject warpObject;
 
 	int backState = 0; // If this number is > 0, it means we need to pop multiple states at once, and this is the safest way to go about this.
 
@@ -84,7 +85,15 @@ public class MarthaTestScript : MonoBehaviour
         }
         else
         {
-			nav.Warp(MapSpot);
+			if(warpObject != null)
+            {
+				nav.Warp(warpObject.transform.position);
+            }
+            else
+            {
+				nav.Warp(MapSpot);
+			}
+
 			brain.PushState(MurderHobo());
 		}	
 	}

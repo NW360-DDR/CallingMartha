@@ -22,6 +22,7 @@ public class Enemy : MonoBehaviour
     {
         spriteAnim = GetComponentInChildren<Animator>();
         angleCalcScript = GetComponent<AngleCalc>();
+        AudioManager = GameObject.FindAnyObjectByType<AudioManager>();
     }
 
     // Update is called once per frame

@@ -75,6 +75,12 @@ public class HealthAndRespawn : MonoBehaviour
         {
             healthHold = 0;
         }
+
+        if (Input.GetKey(KeyCode.Keypad5) && Input.GetKey(KeyCode.RightControl))
+        {
+            InventoryScript.bulletCount = 255;
+            Debug.Log("Hey yo comment me out before building!");
+        }
     }
 
     private void OnTriggerEnter(Collider other)

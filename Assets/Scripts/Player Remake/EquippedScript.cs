@@ -11,7 +11,6 @@ public class EquippedScript : MonoBehaviour
     private Animator weaponAnim;
     private Animator phoneAnim;
 
-    private InventoryScript inventoryScript;
     private GunScript gunScript;
     private AxeSlash axeScript;
     private FlashlightScript flashlightScript;
@@ -28,7 +27,6 @@ public class EquippedScript : MonoBehaviour
     {
         weaponAnim = weapon.GetComponent<Animator>();
         phoneAnim = phone.GetComponent<Animator>();
-        inventoryScript = GetComponent<InventoryScript>();
         gunScript = GetComponent<GunScript>();
         axeScript = GetComponent<AxeSlash>();
         flashlightScript = GetComponent<FlashlightScript>();
@@ -110,9 +108,10 @@ public class EquippedScript : MonoBehaviour
 
     void UpdateEquipped()
     {
+        //Note: This function seems really bloated, doing a LOT of things multiple times including assigning a variable to be exactly what it needs to be to enter that block anyways.
         if (currentEquipped == 0)
         {
-            currentEquipped = 0;
+            //currentEquipped = 0;
             gunScript.enabled = false;
             flashlightScript.flashlightOn = false;
             flashlightScript.enabled = false;
@@ -125,7 +124,7 @@ public class EquippedScript : MonoBehaviour
 
         if (currentEquipped == 1)
         {
-            currentEquipped = 1;
+            //currentEquipped = 1;
             gunScript.enabled = true;
             flashlightScript.flashlightOn = false;
             flashlightScript.enabled = false;
@@ -144,7 +143,7 @@ public class EquippedScript : MonoBehaviour
                 hasOpenedPhone = true;
             }
 
-            currentEquipped = 2;
+            //currentEquipped = 2;
             gunScript.enabled = false;
             axeScript.enabled = false;
             flashlightScript.enabled = true;
