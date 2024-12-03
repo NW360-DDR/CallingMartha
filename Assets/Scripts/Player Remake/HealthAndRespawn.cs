@@ -43,6 +43,7 @@ public class HealthAndRespawn : MonoBehaviour
             alive = false;
             GetComponent<CameraScript>().enabled = false;
             playerRB = gameObject.AddComponent<Rigidbody>();
+            grabScript.LetGoOfObject();
             grabScript.enabled = false;
             GetComponent<AxeSlash>().enabled = false;
             GetComponent<NewPlayerMovement>().enabled = false;

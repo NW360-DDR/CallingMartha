@@ -824,7 +824,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3560627648628795516, guid: 098725ba20f1136428266c4bb76b1b37, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2986,7 +2986,7 @@ MonoBehaviour:
   RedColor: {r: 0, g: 0, b: 0, a: 0}
   lunarMoon: {fileID: 2052898082}
   Martha: {fileID: 0}
-  TimerEndSound: {fileID: 0}
+  AudioManager: {fileID: 0}
 --- !u!4 &1264945749
 Transform:
   m_ObjectHideFlags: 0
@@ -3680,7 +3680,7 @@ MonoBehaviour:
   health: 100
   isAnimated: 1
   isMartha: 1
-  Yelp: {fileID: 0}
+  AudioManager: {fileID: 0}
   deadWolf: {fileID: 0}
 --- !u!114 &1486114701 stripped
 MonoBehaviour:

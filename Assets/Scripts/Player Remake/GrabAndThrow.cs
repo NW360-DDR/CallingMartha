@@ -145,7 +145,7 @@ public class GrabAndThrow : MonoBehaviour
         GetComponentInParent<GunScript>().enabled = false;
     }
 
-    void LetGoOfObject()
+    public void LetGoOfObject()
     {
         GetComponentInParent<AxeSlash>().enabled = true;
         GetComponentInParent<GunScript>().enabled = true;
