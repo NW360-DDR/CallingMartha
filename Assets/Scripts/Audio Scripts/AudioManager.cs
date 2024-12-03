@@ -11,6 +11,9 @@ public class AudioManager : MonoBehaviour
     public FMODUnity.EventReference PlayerHurtSound;
     public FMODUnity.EventReference PlayerDeadSound;
 
+    public FMODUnity.EventReference GunFire;
+    public FMODUnity.EventReference GunFireEmpty;
+
 
     public FMODUnity.EventReference WolfHurtSound;
     public FMODUnity.EventReference WolfAttackSound;
@@ -80,5 +83,15 @@ public class AudioManager : MonoBehaviour
     public void PlayDrawerSound()
     {
         FMODUnity.RuntimeManager.PlayOneShot(DrawerSound);
+    }
+
+    public void PlayGunFire()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(GunFire);
+    }
+
+    public void PlayGunFireEmpty()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(GunFireEmpty);
     }
 }

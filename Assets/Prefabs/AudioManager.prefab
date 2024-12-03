@@ -59,6 +59,20 @@ MonoBehaviour:
       Data3: -1078083959
       Data4: 211084456
     Path: event:/SFX/Michael/Play_MichaelDead
+  GunFire:
+    Guid:
+      Data1: 2079847255
+      Data2: 1272643384
+      Data3: -676762480
+      Data4: -184625366
+    Path: event:/SFX/Other/PlayGunFire
+  GunFireEmpty:
+    Guid:
+      Data1: -1020058972
+      Data2: 1285525960
+      Data3: 1931982770
+      Data4: -1563468894
+    Path: event:/SFX/Other/PlayGunFireEmpty
   WolfHurtSound:
     Guid:
       Data1: 550472041
