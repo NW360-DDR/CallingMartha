@@ -59,6 +59,27 @@ MonoBehaviour:
       Data3: -1078083959
       Data4: 211084456
     Path: event:/SFX/Michael/Play_MichaelDead
+  AxeImpactFlesh:
+    Guid:
+      Data1: 15198061
+      Data2: 1235992322
+      Data3: -1184260430
+      Data4: 1827026923
+    Path: event:/SFX/Other/PlayAxeFleshImpact
+  AxeImpactWood:
+    Guid:
+      Data1: 129634080
+      Data2: 1296751530
+      Data3: -509657983
+      Data4: -1876851060
+    Path: event:/SFX/Other/PlayAxeWoodImpact
+  AxeWhoosh:
+    Guid:
+      Data1: -1191644483
+      Data2: 1163513160
+      Data3: 131755402
+      Data4: 481306154
+    Path: event:/SFX/Other/PlayAxeWhoosh
   GunFire:
     Guid:
       Data1: 2079847255

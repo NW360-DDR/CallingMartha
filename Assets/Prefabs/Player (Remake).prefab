@@ -1694,6 +1694,7 @@ MonoBehaviour:
   excludeLayer:
     serializedVersion: 2
     m_Bits: 12
+  AudioManager: {fileID: 1475774074161801930, guid: 5815eb253703c0b46bd6fa919eda32d0, type: 3}
 --- !u!114 &7964418324737739107
 MonoBehaviour:
   m_ObjectHideFlags: 0

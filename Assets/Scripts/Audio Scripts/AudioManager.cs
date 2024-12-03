@@ -11,6 +11,10 @@ public class AudioManager : MonoBehaviour
     public FMODUnity.EventReference PlayerHurtSound;
     public FMODUnity.EventReference PlayerDeadSound;
 
+    public FMODUnity.EventReference AxeImpactFlesh;
+    public FMODUnity.EventReference AxeImpactWood;
+    public FMODUnity.EventReference AxeWhoosh;
+
     public FMODUnity.EventReference GunFire;
     public FMODUnity.EventReference GunFireEmpty;
 
@@ -93,5 +97,20 @@ public class AudioManager : MonoBehaviour
     public void PlayGunFireEmpty()
     {
         FMODUnity.RuntimeManager.PlayOneShot(GunFireEmpty);
+    }
+
+    public void PlayAxeImpactFlesh()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(AxeImpactFlesh);
+    }
+
+    public void PlayAxeImpactWood()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(AxeImpactWood);
+    }
+
+    public void PlayAxeWhoosh()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(AxeWhoosh);
     }
 }

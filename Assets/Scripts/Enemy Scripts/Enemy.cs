@@ -63,6 +63,7 @@ public class Enemy : MonoBehaviour
                     Debug.Log("Ouch!");
                     health -= 50;
                     AudioManager.WolfHurt();
+                    AudioManager.PlayAxeImpactFlesh();
                 }
             }
             else
