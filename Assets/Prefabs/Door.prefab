@@ -118,6 +118,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3675e86753873b46876771142fd87b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blocked: 0
+  blockingObject: {fileID: 0}
+  locked: 0
+  keyNum: 0
+  AudioManager: {fileID: 1475774074161801930, guid: 5815eb253703c0b46bd6fa919eda32d0, type: 3}
+  doorText: 
 --- !u!1 &2766385469083086851
 GameObject:
   m_ObjectHideFlags: 0

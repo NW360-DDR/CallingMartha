@@ -19,6 +19,10 @@ public class AudioManager : MonoBehaviour
     public FMODUnity.EventReference PhoneNotificationSound;
     public FMODUnity.EventReference MarthaVoicemailSound;
     public FMODUnity.EventReference EclipseTimerEndSound;
+
+    public FMODUnity.EventReference DoorOpenSound;
+    public FMODUnity.EventReference DoorCloseSound;
+    public FMODUnity.EventReference DrawerSound;
     // Update is called once per frame
     void Update()
     {
@@ -61,5 +65,20 @@ public class AudioManager : MonoBehaviour
     public void EclipseTimerEnd()
     {
         FMODUnity.RuntimeManager.PlayOneShot(EclipseTimerEndSound);
+    }
+
+    public void PlayDoorOpenSound()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(DoorOpenSound);
+    }
+
+    public void PlayDoorCloseSound()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(DoorCloseSound);
+    }
+
+    public void PlayDrawerSound()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(DrawerSound);
     }
 }

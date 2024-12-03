@@ -14,6 +14,8 @@ public class DoorScript : Interactable
 
     private InventoryScript inventoryScript;
 
+    public AudioManager AudioManager;
+
     [TextArea(3, 10)] //makes textarea in inspector bigger
     public string doorText;
     void Interact()
@@ -55,11 +57,13 @@ public class DoorScript : Interactable
         {
             doorAnimator.SetBool("Open", true);
             doorOpen = true;
+            AudioManager.PlayDoorOpenSound();
         }
         else if (!locked && !blocked)
         {
             doorAnimator.SetBool("Open", false);
             doorOpen = false;
+            AudioManager.PlayDoorCloseSound();
         }
     }
 }

@@ -32,7 +32,6 @@ public class Enemy : MonoBehaviour
 
         if (health <= 0)
         {
-            AudioManager.WolfHurt();
             StartCoroutine(Die());
         }
     }

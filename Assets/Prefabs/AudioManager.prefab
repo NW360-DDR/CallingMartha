@@ -54,46 +54,67 @@ MonoBehaviour:
     Path: event:/SFX/Michael/Play_MichaelHurt
   PlayerDeadSound:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -391148858
+      Data2: 1341435578
+      Data3: -1078083959
+      Data4: 211084456
+    Path: event:/SFX/Michael/Play_MichaelDead
   WolfHurtSound:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 550472041
+      Data2: 1178571565
+      Data3: 2046427044
+      Data4: 53392355
+    Path: event:/SFX/Wolves/Play_WolvesHurt
   WolfAttackSound:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 1439940898
+      Data2: 1176498935
+      Data3: 1916467613
+      Data4: 1617552615
+    Path: event:/SFX/Wolves/Play_WolvesAttack
   PhoneNotificationSound:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -1065551656
+      Data2: 1180046907
+      Data3: 834655104
+      Data4: -167298255
+    Path: event:/Voicelines/Play_PhoneNotification
   MarthaVoicemailSound:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -197108298
+      Data2: 1109343598
+      Data3: 887892616
+      Data4: -1694054815
+    Path: event:/Voicelines/Play_MarthaVoicemail
   EclipseTimerEndSound:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 1158125518
+      Data2: 1222965866
+      Data3: -369016956
+      Data4: -907215129
+    Path: event:/SFX/Other/EclipseTimerEnd
+  DoorOpenSound:
+    Guid:
+      Data1: 2068585989
+      Data2: 1181750437
+      Data3: 1662671798
+      Data4: 1962455675
+    Path: event:/SFX/Other/PlayDoorOpenSound
+  DoorCloseSound:
+    Guid:
+      Data1: -1346906049
+      Data2: 1095608630
+      Data3: -1647437637
+      Data4: -744203157
+    Path: event:/SFX/Other/PlayDoorCloseSound
+  DrawerSound:
+    Guid:
+      Data1: -2135056691
+      Data2: 1195788599
+      Data3: -194352714
+      Data4: -2089738272
+    Path: event:/SFX/Other/PlayDrawerSound
 --- !u!114 &1854110506557941047
 MonoBehaviour:
   m_ObjectHideFlags: 0
