@@ -14,7 +14,7 @@ public class PhoneHandler : MonoBehaviour
     [SerializeField] GameObject OffMode;
     [SerializeField] GameObject CallMode;
     // Text and other data information
-    [SerializeField] TextMeshProUGUI rockText, battText, kitText;
+    [SerializeField] TextMeshProUGUI rockText, battText, kitText, gasText;
     [SerializeField] TextMeshProUGUI SaveText;
     [SerializeField] CellService cell;
     public string playerName;
@@ -23,6 +23,10 @@ public class PhoneHandler : MonoBehaviour
     bool canSave = false;
     bool hasSaved = false;
     public bool gettingCall = false;
+
+    public AudioManager AudioManager;
+    public GameObject VoiceMail;
+    public FMODUnity.StudioEventEmitter VoicemailEmmiter;
 
     // These two are for getting the inventory. Why did I do it this way? I don't know, it made sense at the time.
     Player player;
@@ -35,7 +39,7 @@ public class PhoneHandler : MonoBehaviour
             player = new Player();
         else
             player = new Player(playerName);
-        inventoryTemp = new byte[3];
+        inventoryTemp = new byte[4];
         player.healthScript.checkpoint = player.main.transform.position;
     }
 
@@ -53,7 +57,7 @@ public class PhoneHandler : MonoBehaviour
         else if(gettingCall)
         {
             SwitchMode(Screen.Call);
-            //play ringtone
+
         }
         else if (!gettingCall && currentScreen == Screen.Call)
         {
@@ -76,7 +80,7 @@ public class PhoneHandler : MonoBehaviour
         if (gettingCall && Input.GetKeyDown(KeyCode.C))
         {
             Debug.Log("Play call!");
-            //play call audio
+            VoiceMail.SetActive(true);
         }
     }
     private void FixedUpdate()
@@ -90,6 +94,7 @@ public class PhoneHandler : MonoBehaviour
             rockText.text = inventoryTemp[0].ToString() + " bullets";
             battText.text = inventoryTemp[1].ToString() + " lighters";
             kitText.text = inventoryTemp[2].ToString() + " medkits";
+            gasText.text = inventoryTemp[3].ToString() + " gas cans";
         }
         else if (currentScreen == Screen.Save)
         {
@@ -174,11 +179,13 @@ public class Player{
 
     public byte[] GetInventory() // Returns the players Rocks, Batteries, and Medkit counts for the UI.
     {
-        byte[] temp = {3, 4, 5 }; // Rocks, Batts, Kits
+        byte[] temp = {3, 4, 5, 99 }; // Rocks, Batts, Kits
         temp[0] = (byte)inventory.bulletCount;
         temp[1] = (byte)inventory.lighters;
         temp[2] = (byte)inventory.medKitCount;
+        temp[3] = (byte)inventory.generatorItems;
 
         return temp;
     }
+
 }

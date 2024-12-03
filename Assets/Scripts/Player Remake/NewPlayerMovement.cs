@@ -28,7 +28,9 @@ public class NewPlayerMovement : MonoBehaviour
     readonly private float gravity = -9.81f;
     public float fallDamageThreshold = -15f;
 
-    bool willDie = false;
+    public bool willDie = false;
+
+    public AudioManager AudioManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -137,6 +139,9 @@ public class NewPlayerMovement : MonoBehaviour
             if (other.GetComponent<CellVolume>().gettingCall)
             {
                 phoneScript.gettingCall = true;
+               
+                AudioManager.PhoneNotification();
+                
             }
         }
     }
