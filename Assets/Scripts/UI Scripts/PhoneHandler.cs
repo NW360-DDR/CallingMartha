@@ -7,13 +7,14 @@ using TMPro;
 public class PhoneHandler : MonoBehaviour
 {
     // Screen Management Variables
-    enum Screen {HUD, Save, Off};
+    enum Screen {HUD, Save, Off, Call};
     Screen currentScreen = Screen.HUD;
     [SerializeField] GameObject SaveMode;
     [SerializeField] GameObject HUDMode;
     [SerializeField] GameObject OffMode;
+    [SerializeField] GameObject CallMode;
     // Text and other data information
-    [SerializeField] TextMeshProUGUI rockText, battText, kitText;
+    [SerializeField] TextMeshProUGUI rockText, battText, kitText, gasText;
     [SerializeField] TextMeshProUGUI SaveText;
     [SerializeField] CellService cell;
     public string playerName;
@@ -21,6 +22,11 @@ public class PhoneHandler : MonoBehaviour
     public Slider batterySlider;
     bool canSave = false;
     bool hasSaved = false;
+    public bool gettingCall = false;
+
+    public AudioManager AudioManager;
+    public GameObject VoiceMail;
+    public FMODUnity.StudioEventEmitter VoicemailEmmiter;
 
     // These two are for getting the inventory. Why did I do it this way? I don't know, it made sense at the time.
     Player player;
@@ -33,7 +39,7 @@ public class PhoneHandler : MonoBehaviour
             player = new Player();
         else
             player = new Player(playerName);
-        inventoryTemp = new byte[3];
+        inventoryTemp = new byte[4];
         player.healthScript.checkpoint = player.main.transform.position;
     }
 
@@ -48,6 +54,15 @@ public class PhoneHandler : MonoBehaviour
         {// Positive means we want to see the Save Menu if we aren't already
             SwitchMode(Screen.Save);
         }
+        else if(gettingCall)
+        {
+            SwitchMode(Screen.Call);
+
+        }
+        else if (!gettingCall && currentScreen == Screen.Call)
+        {
+            SwitchMode(Screen.HUD);
+        }
         else if(phoneBatteryLife <= 0)
         {
             SwitchMode(Screen.Off);
@@ -61,6 +76,12 @@ public class PhoneHandler : MonoBehaviour
 
             player.healthScript.checkpoint = player.main.transform.position;
         }
+
+        if (gettingCall && Input.GetKeyDown(KeyCode.C))
+        {
+            Debug.Log("Play call!");
+            VoiceMail.SetActive(true);
+        }
     }
     private void FixedUpdate()
     {
@@ -73,30 +94,43 @@ public class PhoneHandler : MonoBehaviour
             rockText.text = inventoryTemp[0].ToString() + " bullets";
             battText.text = inventoryTemp[1].ToString() + " lighters";
             kitText.text = inventoryTemp[2].ToString() + " medkits";
+            gasText.text = inventoryTemp[3].ToString() + " gas cans";
         }
         else if (currentScreen == Screen.Save)
         {
             if(cell.service == 3 && !hasSaved) // Maximum Cell Service only while we have not Checkpointed
             {
                 SaveText.text = "Connection Established";
+                SaveText.GetComponentInParent<RawImage>().color = Color.green;
                 canSave = true;
             }
             else if (cell.service == 3 && hasSaved)
             {
                 SaveText.text = "Location Logged.";
+                StartCoroutine(SetTextBack());
             }
             else
             {
                 SaveText.text = "Unstable Connection";
+                SaveText.GetComponentInParent<RawImage>().color = Color.red;
                 canSave = false;
             }
         }
-        
+    }
+    IEnumerator SetTextBack()
+    {
+        if (currentScreen == Screen.Save)
+        {
+            yield return new WaitForSeconds(1);
+            hasSaved = false;
+            SaveText.text = "Connection Established";
+        }  
     }
     void SwitchMode(Screen newMode)
     {
         HUDMode.SetActive(false);
         SaveMode.SetActive(false);
+        CallMode.SetActive(false);
         switch (newMode) 
         {
             case Screen.HUD:
@@ -104,6 +138,9 @@ public class PhoneHandler : MonoBehaviour
                 break;
             case Screen.Save:
                 SaveMode.SetActive(true);
+                break;
+            case Screen.Call:
+                CallMode.SetActive(true);
                 break;
             case Screen.Off:
                 OffMode.SetActive(true);
@@ -142,11 +179,13 @@ public class Player{
 
     public byte[] GetInventory() // Returns the players Rocks, Batteries, and Medkit counts for the UI.
     {
-        byte[] temp = {3, 4, 5 }; // Rocks, Batts, Kits
+        byte[] temp = {3, 4, 5, 99 }; // Rocks, Batts, Kits
         temp[0] = (byte)inventory.bulletCount;
         temp[1] = (byte)inventory.lighters;
         temp[2] = (byte)inventory.medKitCount;
+        temp[3] = (byte)inventory.generatorItems;
 
         return temp;
     }
+
 }

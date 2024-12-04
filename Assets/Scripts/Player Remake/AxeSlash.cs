@@ -7,8 +7,11 @@ public class AxeSlash : MonoBehaviour
     public GameObject weapon;
 
     private EquippedScript equipScript;
+    public Camera cam;
+    private RaycastHit checkForBreakable;
     private Animator axeAnim;
     public bool attackSignal = false;
+    public LayerMask excludeLayer;
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +27,9 @@ public class AxeSlash : MonoBehaviour
         if (attackSignal)
         {
             TurnOnHitbox();
-        }else
+            BreakableCheck();
+        }
+        else
         {
             TurnOffHitbox();
         }
@@ -44,5 +49,21 @@ public class AxeSlash : MonoBehaviour
     void TurnOffHitbox()
     {
         hitBox.SetActive(false);
+    }
+
+    void BreakableCheck()
+    {
+        Physics.Raycast(cam.transform.position, cam.transform.forward, out checkForBreakable, 5, ~excludeLayer);
+
+        if (checkForBreakable.transform != null)
+        {
+            Debug.Log(checkForBreakable.transform.name);
+            if (checkForBreakable.transform.CompareTag("Breakable"))
+            {
+                Debug.Log("Can be broken!");
+
+                Destroy(checkForBreakable.transform.gameObject);
+            }
+        }
     }
 }

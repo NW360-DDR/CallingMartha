@@ -7,9 +7,11 @@ using UnityEngine.UI;
 public class GrabAndThrow : MonoBehaviour
 {
     private RaycastHit targetCheck;
+    private RaycastHit stopStandingOnBox;
     public GameObject holdingObject;
     public GameObject heldObjectPlace;
     public GameObject rockPrefab;
+    public GameObject underPlayer;
     private TextMeshProUGUI interactText;
 
     public bool holdingCheck = false;
@@ -42,7 +44,6 @@ public class GrabAndThrow : MonoBehaviour
             holdingObjectRB.velocity = Vector3.zero;
             //holdingObject.transform.SetPositionAndRotation(heldObjectPlace.transform.position, heldObjectPlace.transform.rotation);
             //holdingObjectRB.MovePosition(heldObjectPlace.transform.position);
-            interactText.gameObject.SetActive(false);
         }
     }
 
@@ -55,21 +56,15 @@ public class GrabAndThrow : MonoBehaviour
             if (targetCheck.transform.CompareTag("Grabbable"))
             {
                 interactText.gameObject.SetActive(true);
-                interactText.text = "E - Pickup";
+                if (!holdingCheck)
+                {
+                    interactText.text = "E - Pick up";
+                }else
+                    interactText.text = "E - Put down";
+
                 if (holdingCheck && Input.GetKeyDown(KeyCode.E) && Time.timeScale > 0)
                 {
-                    GetComponentInParent<AxeSlash>().enabled = true;
-                    GetComponentInParent<GunScript>().enabled = true;
-                    //holdingObjectCollider.isTrigger = false;
-                    holdingObjectRB.useGravity = true;
-                    holdingObjectRB.constraints = RigidbodyConstraints.None;
-                    holdingObjectRB.velocity = Vector3.zero;
-
-                    holdingObjectRB = null;
-                    holdingObjectCollider = null;
-                    holdingObject = null;
-                    holdingCheck = false;
-                    interactText.gameObject.SetActive(false);
+                    LetGoOfObject();
                 } else if (Input.GetKeyDown(KeyCode.E) && Time.timeScale > 0)
                 {
                     interactText.gameObject.SetActive(false);
@@ -83,7 +78,7 @@ public class GrabAndThrow : MonoBehaviour
                 interactText.gameObject.SetActive(true);
                 if (Input.GetKeyDown(KeyCode.E) && Time.timeScale > 0)
                 {
-                    targetCheck.transform.gameObject.SendMessageUpwards("Interact");
+                    targetCheck.transform.gameObject.SendMessage("Interact");
                     interactText.gameObject.SetActive(false);
                 }
             }
@@ -91,6 +86,11 @@ public class GrabAndThrow : MonoBehaviour
                 interactText.gameObject.SetActive(false);
         } else
             interactText.gameObject.SetActive(false);
+
+        if (holdingCheck)
+        {
+            LetGoIfStandingObject();
+        }
 
         //if holding object and you click, throw object
         /*if (holdingCheck && Input.GetMouseButtonDown(0))
@@ -116,6 +116,18 @@ public class GrabAndThrow : MonoBehaviour
         Physics.Raycast(transform.position, transform.forward, out targetCheck, 5, ~excludeLayer);
     }
 
+    void LetGoIfStandingObject()
+    {
+        if (Physics.Raycast(underPlayer.transform.position, -underPlayer.transform.up, out stopStandingOnBox, 5, ~excludeLayer))
+        {
+            if (stopStandingOnBox.transform == holdingObject.transform)
+            {
+                Debug.Log("STOP!!!!!!!!!!!!!!!");
+                LetGoOfObject();
+            }
+        }
+    }
+
     void HoldObject()
     {
         //runs when raycast found grabbable and player pressed E
@@ -131,5 +143,21 @@ public class GrabAndThrow : MonoBehaviour
         //holdingObjectCollider.isTrigger = true;
         GetComponentInParent<AxeSlash>().enabled = false;
         GetComponentInParent<GunScript>().enabled = false;
+    }
+
+    void LetGoOfObject()
+    {
+        GetComponentInParent<AxeSlash>().enabled = true;
+        GetComponentInParent<GunScript>().enabled = true;
+        //holdingObjectCollider.isTrigger = false;
+        holdingObjectRB.useGravity = true;
+        holdingObjectRB.constraints = RigidbodyConstraints.None;
+        holdingObjectRB.velocity = Vector3.zero;
+
+        holdingObjectRB = null;
+        holdingObjectCollider = null;
+        holdingObject = null;
+        holdingCheck = false;
+        interactText.gameObject.SetActive(false);
     }
 }
