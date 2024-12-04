@@ -27,6 +27,9 @@ public class GenericEnemy : MonoBehaviour
 	float angleBase; // base viewing angle when navigating.
 	Vector3 homePos; // Where the enemy begins. Only wanders within certain range of this point.
 
+	// Audio
+	public AudioManager AudioManager;
+
 	// Start is called before the first frame update
 	// NOTE: Most of these can probably just be assigned in the prefab for the sake of load times on Start.
 	// It's not an issue for now, but keep it in mind.
@@ -230,19 +233,22 @@ public class GenericEnemy : MonoBehaviour
 
 	State GetHit()
     {
-		float timer = 0.5f;
+		float timer = .25f;
 		
 		void Enter()
         {
-			nav.isStopped = true;
+            wolfAnim.SetBool("Running", false);
+            nav.isStopped = true;
+			nav.updatePosition = false;
 			rb.isKinematic = false;
-			rb.AddForce(((transform.position - fov.playerRef.transform.position).normalized) * 3, ForceMode.Impulse);
+			rb.AddForce(((transform.position - fov.playerRef.transform.position).normalized) * 15, ForceMode.Impulse);
             wolfAnim.speed = 1;
         }
 
 		void Update()
         {
 			timer -= Time.deltaTime;
+			nav.nextPosition = transform.position;
 			if (timer <= 0f)
             {
 				brain.PopState();
@@ -252,6 +258,7 @@ public class GenericEnemy : MonoBehaviour
 		void Exit()
         {
 			nav.isStopped = false;
+			nav.updatePosition = true;
 			rb.isKinematic = true;
         }
 
@@ -262,3 +269,4 @@ public class GenericEnemy : MonoBehaviour
 		brain.PushState(GetHit());
     }
 }
+ 

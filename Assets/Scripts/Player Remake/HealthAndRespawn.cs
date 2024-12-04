@@ -19,7 +19,10 @@ public class HealthAndRespawn : MonoBehaviour
     private bool healReset = false;
     private float healthHold = 0;
     private Rigidbody playerRB;
-    private Animator blackScreen;
+    public Animator blackScreen;
+    private NewPlayerMovement playerScript;
+
+    public AudioManager AudioManager;
 
     private void Start()
     {
@@ -28,6 +31,7 @@ public class HealthAndRespawn : MonoBehaviour
         redJelly = GameObject.Find("Red Overlay").GetComponent<RawImage>();
         timerScript = GameObject.Find("EclipseTimer").GetComponent<EclipseTimer>();
         blackScreen = GameObject.Find("Fade").GetComponent<Animator>();
+        playerScript = GetComponent<NewPlayerMovement>();
     }
 
     // Update is called once per frame
@@ -39,10 +43,20 @@ public class HealthAndRespawn : MonoBehaviour
             alive = false;
             GetComponent<CameraScript>().enabled = false;
             playerRB = gameObject.AddComponent<Rigidbody>();
+            if (grabScript.holdingObject != null)
+            grabScript.LetGoOfObject();
             grabScript.enabled = false;
             GetComponent<AxeSlash>().enabled = false;
             GetComponent<NewPlayerMovement>().enabled = false;
-            StartCoroutine(Respawn());
+            if (!timerScript.gameTimerActive)
+            {
+                StartCoroutine(timerScript.Restart());
+            }
+            else
+            {
+                StartCoroutine(Respawn());
+            }
+            
         }
 
         //heal if the player has a medkit and held down H for 1 second
@@ -70,11 +84,8 @@ public class HealthAndRespawn : MonoBehaviour
         //player can only be hurt when hurtcooldown is over, also reset the healing timer if player is healing
         if (other.CompareTag("Hurtbox") && !hurtCool)
         {
-            health -= 1;
-            redJelly.color += new Color (redJelly.color.r, redJelly.color.g, redJelly.color.b, 0.50f);
-            hurtCool = true;
-            healReset = true;
-            StartCoroutine(HitCooldown());
+            GetHurt(1);
+            AudioManager.WolfAttack();
         }
 
         if (other.CompareTag("Spawn Trigger"))
@@ -85,6 +96,7 @@ public class HealthAndRespawn : MonoBehaviour
         if (other.CompareTag("Die"))
         {
             health = 0;
+            AudioManager.PlayerDead();
             redJelly.color += new Color(redJelly.color.r, redJelly.color.g, redJelly.color.b, 0.60f);
             respawned = true;
             alive = false;
@@ -101,14 +113,17 @@ public class HealthAndRespawn : MonoBehaviour
     {
         //resets player location and health
         Debug.Log("Respawn?");
+        playerRB.AddForce(transform.right, ForceMode.Impulse);
         yield return new WaitForSeconds(1.5f);
         blackScreen.SetBool("FadeIn", true);
         respawned = true;
         redJelly.color = new Color(redJelly.color.r, redJelly.color.g, redJelly.color.b, 0f);
         transform.position = checkpoint;
         health = 3;
+        playerScript.velocity.y = 0;
         alive = true;
         yield return new WaitForSeconds(0.5f);
+        playerScript.willDie = false;
         Destroy(playerRB);
         GetComponent<CameraScript>().enabled = true;
         InventoryScript.enabled = true;
@@ -124,5 +139,16 @@ public class HealthAndRespawn : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         healReset = false;
         hurtCool = false;
+    }
+
+    public void GetHurt(int damage)
+    {
+        Debug.Log("Player got hit!");
+        health -= damage;
+        AudioManager.PlayerHurt();
+        redJelly.color += new Color(redJelly.color.r, redJelly.color.g, redJelly.color.b, 0.50f);
+        hurtCool = true;
+        healReset = true;
+        StartCoroutine(HitCooldown());
     }
 }

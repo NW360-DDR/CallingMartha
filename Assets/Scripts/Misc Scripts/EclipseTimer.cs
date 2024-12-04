@@ -7,7 +7,8 @@ public class EclipseTimer : MonoBehaviour
     public float timer;
     public float eclipseTimerLength = 30;
     public float redFogTime = 2.5f;
-    private bool gameTimerActive = true;
+    public bool gameTimerActive = true;
+    public bool enteredArena = false;
 
     private Vector3 targetPos = Vector3.zero;
     public Color RedColor;
@@ -15,7 +16,7 @@ public class EclipseTimer : MonoBehaviour
     public GameObject lunarMoon;
     public MarthaTestScript Martha;
 
-    public AudioSource TimerEndSound;
+    public AudioManager AudioManager;
 
     private void Start()
     {
@@ -24,23 +25,19 @@ public class EclipseTimer : MonoBehaviour
     void Update()
     {
         //start timer
-        timer += Time.deltaTime;
+        timer += gameTimerActive ? Time.deltaTime : 0;
 
         //check if timer hit eclipse timer length
         // multiply by 60 to make the number into minutes
         if (timer >= (eclipseTimerLength * 60))
         {
-            
-            Debug.Log("Eclipse happened! Time to die!");
             gameTimerActive = false;
+            Debug.Log("Eclipse happened! Time to die!");
             if (!Martha.gameObject.activeSelf)
             {
                 Martha.gameObject.SetActive(true);
-            }
-            if (!Martha.brain.GetState().Equals("MurderHobo"))
-            {
                 Martha.KILL();
-                TimerEndSound.Play();
+                AudioManager.EclipseTimerEnd();
             }
         }
 
@@ -48,7 +45,7 @@ public class EclipseTimer : MonoBehaviour
 
         //turn fog red over time once it hits fog timer
         if (timer > redFogTime * 60)
-            RenderSettings.fogColor = Color.Lerp(RenderSettings.fogColor, RedColor, (Time.deltaTime / (eclipseTimerLength * 15f)));
+            RenderSettings.fogColor = Color.Lerp(RenderSettings.fogColor, RedColor, ((Time.deltaTime * 2) / (eclipseTimerLength * 15f)));
     }
 
     //restarts current loaded scene (will probably change later)
@@ -74,3 +71,5 @@ public class EclipseTimer : MonoBehaviour
         yield return new WaitForSeconds(1);
     }
 }
+
+

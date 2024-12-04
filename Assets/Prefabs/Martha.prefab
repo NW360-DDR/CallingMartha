@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 31605895268310773}
   - component: {fileID: 4294861448869966391}
   - component: {fileID: 671231332992755646}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bigger Phil
   m_TagString: Die
   m_Icon: {fileID: 0}
@@ -215,6 +215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ab394fbf6b4a63409395d4b834bda3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Peek: 
 --- !u!114 &2022052411230835911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,11 +255,20 @@ MonoBehaviour:
   fov: {fileID: 0}
   anim: {fileID: 0}
   hurtBox: {fileID: 782955792047173918}
+  killBox: {fileID: 0}
+  gameTimer: {fileID: 0}
   dest: {x: 0, y: 0, z: 0}
   lastKnownPlayerLoc: {x: 0, y: 0, z: 0}
   idleTimer: 3
   baseSpeed: 2
   chaseMult: 1.5
+  attackCooldown: 0.75
+  BossHealth: 500
+  bossSpeed: 25
+  chargeRange: 5
+  chargeCooldown: 5
+  chargeTimer: 0
+  RetreatTimer: 3
 --- !u!1001 &5309206602502797634
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -273,7 +283,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1946616381629747858, guid: 27e0104e6422ecd44b21160034eede24, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1946616381629747858, guid: 27e0104e6422ecd44b21160034eede24, type: 3}
       propertyPath: m_LocalPosition.z
@@ -319,6 +329,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3249380608732660357, guid: 27e0104e6422ecd44b21160034eede24, type: 3}
       insertIndex: -1
       addedObject: {fileID: 477227715115723520}
+    - targetCorrespondingSourceObject: {fileID: 3249380608732660357, guid: 27e0104e6422ecd44b21160034eede24, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4827747926692800840}
   m_SourcePrefab: {fileID: 100100000, guid: 27e0104e6422ecd44b21160034eede24, type: 3}
 --- !u!4 &5957648846525377488 stripped
 Transform:
@@ -343,3 +356,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCam: {fileID: 0}
+--- !u!95 &4827747926692800840
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7256997968880597959}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 20dc94d337232924d8a1768ac978d82e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

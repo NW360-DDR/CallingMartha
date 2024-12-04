@@ -29,17 +29,6 @@ public class FlashlightScript : MonoBehaviour
     {
         flashlightLight.intensity = phoneHandler.phoneBatteryLife * 1.5f;
 
-        //if the flashlight is not on, turn it on. if it is on, turn it off
-        if (Input.GetMouseButtonDown(0) && InventoryScript.flashLightBatteries > 0 && phoneHandler.phoneBatteryLife > 0 && !flashlightOn)
-        {
-            flashlightObject.SetActive(true);
-            flashlightOn = true;
-        }else if (Input.GetMouseButtonDown(0) && flashlightOn)
-        {
-            flashlightObject.SetActive(false);
-            flashlightOn = false;
-        }
-
         //drain flashlight battery
         /*if (flashlightOn && batteryLife > 0)
         {
@@ -92,6 +81,23 @@ public class FlashlightScript : MonoBehaviour
                 flashlightObject.SetActive(true);
                 yield return new WaitForSeconds(Random.Range(0.05f, 0.15f));
             }
+        }
+    }
+
+    public void FlashlightClicked()
+    {
+        Debug.Log("Flashlight clicked!");
+
+        //if the flashlight is not on, turn it on. if it is on, turn it off
+        if (Input.GetMouseButtonDown(0) && InventoryScript.flashLightBatteries > 0 && phoneHandler.phoneBatteryLife > 0 && !flashlightOn && Time.timeScale > 0)
+        {
+            flashlightObject.SetActive(true);
+            flashlightOn = true;
+        }
+        else if (Input.GetMouseButtonDown(0) && flashlightOn && Time.timeScale > 0)
+        {
+            flashlightObject.SetActive(false);
+            flashlightOn = false;
         }
     }
 }

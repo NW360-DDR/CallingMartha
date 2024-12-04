@@ -1,18 +1,25 @@
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class AxeSlash : MonoBehaviour
 {
     public GameObject hitBox;
     public GameObject weapon;
 
-    private InventoryScript inventoryScript;
+    private EquippedScript equipScript;
+    public Camera cam;
+    private RaycastHit checkForBreakable;
     private Animator axeAnim;
     public bool attackSignal = false;
+    public LayerMask excludeLayer;
+
+    public AudioManager AudioManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        inventoryScript = GetComponent<InventoryScript>();
+        equipScript = GetComponent<EquippedScript>();
         axeAnim = weapon.GetComponent<Animator>();
     }
 
@@ -23,15 +30,11 @@ public class AxeSlash : MonoBehaviour
         if (attackSignal)
         {
             TurnOnHitbox();
-        }else
+            BreakableCheck();
+        }
+        else
         {
             TurnOffHitbox();
-        }
-
-        // if the player clicks, attack
-        if (Input.GetMouseButtonDown(0))
-        {
-            axeAnim.SetTrigger("Attack");
         }
     }
 
@@ -43,5 +46,32 @@ public class AxeSlash : MonoBehaviour
     void TurnOffHitbox()
     {
         hitBox.SetActive(false);
+    }
+
+    void BreakableCheck()
+    {
+        Physics.Raycast(cam.transform.position, cam.transform.forward, out checkForBreakable, 5, ~excludeLayer);
+
+        if (checkForBreakable.transform != null)
+        {
+            Debug.Log(checkForBreakable.transform.name);
+            if (checkForBreakable.transform.CompareTag("Breakable"))
+            {
+                Debug.Log("Can be broken!");
+
+                Destroy(checkForBreakable.transform.gameObject);
+            }
+        }
+    }
+
+    public void Attack()
+    {
+        Debug.Log("Axe attack!!!");
+
+        if (Input.GetMouseButtonDown(0) && equipScript.allowAttack && Time.timeScale > 0)
+        {
+            axeAnim.SetTrigger("Attack");
+            AudioManager.PlayAxeWhoosh();
+        }
     }
 }
