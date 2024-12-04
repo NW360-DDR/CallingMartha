@@ -54,7 +54,7 @@ public class GunScript : MonoBehaviour
                 else if (tag.Equals("Martha"))
                     hit.transform.SendMessageUpwards("ShootWife");
             }
-
+            Debug.Log(inventoryScript.bulletCount);
             inventoryScript.bulletCount -= 1;
 
             gunCooldown = true;

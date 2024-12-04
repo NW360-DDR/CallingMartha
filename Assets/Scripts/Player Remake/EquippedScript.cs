@@ -159,7 +159,7 @@ public class EquippedScript : MonoBehaviour
 
         if (currentEquipped == 1)
         {
-            currentEquipped = 1;
+            //currentEquipped = 1;
             gunScript.enabled = true;
             flashlightScript.flashlightOn = false;
             flashlightScript.enabled = false;
@@ -178,7 +178,7 @@ public class EquippedScript : MonoBehaviour
                 hasOpenedPhone = true;
             }
 
-            currentEquipped = 2;
+            //currentEquipped = 2;
             gunScript.enabled = false;
             axeScript.enabled = false;
             flashlightScript.enabled = true;
