@@ -1,5 +1,6 @@
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class AxeSlash : MonoBehaviour
 {
@@ -35,13 +36,6 @@ public class AxeSlash : MonoBehaviour
         {
             TurnOffHitbox();
         }
-
-        // if the player clicks, attack
-        if (Input.GetMouseButtonDown(0) && equipScript.allowAttack && Time.timeScale > 0)
-        {
-            axeAnim.SetTrigger("Attack");
-            AudioManager.PlayAxeWhoosh();
-        }
     }
 
     void TurnOnHitbox()
@@ -67,6 +61,17 @@ public class AxeSlash : MonoBehaviour
 
                 Destroy(checkForBreakable.transform.gameObject);
             }
+        }
+    }
+
+    public void Attack()
+    {
+        Debug.Log("Axe attack!!!");
+
+        if (Input.GetMouseButtonDown(0) && equipScript.allowAttack && Time.timeScale > 0)
+        {
+            axeAnim.SetTrigger("Attack");
+            AudioManager.PlayAxeWhoosh();
         }
     }
 }

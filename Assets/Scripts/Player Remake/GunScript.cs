@@ -25,6 +25,12 @@ public class GunScript : MonoBehaviour
     void Update()
     {
         Debug.DrawRay(spawnLocation.transform.position, spawnLocation.transform.forward, Color.red);
+    }
+
+    public void Shoot()
+    {
+        Debug.Log("Shoot gun!");
+
         //its a gun. shoot it.
         if (Input.GetMouseButtonDown(0) && inventoryScript.bulletCount >= 1 && Time.timeScale > 0 && equipScript.allowAttack)
         {

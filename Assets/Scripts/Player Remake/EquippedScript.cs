@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.FullSerializer.Internal;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EquippedScript : MonoBehaviour
 {
@@ -12,10 +13,8 @@ public class EquippedScript : MonoBehaviour
     private Animator phoneAnim;
 
     private InventoryScript inventoryScript;
-    private GunScript gunScript;
-    private AxeSlash axeScript;
-    private FlashlightScript flashlightScript;
     private PhoneHandler phoneHandler;
+
     TextLogThingy textLog;
 
     public int currentEquipped = 0;
@@ -23,15 +22,16 @@ public class EquippedScript : MonoBehaviour
     private bool hasOpenedPhone = false;
     private bool takeInput = true;
     public bool allowAttack = true;
+
+    public UnityEvent SwingAxe;
+    public UnityEvent FireGun;
+    public UnityEvent FlashlightClick;
     // Start is called before the first frame update
     void Start()
     {
         weaponAnim = weapon.GetComponent<Animator>();
         phoneAnim = phone.GetComponent<Animator>();
         inventoryScript = GetComponent<InventoryScript>();
-        gunScript = GetComponent<GunScript>();
-        axeScript = GetComponent<AxeSlash>();
-        flashlightScript = GetComponent<FlashlightScript>();
         phoneHandler = GameObject.Find("PhoneCanvas").GetComponent<PhoneHandler>();
         textLog = GameObject.FindAnyObjectByType<TextLogThingy>();
     }
@@ -95,6 +95,11 @@ public class EquippedScript : MonoBehaviour
             StartCoroutine(SendUpdate());
         }
 
+        if (Input.GetMouseButtonDown(0))
+        {
+            DoWeaponThing();
+        }
+
         if (currentEquipped == 2 && phoneHandler.phoneBatteryLife > 0)
         {
             phoneHandler.phoneBatteryLife -= Time.deltaTime * batteryDrainMultiplier;
@@ -110,7 +115,36 @@ public class EquippedScript : MonoBehaviour
 
     void UpdateEquipped()
     {
-        if (currentEquipped == 0)
+        switch (currentEquipped)
+        {
+            case 0:
+                weaponAnim.SetTrigger("ToAxe");
+                weaponAnim.SetBool("SwitchingHand", true);
+                phoneAnim.SetBool("PhoneOpen", false);
+                flashlightLight.SetActive(false);
+                break;
+            case 1:
+                weaponAnim.SetTrigger("ToGun");
+                weaponAnim.SetBool("SwitchingHand", true);
+                phoneAnim.SetBool("PhoneOpen", false);
+                flashlightLight.SetActive(false);
+                break;
+            case 2:
+                if (!hasOpenedPhone)
+                {
+                    textLog.TextPush("Phone battery will drain. \n Be careful.");
+                    hasOpenedPhone = true;
+                }
+
+                weaponAnim.SetTrigger("ToPhone");
+                weaponAnim.SetBool("SwitchingHand", true);
+                phoneAnim.SetBool("PhoneOpen", true);
+                flashlightLight.SetActive(false);
+                break;
+        }
+        takeInput = true;
+
+        /*if (currentEquipped == 0)
         {
             currentEquipped = 0;
             gunScript.enabled = false;
@@ -153,6 +187,22 @@ public class EquippedScript : MonoBehaviour
             phoneAnim.SetBool("PhoneOpen", true);
             flashlightLight.SetActive(false);
         }
-        takeInput = true;
+        takeInput = true;*/
+    }
+
+    void DoWeaponThing()
+    {
+        switch (currentEquipped)
+        {
+            case 0:
+                SwingAxe.Invoke();
+                break;
+            case 1:
+                FireGun.Invoke();
+                break;
+            case 2:
+                FlashlightClick.Invoke();
+                break;
+        }
     }
 }

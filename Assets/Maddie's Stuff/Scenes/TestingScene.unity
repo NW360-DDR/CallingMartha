@@ -824,7 +824,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3560627648628795516, guid: 098725ba20f1136428266c4bb76b1b37, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3445,6 +3445,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4168797154450591856, guid: 9fe94e82a4aa3ff41aae2e27ab392045, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4988315639946939381, guid: 9fe94e82a4aa3ff41aae2e27ab392045, type: 3}
       propertyPath: phoneBatteryLife
       value: 100
@@ -3512,6 +3516,10 @@ PrefabInstance:
     - target: {fileID: 8780571491998576821, guid: 9fe94e82a4aa3ff41aae2e27ab392045, type: 3}
       propertyPath: excludeLayer.m_Bits
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8929680878949345201, guid: 9fe94e82a4aa3ff41aae2e27ab392045, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4102,6 +4110,10 @@ PrefabInstance:
     - target: {fileID: 180940268567970841, guid: 17af9b112ec754e44a59a5bccaaeae15, type: 3}
       propertyPath: m_Name
       value: WoodenBarrel 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 180940268567970841, guid: 17af9b112ec754e44a59a5bccaaeae15, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 705099883299643043, guid: 17af9b112ec754e44a59a5bccaaeae15, type: 3}
       propertyPath: m_LocalPosition.x
