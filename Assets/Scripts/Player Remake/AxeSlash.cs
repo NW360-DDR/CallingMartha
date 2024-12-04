@@ -13,6 +13,8 @@ public class AxeSlash : MonoBehaviour
     public bool attackSignal = false;
     public LayerMask excludeLayer;
 
+    public AudioManager AudioManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +40,7 @@ public class AxeSlash : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && equipScript.allowAttack && Time.timeScale > 0)
         {
             axeAnim.SetTrigger("Attack");
+            AudioManager.PlayAxeWhoosh();
         }
     }
 

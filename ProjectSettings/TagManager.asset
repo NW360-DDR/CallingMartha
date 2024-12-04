@@ -23,7 +23,9 @@ TagManager:
   - Die
   - Barrel
   - Martha
-  - Fall Damage
+  - Breakable
+  - Window
+  - Lock
   layers:
   - Default
   - TransparentFX
