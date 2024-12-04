@@ -18,6 +18,7 @@ public class EquippedScript : MonoBehaviour
     TextLogThingy textLog;
 
     public int currentEquipped = 0;
+    public int switchingTo = 0;
     public float batteryDrainMultiplier = 1;
     private bool hasOpenedPhone = false;
     private bool takeInput = true;
@@ -63,19 +64,19 @@ public class EquippedScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1) && currentEquipped != 0 && takeInput && Time.timeScale > 0)
         {
             allowAttack = false;
-            currentEquipped = 0;
+            switchingTo = 0;
             takeInput = false;
             StartCoroutine(SendUpdate());
         }else if (Input.GetKeyDown(KeyCode.Alpha2) && currentEquipped != 1 && takeInput && Time.timeScale > 0)
         {
             allowAttack = false;
-            currentEquipped = 1;
+            switchingTo = 1;
             takeInput = false;
             StartCoroutine(SendUpdate());
         }else if (Input.GetKeyDown(KeyCode.Alpha3) && currentEquipped != 2 && takeInput && Time.timeScale > 0)
         {
             allowAttack = false;
-            currentEquipped = 2;
+            switchingTo = 2;
             takeInput = false;
             StartCoroutine(SendUpdate());
         }
@@ -83,14 +84,14 @@ public class EquippedScript : MonoBehaviour
         if (Input.mouseScrollDelta.y > 0 && currentEquipped != 0 && takeInput && Time.timeScale > 0)
         {
             allowAttack = false;
-            currentEquipped--;
+            switchingTo--;
             takeInput = false;
             StartCoroutine(SendUpdate());
         }
         else if (Input.mouseScrollDelta.y < 0 && currentEquipped != 2 && takeInput && Time.timeScale > 0)
         {
             allowAttack = false;
-            currentEquipped++;
+            switchingTo++;
             takeInput = false;
             StartCoroutine(SendUpdate());
         }
@@ -115,7 +116,7 @@ public class EquippedScript : MonoBehaviour
 
     void UpdateEquipped()
     {
-        switch (currentEquipped)
+        switch (switchingTo)
         {
             case 0:
                 weaponAnim.SetTrigger("ToAxe");

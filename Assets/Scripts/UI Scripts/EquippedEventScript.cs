@@ -22,8 +22,9 @@ public class EquippedEventScript : MonoBehaviour
         GetComponent<Animator>().SetBool("SwitchingHand", false);
     }
 
-    void AllowAttack()
+    public void AllowAttack()
     {
         equipScript.allowAttack = true;
+        equipScript.currentEquipped = equipScript.switchingTo;
     }
 }
