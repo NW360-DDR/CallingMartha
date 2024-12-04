@@ -155,7 +155,7 @@ MonoBehaviour:
   health: 100
   isAnimated: 1
   isMartha: 0
-  AudioManager: {fileID: 0}
+  AudioManager: {fileID: 1475774074161801930, guid: 5815eb253703c0b46bd6fa919eda32d0, type: 3}
   deadWolf: {fileID: 8291701754459658372, guid: fb63285d9c0d34b4d9eb10c14c00d2ba, type: 3}
 --- !u!114 &1390833056263577101
 MonoBehaviour:
@@ -209,7 +209,7 @@ MonoBehaviour:
   idleTimer: 3
   currIdle: 0
   ChargeDuration: 2
-  AudioManager: {fileID: 0}
+  AudioManager: {fileID: 1475774074161801930, guid: 5815eb253703c0b46bd6fa919eda32d0, type: 3}
 --- !u!114 &1208645724495422316
 MonoBehaviour:
   m_ObjectHideFlags: 0

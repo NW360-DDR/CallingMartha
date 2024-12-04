@@ -14,6 +14,7 @@ public class GunScript : MonoBehaviour
 
     private RaycastHit hit;
 
+    public AudioManager AudioManager;
     private void Start()
     {
         inventoryScript = GetComponent<InventoryScript>();
@@ -30,6 +31,8 @@ public class GunScript : MonoBehaviour
             gun.GetComponent<Animator>().SetTrigger("Shoot");
 
             Physics.Raycast(spawnLocation.transform.position, spawnLocation.transform.forward, out hit, 30, ~excludeLayer);
+
+            AudioManager.PlayGunFire();
 
             if (hit.collider != null)
             {
