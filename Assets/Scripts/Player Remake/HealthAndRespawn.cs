@@ -83,6 +83,7 @@ public class HealthAndRespawn : MonoBehaviour
         if (other.CompareTag("Hurtbox") && !hurtCool)
         {
             GetHurt(1);
+            AudioManager.WolfAttack();
         }
 
         if (other.CompareTag("Spawn Trigger"))
@@ -120,6 +121,7 @@ public class HealthAndRespawn : MonoBehaviour
         playerScript.velocity.y = 0;
         alive = true;
         yield return new WaitForSeconds(0.5f);
+        playerScript.willDie = false;
         Destroy(playerRB);
         GetComponent<CameraScript>().enabled = true;
         InventoryScript.enabled = true;
@@ -139,6 +141,7 @@ public class HealthAndRespawn : MonoBehaviour
 
     public void GetHurt(int damage)
     {
+        Debug.Log("Player got hit!");
         health -= damage;
         AudioManager.PlayerHurt();
         redJelly.color += new Color(redJelly.color.r, redJelly.color.g, redJelly.color.b, 0.50f);

@@ -93,19 +93,3 @@ MonoBehaviour:
       m_YScaleBool: 1
       m_ZScaleBool: 1
     name: SmallBush
-  - gameObject: {fileID: 919132149155446097, guid: 8fc8c7f4b458ea946bb1f8beb46a096d, type: 3}
-    settings:
-      m_Strength: 50
-      m_RotationRangeMin: {x: 0, y: 0, z: 0}
-      m_RotationRangeMax: {x: 0, y: 0, z: 0}
-      m_ScaleRangeMin: {x: 1, y: 1, z: 1}
-      m_ScaleRangeMax: {x: 1, y: 1, z: 1}
-      m_UniformScale: {x: 1, y: 1}
-      m_UniformBool: 1
-      m_XRotationBool: 0
-      m_YRotationBool: 0
-      m_ZRotationBool: 0
-      m_XScaleBool: 1
-      m_YScaleBool: 1
-      m_ZScaleBool: 1
-    name: MapleTree

@@ -31,7 +31,7 @@ public class EclipseTimer : MonoBehaviour
         // multiply by 60 to make the number into minutes
         if (timer >= (eclipseTimerLength * 60))
         {
-            
+            gameTimerActive = false;
             Debug.Log("Eclipse happened! Time to die!");
             if (!Martha.gameObject.activeSelf)
             {

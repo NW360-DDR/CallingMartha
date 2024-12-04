@@ -14,14 +14,14 @@ public class Enemy : MonoBehaviour
     private Animator spriteAnim;
     private AngleCalc angleCalcScript;
 
-    public AudioSource Yelp;
+    
+    public AudioManager AudioManager;
     public GameObject deadWolf;
     // Start is called before the first frame update
     void Start()
     {
         spriteAnim = GetComponentInChildren<Animator>();
         angleCalcScript = GetComponent<AngleCalc>();
-        Yelp = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -32,14 +32,13 @@ public class Enemy : MonoBehaviour
 
         if (health <= 0)
         {
-            Yelp.Play();
             StartCoroutine(Die());
         }
     }
 
     void GetShot()
     {
-        Yelp.Play();
+        AudioManager.WolfHurt();
         Debug.Log("I done got shot!");
         StartCoroutine(Die());
     }
@@ -48,7 +47,7 @@ public class Enemy : MonoBehaviour
     {
         Debug.Log("Ouch! You Shot Your Wife!");
         health -= 100;
-        Yelp.Play();
+        AudioManager.WolfHurt();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -63,7 +62,8 @@ public class Enemy : MonoBehaviour
                     brain.DoDamage();
                     Debug.Log("Ouch!");
                     health -= 50;
-                    Yelp.Play();
+                    AudioManager.WolfHurt();
+                    AudioManager.PlayAxeImpactFlesh();
                 }
             }
             else
@@ -74,7 +74,7 @@ public class Enemy : MonoBehaviour
                 {
                     Debug.Log("Ouch! Martha wtf");
                     health -= 50;
-                    Yelp.Play();
+                    AudioManager.WolfHurt();
                 }
             }
             

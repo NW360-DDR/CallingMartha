@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6200730402173509406}
   - component: {fileID: 1475774074161801930}
+  - component: {fileID: 1854110506557941047}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -51,3 +52,146 @@ MonoBehaviour:
       Data3: -583710036
       Data4: 1746816117
     Path: event:/SFX/Michael/Play_MichaelHurt
+  PlayerDeadSound:
+    Guid:
+      Data1: -391148858
+      Data2: 1341435578
+      Data3: -1078083959
+      Data4: 211084456
+    Path: event:/SFX/Michael/Play_MichaelDead
+  AxeImpactFlesh:
+    Guid:
+      Data1: 15198061
+      Data2: 1235992322
+      Data3: -1184260430
+      Data4: 1827026923
+    Path: event:/SFX/Other/PlayAxeFleshImpact
+  AxeImpactWood:
+    Guid:
+      Data1: 129634080
+      Data2: 1296751530
+      Data3: -509657983
+      Data4: -1876851060
+    Path: event:/SFX/Other/PlayAxeWoodImpact
+  AxeImpactGlass:
+    Guid:
+      Data1: 494093613
+      Data2: 1306454025
+      Data3: -7407687
+      Data4: -1801133838
+    Path: event:/SFX/Other/PlayAxeImpactGlass
+  AxeImpactMetal:
+    Guid:
+      Data1: -1504504828
+      Data2: 1140545324
+      Data3: -512304965
+      Data4: -646305977
+    Path: event:/SFX/Other/PlayAxeImpactMetal
+  AxeWhoosh:
+    Guid:
+      Data1: -1191644483
+      Data2: 1163513160
+      Data3: 131755402
+      Data4: 481306154
+    Path: event:/SFX/Other/PlayAxeWhoosh
+  GunFire:
+    Guid:
+      Data1: 2079847255
+      Data2: 1272643384
+      Data3: -676762480
+      Data4: -184625366
+    Path: event:/SFX/Other/PlayGunFire
+  GunFireEmpty:
+    Guid:
+      Data1: -1020058972
+      Data2: 1285525960
+      Data3: 1931982770
+      Data4: -1563468894
+    Path: event:/SFX/Other/PlayGunFireEmpty
+  WolfHurtSound:
+    Guid:
+      Data1: 550472041
+      Data2: 1178571565
+      Data3: 2046427044
+      Data4: 53392355
+    Path: event:/SFX/Wolves/Play_WolvesHurt
+  WolfAttackSound:
+    Guid:
+      Data1: 1439940898
+      Data2: 1176498935
+      Data3: 1916467613
+      Data4: 1617552615
+    Path: event:/SFX/Wolves/Play_WolvesAttack
+  PhoneNotificationSound:
+    Guid:
+      Data1: -1065551656
+      Data2: 1180046907
+      Data3: 834655104
+      Data4: -167298255
+    Path: event:/Voicelines/Play_PhoneNotification
+  MarthaVoicemailSound:
+    Guid:
+      Data1: -197108298
+      Data2: 1109343598
+      Data3: 887892616
+      Data4: -1694054815
+    Path: event:/Voicelines/Play_MarthaVoicemail
+  EclipseTimerEndSound:
+    Guid:
+      Data1: 1158125518
+      Data2: 1222965866
+      Data3: -369016956
+      Data4: -907215129
+    Path: event:/SFX/Other/EclipseTimerEnd
+  DoorOpenSound:
+    Guid:
+      Data1: 2068585989
+      Data2: 1181750437
+      Data3: 1662671798
+      Data4: 1962455675
+    Path: event:/SFX/Other/PlayDoorOpenSound
+  DoorCloseSound:
+    Guid:
+      Data1: -1346906049
+      Data2: 1095608630
+      Data3: -1647437637
+      Data4: -744203157
+    Path: event:/SFX/Other/PlayDoorCloseSound
+  DrawerSound:
+    Guid:
+      Data1: -2135056691
+      Data2: 1195788599
+      Data3: -194352714
+      Data4: -2089738272
+    Path: event:/SFX/Other/PlayDrawerSound
+--- !u!114 &1854110506557941047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3172544478525028823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1663627269
+      Data2: 1169446091
+      Data3: 12267146
+      Data4: -280598186
+    Path: event:/Music/PlayExploration
+  Event: 
+  PlayEvent: 1
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20

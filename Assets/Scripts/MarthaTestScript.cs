@@ -19,13 +19,13 @@ public class MarthaTestScript : MonoBehaviour
 
 	// Navigation Parameters
 	public Vector3 dest;
-	public Vector3 lastKnownPlayerLoc;
 	readonly float maxWanderDist = 20f;
 	public float idleTimer = 3f;
 	float currIdle = 0f;
 	public float baseSpeed = 25f;
 	public float chaseMult = 1.5f;
 	bool hunting = false;
+	public Vector3 MapSpot = new(28.19f, -13.193f, 106.9f);
 
 	int backState = 0; // If this number is > 0, it means we need to pop multiple states at once, and this is the safest way to go about this.
 
@@ -37,40 +37,15 @@ public class MarthaTestScript : MonoBehaviour
 	[SerializeField] float chargeCooldown = 5f, chargeTimer = 0f;
 	float deNavTimer = 0f; // How long until the boss gives up and walks away.
 	public float RetreatTimer = 3f;
-	
-
-	State HoldOn()
-	{
-		void Enter()
-		{
-			hurtBox.SetActive(false);
-			nav.ResetPath();
-			currIdle = 1;
-			//wolfAnim.SetBool("Running", false);
-		}
-		void Update()
-		{
-			// Otherwise, wait for IdleTimer to run out, then go somewhere else.
-			currIdle += Time.deltaTime;
-			if (currIdle >= idleTimer)
-			{
-				backState++;
-				brain.PopState();
-			}
-		}
-		void Exit(){}
-		return new(Update, Enter, Exit, "HoldUp");
-	}
 
 	// Start is called before the first frame update
 	void Start()
 	{
-		brain.PushState(Idle());
-		idleTimer = 1000000000000000000000f;
+		brain.PushState(DoNothingUntilCalled());
 		path = new();
 	}
 
-	private void Update()
+	void Update()
 	{
 		chargeTimer += Time.deltaTime;
 		if (fov.canSeePlayer && !hunting)
@@ -78,10 +53,10 @@ public class MarthaTestScript : MonoBehaviour
 			hunting = true;
 			brain.PushState(BossFight_Chase());
 		}
-        else
-        {
+		else
+		{
 			idleTimer = 3f;
-        }
+		}
 		if (backState > 0)
 		{
 			brain.PopState();
@@ -98,26 +73,21 @@ public class MarthaTestScript : MonoBehaviour
 	}
 	
 	public void KILL()
-    {
+	{
 		if (!brain.gameObject.activeSelf)
-        {
+		{
 			brain.gameObject.SetActive(true);
+		}
+		if (gameTimer.enteredArena)
+        {
+			StartBossFight();
         }
-		// It seems we want to make Martha start off closer than she usually is. I personally disagree, but fair enough.
-		Vector3 temp = fov.playerRef.transform.position;
-		float rand = UnityEngine.Random.Range(0, 1);
-		temp += (new Vector3(MathF.Cos(rand), 100, MathF.Sin(rand)) * (fov.radius * 0.3f));
-		Physics.Raycast(temp, Vector3.down, out RaycastHit checkVert, Mathf.Infinity);
-		temp.y = checkVert.transform.position.y;
-		transform.position = temp;
-		brain.PushState(MurderHobo());
-		Destroy(health);
-    }
-
-	/// <summary>
-	/// Checks if the path in question can be reached.
-	/// </summary>
-	/// <param name="destination"></param>
+        else
+        {
+			nav.Warp(MapSpot);
+			brain.PushState(MurderHobo());
+		}	
+	}
 	void AttemptPath(Vector3 destination)
 	{
 		nav.CalculatePath(destination, path);
@@ -155,74 +125,33 @@ public class MarthaTestScript : MonoBehaviour
 			AttemptPathBoss(fov.playerRef.transform.position);
 		}
 	}
-	State Wander()
+	State DoNothingUntilCalled()
 	{
-		void WanderEnter()
-		{
-			Vector3 wanderDir = (UnityEngine.Random.insideUnitSphere * maxWanderDist) + transform.position; // Generate a random spot "maxWanderDist" units away from the enemy to navigate towards.
-			NavMesh.SamplePosition(wanderDir, out NavMeshHit nvm, maxWanderDist, NavMesh.AllAreas); // God I hope this is a spot that can be navigated to.
-			nav.SetDestination(nvm.position);
-			dest = nav.destination;
-		}
-		void Wander()
-		{
-			if (nav.remainingDistance <= 0.25f) // Hey are we close to the destination?
-			{
-				nav.ResetPath();
-				brain.PopState();
-			}
+		static void yee(){}
 
-		}
-		void WanderExit()
-		{
-			// Empty
-		}
-		return new State(Wander, WanderEnter, WanderExit, "Wander");
-	}
-	State Idle()
-	{
-		void IdleEnter()
-		{
-			nav.ResetPath();
-		}
-		void Idle()
-		{
-			// TODO: Implement checks to enter other states such as Ohio or Florida.
-			if (gameTimer.timer >= (gameTimer.eclipseTimerLength * 60))
-            {
-				KILL();
-            }
-			// Otherwise, wait for IdleTimer to run out, then go somewhere else.
-			idleTimer -= Time.deltaTime;
-			if (idleTimer <= 0)
-			{
-				brain.PushState(Wander());
-				idleTimer = UnityEngine.Random.Range(1, 3);
-			}
-
-		}
-		void IdleExit() // Empty
-		{
-
-		}
-		return new State(Idle, IdleEnter, IdleExit, "Idle");
+		return new(yee, yee, yee, "Awaiting State...");
 	}
 	State MurderHobo()
-    {
+	{
 		void Enter()
+		{
+			Destroy(hurtBox);
+			dest = fov.playerRef.transform.position;
+			nav.SetDestination(dest);
+			nav.speed = baseSpeed * chaseMult * 2; // Eviscerate this man's spinal column
+			killBox.SetActive(true);
+			nav.radius = 0.01f;
+			nav.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
+			nav.autoBraking = false;
+			fov.canSeePlayer = true;
+		}
+		void Update()
 		{
 			dest = fov.playerRef.transform.position;
 			nav.SetDestination(dest);
-			nav.autoBraking = false; // Disable auto-braking so the navigation will just keep moving at a steady pace.
-			nav.speed = baseSpeed * chaseMult * 10; // Eviscerate this man's spinal column
 			killBox.SetActive(true);
+			health.health = 42069;
 		}
-		void Update()
-        {
-			dest = fov.playerRef.transform.position;
-			nav.SetDestination(dest);
-			killBox.SetActive(true);
-        }
 		
 		void Exit()
 		{
@@ -233,36 +162,30 @@ public class MarthaTestScript : MonoBehaviour
 
 
 		return new(Update, Enter, Exit, "MurderHobo");
-    }
+	}
 	State BossFight_Chase()
-    {
-
-		void Enter()
-		{
-			
-		}
+	{
+		void Enter(){}
 		void Update()
-        {
+		{
 			AttemptPathBoss(fov.playerRef.transform.position);
 			if (deNavTimer >= RetreatTimer) // Implying we haven't been able to reach the player for a bit.
-            {
+			{
 				brain.PushState(BossBackAway());
-            }
+			}
 			if ((nav.remainingDistance < chargeRange) && chargeTimer >= chargeCooldown)
 			{
 				brain.PushState(Attack());
 			}
 		}
 		void Exit()
-        {
+		{
 			deNavTimer = 0;
-        }
-
-
+		}
 		return new(Update, Enter, Exit, "Boss Chase");
-    }
+	}
 	State Attack()
-    {
+	{
 		float chargeMult = 3f;
 		void Enter()
 		{
@@ -271,7 +194,6 @@ public class MarthaTestScript : MonoBehaviour
 			Vector3 newTarget = fov.playerRef.transform.position - transform.position; // The player destination is exactly where we want to charge. 
 			newTarget = chargeRange * 1.2f * newTarget.normalized; // And we want to go in that direction notably farther than just where the player is.
 			newTarget += transform.position; // Add this direction + magnitude to our current position, and we should get a proper destination.
-											 //nav.SetDestination(newTarget);
 			AttemptPath(newTarget);
 			nav.speed = baseSpeed * chargeMult;
 			//wolfAnim.SetBool("Running", true);
@@ -279,7 +201,7 @@ public class MarthaTestScript : MonoBehaviour
 
 		void Update()
 		{
-			hurtBox.SetActive(true);
+			if (hurtBox != null) hurtBox.SetActive(true);
 			if (nav.remainingDistance < 0.25f)
 			{
 				chargeTimer = 0.0f;
@@ -296,11 +218,11 @@ public class MarthaTestScript : MonoBehaviour
 		return new State(Update, Enter, Exit, "Charge");
 	}
 	State BossBackAway()
-    {
+	{
 		void WanderEnter()
 		{
 			while (nav.pathStatus != NavMeshPathStatus.PathComplete)
-            {
+			{
 				Vector3 wanderDir = (UnityEngine.Random.insideUnitSphere * maxWanderDist) + transform.position; // Generate a random spot "maxWanderDist" units away from the enemy to navigate towards.
 				NavMesh.SamplePosition(wanderDir, out NavMeshHit nvm, maxWanderDist, NavMesh.AllAreas); // God I hope this is a spot that can be navigated to.
 				AttemptPath(nvm.position);
@@ -314,13 +236,30 @@ public class MarthaTestScript : MonoBehaviour
 				nav.ResetPath();
 				brain.PopState();
 			}
-
 		}
-		void WanderExit()
-		{
-			// Empty
-		}
+		void WanderExit(){}
 		return new State(Wander, WanderEnter, WanderExit, "Backing Away");
 	}
-
+	State HoldOn()
+	{
+		void Enter()
+		{
+			hurtBox.SetActive(false);
+			nav.ResetPath();
+			currIdle = 1;
+			//wolfAnim.SetBool("Running", false);
+		}
+		void Update()
+		{
+			// Otherwise, wait for IdleTimer to run out, then go somewhere else.
+			currIdle += Time.deltaTime;
+			if (currIdle >= idleTimer)
+			{
+				backState++;
+				brain.PopState();
+			}
+		}
+		void Exit() { }
+		return new(Update, Enter, Exit, "HoldUp");
+	}
 }
