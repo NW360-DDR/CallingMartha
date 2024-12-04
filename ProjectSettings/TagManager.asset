@@ -21,6 +21,9 @@ TagManager:
   - Cellbox
   - Shootable
   - Die
+  - Barrel
+  - Martha
+  - Fall Damage
   layers:
   - Default
   - TransparentFX

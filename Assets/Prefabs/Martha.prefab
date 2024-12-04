@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 31605895268310773}
   - component: {fileID: 4294861448869966391}
   - component: {fileID: 671231332992755646}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bigger Phil
   m_TagString: Die
   m_Icon: {fileID: 0}
@@ -215,6 +215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ab394fbf6b4a63409395d4b834bda3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Peek: 
 --- !u!114 &2022052411230835911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,11 +255,20 @@ MonoBehaviour:
   fov: {fileID: 0}
   anim: {fileID: 0}
   hurtBox: {fileID: 782955792047173918}
+  killBox: {fileID: 0}
+  gameTimer: {fileID: 0}
   dest: {x: 0, y: 0, z: 0}
   lastKnownPlayerLoc: {x: 0, y: 0, z: 0}
   idleTimer: 3
   baseSpeed: 2
   chaseMult: 1.5
+  attackCooldown: 0.75
+  BossHealth: 500
+  bossSpeed: 25
+  chargeRange: 5
+  chargeCooldown: 5
+  chargeTimer: 0
+  RetreatTimer: 3
 --- !u!1001 &5309206602502797634
 PrefabInstance:
   m_ObjectHideFlags: 0
