@@ -13,6 +13,8 @@ public class AudioManager : MonoBehaviour
 
     public FMODUnity.EventReference AxeImpactFlesh;
     public FMODUnity.EventReference AxeImpactWood;
+    public FMODUnity.EventReference AxeImpactGlass;
+    public FMODUnity.EventReference AxeImpactMetal;
     public FMODUnity.EventReference AxeWhoosh;
 
     public FMODUnity.EventReference GunFire;
@@ -107,6 +109,16 @@ public class AudioManager : MonoBehaviour
     public void PlayAxeImpactWood()
     {
         FMODUnity.RuntimeManager.PlayOneShot(AxeImpactWood);
+    }
+
+    public void PlayAxeImpactGlass()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(AxeImpactGlass);
+    }
+
+    public void PlayAxeImpactMetal()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(AxeImpactMetal);
     }
 
     public void PlayAxeWhoosh()

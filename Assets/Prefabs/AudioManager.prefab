@@ -73,6 +73,20 @@ MonoBehaviour:
       Data3: -509657983
       Data4: -1876851060
     Path: event:/SFX/Other/PlayAxeWoodImpact
+  AxeImpactGlass:
+    Guid:
+      Data1: 494093613
+      Data2: 1306454025
+      Data3: -7407687
+      Data4: -1801133838
+    Path: event:/SFX/Other/PlayAxeImpactGlass
+  AxeImpactMetal:
+    Guid:
+      Data1: -1504504828
+      Data2: 1140545324
+      Data3: -512304965
+      Data4: -646305977
+    Path: event:/SFX/Other/PlayAxeImpactMetal
   AxeWhoosh:
     Guid:
       Data1: -1191644483
