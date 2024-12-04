@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{a4000ef7-7b31-4ea2-af1e-833b97e93e35}">
 		<property name="assetPath">
-			<value>SFX/Gun/GunshotRevolver_BW.57415.wav</value>
+			<value>SFX/Gun/GunFire1.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>96</value>

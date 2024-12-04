@@ -32,7 +32,6 @@ public class Enemy : MonoBehaviour
 
         if (health <= 0)
         {
-            AudioManager.WolfHurt();
             StartCoroutine(Die());
         }
     }
@@ -64,6 +63,7 @@ public class Enemy : MonoBehaviour
                     Debug.Log("Ouch!");
                     health -= 50;
                     AudioManager.WolfHurt();
+                    AudioManager.PlayAxeImpactFlesh();
                 }
             }
             else

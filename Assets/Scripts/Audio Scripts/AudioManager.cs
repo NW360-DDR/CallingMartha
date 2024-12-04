@@ -11,6 +11,15 @@ public class AudioManager : MonoBehaviour
     public FMODUnity.EventReference PlayerHurtSound;
     public FMODUnity.EventReference PlayerDeadSound;
 
+    public FMODUnity.EventReference AxeImpactFlesh;
+    public FMODUnity.EventReference AxeImpactWood;
+    public FMODUnity.EventReference AxeImpactGlass;
+    public FMODUnity.EventReference AxeImpactMetal;
+    public FMODUnity.EventReference AxeWhoosh;
+
+    public FMODUnity.EventReference GunFire;
+    public FMODUnity.EventReference GunFireEmpty;
+
 
     public FMODUnity.EventReference WolfHurtSound;
     public FMODUnity.EventReference WolfAttackSound;
@@ -19,6 +28,10 @@ public class AudioManager : MonoBehaviour
     public FMODUnity.EventReference PhoneNotificationSound;
     public FMODUnity.EventReference MarthaVoicemailSound;
     public FMODUnity.EventReference EclipseTimerEndSound;
+
+    public FMODUnity.EventReference DoorOpenSound;
+    public FMODUnity.EventReference DoorCloseSound;
+    public FMODUnity.EventReference DrawerSound;
     // Update is called once per frame
     void Update()
     {
@@ -61,5 +74,55 @@ public class AudioManager : MonoBehaviour
     public void EclipseTimerEnd()
     {
         FMODUnity.RuntimeManager.PlayOneShot(EclipseTimerEndSound);
+    }
+
+    public void PlayDoorOpenSound()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(DoorOpenSound);
+    }
+
+    public void PlayDoorCloseSound()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(DoorCloseSound);
+    }
+
+    public void PlayDrawerSound()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(DrawerSound);
+    }
+
+    public void PlayGunFire()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(GunFire);
+    }
+
+    public void PlayGunFireEmpty()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(GunFireEmpty);
+    }
+
+    public void PlayAxeImpactFlesh()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(AxeImpactFlesh);
+    }
+
+    public void PlayAxeImpactWood()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(AxeImpactWood);
+    }
+
+    public void PlayAxeImpactGlass()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(AxeImpactGlass);
+    }
+
+    public void PlayAxeImpactMetal()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(AxeImpactMetal);
+    }
+
+    public void PlayAxeWhoosh()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(AxeWhoosh);
     }
 }
