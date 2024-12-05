@@ -12,24 +12,40 @@ public class FootstepsScript : MonoBehaviour
 
     private FMOD.Studio.EventInstance footsteps;
 
+    public CharacterController playerController;
+
+    public float timer = 0.0f;
+
+    [SerializeField]
+    float footstepSpeed = 0.3f;
+
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        playerController = GetComponentInParent<CharacterController>();
     }
 
     // Update is called once per frame
     void Update()
     {
         DetermineTerrain();
+
+        if (playerController.velocity.z < 0 && playerController.velocity.x < 0 && playerController.isGrounded)
+        {
+            if(timer > footstepSpeed)
+            {
+                SelectAndPlayFootstep();
+                timer += Time.deltaTime;
+            }
+        }
     }
 
     private void DetermineTerrain()
     {
         RaycastHit[] hit;
 
-        hit = Physics.RaycastAll(transform.position, Vector3.down, 4.0f)
+        hit = Physics.RaycastAll(transform.position, Vector3.down, 4.0f);
 
         foreach (RaycastHit rayhit in hit)
         {
