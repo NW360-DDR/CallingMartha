@@ -5,25 +5,26 @@ using UnityEngine;
 public class FootstepsScript : MonoBehaviour
 {
 
-    private enum CURRENT_TERRAIN { WOOD, GROUND};
+    private enum CURRENT_TERRAIN { WOOD, GROUND };
 
     [SerializeField]
     private CURRENT_TERRAIN currentTerrain;
 
-    private FMOD.Studio.EventInstance footsteps;
+    public FMODUnity.StudioEventEmitter FootstepEmitter;
 
-    public CharacterController playerController;
+    private CharacterController playerController;
 
-    public float timer = 0.0f;
+    float timer = 0.0f;
 
     [SerializeField]
     float footstepSpeed = 0.3f;
 
 
     // Start is called before the first frame update
-    void Awake()
+    private void Awake()
     {
         playerController = GetComponentInParent<CharacterController>();
+        Debug.Log("Found Character Controller");
     }
 
     // Update is called once per frame
@@ -36,8 +37,11 @@ public class FootstepsScript : MonoBehaviour
             if(timer > footstepSpeed)
             {
                 SelectAndPlayFootstep();
-                timer += Time.deltaTime;
+                timer = 0.0f;
+                Debug.Log("STEP!! STEP!! STEP!!");
             }
+
+            timer += Time.deltaTime;
         }
     }
 
@@ -45,16 +49,16 @@ public class FootstepsScript : MonoBehaviour
     {
         RaycastHit[] hit;
 
-        hit = Physics.RaycastAll(transform.position, Vector3.down, 4.0f);
+        hit = Physics.RaycastAll(transform.position, Vector3.down, 10.0f);
 
         foreach (RaycastHit rayhit in hit)
         {
+            //telling a raycast to look at the ignore raycast feels wrong, but it may work.
             if (rayhit.transform.gameObject.layer == LayerMask.NameToLayer("Ignore Raycast"))
             {
                 currentTerrain = CURRENT_TERRAIN.GROUND;
                     break;
             }
-            //telling a raycast to look at the ignore raycast feels wrong, but it may work.
             else if (rayhit.transform.gameObject.layer == LayerMask.NameToLayer("WoodFloor"))
             {
                 currentTerrain = CURRENT_TERRAIN.WOOD;
@@ -69,20 +73,20 @@ public class FootstepsScript : MonoBehaviour
         {
             case CURRENT_TERRAIN.GROUND:
                 PlayFootstep(1);
+                Debug.Log("MUDDY GROUND");
                 break;
 
             case CURRENT_TERRAIN.WOOD:
                 PlayFootstep(0);
+                Debug.Log("WOODEN FLOOR");
                 break;
         }
     }
 
     public void PlayFootstep(int terrain)
     {
-        footsteps = FMODUnity.RuntimeManager.CreateInstance("event:/SFX/Michael/PlayMichaelFootsteps");
-        footsteps.setParameterByName("Terrain", terrain);
-        footsteps.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
-        footsteps.start();
-        footsteps.release();
+        FootstepEmitter.Play();
+        FootstepEmitter.setParameterByName("Terrain", terrain);
+
     }
 }
