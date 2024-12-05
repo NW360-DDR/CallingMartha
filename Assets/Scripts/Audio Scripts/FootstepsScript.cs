@@ -11,6 +11,7 @@ public class FootstepsScript : MonoBehaviour
     private CURRENT_TERRAIN currentTerrain;
 
     public FMODUnity.StudioEventEmitter FootstepEmitter;
+    public FMODUnity.StudioParameterTrigger footstepParameterTrigger;
 
     private CharacterController playerController;
 
@@ -86,7 +87,8 @@ public class FootstepsScript : MonoBehaviour
     public void PlayFootstep(int terrain)
     {
         FootstepEmitter.Play();
-        FootstepEmitter.setParameterByName("Terrain", terrain);
+        //footstepParameterTrigger.TriggerParameter();
+        //("Terrain", terrain);
 
     }
 }

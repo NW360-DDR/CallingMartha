@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6200730402173509406}
   - component: {fileID: 1475774074161801930}
   - component: {fileID: 2704361442653575710}
+  - component: {fileID: 1544154513245019928}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -176,3 +177,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0f3d59ef311cfd44906dbdeeebe54a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ExplorationPlaying: 0
+--- !u!114 &1544154513245019928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3172544478525028823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baaa62f2f882cdc45a242803c0b7c9fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footstepEvent:
+    Guid:
+      Data1: 26301737
+      Data2: 1245229050
+      Data3: -642673517
+      Data4: -186532284
+    Path: event:/SFX/Michael/Play_MichaelFootsteps
+  rate: 0
+  Player: {fileID: 6634254539337635931, guid: 9fe94e82a4aa3ff41aae2e27ab392045, type: 3}
+  playerController: {fileID: 0}
