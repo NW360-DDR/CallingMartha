@@ -22,7 +22,7 @@ public class MusicTransition : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (ExplorationPlaying = false)
+        if (ExplorationPlaying == false)
         {
             ExplorationMusic.start();
             ExplorationPlaying = true;
