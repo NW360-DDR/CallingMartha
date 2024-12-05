@@ -8,10 +8,10 @@ public class MarthaTestScript : MonoBehaviour
 {
 	// StateMachine and navigation components, misc external
 	public StateMachine brain;
-	[SerializeField] NavMeshAgent nav;
+	NavMeshAgent nav;
 	NavMeshPath path;
-	[SerializeField] FieldOfView fov;
-	[SerializeField] Animator anim;
+	FieldOfView fov;
+	Animator anim;
 	public GameObject hurtBox;
 	public GameObject killBox;
 	Enemy health;
@@ -42,6 +42,10 @@ public class MarthaTestScript : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
+		nav = gameObject.GetComponent<NavMeshAgent>();
+		fov = gameObject.GetComponent<FieldOfView>();
+		anim = gameObject.GetComponent<Animator>();
+
 		brain.PushState(DoNothingUntilCalled());
 		path = new();
 	}
@@ -62,7 +66,6 @@ public class MarthaTestScript : MonoBehaviour
 		{
 			brain.PopState();
 			backState--;
-			chargeTimer++;
 		}
 		if (health != null)
 		{
