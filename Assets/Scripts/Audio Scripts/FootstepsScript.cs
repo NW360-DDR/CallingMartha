@@ -49,11 +49,12 @@ public class FootstepsScript : MonoBehaviour
 
         foreach (RaycastHit rayhit in hit)
         {
-            if (rayhit.transform.gameObject.layer == LayerMask.NameToLayer("Ground"))
+            if (rayhit.transform.gameObject.layer == LayerMask.NameToLayer("Ignore Raycast"))
             {
                 currentTerrain = CURRENT_TERRAIN.GROUND;
                     break;
             }
+            //telling a raycast to look at the ignore raycast feels wrong, but it may work.
             else if (rayhit.transform.gameObject.layer == LayerMask.NameToLayer("WoodFloor"))
             {
                 currentTerrain = CURRENT_TERRAIN.WOOD;

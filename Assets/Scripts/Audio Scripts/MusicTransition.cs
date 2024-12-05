@@ -14,9 +14,9 @@ public class MusicTransition : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ExplorationMusic = FMODUnity.RuntimeManager.CreateInstance("events:/Music/PlayExploration");
-        EncounterMusic = FMODUnity.RuntimeManager.CreateInstance("events:/Music/PlayEncounter");
-        BossMusic = FMODUnity.RuntimeManager.CreateInstance("events:/Music/PlayBoss");
+        ExplorationMusic = FMODUnity.RuntimeManager.CreateInstance("event:/Music/PlayExploration");
+        EncounterMusic = FMODUnity.RuntimeManager.CreateInstance("event:/Music/PlayEncounter");
+        BossMusic = FMODUnity.RuntimeManager.CreateInstance("event:/Music/PlayBoss");
     }
 
     // Update is called once per frame
