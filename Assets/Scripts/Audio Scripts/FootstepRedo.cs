@@ -6,8 +6,7 @@ public class FootstepRedo : MonoBehaviour
 {
     private enum CURRENT_TERRAIN { WOOD, GROUND };
 
-    [SerializeField]
-    private CURRENT_TERRAIN currentTerrain;
+    [SerializeField] private CURRENT_TERRAIN currentTerrain;
 
     [SerializeField] FMODUnity.EventReference footstepEvent;
     [SerializeField] FMODUnity.EventReference footstepWoodEvent;
@@ -19,6 +18,8 @@ public class FootstepRedo : MonoBehaviour
     [SerializeField] CharacterController playerController;
 
     float time = 0.0f;
+
+    public LayerMask excludeLayer;
 
     public void PlayFootstep(int terrain)
     {
@@ -38,8 +39,6 @@ public class FootstepRedo : MonoBehaviour
     void Update()
     {
 
-        DetermineTerrain();
-
         if (playerController.velocity.magnitude > 0 && playerController.isGrounded)
         {
             if (time >= footstepSpeed)
@@ -50,6 +49,33 @@ public class FootstepRedo : MonoBehaviour
             }
 
             time += Time.deltaTime;
+        }
+    }
+
+    void FixedUpdate()
+    {
+        DetermineTerrain();
+    }
+
+    public void DetermineTerrain()
+    {
+        RaycastHit[] hit;
+
+        hit = Physics.RaycastAll(transform.position, Vector3.down, 4.0f, ~excludeLayer);
+
+        foreach (RaycastHit rayhit in hit)
+        {
+            //telling a raycast to look at the ignore raycast feels wrong, but it may work.
+            if (rayhit.transform.gameObject.layer == LayerMask.NameToLayer("Ignore Raycast"))
+            {
+                currentTerrain = CURRENT_TERRAIN.GROUND;
+                break;
+            }
+            else if (rayhit.transform.gameObject.layer == LayerMask.NameToLayer("WoodFloor"))
+            {
+                currentTerrain = CURRENT_TERRAIN.WOOD;
+                break;
+            }
         }
     }
 
@@ -69,25 +95,4 @@ public class FootstepRedo : MonoBehaviour
         }
     }
 
-    private void DetermineTerrain()
-    {
-        RaycastHit[] hit;
-
-        hit = Physics.RaycastAll(transform.position, Vector3.down, 10.0f);
-
-        foreach (RaycastHit rayhit in hit)
-        {
-            //telling a raycast to look at the ignore raycast feels wrong, but it may work.
-            if (rayhit.transform.gameObject.layer == LayerMask.NameToLayer("Ignore Raycast"))
-            {
-                currentTerrain = CURRENT_TERRAIN.GROUND;
-                break;
-            }
-            else if (rayhit.transform.gameObject.layer == LayerMask.NameToLayer("WoodFloor"))
-            {
-                currentTerrain = CURRENT_TERRAIN.WOOD;
-                break;
-            }
-        }
-    }
 }
