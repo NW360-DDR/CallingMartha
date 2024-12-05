@@ -87,8 +87,9 @@ public class FootstepsScript : MonoBehaviour
     public void PlayFootstep(int terrain)
     {
         FootstepEmitter.Play();
-        //footstepParameterTrigger.TriggerParameter();
-        //("Terrain", terrain);
+        //FootstepEmitter.setParameter("Terrain", terrain);
+        //FootstepEmitter.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+        
 
     }
 }

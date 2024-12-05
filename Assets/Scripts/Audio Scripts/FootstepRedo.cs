@@ -10,6 +10,7 @@ public class FootstepRedo : MonoBehaviour
     private CURRENT_TERRAIN currentTerrain;
 
     [SerializeField] FMODUnity.EventReference footstepEvent;
+    [SerializeField] FMODUnity.EventReference footstepWoodEvent;
 
     [SerializeField] float footstepSpeed = 0.3f;
 
@@ -21,7 +22,15 @@ public class FootstepRedo : MonoBehaviour
 
     public void PlayFootstep(int terrain)
     {
-        FMODUnity.RuntimeManager.PlayOneShotAttached(footstepEvent, Player);
+       if (terrain == 0)
+        {
+            FMODUnity.RuntimeManager.PlayOneShotAttached(footstepWoodEvent, Player);
+        }
+
+       if (terrain == 1)
+        {
+            FMODUnity.RuntimeManager.PlayOneShotAttached(footstepEvent, Player);
+        }
     }
 
 
