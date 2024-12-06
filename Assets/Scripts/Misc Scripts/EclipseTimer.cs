@@ -8,6 +8,7 @@ public class EclipseTimer : MonoBehaviour
     public float eclipseTimerLength = 30;
     public float redFogTime = 2.5f;
     public bool gameTimerActive = true;
+    bool fightBegan = false;
     public bool enteredArena = false;
 
     private Vector3 targetPos = Vector3.zero;
@@ -29,13 +30,13 @@ public class EclipseTimer : MonoBehaviour
 
         //check if timer hit eclipse timer length
         // multiply by 60 to make the number into minutes
-        if (timer >= (eclipseTimerLength * 60))
+        if (timer >= (eclipseTimerLength * 60) && !fightBegan)
         {
             gameTimerActive = false;
+            fightBegan = !fightBegan;
             Debug.Log("Eclipse happened! Time to die!");
-            if (!Martha.gameObject.activeSelf)
+            if (true)
             {
-                Martha.gameObject.SetActive(true);
                 Martha.KILL();
                 AudioManager.EclipseTimerEnd();
             }
