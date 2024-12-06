@@ -10,6 +10,8 @@ public class FootstepTryTheFourth : MonoBehaviour
     public float footstepSpeed;
     public float time = 0.0f;
 
+    public bool isInside = false;
+
     public FMODUnity.EventReference woodFootsteps;
     public FMODUnity.EventReference dirtFootsteps;
 
@@ -39,6 +41,18 @@ public class FootstepTryTheFourth : MonoBehaviour
 
     public void SelectAndPlayFootstep()
     {
+        if (isInside == false)
+        {
+            Debug.Log("OUTSIDE");
+            FMODUnity.RuntimeManager.PlayOneShotAttached(dirtFootsteps, Player);
+        }
+
+        if (isInside == true)
+        {
+            Debug.Log("INSIDE");
+            FMODUnity.RuntimeManager.PlayOneShotAttached(woodFootsteps, Player);
+        }
+        
         Debug.Log("Should be playing something");
     }
 }
