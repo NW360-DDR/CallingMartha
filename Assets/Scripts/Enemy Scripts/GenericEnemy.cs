@@ -45,7 +45,6 @@ public class GenericEnemy : MonoBehaviour
 		hurtBox.SetActive(false);
 		path = new(); // Set a blank path just in case some thing needs to check path existence.
 		homePos = transform.position;
-		// TO DO: Check Maddie's timer for whether at least 50% has passed, then forcibly aggro self.
 	}
 	/// <summary>
 	/// Checks if the path in question can be reached.

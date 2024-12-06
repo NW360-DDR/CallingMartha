@@ -73,6 +73,7 @@ public class Enemy : MonoBehaviour
                 MarthaTestScript brain = GetComponent<MarthaTestScript>();
                 if (!brain.brain.GetState().Equals("GetHit"))
                 {
+                    brain.DoDamage();
                     Debug.Log("Ouch! Martha wtf");
                     health -= 50;
                     AudioManager.WolfHurt();
