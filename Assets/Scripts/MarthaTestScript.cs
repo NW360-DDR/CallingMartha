@@ -41,7 +41,7 @@ public class MarthaTestScript : MonoBehaviour
 	{
 		nav = gameObject.GetComponent<NavMeshAgent>();
 		fov = gameObject.GetComponent<FieldOfView>();
-		anim = gameObject.GetComponent<Animator>();
+		anim = gameObject.GetComponentInChildren<Animator>();
 
 		brain.PushState(DoNothingUntilCalled());
 		path = new();
@@ -149,14 +149,26 @@ public class MarthaTestScript : MonoBehaviour
 			nav.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
 			nav.autoBraking = false;
 			fov.canSeePlayer = true;
+			anim.SetBool("Running", true);
 		}
 		void Update()
 		{
 			dest = fov.playerRef.transform.position;
 			AttemptPath(dest);
-			killBox.SetActive(true);
-			//health.health = 42069;
-		}
+
+			if (nav.remainingDistance < 3)
+			{
+				killBox.SetActive(true);
+                anim.SetBool("Attacking", true);
+            }else
+			{
+                killBox.SetActive(true);
+                anim.SetBool("Attacking", false);
+
+            }
+
+            //health.health = 42069;
+        }
 		
 		void Exit()
 		{
@@ -170,7 +182,10 @@ public class MarthaTestScript : MonoBehaviour
 	}
 	State BossFight_Chase()
 	{
-		void Enter(){}
+		void Enter()
+		{
+            anim.SetBool("Running", true);
+        }
 		void Update()
 		{
 			AttemptPathBoss(fov.playerRef.transform.position);
@@ -201,7 +216,7 @@ public class MarthaTestScript : MonoBehaviour
 			newTarget += transform.position; // Add this direction + magnitude to our current position, and we should get a proper destination.
 			AttemptPath(newTarget);
 			nav.speed = baseSpeed * chargeMult;
-			//wolfAnim.SetBool("Running", true);
+			anim.SetBool("Attacking", true);
 		}
 
 		void Update()
@@ -218,8 +233,8 @@ public class MarthaTestScript : MonoBehaviour
 		{
 			nav.speed = baseSpeed;
 			hurtBox.SetActive(false);
-			//wolfAnim.SetBool("Running", false);
-		}
+            anim.SetBool("Attacking", false);
+        }
 		return new State(Update, Enter, Exit, "Charge");
 	}
 	State BossBackAway()
@@ -252,8 +267,8 @@ public class MarthaTestScript : MonoBehaviour
 			hurtBox.SetActive(false);
 			nav.ResetPath();
 			currIdle = 1;
-			//wolfAnim.SetBool("Running", false);
-		}
+            anim.SetBool("Running", false);
+        }
 		void Update()
 		{
 			// Otherwise, wait for IdleTimer to run out, then go somewhere else.
