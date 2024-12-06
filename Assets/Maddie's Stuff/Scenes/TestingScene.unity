@@ -5249,6 +5249,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 782955792047173918, guid: 54369fa8249a1af47acfe9ea8921309b, type: 3}
+      propertyPath: m_TagString
+      value: Hurtbox
+      objectReference: {fileID: 0}
     - target: {fileID: 2022052411230835911, guid: 54369fa8249a1af47acfe9ea8921309b, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -5322,12 +5326,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6548865769868549920, guid: 54369fa8249a1af47acfe9ea8921309b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.328526
+      objectReference: {fileID: 0}
+    - target: {fileID: 6548865769868549920, guid: 54369fa8249a1af47acfe9ea8921309b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.0000029206276
       objectReference: {fileID: 0}
     - target: {fileID: 6548865769868549920, guid: 54369fa8249a1af47acfe9ea8921309b, type: 3}
       propertyPath: m_LocalPosition.z
       value: 1.0000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 6548865769868549920, guid: 54369fa8249a1af47acfe9ea8921309b, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7466197321143683412, guid: 54369fa8249a1af47acfe9ea8921309b, type: 3}
       propertyPath: m_Enabled
