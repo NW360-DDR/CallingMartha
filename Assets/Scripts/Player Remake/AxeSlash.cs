@@ -13,6 +13,7 @@ public class AxeSlash : MonoBehaviour
     private Animator axeAnim;
     public bool attackSignal = false;
     public LayerMask excludeLayer;
+    private bool playedSwoosh = false;
 
     public AudioManager AudioManager;
 
@@ -41,11 +42,17 @@ public class AxeSlash : MonoBehaviour
     void TurnOnHitbox()
     {
         hitBox.SetActive(true);
+        if (!playedSwoosh)
+        {
+            AudioManager.PlayAxeWhoosh();
+            playedSwoosh = true;
+        }
     }
 
     void TurnOffHitbox()
     {
         hitBox.SetActive(false);
+        playedSwoosh = false;
     }
 
     void BreakableCheck()
@@ -71,7 +78,6 @@ public class AxeSlash : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && equipScript.allowAttack && Time.timeScale > 0)
         {
             axeAnim.SetTrigger("Attack");
-            AudioManager.PlayAxeWhoosh();
         }
     }
 }
