@@ -222,7 +222,7 @@ public class MarthaTestScript : MonoBehaviour
 		void Update()
 		{
 			if (hurtBox != null) hurtBox.SetActive(true);
-			if (nav.remainingDistance < 0.25f)
+			if (nav.remainingDistance < 1f)
 			{
 				chargeTimer = 0.0f;
 				brain.PushState(HoldOn());
@@ -281,5 +281,10 @@ public class MarthaTestScript : MonoBehaviour
 		}
 		void Exit() { }
 		return new(Update, Enter, Exit, "HoldUp");
+	}
+	
+	public void DoDamage()
+	{
+		brain.PushState(HoldOn());
 	}
 }
