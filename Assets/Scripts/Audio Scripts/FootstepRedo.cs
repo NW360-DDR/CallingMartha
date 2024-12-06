@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FootstepRedo : MonoBehaviour
 {
-    private enum CURRENT_TERRAIN { WOOD, GROUND };
+    private enum CURRENT_TERRAIN { WOOD = 0, GROUND = 1 };
 
     [SerializeField] private CURRENT_TERRAIN currentTerrain;
 
@@ -26,11 +26,13 @@ public class FootstepRedo : MonoBehaviour
        if (terrain == 0)
         {
             FMODUnity.RuntimeManager.PlayOneShotAttached(footstepWoodEvent, Player);
+            Debug.Log("Footsteps on Wooden Floor");
         }
 
        if (terrain == 1)
         {
             FMODUnity.RuntimeManager.PlayOneShotAttached(footstepEvent, Player);
+            Debug.Log("Footsteps on Muddy Ground");
         }
     }
 
@@ -61,17 +63,18 @@ public class FootstepRedo : MonoBehaviour
     {
         RaycastHit[] hit;
 
-        hit = Physics.RaycastAll(transform.position, Vector3.down, 4.0f, ~excludeLayer);
+        hit = Physics.RaycastAll(Player.transform.position, Vector3.down, 4.0f, ~excludeLayer);
 
         foreach (RaycastHit rayhit in hit)
         {
+            Debug.Log(rayhit.transform.gameObject.layer);
             //telling a raycast to look at the ignore raycast feels wrong, but it may work.
-            if (rayhit.transform.gameObject.layer == LayerMask.NameToLayer("Ignore Raycast"))
+            if (rayhit.transform.gameObject.layer == LayerMask.GetMask("Ignore Raycast"))
             {
                 currentTerrain = CURRENT_TERRAIN.GROUND;
                 break;
             }
-            else if (rayhit.transform.gameObject.layer == LayerMask.NameToLayer("WoodFloor"))
+            else
             {
                 currentTerrain = CURRENT_TERRAIN.WOOD;
                 break;
