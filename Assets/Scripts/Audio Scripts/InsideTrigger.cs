@@ -11,6 +11,7 @@ public class InsideTrigger : MonoBehaviour
     {
         if (gameObject.tag == "Player")
         {
+            FootstepTryTheFourth.isInside = true;
             Debug.Log("Collided with Inside");
         }
     }
