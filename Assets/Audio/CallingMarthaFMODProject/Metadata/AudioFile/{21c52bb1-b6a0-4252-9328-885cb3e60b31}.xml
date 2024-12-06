@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{21c52bb1-b6a0-4252-9328-885cb3e60b31}">
 		<property name="assetPath">
-			<value>SFX/Other/Weather/SO_WR_ambience_ocean_waves_crashing.wav</value>
+			<value>SFX/Other/Weather/LakeWaves3.wav</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>

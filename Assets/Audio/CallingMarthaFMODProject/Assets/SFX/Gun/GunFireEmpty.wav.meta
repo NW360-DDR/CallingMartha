@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Audio/CallingMarthaFMODProject/Assets/SFX/Gun/GunShootEmpty.wav.meta
+guid: b6cc55f20649f9540bc28c26fb465c4b
+========
 guid: 88fb836388745154c9d03d60a9b23dd6
+>>>>>>>> main:Assets/Audio/CallingMarthaFMODProject/Assets/SFX/Gun/GunFireEmpty.wav.meta
 AudioImporter:
   externalObjects: {}
   serializedVersion: 7

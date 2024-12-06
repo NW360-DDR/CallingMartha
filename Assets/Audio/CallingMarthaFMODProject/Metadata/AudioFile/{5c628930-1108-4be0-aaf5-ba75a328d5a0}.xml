@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{5c628930-1108-4be0-aaf5-ba75a328d5a0}">
 		<property name="assetPath">
-			<value>SFX/Other/Weather/VEGETree_Medium and Short Wood Creaks In Forest Trees_PSE_SMV1_Gw2nQ.mp3</value>
+			<value>SFX/Other/Weather/TreeCreak2.mp3</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Audio/CallingMarthaFMODProject/Assets/SFX/Gun/GunShoot3.wav.meta
+guid: a696ce4714a9ee8439405fed3d29579f
+========
 guid: 8029016276e9f174e8b04e74d62ab1e5
+>>>>>>>> main:Assets/Audio/CallingMarthaFMODProject/Assets/SFX/Gun/GunFire3.wav.meta
 AudioImporter:
   externalObjects: {}
   serializedVersion: 7

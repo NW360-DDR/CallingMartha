@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{3d9370e8-9762-4eb5-8822-b17c4262b247}">
 		<property name="assetPath">
-			<value>UI/Other Buttons/ESM_Perfect_App_Button_5_Organic_Simple_Classic_Game_Click.wav</value>
+			<value>UI/Other Buttons/ButtonClick1.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>

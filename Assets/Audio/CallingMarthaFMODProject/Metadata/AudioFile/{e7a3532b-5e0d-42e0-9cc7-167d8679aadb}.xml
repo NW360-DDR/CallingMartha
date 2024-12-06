@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{e7a3532b-5e0d-42e0-9cc7-167d8679aadb}">
 		<property name="assetPath">
-			<value>SFX/Other/Birds and Bats/ESM_Horror_Game_Vocal_Creature_Giant_Bat_Flutter_Fly_Flap_Wings_Hiss_Vocal_2.wav</value>
+			<value>SFX/Other/Birds and Bats/WingFlaps3.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>96</value>

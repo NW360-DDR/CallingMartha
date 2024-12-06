@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{610297c9-7dcb-4d74-b170-3712c6bb90e1}">
 		<property name="assetPath">
-			<value>SFX/Other/Phone/close flip phone.wav</value>
+			<value>SFX/Other/Phone/ClosePhone.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>

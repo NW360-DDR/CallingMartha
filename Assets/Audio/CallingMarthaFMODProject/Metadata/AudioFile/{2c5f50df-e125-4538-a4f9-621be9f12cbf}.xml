@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{2c5f50df-e125-4538-a4f9-621be9f12cbf}">
 		<property name="assetPath">
-			<value>SFX/Other/Phone/ESM_MVG_fx_ui_one_shot_option_confirm_1_clicky_short_digital.wav</value>
+			<value>SFX/Other/Phone/PhoneSound2.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>96</value>

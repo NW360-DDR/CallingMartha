@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{b7b56c5b-c55b-438a-8e3d-279539905242}">
 		<property name="assetPath">
-			<value>UI/Play Button/SUVRadioButton_BW.62681.wav</value>
+			<value>UI/Play Button/PlayButtonClick4.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>96</value>

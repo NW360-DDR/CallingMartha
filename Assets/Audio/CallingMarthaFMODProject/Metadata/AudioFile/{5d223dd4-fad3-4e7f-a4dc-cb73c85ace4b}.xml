@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{5d223dd4-fad3-4e7f-a4dc-cb73c85ace4b}">
 		<property name="assetPath">
-			<value>SFX/Werewolf/ZombieCreatureBite_BW.13365.wav</value>
+			<value>SFX/Werewolf/WerewolfGrowl.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>96</value>

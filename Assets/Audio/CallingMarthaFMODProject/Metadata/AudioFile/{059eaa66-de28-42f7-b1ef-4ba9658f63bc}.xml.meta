@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Audio/CallingMarthaFMODProject/Metadata/Event/{01915529-affa-4a38-9394-b1d944bee1f4}.xml.meta
+guid: 17a5e4d43ff5d5f4c90de4ab22e65a45
+========
 guid: 9f5c7c6818e7c6041afd905f744c790e
+>>>>>>>> main:Assets/Audio/CallingMarthaFMODProject/Metadata/AudioFile/{059eaa66-de28-42f7-b1ef-4ba9658f63bc}.xml.meta
 TextScriptImporter:
   externalObjects: {}
   userData: 

@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{adbc88c1-d906-4f45-9179-7c9596823d17}">
 		<property name="assetPath">
-			<value>SFX/Other/Weather/SPLC-1078_FX_Oneshot_Thunder_Close_Loud.wav</value>
+			<value>SFX/Other/Weather/Thunder4.wav</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>

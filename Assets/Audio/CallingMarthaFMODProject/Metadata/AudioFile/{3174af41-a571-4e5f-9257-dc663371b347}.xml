@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{3174af41-a571-4e5f-9257-dc663371b347}">
 		<property name="assetPath">
-			<value>SFX/Michael/MichaelVocalEffort/GruntStrainMale_SFXB.2056.wav</value>
+			<value>SFX/Michael/MichaelVocalEffort/Straining2.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>96</value>
