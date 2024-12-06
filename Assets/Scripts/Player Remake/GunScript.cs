@@ -10,10 +10,13 @@ public class GunScript : MonoBehaviour
 
     private InventoryScript inventoryScript;
     private EquippedScript equipScript;
+
+    private bool gunCooldown = false;
     public LayerMask excludeLayer;
 
     private RaycastHit hit;
 
+    public AudioManager AudioManager;
     private void Start()
     {
         inventoryScript = GetComponent<InventoryScript>();
@@ -24,12 +27,20 @@ public class GunScript : MonoBehaviour
     void Update()
     {
         Debug.DrawRay(spawnLocation.transform.position, spawnLocation.transform.forward, Color.red);
+    }
+
+    public void Shoot()
+    {
+        Debug.Log("Shoot gun!");
+
         //its a gun. shoot it.
-        if (Input.GetMouseButtonDown(0) && inventoryScript.bulletCount >= 1 && Time.timeScale > 0 && equipScript.allowAttack)
+        if (Input.GetMouseButtonDown(0) && inventoryScript.bulletCount >= 1 && Time.timeScale > 0 && equipScript.allowAttack && !gunCooldown)
         {
             gun.GetComponent<Animator>().SetTrigger("Shoot");
 
             Physics.Raycast(spawnLocation.transform.position, spawnLocation.transform.forward, out hit, 30, ~excludeLayer);
+
+            AudioManager.PlayGunFire();
 
             if (hit.collider != null)
             {
@@ -45,6 +56,15 @@ public class GunScript : MonoBehaviour
             }
             Debug.Log(inventoryScript.bulletCount);
             inventoryScript.bulletCount -= 1;
+
+            gunCooldown = true;
+            StartCoroutine(GunCooldownTimer());
         }
+    }
+
+    IEnumerator GunCooldownTimer()
+    {
+        yield return new WaitForSeconds(0.5f);
+        gunCooldown = false;
     }
 }

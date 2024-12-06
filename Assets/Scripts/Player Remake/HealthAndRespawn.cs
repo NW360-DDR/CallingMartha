@@ -22,6 +22,8 @@ public class HealthAndRespawn : MonoBehaviour
     public Animator blackScreen;
     private NewPlayerMovement playerScript;
 
+    TextLogThingy textLog;
+
     public AudioManager AudioManager;
 
     private void Start()
@@ -32,6 +34,7 @@ public class HealthAndRespawn : MonoBehaviour
         timerScript = GameObject.Find("EclipseTimer").GetComponent<EclipseTimer>();
         blackScreen = GameObject.Find("Fade").GetComponent<Animator>();
         playerScript = GetComponent<NewPlayerMovement>();
+        textLog = GameObject.FindAnyObjectByType<TextLogThingy>();
     }
 
     // Update is called once per frame
@@ -43,6 +46,8 @@ public class HealthAndRespawn : MonoBehaviour
             alive = false;
             GetComponent<CameraScript>().enabled = false;
             playerRB = gameObject.AddComponent<Rigidbody>();
+            if (grabScript.holdingObject != null)
+            grabScript.LetGoOfObject();
             grabScript.enabled = false;
             GetComponent<AxeSlash>().enabled = false;
             GetComponent<NewPlayerMovement>().enabled = false;
@@ -74,6 +79,11 @@ public class HealthAndRespawn : MonoBehaviour
         else
         {
             healthHold = 0;
+        }
+
+        if (Input.GetKeyDown(KeyCode.H) && InventoryScript.medKitCount == 0)
+        {
+            textLog.TextPush("You have no medkits");
         }
 
         if (Input.GetKey(KeyCode.Keypad5) && Input.GetKey(KeyCode.RightControl))

@@ -2189,6 +2189,18 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4197754646362111416, guid: 9fe94e82a4aa3ff41aae2e27ab392045, type: 3}
   m_PrefabInstance: {fileID: 1418900618}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &912322850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 912322845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474aaff70bc8015469bd392a385f3346, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &953021355
 GameObject:
   m_ObjectHideFlags: 0
@@ -2979,14 +2991,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 0
-  eclipseTimerLength: 30
+  eclipseTimerLength: 1
   redFogTime: 2.5
   gameTimerActive: 1
   enteredArena: 0
   RedColor: {r: 0, g: 0, b: 0, a: 0}
   lunarMoon: {fileID: 2052898082}
   Martha: {fileID: 0}
-  TimerEndSound: {fileID: 0}
+  AudioManager: {fileID: 0}
 --- !u!4 &1264945749
 Transform:
   m_ObjectHideFlags: 0
@@ -3445,6 +3457,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4168797154450591856, guid: 9fe94e82a4aa3ff41aae2e27ab392045, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4988315639946939381, guid: 9fe94e82a4aa3ff41aae2e27ab392045, type: 3}
       propertyPath: phoneBatteryLife
       value: 100
@@ -3513,10 +3529,17 @@ PrefabInstance:
       propertyPath: excludeLayer.m_Bits
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 8929680878949345201, guid: 9fe94e82a4aa3ff41aae2e27ab392045, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4197754646362111416, guid: 9fe94e82a4aa3ff41aae2e27ab392045, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 912322850}
   m_SourcePrefab: {fileID: 100100000, guid: 9fe94e82a4aa3ff41aae2e27ab392045, type: 3}
 --- !u!1001 &1438143180
 PrefabInstance:
@@ -3680,7 +3703,7 @@ MonoBehaviour:
   health: 100
   isAnimated: 1
   isMartha: 1
-  Yelp: {fileID: 0}
+  AudioManager: {fileID: 0}
   deadWolf: {fileID: 0}
 --- !u!114 &1486114701 stripped
 MonoBehaviour:
@@ -4102,6 +4125,10 @@ PrefabInstance:
     - target: {fileID: 180940268567970841, guid: 17af9b112ec754e44a59a5bccaaeae15, type: 3}
       propertyPath: m_Name
       value: WoodenBarrel 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 180940268567970841, guid: 17af9b112ec754e44a59a5bccaaeae15, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 705099883299643043, guid: 17af9b112ec754e44a59a5bccaaeae15, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5158,7 +5185,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6416599897740622130, guid: 54369fa8249a1af47acfe9ea8921309b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7466197321143683412, guid: 54369fa8249a1af47acfe9ea8921309b, type: 3}
       propertyPath: m_Enabled
