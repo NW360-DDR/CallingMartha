@@ -29,4 +29,9 @@ public class MusicTransition : MonoBehaviour
             ExplorationPlaying = true;
         }
     }
+
+    public void SwitchToEncounter()
+    {
+        Debug.Log("Wolves tryin ta kill ya oooh spooky");
+    }
 }
