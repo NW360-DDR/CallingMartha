@@ -177,6 +177,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0f3d59ef311cfd44906dbdeeebe54a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ExplorationMusic:
+    Guid:
+      Data1: -1663627269
+      Data2: 1169446091
+      Data3: 12267146
+      Data4: -280598186
+    Path: event:/Music/PlayExploration
+  EncounterMusic:
+    Guid:
+      Data1: 1849009159
+      Data2: 1127231597
+      Data3: -855573319
+      Data4: -771154944
+    Path: event:/Music/PlayEncounter
+  BossMusic:
+    Guid:
+      Data1: 526882645
+      Data2: 1246856522
+      Data3: -2007462239
+      Data4: 182297975
+    Path: event:/Music/PlayBoss
   ExplorationPlaying: 0
 --- !u!114 &3327624238332806738
 MonoBehaviour:
@@ -192,9 +213,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 6634254539337635931, guid: 9fe94e82a4aa3ff41aae2e27ab392045, type: 3}
   playerController: {fileID: 2094806520271669530, guid: 9fe94e82a4aa3ff41aae2e27ab392045, type: 3}
-  footstepSpeed: 15
+  footstepSpeed: 0.75
   time: 0
   isInside: 0
+  floorLayer:
+    serializedVersion: 2
+    m_Bits: 0
   woodFootsteps:
     Guid:
       Data1: 1138687323

@@ -5,18 +5,18 @@ using UnityEngine;
 public class MusicTransition : MonoBehaviour
 {
 
-    public FMOD.Studio.EventInstance ExplorationMusic;
-    public FMOD.Studio.EventInstance EncounterMusic;
-    public FMOD.Studio.EventInstance BossMusic;
+    public FMODUnity.EventReference ExplorationMusic;
+    public FMODUnity.EventReference EncounterMusic;
+    public FMODUnity.EventReference BossMusic;
 
     public bool ExplorationPlaying = false;
+
+    public GameObject Player;
 
     // Start is called before the first frame update
     void Start()
     {
-        ExplorationMusic = FMODUnity.RuntimeManager.CreateInstance("event:/Music/PlayExploration");
-        EncounterMusic = FMODUnity.RuntimeManager.CreateInstance("event:/Music/PlayEncounter");
-        BossMusic = FMODUnity.RuntimeManager.CreateInstance("event:/Music/PlayBoss");
+ 
     }
 
     // Update is called once per frame
@@ -24,7 +24,8 @@ public class MusicTransition : MonoBehaviour
     {
         if (ExplorationPlaying == false)
         {
-            ExplorationMusic.start();
+            FMODUnity.RuntimeManager.PlayOneShotAttached(ExplorationMusic, Player);
+
             ExplorationPlaying = true;
         }
     }
