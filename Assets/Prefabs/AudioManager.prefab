@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1475774074161801930}
   - component: {fileID: 2704361442653575710}
   - component: {fileID: 3327624238332806738}
+  - component: {fileID: 2201263061288725496}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -250,3 +251,34 @@ MonoBehaviour:
       Data3: -1336185705
       Data4: 1248161884
     Path: event:/SFX/Michael/PlayMichaelFootstepsMud
+--- !u!114 &2201263061288725496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3172544478525028823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1635991435
+      Data2: 1088328791
+      Data3: -859525975
+      Data4: -1590200100
+    Path: event:/SFX/Other/PlayWeatherAmbience
+  Event: 
+  PlayEvent: 1
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
