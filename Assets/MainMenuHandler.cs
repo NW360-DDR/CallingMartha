@@ -12,6 +12,7 @@ public class MainMenuHandler : MonoBehaviour
     public float scrollSpeed = 0.0f;
     public TextMeshProUGUI text;
     public GameObject skip;
+    public GameObject titleScreenStuff;
 
     private void Start()
     {
@@ -46,6 +47,7 @@ public class MainMenuHandler : MonoBehaviour
     {
         prologueStarted = true;
         skip.SetActive(true);
+        titleScreenStuff.SetActive(false);
     }
 
     public void QuitGame()
