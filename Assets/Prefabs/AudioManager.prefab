@@ -198,8 +198,9 @@ MonoBehaviour:
       Data3: -2007462239
       Data4: 182297975
     Path: event:/Music/PlayBoss
-  Player: {fileID: 0}
-  Enemy: {fileID: 0}
+  Player: {fileID: 6634254539337635931, guid: 9fe94e82a4aa3ff41aae2e27ab392045, type: 3}
+  Enemy:
+  - {fileID: 0}
   encounterStarted: 0
 --- !u!114 &3327624238332806738
 MonoBehaviour:
