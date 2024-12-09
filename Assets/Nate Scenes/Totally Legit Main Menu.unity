@@ -7368,7 +7368,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -330.7153, y: 451.82092}
+  m_AnchoredPosition: {x: -330.7153, y: 479}
   m_SizeDelta: {x: 600, y: 50}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &776552039
@@ -7391,23 +7391,33 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Put names here!!!!!!!!!!!!!!
+  m_text: 'Ronan Cords - Producer, Audio Director
 
-    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    Madeline Visconte - Creative
+    Lead, Programmer
 
-    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    Nathaniel Owens - Programmer
 
-    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    Nicholas Pinton - 2D
+    Artist
 
-    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    Kenny Huynh - Level Designer
 
-    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    Suanette Grant - 3D Artist
 
-    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    Valerie
+    Fonseca Rivas - Narrative Designer, Level Designer
 
-    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'
+    Michael - Jonathan Arel
+
+    Martha
+    - Sophie Monis
+
+    Radio Announcers - Seamus Greelish, Nicolas Blatterman
+
+    SFX
+    Artist, Composer - Noam Hoze'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e18d6c0de731dcb4783c8dc1ab890ecc, type: 2}
   m_sharedMaterial: {fileID: 3199603977523517805, guid: e18d6c0de731dcb4783c8dc1ab890ecc, type: 2}
@@ -7434,8 +7444,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 26.99
-  m_fontSizeBase: 26.99
+  m_fontSize: 18.54
+  m_fontSizeBase: 18.54
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
