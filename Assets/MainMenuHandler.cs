@@ -12,6 +12,8 @@ public class MainMenuHandler : MonoBehaviour
     public float scrollSpeed = 0.0f;
     public TextMeshProUGUI text;
     public GameObject skip;
+    public GameObject titleScreenStuff;
+    public GameObject creditScreenStuff;
 
     private void Start()
     {
@@ -46,6 +48,26 @@ public class MainMenuHandler : MonoBehaviour
     {
         prologueStarted = true;
         skip.SetActive(true);
+        titleScreenStuff.SetActive(false);
+    }
+
+    public void CreditsClicked()
+    {
+        Debug.Log("Credits clicked!");
+        titleScreenStuff.SetActive(false);
+        creditScreenStuff.SetActive(true);
+    }
+
+    public void CloseCreditsClicked()
+    {
+        Debug.Log("Credits closed!");
+        titleScreenStuff.SetActive(true);
+        creditScreenStuff.SetActive(false);
+    }
+
+    public void MainMenuClicked()
+    {
+        SceneManager.LoadScene("Totally Legit Main Menu");
     }
 
     public void QuitGame()
