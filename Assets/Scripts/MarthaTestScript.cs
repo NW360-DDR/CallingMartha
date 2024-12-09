@@ -19,7 +19,7 @@ public class MarthaTestScript : MonoBehaviour
 	readonly float maxWanderDist = 20f;
 	public float idleTimer = 3f;
 	float currIdle = 0f;
-	readonly float baseSpeed = 20f;
+	readonly float baseSpeed = 5f;
 	readonly float chaseMult = 1.5f;
 	GameObject warpObject;
 
@@ -132,7 +132,7 @@ public class MarthaTestScript : MonoBehaviour
 			Destroy(hurtBox);
 			dest = fov.playerRef.transform.position;
 			nav.SetDestination(dest);
-			nav.speed = baseSpeed * chaseMult * 2; // Eviscerate this man's spinal column
+			nav.speed = baseSpeed * chaseMult; // Eviscerate this man's spinal column
 			killBox.SetActive(true);
 			nav.radius = 0.01f;
 			nav.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
