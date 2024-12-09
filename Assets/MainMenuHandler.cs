@@ -65,6 +65,10 @@ public class MainMenuHandler : MonoBehaviour
         creditScreenStuff.SetActive(false);
     }
 
+    public void MainMenuClicked()
+    {
+        SceneManager.LoadScene("Totally Legit Main Menu");
+    }
 
     public void QuitGame()
     {
