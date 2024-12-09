@@ -6,7 +6,7 @@ public class DeathScript : MonoBehaviour
 {
     private GameObject player;
     private Rigidbody rb;
-    private Collider collider;
+    private new Collider collider;
 
     public float corpseFlingForce = 1;
     // Start is called before the first frame update
