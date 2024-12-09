@@ -17,6 +17,7 @@ public class EclipseTimer : MonoBehaviour
     public MarthaTestScript Martha;
 
     public AudioManager AudioManager;
+    public MusicTransition MusicTransition;
 
     private void Start()
     {
@@ -38,6 +39,7 @@ public class EclipseTimer : MonoBehaviour
                 Martha.gameObject.SetActive(true);
                 Martha.KILL();
                 AudioManager.EclipseTimerEnd();
+                MusicTransition.BeginMarthaMusic();
             }
         }
 

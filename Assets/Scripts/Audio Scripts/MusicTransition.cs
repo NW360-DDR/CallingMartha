@@ -37,6 +37,7 @@ public class MusicTransition : MonoBehaviour
         {
             LookForWolves();
         } 
+
     }
 
     public void SwitchToEncounter()
@@ -63,5 +64,17 @@ public class MusicTransition : MonoBehaviour
             encounterStarted = false;
             Debug.Log("Oh wow how did we get this far");
         }
+    }
+
+    public void BeginMarthaMusic()
+    {
+        ExplorationMusicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        EncounterMusicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        BossMusicInstance.start();
+    }
+
+    public void EndMarthaMusic()
+    {
+        /*if needed, called when player dies to reset to Exploration Music*/
     }
 }
