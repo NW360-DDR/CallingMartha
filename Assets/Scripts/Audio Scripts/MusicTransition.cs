@@ -7,16 +7,18 @@ public class MusicTransition : MonoBehaviour
 
     public FMODUnity.EventReference ExplorationMusicReference;
     public FMOD.Studio.EventInstance ExplorationMusicInstance;
-    //public string ExplorationMusicName;
 
     public FMODUnity.EventReference EncounterMusicReference;
     public FMOD.Studio.EventInstance EncounterMusicInstance;
-
 
     public FMODUnity.EventReference BossMusicReference;
     public FMOD.Studio.EventInstance BossMusicInstance;
 
     public GameObject Player;
+
+    public GameObject[] Enemy;
+
+    public bool encounterStarted = false;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +33,10 @@ public class MusicTransition : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+        if (encounterStarted == true)
+        {
+            LookForWolves();
+        } 
     }
 
     public void SwitchToEncounter()
@@ -39,5 +44,24 @@ public class MusicTransition : MonoBehaviour
         Debug.Log("Wolves tryin ta kill ya oooh spooky");
         ExplorationMusicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         EncounterMusicInstance.start();
+        encounterStarted = true;
+    }
+
+    public void SwitchOutOfEncounter()
+    {
+        EncounterMusicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        ExplorationMusicInstance.start();
+    }
+
+    public void LookForWolves()
+    {
+        Enemy = GameObject.FindGameObjectsWithTag("Wolf");
+
+        if (Enemy.Length == 0)
+        {
+            SwitchOutOfEncounter();
+            encounterStarted = false;
+            Debug.Log("Oh wow how did we get this far");
+        }
     }
 }
