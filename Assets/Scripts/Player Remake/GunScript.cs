@@ -10,6 +10,8 @@ public class GunScript : MonoBehaviour
 
     private InventoryScript inventoryScript;
     private EquippedScript equipScript;
+
+    private bool gunCooldown = false;
     public LayerMask excludeLayer;
 
     private RaycastHit hit;
@@ -25,8 +27,14 @@ public class GunScript : MonoBehaviour
     void Update()
     {
         Debug.DrawRay(spawnLocation.transform.position, spawnLocation.transform.forward, Color.red);
+    }
+
+    public void Shoot()
+    {
+        Debug.Log("Shoot gun!");
+
         //its a gun. shoot it.
-        if (Input.GetMouseButtonDown(0) && inventoryScript.bulletCount >= 1 && Time.timeScale > 0 && equipScript.allowAttack)
+        if (Input.GetMouseButtonDown(0) && inventoryScript.bulletCount >= 1 && Time.timeScale > 0 && equipScript.allowAttack && !gunCooldown)
         {
             gun.GetComponent<Animator>().SetTrigger("Shoot");
 
@@ -46,8 +54,17 @@ public class GunScript : MonoBehaviour
                 else if (tag.Equals("Martha"))
                     hit.transform.SendMessageUpwards("ShootWife");
             }
-
+            Debug.Log(inventoryScript.bulletCount);
             inventoryScript.bulletCount -= 1;
+
+            gunCooldown = true;
+            StartCoroutine(GunCooldownTimer());
         }
+    }
+
+    IEnumerator GunCooldownTimer()
+    {
+        yield return new WaitForSeconds(0.5f);
+        gunCooldown = false;
     }
 }

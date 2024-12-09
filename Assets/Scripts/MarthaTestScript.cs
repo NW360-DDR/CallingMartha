@@ -1,17 +1,14 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using System;
 using UnityEngine.SceneManagement;
-
 public class MarthaTestScript : MonoBehaviour
 {
 	// StateMachine and navigation components, misc external
 	public StateMachine brain;
-	[SerializeField] NavMeshAgent nav;
+	NavMeshAgent nav;
 	NavMeshPath path;
-	[SerializeField] FieldOfView fov;
-	[SerializeField] Animator anim;
+	FieldOfView fov;
+	Animator anim;
 	public GameObject hurtBox;
 	public GameObject killBox;
 	Enemy health;
@@ -22,25 +19,29 @@ public class MarthaTestScript : MonoBehaviour
 	readonly float maxWanderDist = 20f;
 	public float idleTimer = 3f;
 	float currIdle = 0f;
-	public float baseSpeed = 25f;
-	public float chaseMult = 1.5f;
-	bool hunting = false;
-	public Vector3 MapSpot = new(28.19f, -13.193f, 106.9f);
+	readonly float baseSpeed = 5f;
+	readonly float chaseMult = 1.5f;
+	GameObject warpObject;
 
 	int backState = 0; // If this number is > 0, it means we need to pop multiple states at once, and this is the safest way to go about this.
 
 	//Boss Fight Variables
 	public float attackCooldown = 0.75f;
-	[SerializeField] int BossHealth = 500;
-	public float bossSpeed = 25f;
-	[SerializeField] float chargeRange = 5f;
-	[SerializeField] float chargeCooldown = 5f, chargeTimer = 0f;
+	readonly int BossHealth = 500;
+	readonly float bossSpeed = 25f;
+	readonly float chargeRange = 5f;
+	readonly float chargeCooldown = 5f;
+	float chargeTimer = 0f;
 	float deNavTimer = 0f; // How long until the boss gives up and walks away.
-	public float RetreatTimer = 3f;
+	readonly float RetreatTimer = 3f;
 
 	// Start is called before the first frame update
 	void Start()
 	{
+		nav = gameObject.GetComponent<NavMeshAgent>();
+		fov = gameObject.GetComponent<FieldOfView>();
+		anim = gameObject.GetComponentInChildren<Animator>();
+
 		brain.PushState(DoNothingUntilCalled());
 		path = new();
 	}
@@ -48,20 +49,10 @@ public class MarthaTestScript : MonoBehaviour
 	void Update()
 	{
 		chargeTimer += Time.deltaTime;
-		if (fov.canSeePlayer && !hunting)
-		{
-			hunting = true;
-			brain.PushState(BossFight_Chase());
-		}
-		else
-		{
-			idleTimer = 3f;
-		}
 		if (backState > 0)
 		{
 			brain.PopState();
 			backState--;
-			chargeTimer++;
 		}
 		if (health != null)
 		{
@@ -76,17 +67,20 @@ public class MarthaTestScript : MonoBehaviour
 	{
 		if (!brain.gameObject.activeSelf)
 		{
-			brain.gameObject.SetActive(true);
+			brain.gameObject.SetActive(true); // Make sure the brain is active. Probably no longer needed.
 		}
-		if (gameTimer.enteredArena)
-        {
+
+		if (gameTimer.enteredArena) // If we've entered the arena, warpObject goes to the arena and we Start the boss fight.
+		{
+			warpObject = GameObject.Find("ArenaWarp");
 			StartBossFight();
-        }
-        else
-        {
-			nav.Warp(MapSpot);
+			nav.Warp(warpObject.transform.position);
+		}
+		else
+		{
 			brain.PushState(MurderHobo());
-		}	
+		}
+		
 	}
 	void AttemptPath(Vector3 destination)
 	{
@@ -138,20 +132,32 @@ public class MarthaTestScript : MonoBehaviour
 			Destroy(hurtBox);
 			dest = fov.playerRef.transform.position;
 			nav.SetDestination(dest);
-			nav.speed = baseSpeed * chaseMult * 2; // Eviscerate this man's spinal column
+			nav.speed = baseSpeed * chaseMult; // Eviscerate this man's spinal column
 			killBox.SetActive(true);
 			nav.radius = 0.01f;
 			nav.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
 			nav.autoBraking = false;
 			fov.canSeePlayer = true;
+			anim.SetBool("Running", true);
 		}
 		void Update()
 		{
 			dest = fov.playerRef.transform.position;
-			nav.SetDestination(dest);
-			killBox.SetActive(true);
-			health.health = 42069;
-		}
+			AttemptPath(dest);
+
+			if (nav.remainingDistance < 3)
+			{
+				killBox.SetActive(true);
+                anim.SetBool("Attacking", true);
+            }else
+			{
+                killBox.SetActive(true);
+                anim.SetBool("Attacking", false);
+
+            }
+
+            //health.health = 42069;
+        }
 		
 		void Exit()
 		{
@@ -165,7 +171,10 @@ public class MarthaTestScript : MonoBehaviour
 	}
 	State BossFight_Chase()
 	{
-		void Enter(){}
+		void Enter()
+		{
+            anim.SetBool("Running", true);
+        }
 		void Update()
 		{
 			AttemptPathBoss(fov.playerRef.transform.position);
@@ -196,13 +205,13 @@ public class MarthaTestScript : MonoBehaviour
 			newTarget += transform.position; // Add this direction + magnitude to our current position, and we should get a proper destination.
 			AttemptPath(newTarget);
 			nav.speed = baseSpeed * chargeMult;
-			//wolfAnim.SetBool("Running", true);
+			anim.SetBool("Attacking", true);
 		}
 
 		void Update()
 		{
 			if (hurtBox != null) hurtBox.SetActive(true);
-			if (nav.remainingDistance < 0.25f)
+			if (nav.remainingDistance < 1f)
 			{
 				chargeTimer = 0.0f;
 				brain.PushState(HoldOn());
@@ -213,8 +222,8 @@ public class MarthaTestScript : MonoBehaviour
 		{
 			nav.speed = baseSpeed;
 			hurtBox.SetActive(false);
-			//wolfAnim.SetBool("Running", false);
-		}
+            anim.SetBool("Attacking", false);
+        }
 		return new State(Update, Enter, Exit, "Charge");
 	}
 	State BossBackAway()
@@ -247,8 +256,8 @@ public class MarthaTestScript : MonoBehaviour
 			hurtBox.SetActive(false);
 			nav.ResetPath();
 			currIdle = 1;
-			//wolfAnim.SetBool("Running", false);
-		}
+            anim.SetBool("Running", false);
+        }
 		void Update()
 		{
 			// Otherwise, wait for IdleTimer to run out, then go somewhere else.
@@ -261,5 +270,10 @@ public class MarthaTestScript : MonoBehaviour
 		}
 		void Exit() { }
 		return new(Update, Enter, Exit, "HoldUp");
+	}
+	
+	public void DoDamage()
+	{
+		brain.PushState(HoldOn());
 	}
 }

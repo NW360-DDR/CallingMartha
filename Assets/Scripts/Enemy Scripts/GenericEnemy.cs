@@ -45,7 +45,6 @@ public class GenericEnemy : MonoBehaviour
 		hurtBox.SetActive(false);
 		path = new(); // Set a blank path just in case some thing needs to check path existence.
 		homePos = transform.position;
-		// TO DO: Check Maddie's timer for whether at least 50% has passed, then forcibly aggro self.
 	}
 	/// <summary>
 	/// Checks if the path in question can be reached.
@@ -233,19 +232,22 @@ public class GenericEnemy : MonoBehaviour
 
 	State GetHit()
     {
-		float timer = 0.5f;
+		float timer = .25f;
 		
 		void Enter()
         {
-			nav.isStopped = true;
+            wolfAnim.SetBool("Running", false);
+            nav.isStopped = true;
+			nav.updatePosition = false;
 			rb.isKinematic = false;
-			rb.AddForce(((transform.position - fov.playerRef.transform.position).normalized) * 3, ForceMode.Impulse);
+			rb.AddForce(((transform.position - fov.playerRef.transform.position).normalized) * 15, ForceMode.Impulse);
             wolfAnim.speed = 1;
         }
 
 		void Update()
         {
 			timer -= Time.deltaTime;
+			nav.nextPosition = transform.position;
 			if (timer <= 0f)
             {
 				brain.PopState();
@@ -255,6 +257,7 @@ public class GenericEnemy : MonoBehaviour
 		void Exit()
         {
 			nav.isStopped = false;
+			nav.updatePosition = true;
 			rb.isKinematic = true;
         }
 

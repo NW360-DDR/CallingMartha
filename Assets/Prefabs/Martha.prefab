@@ -49,7 +49,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 782955792047173918}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -251,24 +251,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brain: {fileID: 7466197321143683412}
-  nav: {fileID: 2486839970596255177}
-  fov: {fileID: 0}
-  anim: {fileID: 0}
   hurtBox: {fileID: 782955792047173918}
   killBox: {fileID: 0}
   gameTimer: {fileID: 0}
   dest: {x: 0, y: 0, z: 0}
-  lastKnownPlayerLoc: {x: 0, y: 0, z: 0}
   idleTimer: 3
-  baseSpeed: 2
-  chaseMult: 1.5
   attackCooldown: 0.75
-  BossHealth: 500
-  bossSpeed: 25
-  chargeRange: 5
-  chargeCooldown: 5
-  chargeTimer: 0
-  RetreatTimer: 3
 --- !u!1001 &5309206602502797634
 PrefabInstance:
   m_ObjectHideFlags: 0

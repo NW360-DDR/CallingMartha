@@ -22,6 +22,7 @@ public class Enemy : MonoBehaviour
     {
         spriteAnim = GetComponentInChildren<Animator>();
         angleCalcScript = GetComponent<AngleCalc>();
+        AudioManager = GameObject.FindAnyObjectByType<AudioManager>();
     }
 
     // Update is called once per frame
@@ -72,6 +73,7 @@ public class Enemy : MonoBehaviour
                 MarthaTestScript brain = GetComponent<MarthaTestScript>();
                 if (!brain.brain.GetState().Equals("GetHit"))
                 {
+                    brain.DoDamage();
                     Debug.Log("Ouch! Martha wtf");
                     health -= 50;
                     AudioManager.WolfHurt();

@@ -26,7 +26,7 @@ public class GeneratorInteractScript : Interactable
             logString = "Generator repaired.";
             SendLog();
             fixedCheck = true;
-            inventoryScript.generatorItems = 0;
+            inventoryScript.generatorItems -= itemsNeeded;
             for (int i = 0; i < thingsToTurnOn.Length; i++)
             {
                 thingsToTurnOn[i].SetActive(true);

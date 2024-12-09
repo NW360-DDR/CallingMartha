@@ -1721,7 +1721,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6634254539337635931}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6c30f9f1f331d1c458aa6f867885a79d, type: 3}
   m_Name: 
@@ -1757,7 +1757,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6634254539337635931}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c54b00e8be6f5b048a62ef1c2a3956ed, type: 3}
   m_Name: 
@@ -1784,8 +1784,54 @@ MonoBehaviour:
   phone: {fileID: 4197754646362111416}
   flashlightLight: {fileID: 9120104487017277093}
   currentEquipped: 0
+  switchingTo: 0
   batteryDrainMultiplier: 0.5
   allowAttack: 1
+  SwingAxe:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8780571491998576821}
+        m_TargetAssemblyTypeName: AxeSlash, Assembly-CSharp
+        m_MethodName: Attack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  FireGun:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8929680878949345201}
+        m_TargetAssemblyTypeName: GunScript, Assembly-CSharp
+        m_MethodName: Shoot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  FlashlightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4168797154450591856}
+        m_TargetAssemblyTypeName: FlashlightScript, Assembly-CSharp
+        m_MethodName: FlashlightClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7278455152755156860
 GameObject:
   m_ObjectHideFlags: 0
@@ -2620,6 +2666,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6634858528591756096, guid: d84b44943f2563244bcd70ab4cfb2b39, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7192428331916745080}
+    - targetCorrespondingSourceObject: {fileID: 6634858528591756096, guid: d84b44943f2563244bcd70ab4cfb2b39, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3413808761227694104}
   m_SourcePrefab: {fileID: 100100000, guid: d84b44943f2563244bcd70ab4cfb2b39, type: 3}
 --- !u!1 &4197754646362111416 stripped
 GameObject:
@@ -2647,6 +2696,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3413808761227694104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4197754646362111416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474aaff70bc8015469bd392a385f3346, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &4890427150324427653 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2705786673668910461, guid: d84b44943f2563244bcd70ab4cfb2b39, type: 3}
