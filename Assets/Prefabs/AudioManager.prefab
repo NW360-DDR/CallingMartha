@@ -31,8 +31,7 @@ Transform:
   m_LocalPosition: {x: 15.900598, y: -14.040291, z: -17.113876}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1782484207591503398}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1475774074161801930
@@ -166,6 +165,20 @@ MonoBehaviour:
       Data3: -194352714
       Data4: -2089738272
     Path: event:/SFX/Other/PlayDrawerSound
+  PlayButtonSound:
+    Guid:
+      Data1: -648024522
+      Data2: 1219312035
+      Data3: -465652061
+      Data4: -20041048
+    Path: event:/UI/Play_PlayButton
+  OtherButtonSound:
+    Guid:
+      Data1: 634631800
+      Data2: 1109313548
+      Data3: -1391594360
+      Data4: 2045102817
+    Path: event:/UI/Play_OtherButton
 --- !u!114 &2704361442653575710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,7 +191,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0f3d59ef311cfd44906dbdeeebe54a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ExplorationPlaying: 0
+  ExplorationMusicReference:
+    Guid:
+      Data1: -1663627269
+      Data2: 1169446091
+      Data3: 12267146
+      Data4: -280598186
+    Path: event:/Music/PlayExploration
+  EncounterMusicReference:
+    Guid:
+      Data1: 1849009159
+      Data2: 1127231597
+      Data3: -855573319
+      Data4: -771154944
+    Path: event:/Music/PlayEncounter
+  BossMusicReference:
+    Guid:
+      Data1: 526882645
+      Data2: 1246856522
+      Data3: -2007462239
+      Data4: 182297975
+    Path: event:/Music/PlayBoss
+  Player: {fileID: 6634254539337635931, guid: 9fe94e82a4aa3ff41aae2e27ab392045, type: 3}
+  Enemy:
+  - {fileID: 0}
+  encounterStarted: 0
 --- !u!114 &3327624238332806738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,9 +230,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 6634254539337635931, guid: 9fe94e82a4aa3ff41aae2e27ab392045, type: 3}
   playerController: {fileID: 2094806520271669530, guid: 9fe94e82a4aa3ff41aae2e27ab392045, type: 3}
-  footstepSpeed: 15
+  footstepSpeed: 0.75
   time: 0
   isInside: 0
+  floorLayer:
+    serializedVersion: 2
+    m_Bits: 0
   woodFootsteps:
     Guid:
       Data1: 1138687323
@@ -210,70 +250,3 @@ MonoBehaviour:
       Data3: -1336185705
       Data4: 1248161884
     Path: event:/SFX/Michael/PlayMichaelFootstepsMud
---- !u!1 &7444807199006531237
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1782484207591503398}
-  - component: {fileID: 7352803743687097647}
-  - component: {fileID: 6907714116291231325}
-  m_Layer: 0
-  m_Name: InsideCollider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1782484207591503398
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7444807199006531237}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.06, y: 0, z: -4.44}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6200730402173509406}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &7352803743687097647
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7444807199006531237}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6907714116291231325
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7444807199006531237}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6155a65122eb29b4eb1ed4f5f13e993d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FootstepTryTheFourth: {fileID: 3327624238332806738}
