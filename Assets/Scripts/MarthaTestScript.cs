@@ -21,7 +21,6 @@ public class MarthaTestScript : MonoBehaviour
 	float currIdle = 0f;
 	readonly float baseSpeed = 20f;
 	readonly float chaseMult = 1.5f;
-	bool hunting = false;
 	GameObject warpObject;
 
 	int backState = 0; // If this number is > 0, it means we need to pop multiple states at once, and this is the safest way to go about this.
@@ -50,15 +49,6 @@ public class MarthaTestScript : MonoBehaviour
 	void Update()
 	{
 		chargeTimer += Time.deltaTime;
-		if (fov.canSeePlayer && !hunting)
-		{
-			hunting = true;
-			brain.PushState(BossFight_Chase());
-		}
-		else
-		{
-			idleTimer = 3f;
-		}
 		if (backState > 0)
 		{
 			brain.PopState();
@@ -75,7 +65,6 @@ public class MarthaTestScript : MonoBehaviour
 	
 	public void KILL()
 	{
-		hunting = true;
 		if (!brain.gameObject.activeSelf)
 		{
 			brain.gameObject.SetActive(true); // Make sure the brain is active. Probably no longer needed.
