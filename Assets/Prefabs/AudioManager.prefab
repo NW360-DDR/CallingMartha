@@ -177,13 +177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0f3d59ef311cfd44906dbdeeebe54a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ExplorationMusic:
-    Guid:
-      Data1: -1663627269
-      Data2: 1169446091
-      Data3: 12267146
-      Data4: -280598186
-    Path: event:/Music/PlayExploration
+  ExplorationMusicName: PlayExploration
   EncounterMusic:
     Guid:
       Data1: 1849009159
@@ -199,6 +193,7 @@ MonoBehaviour:
       Data4: 182297975
     Path: event:/Music/PlayBoss
   ExplorationPlaying: 0
+  Player: {fileID: 0}
 --- !u!114 &3327624238332806738
 MonoBehaviour:
   m_ObjectHideFlags: 0
