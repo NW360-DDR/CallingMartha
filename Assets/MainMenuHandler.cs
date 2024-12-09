@@ -15,6 +15,8 @@ public class MainMenuHandler : MonoBehaviour
     public GameObject titleScreenStuff;
     public GameObject creditScreenStuff;
 
+    public AudioManager AudioManager;
+
     private void Start()
     {
         Cursor.lockState = CursorLockMode.None;
@@ -46,6 +48,7 @@ public class MainMenuHandler : MonoBehaviour
 
     public void Prologue()
     {
+        AudioManager.PlayPlayButtonSound();
         prologueStarted = true;
         skip.SetActive(true);
         titleScreenStuff.SetActive(false);
@@ -53,6 +56,7 @@ public class MainMenuHandler : MonoBehaviour
 
     public void CreditsClicked()
     {
+        AudioManager.PlayOtherButtonSound();
         Debug.Log("Credits clicked!");
         titleScreenStuff.SetActive(false);
         creditScreenStuff.SetActive(true);
@@ -60,6 +64,7 @@ public class MainMenuHandler : MonoBehaviour
 
     public void CloseCreditsClicked()
     {
+        AudioManager.PlayOtherButtonSound();
         Debug.Log("Credits closed!");
         titleScreenStuff.SetActive(true);
         creditScreenStuff.SetActive(false);
@@ -67,6 +72,7 @@ public class MainMenuHandler : MonoBehaviour
 
     public void MainMenuClicked()
     {
+        AudioManager.PlayOtherButtonSound();
         SceneManager.LoadScene("Totally Legit Main Menu");
     }
 

@@ -165,6 +165,20 @@ MonoBehaviour:
       Data3: -194352714
       Data4: -2089738272
     Path: event:/SFX/Other/PlayDrawerSound
+  PlayButtonSound:
+    Guid:
+      Data1: -648024522
+      Data2: 1219312035
+      Data3: -465652061
+      Data4: -20041048
+    Path: event:/UI/Play_PlayButton
+  OtherButtonSound:
+    Guid:
+      Data1: 634631800
+      Data2: 1109313548
+      Data3: -1391594360
+      Data4: 2045102817
+    Path: event:/UI/Play_OtherButton
 --- !u!114 &2704361442653575710
 MonoBehaviour:
   m_ObjectHideFlags: 0

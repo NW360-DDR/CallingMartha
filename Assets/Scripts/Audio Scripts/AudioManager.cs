@@ -32,6 +32,9 @@ public class AudioManager : MonoBehaviour
     public FMODUnity.EventReference DoorOpenSound;
     public FMODUnity.EventReference DoorCloseSound;
     public FMODUnity.EventReference DrawerSound;
+
+    public FMODUnity.EventReference PlayButtonSound;
+    public FMODUnity.EventReference OtherButtonSound;
     // Update is called once per frame
     void Update()
     {
@@ -124,5 +127,15 @@ public class AudioManager : MonoBehaviour
     public void PlayAxeWhoosh()
     {
         FMODUnity.RuntimeManager.PlayOneShot(AxeWhoosh);
+    }
+
+    public void PlayPlayButtonSound()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(PlayButtonSound);
+    }
+
+    public void PlayOtherButtonSound()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(OtherButtonSound);
     }
 }
