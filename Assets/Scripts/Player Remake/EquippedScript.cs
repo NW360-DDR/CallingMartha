@@ -109,9 +109,18 @@ public class EquippedScript : MonoBehaviour
 
     IEnumerator SendUpdate()
     {
-        //buffer switching so they don't conflict
-        yield return new WaitForSeconds(0.09f);
-        UpdateEquipped();
+        if (!weaponAnim.GetCurrentAnimatorStateInfo(0).IsName("Base.Switch_Equipped"))
+        {
+            //buffer switching so they don't conflict
+            yield return new WaitForSeconds(0.09f);
+            UpdateEquipped();
+        }
+        else
+        {
+            Debug.Log("Borked state detected.");
+            weaponAnim.SetBool("SwitchingHand", false);
+        }
+        
     }
 
     void UpdateEquipped()
