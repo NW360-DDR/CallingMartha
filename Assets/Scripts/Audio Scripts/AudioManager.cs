@@ -38,6 +38,14 @@ public class AudioManager : MonoBehaviour
 
     public FMODUnity.EventReference Radio4;
     public FMODUnity.EventReference Radio5;
+
+    public FMODUnity.EventReference InGame4;
+    public FMODUnity.EventReference InGame5;
+    public FMODUnity.EventReference LockedDoor1;
+    public FMODUnity.EventReference InGame9;
+    public FMODUnity.EventReference InGame19;
+    public FMODUnity.EventReference InGame20;
+
     // Update is called once per frame
     void Update()
     {
@@ -150,5 +158,18 @@ public class AudioManager : MonoBehaviour
     public void RedMistVO()
     {
         FMODUnity.RuntimeManager.PlayOneShot(Radio5);
+    }
+
+    public void Voiceline(int VO)
+    {
+        if (VO == 4)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot(InGame4);
+        }
+
+        if (VO == 5)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot(InGame5);
+        }
     }
 }
