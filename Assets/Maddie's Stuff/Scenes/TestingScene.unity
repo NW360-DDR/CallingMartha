@@ -708,6 +708,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &211458846 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7964418324737739107, guid: 9fe94e82a4aa3ff41aae2e27ab392045, type: 3}
+  m_PrefabInstance: {fileID: 1418900618}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49b1e4f7a80bc1c4d847895e0b792a0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &221807838
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4554,6 +4565,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2704361442653575710, guid: 5815eb253703c0b46bd6fa919eda32d0, type: 3}
+      propertyPath: HealthAndRespawn
+      value: 
+      objectReference: {fileID: 211458846}
     - target: {fileID: 3172544478525028823, guid: 5815eb253703c0b46bd6fa919eda32d0, type: 3}
       propertyPath: m_Name
       value: AudioManager
