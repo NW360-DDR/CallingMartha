@@ -277,6 +277,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{93ae9ad1-a16f-4fe9-81b7-25aeda8290a4}">
+		<property name="volume">
+			<value>-11.5</value>
+		</property>
 		<relationship name="effectChain">
 			<destination>{9346d236-da80-4810-93fe-4a35b5f1a8b3}</destination>
 		</relationship>
@@ -337,6 +340,9 @@
 		<property name="color">
 			<value>Blue</value>
 		</property>
+		<property name="volume">
+			<value>6.5</value>
+		</property>
 		<property name="name">
 			<value>Rain1</value>
 		</property>
@@ -386,6 +392,9 @@
 	<object class="EventMixerGroup" id="{6b185ba3-af4b-485c-bb95-d3ebff5da780}">
 		<property name="color">
 			<value>Blue</value>
+		</property>
+		<property name="volume">
+			<value>6.5</value>
 		</property>
 		<property name="name">
 			<value>Rain2</value>
@@ -482,7 +491,7 @@
 			<value>Red</value>
 		</property>
 		<property name="volume">
-			<value>-7</value>
+			<value>-8</value>
 		</property>
 		<property name="name">
 			<value>Tree2</value>
@@ -532,7 +541,7 @@
 			<value>Red</value>
 		</property>
 		<property name="volume">
-			<value>-4</value>
+			<value>-5.5</value>
 		</property>
 		<property name="name">
 			<value>Tree3</value>
@@ -578,6 +587,9 @@
 		<property name="color">
 			<value>Purple</value>
 		</property>
+		<property name="volume">
+			<value>-2</value>
+		</property>
 		<property name="name">
 			<value>Thunder1</value>
 		</property>
@@ -619,6 +631,9 @@
 		<property name="color">
 			<value>Purple</value>
 		</property>
+		<property name="volume">
+			<value>-2.5</value>
+		</property>
 		<property name="name">
 			<value>Thunder2</value>
 		</property>
@@ -659,6 +674,9 @@
 	<object class="EventMixerGroup" id="{6b3d56d3-9df8-41b8-85e1-0c6e0224b891}">
 		<property name="color">
 			<value>Purple</value>
+		</property>
+		<property name="volume">
+			<value>-1.5</value>
 		</property>
 		<property name="name">
 			<value>Thunder3</value>
@@ -711,6 +729,9 @@
 	<object class="EventMixerGroup" id="{cd746b50-7ca3-418b-9114-d8bb1407f51b}">
 		<property name="color">
 			<value>Purple</value>
+		</property>
+		<property name="volume">
+			<value>-2</value>
 		</property>
 		<property name="name">
 			<value>Thunder4</value>
@@ -773,6 +794,9 @@
 		<property name="color">
 			<value>Magenta</value>
 		</property>
+		<property name="volume">
+			<value>-2.5</value>
+		</property>
 		<property name="name">
 			<value>Wind1</value>
 		</property>
@@ -819,6 +843,9 @@
 	<object class="EventMixerGroup" id="{0c4241b1-4227-408d-9892-29a725042551}">
 		<property name="color">
 			<value>Magenta</value>
+		</property>
+		<property name="volume">
+			<value>-2.5</value>
 		</property>
 		<property name="name">
 			<value>Wind2</value>
@@ -875,6 +902,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{13734118-491a-4e01-811c-3823b68d8b0a}">
+		<property name="volume">
+			<value>-2</value>
+		</property>
 		<property name="name">
 			<value>Crow1</value>
 		</property>
@@ -913,6 +943,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{c9e70c9c-77fc-4ef8-a550-8fb12d253f88}">
+		<property name="volume">
+			<value>-2</value>
+		</property>
 		<property name="name">
 			<value>Crow2</value>
 		</property>
@@ -974,6 +1007,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{3e5a0a4c-dce6-4336-826e-3b4fea986097}">
+		<property name="volume">
+			<value>-11</value>
+		</property>
 		<property name="name">
 			<value>CrowMurder1</value>
 		</property>
@@ -1060,6 +1096,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{30760941-2b52-4a63-b760-c02331c06626}">
+		<property name="volume">
+			<value>-2</value>
+		</property>
 		<property name="name">
 			<value>Wings1</value>
 		</property>
@@ -1098,6 +1137,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{f0d5885c-7430-43e7-be12-feedfdb315ac}">
+		<property name="volume">
+			<value>-2</value>
+		</property>
 		<property name="name">
 			<value>Eagle1</value>
 		</property>
