@@ -103,9 +103,6 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{0508e021-0246-4dae-9ced-6b56d51fd73a}">
-		<property name="volume">
-			<value>6.5</value>
-		</property>
 		<property name="name">
 			<value>Audio 1</value>
 		</property>
@@ -163,7 +160,7 @@
 			<value>2</value>
 		</property>
 		<property name="maximumDistance">
-			<value>15</value>
+			<value>10</value>
 		</property>
 		<property name="overrideRange">
 			<value>true</value>
