@@ -40,10 +40,10 @@ public class MusicTransition : MonoBehaviour
             LookForWolves();
         } 
 
-        if (HealthAndRespawn.alive = false)
+        /*if (HealthAndRespawn.alive = false)
         {
             DeathMusic();
-        }
+        }*/
 
     }
 
@@ -59,6 +59,7 @@ public class MusicTransition : MonoBehaviour
     {
         EncounterMusicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         ExplorationMusicInstance.start();
+        Debug.Log("Wolves are dead, back to spook");
     }
 
     public void LookForWolves()
@@ -85,10 +86,10 @@ public class MusicTransition : MonoBehaviour
         /*if needed, called when player dies to reset to Exploration Music*/
     }
 
-    public void DeathMusic()
+    /*public void DeathMusic()
     {
         EncounterMusicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         BossMusicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         ExplorationMusicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-    }
+    }*/
 }
