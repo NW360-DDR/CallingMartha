@@ -35,6 +35,9 @@ public class AudioManager : MonoBehaviour
 
     public FMODUnity.EventReference PlayButtonSound;
     public FMODUnity.EventReference OtherButtonSound;
+
+    public FMODUnity.EventReference Radio4;
+    public FMODUnity.EventReference Radio5;
     // Update is called once per frame
     void Update()
     {
@@ -137,5 +140,15 @@ public class AudioManager : MonoBehaviour
     public void PlayOtherButtonSound()
     {
         FMODUnity.RuntimeManager.PlayOneShot(OtherButtonSound);
+    }
+
+    public void OneMinuteWarning()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(Radio4);
+    }
+
+    public void RedMistVO()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(Radio5);
     }
 }
