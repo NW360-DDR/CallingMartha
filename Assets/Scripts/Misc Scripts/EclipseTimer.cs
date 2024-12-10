@@ -44,11 +44,19 @@ public class EclipseTimer : MonoBehaviour
             }
         }
 
+        if (timer == ((eclipseTimerLength - 1) * 60))
+        {
+            AudioManager.OneMinuteWarning();
+        }
+
         //lunarMoon.transform.localPosition = new Vector3(Mathf.Clamp(timer / eclipseTimerLength, 0f, 1f) , 0, 0);
 
         //turn fog red over time once it hits fog timer
         if (timer > redFogTime * 60)
+        {
             RenderSettings.fogColor = Color.Lerp(RenderSettings.fogColor, RedColor, ((Time.deltaTime * 2) / (eclipseTimerLength * 15f)));
+            AudioManager.RedMistVO();
+        }
     }
 
     //restarts current loaded scene (will probably change later)
