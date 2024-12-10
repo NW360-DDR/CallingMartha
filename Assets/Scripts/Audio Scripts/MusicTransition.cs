@@ -16,6 +16,8 @@ public class MusicTransition : MonoBehaviour
 
     public GameObject Player;
 
+    public HealthAndRespawn HealthAndRespawn;
+
     public GameObject[] Enemy;
 
     public bool encounterStarted = false;
@@ -37,6 +39,11 @@ public class MusicTransition : MonoBehaviour
         {
             LookForWolves();
         } 
+
+        if (HealthAndRespawn.alive = false)
+        {
+            DeathMusic();
+        }
 
     }
 
@@ -76,5 +83,12 @@ public class MusicTransition : MonoBehaviour
     public void EndMarthaMusic()
     {
         /*if needed, called when player dies to reset to Exploration Music*/
+    }
+
+    public void DeathMusic()
+    {
+        EncounterMusicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        BossMusicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        ExplorationMusicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 }
