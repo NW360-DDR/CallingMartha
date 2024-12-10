@@ -95,8 +95,11 @@
 	</object>
 	<object class="MixerBusPanner" id="{e8fed107-17ec-435b-8d11-c638dac975ff}" />
 	<object class="SingleSound" id="{550ea756-868f-4c31-872c-35d50de6b902}">
+		<property name="start">
+			<value>21</value>
+		</property>
 		<property name="length">
-			<value>45</value>
+			<value>10</value>
 		</property>
 		<relationship name="fadeInCurve">
 			<destination>{e29aed47-db0d-4de4-9e85-1b60e8dd9107}</destination>
@@ -127,7 +130,7 @@
 			<value>0</value>
 		</property>
 		<property name="length">
-			<value>45</value>
+			<value>120</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{a6ea131f-2b2d-4e3b-93cf-8b4be0a22911}</destination>
@@ -165,10 +168,16 @@
 		<property name="distanceRolloffType">
 			<value>2</value>
 		</property>
+		<property name="maximumDistance">
+			<value>10</value>
+		</property>
+		<property name="overrideRange">
+			<value>true</value>
+		</property>
 	</object>
 	<object class="AutomationPoint" id="{91c92fc5-60e6-4cb2-a11c-92da865d9b48}">
 		<property name="position">
-			<value>0</value>
+			<value>21</value>
 		</property>
 		<property name="value">
 			<value>0</value>
@@ -179,7 +188,7 @@
 	</object>
 	<object class="AutomationPoint" id="{bbc78aab-37b3-498b-8264-70bb8a1db71b}">
 		<property name="position">
-			<value>0.40000000000000002</value>
+			<value>21.399999999999999</value>
 		</property>
 		<property name="value">
 			<value>1</value>
