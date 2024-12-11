@@ -20,9 +20,6 @@ public class EclipseTimer : MonoBehaviour
     public AudioManager AudioManager;
     public MusicTransition MusicTransition;
 
-    public bool OneMinuteWarningPlayed = false;
-    public bool RedMistVOPlayed = false;
-
     private void Start()
     {
         StartCoroutine(UpdateMoon());
@@ -47,10 +44,9 @@ public class EclipseTimer : MonoBehaviour
             }
         }
 
-        if (timer == ((eclipseTimerLength - 1) * 60) && OneMinuteWarningPlayed == false)
+        if (timer == ((eclipseTimerLength - 1) * 60))
         {
-            AudioManager.OneMinuteWarning();
-            OneMinuteWarningPlayed = true;
+            //AudioManager.OneMinuteWarning();
         }
 
         //lunarMoon.transform.localPosition = new Vector3(Mathf.Clamp(timer / eclipseTimerLength, 0f, 1f) , 0, 0);
@@ -59,11 +55,7 @@ public class EclipseTimer : MonoBehaviour
         if (timer > redFogTime * 60)
         {
             RenderSettings.fogColor = Color.Lerp(RenderSettings.fogColor, RedColor, ((Time.deltaTime * 2) / (eclipseTimerLength * 15f)));
-            if (RedMistVOPlayed = false)
-            {
-                AudioManager.RedMistVO();
-                RedMistVOPlayed = true;
-            }
+            //AudioManager.RedMistVO();
         }
     }
 

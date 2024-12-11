@@ -26,7 +26,7 @@ public class GeneratorInteractScript : Interactable
             logString = "Generator repaired.";
             SendLog();
             fixedCheck = true;
-            inventoryScript.generatorItems -= itemsNeeded;
+            inventoryScript.generatorItems = Mathf.Max(inventoryScript.generatorItems - itemsNeeded, 0);
             for (int i = 0; i < thingsToTurnOn.Length; i++)
             {
                 thingsToTurnOn[i].SetActive(true);
@@ -39,6 +39,8 @@ public class GeneratorInteractScript : Interactable
             {
                 Destroy(thingsToDestroy[i]);
             }
+            gameObject.tag = "Untagged";
+            Destroy(this);
         }
     }
 }

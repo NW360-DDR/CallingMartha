@@ -9,6 +9,7 @@ public class MainMenuHandler : MonoBehaviour
 {
     public string MainGame;
     bool prologueStarted;
+    private bool loadingGame = false;
     public float scrollSpeed = 0.0f;
     public TextMeshProUGUI text;
     public GameObject skip;
@@ -21,14 +22,16 @@ public class MainMenuHandler : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        Screen.SetResolution(810, 708, true);
     }
     void Update()
     {
         if (prologueStarted)
         {
             text.rectTransform.Translate(Time.deltaTime * (text.rectTransform.position.y >= 0 ? 0 : scrollSpeed) * Vector2.up);
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) && !loadingGame)
             {
+                loadingGame = true;
                 StartCoroutine(StartGame());
             }
         }

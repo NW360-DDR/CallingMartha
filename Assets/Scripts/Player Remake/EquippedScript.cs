@@ -14,6 +14,7 @@ public class EquippedScript : MonoBehaviour
 
     private InventoryScript inventoryScript;
     private PhoneHandler phoneHandler;
+    private GrabAndThrow grabScript;
 
     TextLogThingy textLog;
 
@@ -34,6 +35,7 @@ public class EquippedScript : MonoBehaviour
         phoneAnim = phone.GetComponent<Animator>();
         inventoryScript = GetComponent<InventoryScript>();
         phoneHandler = GameObject.Find("PhoneCanvas").GetComponent<PhoneHandler>();
+        grabScript = GetComponentInChildren<GrabAndThrow>();
         textLog = GameObject.FindAnyObjectByType<TextLogThingy>();
     }
 
@@ -61,19 +63,19 @@ public class EquippedScript : MonoBehaviour
             StartCoroutine(SendUpdate());
         }*/
 
-        if (Input.GetKeyDown(KeyCode.Alpha1) && currentEquipped != 0 && takeInput && Time.timeScale > 0)
+        if (Input.GetKeyDown(KeyCode.Alpha1) && currentEquipped != 0 && takeInput && Time.timeScale > 0 && !grabScript.holdingCheck)
         {
             allowAttack = false;
             switchingTo = 0;
             takeInput = false;
             StartCoroutine(SendUpdate());
-        }else if (Input.GetKeyDown(KeyCode.Alpha2) && currentEquipped != 1 && takeInput && Time.timeScale > 0)
+        }else if (Input.GetKeyDown(KeyCode.Alpha2) && currentEquipped != 1 && takeInput && Time.timeScale > 0 && !grabScript.holdingCheck)
         {
             allowAttack = false;
             switchingTo = 1;
             takeInput = false;
             StartCoroutine(SendUpdate());
-        }else if (Input.GetKeyDown(KeyCode.Alpha3) && currentEquipped != 2 && takeInput && Time.timeScale > 0)
+        }else if (Input.GetKeyDown(KeyCode.Alpha3) && currentEquipped != 2 && takeInput && Time.timeScale > 0 && !grabScript.holdingCheck)
         {
             allowAttack = false;
             switchingTo = 2;
@@ -81,14 +83,14 @@ public class EquippedScript : MonoBehaviour
             StartCoroutine(SendUpdate());
         }
 
-        if (Input.mouseScrollDelta.y > 0 && currentEquipped != 0 && takeInput && Time.timeScale > 0)
+        if (Input.mouseScrollDelta.y > 0 && currentEquipped != 0 && takeInput && Time.timeScale > 0 && !grabScript.holdingCheck)
         {
             allowAttack = false;
             switchingTo--;
             takeInput = false;
             StartCoroutine(SendUpdate());
         }
-        else if (Input.mouseScrollDelta.y < 0 && currentEquipped != 2 && takeInput && Time.timeScale > 0)
+        else if (Input.mouseScrollDelta.y < 0 && currentEquipped != 2 && takeInput && Time.timeScale > 0 && !grabScript.holdingCheck)
         {
             allowAttack = false;
             switchingTo++;
@@ -96,7 +98,7 @@ public class EquippedScript : MonoBehaviour
             StartCoroutine(SendUpdate());
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !grabScript.holdingCheck)
         {
             DoWeaponThing();
         }
@@ -109,9 +111,18 @@ public class EquippedScript : MonoBehaviour
 
     IEnumerator SendUpdate()
     {
-        //buffer switching so they don't conflict
-        yield return new WaitForSeconds(0.09f);
-        UpdateEquipped();
+        if (!weaponAnim.GetCurrentAnimatorStateInfo(0).IsName("Base.Switch_Equipped"))
+        {
+            //buffer switching so they don't conflict
+            yield return new WaitForSeconds(0.09f);
+            UpdateEquipped();
+        }
+        else
+        {
+            Debug.Log("Borked state detected.");
+            weaponAnim.SetBool("SwitchingHand", false);
+        }
+        
     }
 
     void UpdateEquipped()

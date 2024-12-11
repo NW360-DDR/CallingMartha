@@ -65,7 +65,7 @@ public class AxeSlash : MonoBehaviour
             if (checkForBreakable.transform.CompareTag("Breakable"))
             {
                 Debug.Log("Can be broken!");
-
+                AudioManager.PlayAxeImpactWood();
                 Destroy(checkForBreakable.transform.gameObject);
             }
         }
@@ -77,7 +77,7 @@ public class AxeSlash : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && equipScript.allowAttack && Time.timeScale > 0)
         {
-            axeAnim.SetTrigger("Attack");
+            axeAnim.Play("Axe_Attack_Rework");
         }
     }
 }
