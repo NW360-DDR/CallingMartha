@@ -6,6 +6,8 @@ public class PostItNotesScript : Interactable
 {
     [TextArea(3,10)] //makes textarea in inspector bigger
     public string noteText;
+    public AudioManager AudioManager;
+    public int VO;
 
     // Start is called before the first frame update
     void Interact()
@@ -14,5 +16,6 @@ public class PostItNotesScript : Interactable
 
         logString = noteText;
         SendLog();
+        AudioManager.Voiceline(VO);
     }
 }
