@@ -65,7 +65,7 @@ public class AxeSlash : MonoBehaviour
             if (checkForBreakable.transform.CompareTag("Breakable"))
             {
                 Debug.Log("Can be broken!");
-
+                AudioManager.PlayAxeImpactWood();
                 Destroy(checkForBreakable.transform.gameObject);
             }
         }

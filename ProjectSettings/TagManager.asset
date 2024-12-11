@@ -26,6 +26,7 @@ TagManager:
   - Breakable
   - Window
   - Lock
+  - Callbox
   layers:
   - Default
   - TransparentFX

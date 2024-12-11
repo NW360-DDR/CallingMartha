@@ -135,14 +135,13 @@ public class NewPlayerMovement : MonoBehaviour
         if (other.CompareTag("Cellbox"))
         {
             cellService.ServiceUpdate(other.GetComponent<CellVolume>().cellPower);
+        }
 
-            if (other.GetComponent<CellVolume>().gettingCall)
-            {
-                phoneScript.gettingCall = true;
-               
-                AudioManager.PhoneNotification();
-                
-            }
+        if (other.CompareTag("Callbox"))
+        {
+            AudioManager.PhoneNotification();
+            phoneScript.gettingCall = true;
+            Destroy(other.gameObject);
         }
     }
     private void OnTriggerStay(Collider other)
