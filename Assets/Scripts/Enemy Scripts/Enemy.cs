@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     public float health = 100;
     public bool isAnimated = true;
     public bool isMartha = false;
+    private bool isDead = false;
 
     private Animator spriteAnim;
     private AngleCalc angleCalcScript;
@@ -94,8 +95,9 @@ public class Enemy : MonoBehaviour
 
     IEnumerator Die()
     {
-        if (!isMartha)
+        if (!isMartha && !isDead)
         {
+            isDead = true;
             Instantiate(deadWolf, transform.position + new Vector3(0, 0.1f, 0), transform.rotation);
         }
 
