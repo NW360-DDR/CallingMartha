@@ -39,6 +39,8 @@ public class GeneratorInteractScript : Interactable
             {
                 Destroy(thingsToDestroy[i]);
             }
+            gameObject.tag = "Untagged";
+            Destroy(this);
         }
     }
 }
