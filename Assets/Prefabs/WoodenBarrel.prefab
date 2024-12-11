@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7130059535512671787}
   - component: {fileID: 5841194100432913968}
   - component: {fileID: 8634487340645716439}
+  - component: {fileID: 6918934159063844392}
   m_Layer: 6
   m_Name: WoodenBarrel
   m_TagString: Barrel
@@ -120,3 +121,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AudioManager: {fileID: 1475774074161801930, guid: 5815eb253703c0b46bd6fa919eda32d0, type: 3}
+--- !u!208 &6918934159063844392
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8787634680165906430}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.022000002, y: 0.028, z: 0.022000002}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5

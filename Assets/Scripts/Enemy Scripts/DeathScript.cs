@@ -26,6 +26,6 @@ public class DeathScript : MonoBehaviour
     {
         yield return new WaitForSeconds(0.3f);
         Destroy(rb);
-        Destroy(collider);  
+        Destroy(collider);
     }
 }
