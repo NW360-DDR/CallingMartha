@@ -98,7 +98,7 @@ public class Enemy : MonoBehaviour
         if (!isMartha && !isDead)
         {
             isDead = true;
-            Instantiate(deadWolf, transform.position + new Vector3(0, 0.1f, 0), transform.rotation);
+            Instantiate(deadWolf, transform.position, transform.rotation);
         }
 
         yield return new WaitForSeconds(0.1f);
